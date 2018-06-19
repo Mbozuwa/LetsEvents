@@ -1,3 +1,3 @@
 <?php
 
- hello there!
+ hello there! :)
