@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Electronic Webshop</title>
+    <title>Lets Event</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -21,9 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            
+        
         </nav>
 
         <main class="py-4">

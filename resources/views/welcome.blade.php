@@ -6,10 +6,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Let's event</title>
+
+        
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <!-- Styles -->
         <style>
@@ -67,10 +68,14 @@
         </style>
 
     </head>
+
     <body>
         <div class="flex-center position-ref full-height">
 
                 <div class="top-right links">
+
+                        <a href="{{ url('/home') }}">Home</a>
+
                     @if(Auth::check())
                         <li><a class="nav-link" href="#">User profile</a></li>
                           <li><a class="nav-link" href="{{route('user.logout')}}">log out</a></li>
@@ -79,21 +84,20 @@
                         <li><a href="{{route('user.signup')}}">Signup</a></li>
                         <li><a href="{{route('user.signin')}}">Signin</a></li>
                     @endif
+
                 </div>
 
 
-            <div class="content">
+            <div class="content" style="margin-right: 400px">
                 <div class="title m-b-md">
-                    Laravel
+                    Let's Event
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                <div id="calendar"></div>
+                    <script type="text/javascript" src="{{ URL::asset('js/moment.min.js') }}"></script>
+                    <script type="text/javascript" src="{{ URL::asset('js/index.js') }}"></script>
+                    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
+                
             </div>
         </div>
     </body>
