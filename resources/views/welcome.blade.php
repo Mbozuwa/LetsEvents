@@ -71,14 +71,16 @@
         <div class="flex-center position-ref full-height">
 
                 <div class="top-right links">
-
-                        <a href="{{ url('/home') }}">Home</a>
-
-                        <li><a href="{{route('test-profile.signup')}}">Signup</a></li>
-                        <li><a href="{{route('test-profile.signin')}}">Signin</a></li>
-
+                    @if(Auth::check())
+                        <li><a class="nav-link" href="#">User profile</a></li>
+                          <li><a class="nav-link" href="{{route('user.logout')}}">log out</a></li>
+                        <a href="{{ url('/welcome') }}">Home</a>
+                    @else
+                        <li><a href="{{route('user.signup')}}">Signup</a></li>
+                        <li><a href="{{route('user.signin')}}">Signin</a></li>
+                    @endif
                 </div>
-            
+
 
             <div class="content">
                 <div class="title m-b-md">
