@@ -89,9 +89,9 @@
                 </div>
 
 
-            <div class="content">
+            <div class="content" style="margin-right: 400px">
                 <div class="title m-b-md">
-                    Laravel
+                    Let's Event
                 </div>
 
                 <div id="calendar"></div>
