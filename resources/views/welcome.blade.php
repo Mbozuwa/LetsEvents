@@ -8,7 +8,7 @@
 
         <title>Let's event</title>
 
-        
+
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -73,9 +73,6 @@
         <div class="flex-center position-ref full-height">
 
                 <div class="top-right links">
-
-                        <a href="{{ url('/home') }}">Home</a>
-
                     @if(Auth::check())
                         <li><a class="nav-link" href="#">User profile</a></li>
                           <li><a class="nav-link" href="{{route('user.logout')}}">log out</a></li>
@@ -92,12 +89,11 @@
                 <div class="title m-b-md">
                     Let's Event
                 </div>
-
                 <div id="calendar"></div>
                     <script type="text/javascript" src="{{ URL::asset('js/moment.min.js') }}"></script>
                     <script type="text/javascript" src="{{ URL::asset('js/index.js') }}"></script>
                     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
-                
+
             </div>
         </div>
     </body>
