@@ -16,7 +16,7 @@
         <div class="col-9 justify-content-center bg-dark">
             <div class="row justify-content-center">
                 <div class="col-md-9">
-                    <h1 class="profile">Profiel</h1>            
+                    <h1 class="profile"> Profiel</h1>            
                 </div>
             </div>
 
