@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <ul class="nav nav-tabs">
                 <h2 role="presentation"> 
-                    <a class="profile" href="#">Profiel</a>
+                    <a class="profile" href="#">Profiel </a>
                 </h2>
                 <h2 role="presentation"><a class="profile" href="#">Geschiedenis</a></h2>
             </ul>
