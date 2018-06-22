@@ -18,6 +18,11 @@ Route::get('/logout', [
   'uses' => 'UserController@getLogout',
   'as' => 'user.logout'
 ]);
+
+Route::get('/profile', function () {
+    return view('profile.profile');
+});
+
 Route::group(['prefix' =>'user'], function() {
 Route::group(['middleware' => 'guest'] ,function() {
     Route::get('/signup', [
