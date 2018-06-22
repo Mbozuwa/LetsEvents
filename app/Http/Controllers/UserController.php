@@ -15,13 +15,18 @@ class UserController extends Controller
     public function postSignup(Request $request) {
       $this->validate($request, [
         'email' => 'email|required|unique:users',
-        'password' => 'required|min:8|max:255|regex:/[^a-z]+g[A-Z]\d',
-        'name' => 'required|min:4'
+        'password' => 'required|min:8|max:255|regex:/[^a-z]+g[A-Z]\d/',
+        'name' => 'required|min:4',
+        'address' => 'required',
+        'phone' => 'required'
       ]);
       $user = new User([
         'email' => $request->input('email'),
         'password' => bcrypt($request->input('password')),
-        'name' => $request->input('name')
+        'name' => $request->input('name'),
+        'address' => $request->input('address'),
+        'phone' => $request->input('phone'),
+        'school' => $request->input('school')
       ]);
       $user->save();
 
@@ -35,8 +40,7 @@ class UserController extends Controller
     public function postSignin(Request $request) {
       $this->validate($request, [
         'email' => 'email|required',
-        'password' => 'required|min:4',
-        'name' => 'required|min:4'
+        'password' => 'required|min:4'
       ]);
       if(Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
           return view('welcome');
