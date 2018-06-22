@@ -7,7 +7,7 @@
 <div class="w3-sidebar w3-bar-block w3-border-right" style="color:rgb(52, 123, 237);" id="mySidebar">
   <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
   <a href="{{ url('/') }}" class="w3-bar-item w3-button">Home</a>
-  <a href="#" class="w3-bar-item w3-button">Link 2</a>
+  <a href="{{url ('/profile')}}" class="w3-bar-item w3-button">Profile</a>
   <a href="#" class="w3-bar-item w3-button">Link 3</a>
 </div>
 <button class="w3-button w3-black w3-xlarge" onclick="w3_open()">☰</button>
