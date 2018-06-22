@@ -30,12 +30,12 @@
       </div>
       <div class="form-group">
         <label for="name">telefoon</label>
-        <input type="text" id="phone" name="phone" class="form-control">
+        <input type="number" id="telephone" name="telephone" class="form-control">
       </div>
-      <div class="form-group">
+      {{-- <div class="form-group">
         <label for="name">school</label>
         <input type="text" id="school" name="school" class="form-control">
-      </div>
+      </div> --}}
       <button type="submit" class="btn btn-primary">Sign up</button>
       {{ csrf_field() }}
  

@@ -15,18 +15,19 @@ class UserController extends Controller
     public function postSignup(Request $request) {
       $this->validate($request, [
         'email' => 'email|required|unique:users',
-        'password' => 'required|min:8|max:255|regex:/[^a-z]+g[A-Z]\d/',
+        'password' => 'required|min:8|max:255',
         'name' => 'required|min:4',
         'address' => 'required',
-        'phone' => 'required'
+        'telephone' => 'required',
+        
       ]);
       $user = new User([
         'email' => $request->input('email'),
         'password' => bcrypt($request->input('password')),
         'name' => $request->input('name'),
         'address' => $request->input('address'),
-        'phone' => $request->input('phone'),
-        'school' => $request->input('school')
+        'telephone' => $request->input('telephone'),
+        
       ]);
       $user->save();
 
