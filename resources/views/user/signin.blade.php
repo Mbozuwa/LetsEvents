@@ -20,10 +20,7 @@
         <label for="password">password</label>
         <input type="password" id="password" name="password" class="form-control">
       </div>
-      <div class="form-group">
-        <label for="name">name</label>
-        <input type="text" id="name" name="name" class="form-control">
-      </div>
+
       <button type="submit" class="btn btn-primary">Sign in</button>
       {{ csrf_field() }}
     </form>
