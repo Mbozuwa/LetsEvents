@@ -6,6 +6,9 @@
     this.el = document.querySelector(selector);
     this.events = events;
     this.current = moment().date(1);
+    this.events.forEach(function(ev) {
+     ev.date = moment(ev.date);
+    });
     this.draw();
     var current = document.querySelector('.today');
     if(current) {
@@ -14,6 +17,7 @@
         self.openDay(current);
       }, 500);
     }
+    
   }
 
   Calendar.prototype.draw = function() {
@@ -53,10 +57,6 @@
 
   Calendar.prototype.drawMonth = function() {
     var self = this;
-    
-    this.events.forEach(function(ev) {
-     ev.date = self.current.clone().date(Math.random() * (29 - 1) + 1);
-    });
     
     
     if(this.month) {
@@ -321,32 +321,13 @@
 
 !function() {
   var data = [
-    { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange' },
-    { eventName: 'Interview - Jr. Web Developer', calendar: 'Work', color: 'orange' },
-    { eventName: 'Demo New App to the Board', calendar: 'Work', color: 'orange' },
-    { eventName: 'Dinner w/ Marketing', calendar: 'Work', color: 'orange' },
+    { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange', date: '2018-06-27' },
 
-    { eventName: 'Game vs Portalnd', calendar: 'Sports', color: 'blue' },
-    { eventName: 'Game vs Houston', calendar: 'Sports', color: 'blue' },
-    { eventName: 'Game vs Denver', calendar: 'Sports', color: 'blue' },
-    { eventName: 'Game vs San Degio', calendar: 'Sports', color: 'blue' },
-
-    { eventName: 'School Play', calendar: 'Kids', color: 'yellow' },
-    { eventName: 'Parent/Teacher Conference', calendar: 'Kids', color: 'yellow' },
-    { eventName: 'Pick up from Soccer Practice', calendar: 'Kids', color: 'yellow' },
-    { eventName: 'Ice Cream Night', calendar: 'Kids', color: 'yellow' },
-
-    { eventName: 'Free Tamale Night', calendar: 'Other', color: 'green' },
-    { eventName: 'Bowling Team', calendar: 'Other', color: 'green' },
-    { eventName: 'Teach Kids to Code', calendar: 'Other', color: 'green' },
-    { eventName: 'Startup Weekend', calendar: 'Other', color: 'green' }
   ];
 
   
 
-  function addDate(ev) {
-    
-  }
+  
 
   var calendar = new Calendar('#calendar', data);
 
