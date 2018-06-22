@@ -1,0 +1,43 @@
+h1.profile{
+	text-align: center;
+	padding-right: 10px;
+	margin-top: 40px;
+	margin-top: 20px;
+	
+}
+
+h2.info{
+	color: black;
+}
+
+ul{
+	background-color: white;
+}
+
+img{
+	width: 200px;
+	border-radius: 10px;
+}
+
+a.profile{
+	margin: 20px;
+	color: black;
+}
+
+label{
+	color: black;
+}
+
+div.col-4{
+	margin-top: 0px;
+}
+
+div.col-md-6{
+	border-radius: 10px;
+	padding: 20px;
+}
+
+div.col-md-12{
+	padding-left: auto;
+	padding-right: auto;
+}
