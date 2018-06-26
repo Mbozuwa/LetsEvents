@@ -321,8 +321,8 @@
 
 !function() {
   var data = [
-    { eventName: 'test', calendar: 'Work', color: 'orange', date: '2018-06-20' },
-    { eventName: 'test 2', calendar: 'Work', color: 'orange', date: '2018-06-21' },
+    { eventName: 'test', calendar: 'Not planned', color: 'blue', date: '2018-06-20' },
+    { eventName: 'test 2', calendar: 'Not planned', color: 'blue', date: '2018-06-21' },
 
   ];
 
