@@ -3,6 +3,7 @@
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/profile.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 
+    
 @section('content')
 <body class="p">
     <div class="col-md-12">
