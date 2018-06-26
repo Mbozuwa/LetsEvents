@@ -1,20 +1,16 @@
 @include('navbar.navbar')
 @extends('layouts.app')
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/profile.css') }}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 
-    
 @section('content')
 <body class="p">
     <div class="col-md-12">
-        <div class="row justify-content-center">  
-            <ul class="nav nav-tabs nav-justified">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Profiel</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Geschiedenis</a>
-                </li>
+        <div class="row justify-content-center">
+            <ul class="nav nav-tabs">
+                <h2 role="presentation"> 
+                    <a class="profile" href="#">Profiel </a>
+                </h2>
+                <h2 role="presentation"><a class="profile" href="#">Geschiedenis</a></h2>
             </ul>
         </div>
         <div class="col-9 justify-content-center bg-dark">
