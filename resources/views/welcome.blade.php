@@ -70,6 +70,8 @@
     </head>
 
     <body>
+        <input id="events" type="hidden" value="{{$events}}">
+    
         <div class="flex-center position-ref full-height">
 
                 <div class="top-right links">
@@ -93,6 +95,7 @@
                     <script type="text/javascript" src="{{ URL::asset('js/moment.min.js') }}"></script>
                     <script type="text/javascript" src="{{ URL::asset('js/index.js') }}"></script>
                     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
+
 
             </div>
         </div>

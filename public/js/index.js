@@ -2,6 +2,22 @@
 
   var today = moment();
 
+  var calendarEvents = document.getElementById("events").value;
+  var calendarEvents = calendarEvents.replace("[", "");
+  var calendarEvents = calendarEvents.replace("]", "");
+  var calendarEvents = calendarEvents.split("{");
+  calendarEvents.splice(0, 1);
+  console.log(calendarEvents);
+  calendarEventsArray = [];
+  for (var i = 0, len = calendarEvents.length; i < len; i++) {
+  console.log(calendarEvents[i]);
+  }
+
+  
+  
+  
+
+
   function Calendar(selector, events) {
     this.el = document.querySelector(selector);
     this.events = events;
