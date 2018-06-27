@@ -1,6 +1,7 @@
 @include('navbar.navbar')
 @extends('layouts.app')
 @section('content')
+<div class="container">
 <div class="row">
   <div class="col-md-4 col-md-offset-4">
     <h1>Sign up</h1>
@@ -38,7 +39,8 @@
       </div> --}}
       <button type="submit" class="btn btn-primary">Sign up</button>
       {{ csrf_field() }}
- 
+
   </div>
+</div>
 </div>
 @endsection

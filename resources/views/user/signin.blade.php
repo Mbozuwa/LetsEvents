@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @include('navbar.navbar')
 @section('content')
+<div class="container">
 <div class="row">
   <div class="col-md-4 col-md-offset-4">
     <h1>Sign in</h1>
@@ -26,5 +27,6 @@
     </form>
     <p>Don't have an account? <a href="{{route('user.signup')}}">Registreer er dan een.</a></p>
   </div>
+</div>
 </div>
 @endsection
