@@ -18,8 +18,8 @@ class UserController extends Controller
         'password' => 'required|min:8|max:255',
         'name' => 'required|min:4',
         'address' => 'required',
-        'telephone' => 'required',
-        
+        'telephone' => 'required|digits:10',
+
       ]);
       $user = new User([
         'email' => $request->input('email'),
@@ -27,7 +27,7 @@ class UserController extends Controller
         'name' => $request->input('name'),
         'address' => $request->input('address'),
         'telephone' => $request->input('telephone'),
-        
+
       ]);
       $user->save();
 
@@ -51,5 +51,10 @@ class UserController extends Controller
     public function getLogout() {
       Auth::logout();
       return redirect()->back();
+    }
+    public function getProfile($id) {
+        $profile = User::find($id);
+
+        return view('profile.profile', ['profile' => $profile]);
     }
 }

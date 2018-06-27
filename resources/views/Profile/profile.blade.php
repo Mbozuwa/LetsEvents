@@ -1,7 +1,6 @@
 @include('navbar.navbar')
 @extends('layouts.app')
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/profile.css') }}">
-
 @section('content')
 <body class="p">
     <div class="col-md-12">
@@ -26,43 +25,25 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Naam:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Jan Kees">
+                                <input type="email" class="form-control" id="inputEmail3" value="{{$profile->name}}">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">E-mail:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="voorbeeld@gmail.com">
-                            </div>
-                        </div>
-                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Land:</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Nederland">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="voorbeeld@gmail.com" value="{{$profile->email}}">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Woonplaats:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Woonplaats">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Postcode</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="1234AB">
+                                <input type="email" class="form-control" id="inputEmail3" value="{{$profile->address}}">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Telefoon:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="06-12345678">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="example-date-input" class="col-2 col-form-label">Geboorte:</label>
-                                <div class="col-10">
-                                  <input class="form-control" type="date" id="example-date-input">
+                                <input type="email" class="form-control" id="inputEmail3"value="{{$profile->telephone}}"                               });>
                             </div>
                         </div>
                         <button type="button" class="btn bg-success btn-lg">Bewerken</button>

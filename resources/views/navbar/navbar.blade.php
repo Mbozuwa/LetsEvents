@@ -8,7 +8,7 @@
   <button onclick="w3_close()" class="w3-bar-item w3-large">Sluit &times;</button>
   <a href="{{ url('/') }}" class="w3-bar-item w3-button">Home</a>
   @if(Auth::check())
-      <a class="w3-bar-item w3-button" href="{{url ('/profile')}}" class="w3-bar-item w3-button">Profile</a>
+      <a class="w3-bar-item w3-button" href="{{route('profile.profile', auth()->user())}}" class="w3-bar-item w3-button">Profiel</a>
       <a class="w3-bar-item w3-button" href="{{route('user.logout')}}">log out</a>
   @else
       <a class="w3-bar-item w3-button" href="{{route('user.signup')}}">Registreer</a>

@@ -22,6 +22,12 @@ Route::get('/logout', [
 Route::get('/profile', function () {
     return view('profile.profile');
 });
+Route::group(['middleware' => 'auth'] ,function() {
+Route::get('/profile/{id}',[
+    'uses' => 'UserController@getProfile',
+    'as' => 'profile.profile'
+]);
+});
 
 Route::group(['prefix' =>'user'], function() {
 Route::group(['middleware' => 'guest'] ,function() {
@@ -45,4 +51,3 @@ Route::group(['middleware' => 'guest'] ,function() {
 });
 Route::get('login', function () { return redirect('user/signin'); })->name('login');
 Route::get('register', function () { return redirect('user/signup'); })->name('register');
-
