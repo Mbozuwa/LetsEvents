@@ -21,6 +21,7 @@
         <label for="password">Wachtwoord</label>
         <input type="password" id="password" name="password" class="form-control">
       </div>
+      <small>test</small>
       <div class="form-group">
         <label for="name">Naam</label>
         <input type="text" id="name" name="name" class="form-control">
@@ -31,7 +32,7 @@
       </div>
       <div class="form-group">
         <label for="name">Telefoon nummer</label>
-        <input type="number" id="telephone" name="telephone" class="form-control">
+        <input type="varchar" id="telephone" name="telephone" class="form-control">
     </div>
       {{-- <div class="form-group">
         <label for="name">school</label>
