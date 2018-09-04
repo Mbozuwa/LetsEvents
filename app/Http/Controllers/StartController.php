@@ -20,7 +20,7 @@ class StartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function events() {
+     public function event() {
 
           return view('events.show');
       }
