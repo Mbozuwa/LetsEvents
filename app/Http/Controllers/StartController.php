@@ -20,7 +20,15 @@ class StartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+     public function event() {
+         return view('events.index');
+     }
+     public function index()
+     {
+         return view('index');
+     }
+
+    public function home()
     {
         return view('welcome');
     }

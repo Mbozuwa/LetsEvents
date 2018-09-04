@@ -12,8 +12,9 @@
 */
 
 
-
-Route::get('/', 'StartController@index');
+Route::get('/index', 'StartController@index');
+Route::get('/events', 'StartController@event');
+Route::get('/', 'StartController@home');
 Route::get('/logout', [
   'uses' => 'UserController@getLogout',
   'as' => 'user.logout'
