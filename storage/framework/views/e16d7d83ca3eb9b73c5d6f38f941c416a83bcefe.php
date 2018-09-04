@@ -17,6 +17,8 @@
 
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <!-- Scripts -->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -43,12 +45,19 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="http://via.placeholder.com/20?text=Placeholder.com+rocks!" class="img-circle" alt="Avatar"> <span><?php echo e(Auth::user()->name); ?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="http://via.placeholder.com/20?text=Placeholder.com+rocks!" class="img-circle" alt="Avatar"> <span></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                            <?php if(Auth::check()): ?>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+                                    <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
+                                    <li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+                                </ul>
+                            <?php endif; ?>
                             <ul class="dropdown-menu">
-                                <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-                                <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-                                <li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+                                <li><a href="/signup"><i class="lnr lnr-user"></i> <span>Sign up</span></a></li>
+                                <li><a href="/signin"><i class="lnr lnr-cog"></i> <span>Sign in</span></a></li>
                             </ul>
+
                         </li>
                     </ul>
                 </div>

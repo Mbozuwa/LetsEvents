@@ -22,74 +22,7 @@
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 
-    <script>
-    $(document).ready(function() {
-        $('#calendar').fullCalendar({
-            defaultView: 'listMonth',
-            defaultDate: '2018-09-01',
-            editable: false,
-            eventLimit: false,
-            /*events: 'load.php',
-            foreach($result as $row)
-            {
-             $data[] = array(
-              'id'   => $row["id"],
-              'title'   => $row["name"],
-              'event_date'   => $row["event_date"],
-              //'start'   => $row["start_event"],
-              //'end'   => $row["end_event"]
-             );
-            }*/
-          events: [
-            {
-              title: 'Start project: Lets Event',
-              start: '2018-06-15'
-            },
-            {
-              title: 'Trello backlog',
-              start: '2018-06-15 11:24',
-              end: '2018-06-15 12:00'
-            },
-            {
-              title: 'Project kickoff',
-              start: '2018-06-19'
-            },
-            {
-              title: 'Stand up',
-              start: '2018-06-20 08:45'
-            },
-            {
-              title: 'Weekend',
-              start: '2018-06-23'
-            },
-            {
-              title: 'Zomervakantie',
-              start: '2018-06-30'
-            },
-
-            {
-              title: 'Nieuw schooljaar',
-              start: '2018-08-29'
-            },
-            {
-              title: 'Stand-up',
-              start: '2018-08-29'
-            },
-            {
-              title: 'NIEUWE MAAND TEST',
-              start: '2018-09-03'
-            },
-            {
-              title: 'NIEUWE MAAND TEST MET EINDTIJD',
-              start: '2018-09-04 09:40',
-              end: '2018-09-04 12:00'
-            }
-          ]
-        });
-
-      });
-
-    </script>
+    
 <style>
 
   #calendar {
@@ -120,6 +53,7 @@
                             </div>
                             <?php endif; ?>
                             <form class="form-auth-small" action="<?php echo e(route('user.signin')); ?>" method="post">
+
                                 <div class="form-group">
                                     <label for="signin-email" class="control-label sr-only">Email</label>
                                     <input type="email" class="form-control" name="email" id="signin-email" placeholder="Email">

@@ -33,7 +33,7 @@ class UserController extends Controller
 
       Auth::login($user);
       return view('welcome');
-    }   
+    }
 
     public function getSignin() {
       return view('user.signin');
@@ -44,7 +44,7 @@ class UserController extends Controller
         'password' => 'required|min:4'
       ]);
       if(Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
-          return view('welcome');
+          return view('/home');
         } return redirect()->back();
     }
 

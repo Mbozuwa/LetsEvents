@@ -7,9 +7,14 @@
                             <!-- BASIC TABLE -->
                             <div class="panel">
                                 <div class="panel-body">
-                                    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
                                 </div>
                             </div>
+                            <div id="calendar"></div>
+                                <script type="text/javascript" src="<?php echo e(URL::asset('js/moment.min.js')); ?>"></script>
+                                <script type="text/javascript" src="<?php echo e(URL::asset('js/index.js')); ?>"></script>
+                                <link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('css/style.css')); ?>">
+
+                        </div>
                             <!-- END BASIC TABLE -->
                         </div>
                         <div class="col-md-3">
@@ -36,12 +41,7 @@
                         <div class="title m-b-md">
                             Let's Event
                         </div>
-                        <div id="calendar"></div>
-                            <script type="text/javascript" src="<?php echo e(URL::asset('js/moment.min.js')); ?>"></script>
-                            <script type="text/javascript" src="<?php echo e(URL::asset('js/index.js')); ?>"></script>
-                            <link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('css/style.css')); ?>">
 
-                    </div>
                 </div>
             </body>
 <?php $__env->stopSection(); ?>

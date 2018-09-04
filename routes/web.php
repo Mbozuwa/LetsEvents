@@ -12,9 +12,12 @@
 */
 
 
+
 Route::get('/index', 'StartController@index');
 Route::get('/events', 'StartController@event');
 Route::get('/', 'StartController@home');
+Route::get('start/getEvents', 'StartController@getEvents');
+
 Route::get('/logout', [
   'uses' => 'UserController@getLogout',
   'as' => 'user.logout'
@@ -50,5 +53,9 @@ Route::group(['middleware' => 'guest'] ,function() {
         ]);
     });
 });
-Route::get('login', function () { return redirect('user/signin'); })->name('login');
-Route::get('register', function () { return redirect('user/signup'); })->name('register');
+Route::get('signin', function () { return redirect('user/signin'); })->name('login');
+Route::get('signup', function () { return redirect('user/signup'); })->name('register');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
