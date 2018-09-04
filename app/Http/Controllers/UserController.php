@@ -33,12 +33,12 @@ class UserController extends Controller
 
       Auth::login($user);
       return view('welcome');
-    }
+    }   
 
     public function getSignin() {
       return view('user.signin');
     }
-    public function postSignin(Request $request) {
+    public function postSignin(Request $request)    {
       $this->validate($request, [
         'email' => 'email|required',
         'password' => 'required|min:4'
