@@ -7,9 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Let's event</title>
-
-
-
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <!-- Styles -->
@@ -66,25 +63,9 @@
             }
 
         </style>
-
     </head>
-
     <body>
         <div class="flex-center position-ref full-height">
-
-                <div class="top-right links">
-                    <?php if(Auth::check()): ?>
-                        <li><a class="nav-link" href="#">User profile</a></li>
-                          <li><a class="nav-link" href="<?php echo e(route('user.logout')); ?>">log out</a></li>
-                        <a href="<?php echo e(url('/welcome')); ?>">Home</a>
-                    <?php else: ?>
-                        <li><a href="<?php echo e(route('user.signup')); ?>">Signup</a></li>
-                        <li><a href="<?php echo e(route('user.signin')); ?>">Signin</a></li>
-                    <?php endif; ?>
-
-                </div>
-
-
             <div class="content" style="margin-right: 400px">
                 <div class="title m-b-md">
                     Let's Event
