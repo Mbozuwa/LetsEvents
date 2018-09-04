@@ -1,21 +1,44 @@
 !function() {
 
   var today = moment();
+  var mydata;
+  
 
-  var calendarEvents = document.getElementById("events").value;
-  var calendarEvents = calendarEvents.replace("[", "");
-  var calendarEvents = calendarEvents.replace("]", "");
-  var calendarEvents = calendarEvents.split("{");
-  calendarEvents.splice(0, 1);
-  console.log(calendarEvents);
-  calendarEventsArray = [];
-  for (var i = 0, len = calendarEvents.length; i < len; i++) {
-  console.log(calendarEvents[i]);
+
+  
+  $(document).ready(function() {
+
+      $.ajax({
+          url: '/start/getEvents',
+          type: 'GET',
+          success:function(data){
+            finishThis(docReady(data));      
+          },
+          error: function (){console.log('error');}, 
+
+      });
+
+  });
+
+  function docReady(data)
+  {
+    var calendarEvents = data
+    bobblehead = [];
+    for(var i = 0; i < calendarEvents.length ; i++) {
+    var varChange = calendarEvents[i].split(" | ");
+    var name = varChange[0];
+    var date = varChange[1].split(" ");
+    var date = date[0];
+    bobblehead.push ( 
+    { eventName: name, calendar: 'Not planned', color: 'blue', date: date },
+
+  );
+
+    console.log(bobblehead);
+    
+    }
+    return bobblehead;
   }
-
-  
-  
-  
 
 
   function Calendar(selector, events) {
@@ -174,7 +197,6 @@
         }
         return memo;
       }, []);
-
       todaysEvents.forEach(function(ev) {
         var evSpan = createElement('span', ev.color);
         element.appendChild(evSpan);
@@ -335,17 +357,9 @@
   }
 }();
 
-!function() {
-  var data = [
-    { eventName: 'test', calendar: 'Not planned', color: 'blue', date: '2018-06-20' },
-    { eventName: 'test 2', calendar: 'Not planned', color: 'blue', date: '2018-06-21' },
 
-  ];
-
-  
-
-  
+function finishThis(data){
 
   var calendar = new Calendar('#calendar', data);
 
-}();
+}

@@ -23,8 +23,18 @@ class StartController extends Controller
      */
     public function index()
     {
-        $events = \App\event::all();
+        return view('welcome'); 
+    }
 
-        return view('welcome', ['events' => $events, ]);
+    public function getEvents()
+    {
+        $calendarEvents = [];
+        $events = \App\event::all();
+        
+        foreach ($events as $event) {
+            array_push($calendarEvents,$event['name']." | ".$event['begin_time']);    
+        }
+        
+        return response()->json($calendarEvents);
     }
 }
