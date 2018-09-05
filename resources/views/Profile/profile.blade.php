@@ -2,6 +2,7 @@
 @extends('layouts.app')
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/profile.css') }}">
 @section('content')
+@if(Auth::check())
 <body class="p">
     <div class="col-md-12">
         <div class="row justify-content-center">
@@ -65,5 +66,9 @@
      </div>
 </body>
 
-
+@else
+<div class="container">
+    <h1>You are not logged in.</h1>
+</div>
+@endif
 @endsection
