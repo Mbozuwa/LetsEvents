@@ -25,25 +25,25 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Naam:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" value="{{$profile->name}}">
+                                <input type="email" class="form-control" id="inputEmail3" value="">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">E-mail:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="voorbeeld@gmail.com" value="{{$profile->email}}">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="voorbeeld@gmail.com" value="">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Woonplaats:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" value="{{$profile->address}}">
+                                <input type="email" class="form-control" id="inputEmail3" value="">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Telefoon:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3"value="{{$profile->telephone}}"                               });>
+                                <input type="email" class="form-control" id="inputEmail3"value="">
                             </div>
                         </div>
                         <button type="button" class="btn bg-success btn-lg">Bewerken</button>
