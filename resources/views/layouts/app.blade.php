@@ -54,8 +54,8 @@
                                 </ul>
                             @endif
                             <ul class="dropdown-menu">
-                                <li><a href="/signup"><i class="lnr lnr-user"></i> <span>Sign up</span></a></li>
-                                <li><a href="/signin"><i class="lnr lnr-cog"></i> <span>Sign in</span></a></li>
+                                <li><a href="/user/signup"><i class="lnr lnr-user"></i> <span>Sign up</span></a></li>
+                                <li><a href="/user/signin"><i class="lnr lnr-cog"></i> <span>Sign in</span></a></li>
                             </ul>
 
                         </li>
