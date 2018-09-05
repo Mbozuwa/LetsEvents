@@ -1,6 +1,45 @@
 !function() {
 
   var today = moment();
+  var mydata;
+  
+
+
+  
+  $(document).ready(function() {
+
+      $.ajax({
+          url: '/start/getEvents',
+          type: 'GET',
+          success:function(data){
+            finishThis(docReady(data));      
+          },
+          error: function (){console.log('error');}, 
+
+      });
+
+  });
+
+  function docReady(data)
+  {
+    var calendarEvents = data
+    bobblehead = [];
+    for(var i = 0; i < calendarEvents.length ; i++) {
+    var varChange = calendarEvents[i].split(" | ");
+    var name = varChange[0];
+    var date = varChange[1].split(" ");
+    var date = date[0];
+    bobblehead.push ( 
+    { eventName: name, calendar: 'Not planned', color: 'blue', date: date },
+
+  );
+
+    console.log(bobblehead);
+    
+    }
+    return bobblehead;
+  }
+
 
   function Calendar(selector, events) {
     this.el = document.querySelector(selector);
@@ -158,7 +197,6 @@
         }
         return memo;
       }, []);
-
       todaysEvents.forEach(function(ev) {
         var evSpan = createElement('span', ev.color);
         element.appendChild(evSpan);
@@ -319,16 +357,9 @@
   }
 }();
 
-!function() {
-  var data = [
-    { eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange', date: '2018-06-27' },
 
-  ];
-
-  
-
-  
+function finishThis(data){
 
   var calendar = new Calendar('#calendar', data);
 
-}();
+}

@@ -17,7 +17,9 @@ body {
  -ms-user-select: none;
  user-select: none;
 }
-
+.everything {
+    margin-left: 200px;
+}
 #calendar {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
