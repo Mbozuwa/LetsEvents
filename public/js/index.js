@@ -29,8 +29,9 @@
     var name = varChange[0];
     var date = varChange[1].split(" ");
     var date = date[0];
+    var id = varChange[2];
     bobblehead.push ( 
-    { eventName: name, calendar: 'Not planned', color: 'blue', date: date },
+    { eventName: name, calendar: 'Not planned', color: 'blue', date: date, id:id },
 
   );
 
@@ -276,10 +277,13 @@
     events.forEach(function(ev) {
       var div = createElement('div', 'event');
       var square = createElement('div', 'event-category ' + ev.color);
-      var span = createElement('span', '', ev.eventName);
+      var link = createElement('a', '', ev.eventName);
+      link.setAttribute('href', "/event/" + ev.id);
+      var space = createElement('span', '', ' ');
 
       div.appendChild(square);
-      div.appendChild(span);
+      div.appendChild(space);
+      div.appendChild(link);
       wrapper.appendChild(div);
     });
 

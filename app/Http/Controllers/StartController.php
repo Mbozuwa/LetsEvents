@@ -41,7 +41,8 @@ class StartController extends Controller
         $events = \App\event::all();
 
         foreach ($events as $event) {
-            array_push($calendarEvents,$event['name']." | ".$event['begin_time']);
+            array_push($calendarEvents,$event['name']." | ".$event['begin_time']." | ".$event['id']);
+
         }
 
         return response()->json($calendarEvents);
