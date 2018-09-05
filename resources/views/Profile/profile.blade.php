@@ -1,17 +1,13 @@
 @include('navbar.navbar')
 @extends('layouts.app')
-<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/style_alex.css') }}">
 @section('content')
 @if(Auth::check())
 <body class="p">
     <div class="col-md-12">
         <div class="row justify-content-center">
-            <ul class="nav nav-tabs">
-                <h2 role="presentation">
-                    <a class="profile" href="#">Profiel </a>
-                </h2>
-                <h2 role="presentation"><a class="profile" href="#">Geschiedenis</a></h2>
-            </ul>
+            <h2 role="presentation"><a class="profile" href="#">Profiel </a></h2>
+            <h2 role="presentation"><a class="profile" href="#">Geschiedenis</a></h2>
         </div>
         <div class="col-9 justify-content-center bg-dark">
             <div class="row justify-content-center">
@@ -26,7 +22,7 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Naam:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" value="">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Jan Kees" value="">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -38,13 +34,13 @@
                          <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Woonplaats:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" value="">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Dordrecht" value="">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Telefoon:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3"value="">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="06-12345678" value="">
                             </div>
                         </div>
                         <button type="button" class="btn bg-success btn-lg">Bewerken</button>
