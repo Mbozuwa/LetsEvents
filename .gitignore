@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /storage
+/vendor
 /.idea
 /.env
 /.vscode
@@ -11,4 +12,3 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env
-/sketches

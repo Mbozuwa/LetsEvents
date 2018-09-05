@@ -22,7 +22,7 @@
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 
-    <script>
+    {{-- <script>
     $(document).ready(function() {
         $('#calendar').fullCalendar({
             defaultView: 'listMonth',
@@ -89,7 +89,7 @@
 
       });
 
-    </script>
+    </script> --}}
 <style>
 
   #calendar {
@@ -120,6 +120,7 @@
                             </div>
                             @endif
                             <form class="form-auth-small" action="{{ route('user.signin') }}" method="post">
+
                                 <div class="form-group">
                                     <label for="signin-email" class="control-label sr-only">Email</label>
                                     <input type="email" class="form-control" name="email" id="signin-email" placeholder="Email">
@@ -128,7 +129,7 @@
                                     <label for="signin-password" class="control-label sr-only">Password</label>
                                     <input type="password" class="form-control" name="password" id="signin-password" placeholder="Password">
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">SIGN IN</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" action="">SIGN IN</button>
                                 {{ csrf_field() }}
                                 <div class="bottom">
                                     <span class="helper-text">Don't have an account? <a href="{{ route('user.signup') }}">Sign up!</a></span>

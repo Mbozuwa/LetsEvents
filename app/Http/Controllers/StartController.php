@@ -21,20 +21,29 @@ class StartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+     public function event() {
+          return view('events.show');
+      }
+
+    public function index() {
+         return view('index');
+     }
+
+    public function home()
     {
-        return view('welcome'); 
+        return view('welcome');
     }
 
     public function getEvents()
     {
         $calendarEvents = [];
         $events = \App\event::all();
-        
+
         foreach ($events as $event) {
-            array_push($calendarEvents,$event['name']." | ".$event['begin_time']);    
+            array_push($calendarEvents,$event['name']." | ".$event['begin_time']." | ".$event['id']);
+
         }
-        
+
         return response()->json($calendarEvents);
     }
 }
