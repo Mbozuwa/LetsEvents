@@ -121,7 +121,7 @@
                               @endforeach
                             </div>
                             @endif
-                            <form class="form-auth-small" action="{{ route('user.signin') }}" method="post">
+                            <form class="form-auth-small" action="{{ route('login') }}" method="post">
 
                                 <div class="form-group">
                                     <label for="signin-email" class="control-label sr-only">Email</label>
