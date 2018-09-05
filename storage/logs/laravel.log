@@ -3731,6 +3731,7 @@ avbar.blade.php) at C:\\wamp64\\www\\Jaar2\\Event\\vendor\\laravel\\framework\\s
 #57 C:\\wamp64\\www\\Jaar2\\Event\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #58 {main}
 "} 
+<<<<<<< HEAD
 [2018-09-05 07:26:36] local.ERROR: Class App\Http\Controllers\eventController does not exist {"exception":"[object] (ReflectionException(code: -1): Class App\\Http\\Controllers\\eventController does not exist at C:\\wamp64\\letsevent\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:767)
 [stacktrace]
 #0 C:\\wamp64\\letsevent\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(767): ReflectionClass->__construct('App\\\\Http\\\\Contro...')
@@ -4036,4 +4037,3 @@ avbar.blade.php) at C:\\wamp64\\www\\Jaar2\\Event\\vendor\\laravel\\framework\\s
 #53 C:\\wamp64\\letsevent\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
 #54 C:\\wamp64\\letsevent\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 {main}
-"} 
