@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use JavaScript;
+use Auth;
 
 
 class StartController extends Controller
@@ -38,9 +39,11 @@ class StartController extends Controller
     {
         $calendarEvents = [];
         $events = \App\event::all();
-
+        $user = Auth::user();
         foreach ($events as $event) {
-            array_push($calendarEvents,$event['name']." | ".$event['begin_time']." | ".$event['id']);
+            $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $event['id'])->pluck('status');
+            array_push($calendarEvents,$event['name']." | ".$event['begin_time']." | ".$event['id']." | ". $attendence);
+            
 
         }
 
