@@ -17,7 +17,8 @@ Route::get('/index', 'StartController@index');
 Route::get('/events', 'StartController@event');
 Route::get('/', 'StartController@home');
 Route::get('start/getEvents', 'StartController@getEvents');
-Route::get('/profile', 'ProfileController@profile');
+Route::get('/profile/{id}', 'profileController@profile');
+Route::get('event/{id}', 'EventController@index');
 
 Route::get('/logout', [
   'uses' => 'UserController@getLogout',
@@ -54,8 +55,8 @@ Route::group(['middleware' => 'guest'] ,function() {
         ]);
     });
 });
-// Route::get('signin', function () { return redirect('user/signin'); })->name('login');
-// Route::get('signup', function () { return redirect('user/signup'); })->name('register');
+Route::get('signin', function () { return redirect('user/signin'); })->name('login');
+Route::get('signup', function () { return redirect('user/signup'); })->name('register');
 
 Auth::routes();
 

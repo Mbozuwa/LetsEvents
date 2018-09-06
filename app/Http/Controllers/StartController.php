@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use JavaScript;
+use Auth;
 
 
 class StartController extends Controller
@@ -31,6 +32,7 @@ class StartController extends Controller
 
     public function home()
     {
+        $user = Auth::user();
         return view('welcome');
     }
 
