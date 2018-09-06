@@ -54,7 +54,7 @@ class UserController extends Controller
     }
     public function getProfile($id) {
         $profile = User::find($id);
-
+        
         return view('profile.profile', ['profile' => $profile]);
     }
 }

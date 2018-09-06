@@ -9,8 +9,9 @@ use Auth;
 class ProfileController extends Controller
 {
 
-    public function index($id) {
+    public function user($id) {
     $users = \App\users::find($id);
+    dd($users);
     return view('profile' ,['profile' => $users]);
 }
 

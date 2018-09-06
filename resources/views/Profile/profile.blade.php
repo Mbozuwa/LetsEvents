@@ -22,25 +22,25 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Naam:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Jan Kees" value="">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="Jan Kees" value="{{$profile['name']}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">E-mail:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="voorbeeld@gmail.com" value="">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="voorbeeld@gmail.com" value="{{$profile['email']}}">
                             </div>
                         </div>
                          <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Woonplaats:</label>
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">adres:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Dordrecht" value="">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Dordrecht" value="{{$profile['address']}}">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Telefoon:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="06-12345678" value="">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="06-12345678" value="{{$profile['telephone']}}">
                             </div>
                         </div>
                         <button type="button" class="btn bg-success btn-lg">Bewerken</button>
