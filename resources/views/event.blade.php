@@ -7,7 +7,7 @@
                         <p>{{$event['begin_time']}} - {{$event['end_time']}}</p>
                         <p>{{$event['description']}}</p>
                         <p>{{$event['place']}} - {{$event['address']}}</p>
-                        <p>Er zijn {{$event['participant_amount']}} van de {{$event['max_participant']}} studenten die gaan</p>
+                        <p>Er zijn {{$count}} van de {{$event['max_participant']}} studenten die gaan</p>
                     </div>
                     <div class="col-md-4" style="background-color:white;">
                         @if (empty($attendence[0]))
