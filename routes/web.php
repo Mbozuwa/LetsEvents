@@ -18,14 +18,13 @@ Route::get('/events', 'StartController@event');
 Route::get('/', 'StartController@home');
 Route::get('start/getEvents', 'StartController@getEvents');
 Route::get('/event/{id}', 'eventController@index');
-Route::get('/student/{id}', 'UserController@showStudent');
 
 Route::get('/logout', [
   'uses' => 'UserController@getLogout',
   'as' => 'user.logout'
 ]);
 
-Route::get('/profile', function () {
+Route::get('/profile/{id}', function () {
     return view('profile.profile');
 });
 Route::group(['middleware' => 'auth'] ,function() {
@@ -61,3 +60,5 @@ Route::group(['middleware' => 'guest'] ,function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('student','StudentController');
+Route::get('/student/index/{id}', 'StudentController@index');

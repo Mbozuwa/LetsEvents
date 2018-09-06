@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class StudentController extends Controller
 {
@@ -11,9 +12,21 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+         // public function showStudent($id) {
+         //     $student = User::find($id);
+         //
+         //     return view('student.show')->with('user', $user);
+         // }
+         // public function test() {
+         //     $test =User::find($id);
+         //     return view('layouts.navbar')->with('test', $test);
+         // }
+    public function index($id)
     {
-        //
+        $student = User::find($id);
+         // $user = $student->id;
+        return view('student.index')->with('student', $student);
     }
 
     /**

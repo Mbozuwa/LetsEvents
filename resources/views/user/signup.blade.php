@@ -64,7 +64,7 @@
               </div>
               <div class="form-group">
                 <label for="signup-student" class="control-label sr-only">Student</label>
-                <input type="checkbox" class="form-control" name="student_id" id="signup-student" placeholder="student   ">
+                <input type="number" class="form-control" name="student_id" id="signup-student" placeholder="student   ">
               </div>
               {{-- <div class="form-group">
                 <label for="signup-school" class="control-label sr-only">School</label>

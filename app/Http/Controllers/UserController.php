@@ -9,11 +9,6 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function showStudent() {
-        $student = Auth::user()->id;
-        $user = $student->id;
-        return view('student.show')->with('user', $user);
-    }
 
     public function getSignup() {
       return view('user.signup');
@@ -25,7 +20,7 @@ class UserController extends Controller
         'name' => 'required|min:4',
         'address' => 'required',
         'telephone' => 'required|digits:10',
-        'student_id',
+        'student_id' => 'min:1',
 
       ]);
       $user = new User([
