@@ -20,7 +20,8 @@ class RegistrationController extends Controller
       $registration->save();
       $event = \App\event::find($id);
       $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
-       return view('event' ,['event' => $event, 'attendence' => $attendence]);
+      $count = \App\Registration::where('event_id', $id)->get()->count();
+      return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count]);
     }
     public function userMaybe($id) {
     	$user = Auth::user();
@@ -33,7 +34,8 @@ class RegistrationController extends Controller
       $registration->save();
       $event = \App\event::find($id);
       $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
-       return view('event' ,['event' => $event, 'attendence' => $attendence]);
+      $count = \App\Registration::where('event_id', $id)->get()->count();
+      return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count]);
     }
     public function userNotGoing($id) {
     	$user = Auth::user();
@@ -46,6 +48,7 @@ class RegistrationController extends Controller
       $registration->save();
       $event = \App\event::find($id);
       $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
-       return view('event' ,['event' => $event, 'attendence' => $attendence]);
+      $count = \App\Registration::where('event_id', $id)->get()->count();
+      return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count]);
     }
 }
