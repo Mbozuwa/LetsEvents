@@ -13,7 +13,7 @@ class EventController extends Controller
     	 $event = \App\event::find($id);
        $user = Auth::user();
        $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
-       $count = \App\Registration::where('event_id', $id)->get()->count();
+       $count = \App\Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
        return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count]);
     }
 }
