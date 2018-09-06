@@ -2,7 +2,7 @@
 @section('content')
             <div class="main-content">
                 <div class="container-fluid">
-                    <h3 class="page-title">--</h3>
+                    <h3 class="page-title">Welkom</h3>
                     <div class="row">
                         <div class="col-md-8">
                             <!-- BASIC TABLE -->
