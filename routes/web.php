@@ -64,8 +64,8 @@ Route::group(['middleware' => 'guest'] ,function() {
         ]);
     });
 });
-Route::get('signin', function () { return redirect('user/signin'); })->name('login');
-Route::get('signup', function () { return redirect('user/signup'); })->name('register');
+// Route::get('signin', function () { return redirect('user/signin'); })->name('login');
+// Route::get('signup', function () { return redirect('user/signup'); })->name('register');
 
 Auth::routes();
 

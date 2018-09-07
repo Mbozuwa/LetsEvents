@@ -62,14 +62,6 @@
                 <label for="signup-telephone" class="control-label sr-only">Telefoon nummer</label>
                 <input type="text" class="form-control" name="telephone" id="signup-telephone" placeholder="Phone number">
               </div>
-              <div class="form-group">
-                <label for="signup-student" class="control-label sr-only">Student</label>
-                <input type="number" class="form-control" name="student_id" id="signup-student" placeholder="student   ">
-              </div>
-              {{-- <div class="form-group">
-                <label for="signup-school" class="control-label sr-only">School</label>
-                <input type="text" class="form-control" name="school" id="signup-school" placeholder="School">
-              </div> --}}
               <button type="submit" class="btn btn-primary btn-lg btn-block">SIGN UP</button>
               {{ csrf_field() }}
               <div class="bottom">
