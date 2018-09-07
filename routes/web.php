@@ -21,18 +21,25 @@ Route::get('/event/{id}', 'eventController@index');
 Route::get('/registration/1/{id}', 'registrationController@userGoing');
 Route::get('/registration/2/{id}', 'registrationController@userMaybe');
 Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
+Route::get('event/{id}', 'EventController@index');
+Route::post('/profile/update', 'ProfileController@update');
 
 Route::get('/logout', [
   'uses' => 'UserController@getLogout',
   'as' => 'user.logout'
 ]);
 
-Route::get('/profile', function () {
+Route::get('/profile/{id}', function () {
     return view('profile.profile');
 });
+Route::get('/editprofile/{id}',[
+    'uses' => 'UserController@edit',
+    'as' => 'profile.edit'
+]);
+
 Route::group(['middleware' => 'auth'] ,function() {
 Route::get('/profile/{id}',[
-    'uses' => 'UserController@getProfile',
+    'uses' => 'profileController@getProfile',
     'as' => 'profile.profile'
 ]);
 });
@@ -57,13 +64,11 @@ Route::group(['middleware' => 'guest'] ,function() {
         ]);
     });
 });
-// Route::get('signin', function () { return redirect('user/signin'); })->name('login');
-// Route::get('signup', function () { return redirect('user/signup'); })->name('register');
+Route::get('signin', function () { return redirect('user/signin'); })->name('login');
+Route::get('signup', function () { return redirect('user/signup'); })->name('register');
 
 Auth::routes();
 
-<<<<<<< HEAD
 Route::get('/home', 'HomeController@index')->name('home');
-=======
-Route::get('/home', 'HomeController@index')->name('home');
->>>>>>> 91d39561c1a86d84e3ed171b95777a4d62823af2
+Route::resource('student','StudentController');
+Route::get('/student/index/{id}', 'StudentController@index');

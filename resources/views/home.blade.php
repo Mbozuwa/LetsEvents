@@ -12,15 +12,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     You are logged in!
                 </div>
             </div>
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> 91d39561c1a86d84e3ed171b95777a4d62823af2

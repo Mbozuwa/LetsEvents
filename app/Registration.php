@@ -26,6 +26,6 @@ class Registration extends Model
     ];
     public function event(){
     return $this->belongsToMany('App\Event');
-	}
+    }
 
 }
