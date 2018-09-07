@@ -73,7 +73,7 @@
               <button type="submit" class="btn btn-primary btn-lg btn-block">SIGN UP</button>
               {{ csrf_field() }}
               <div class="bottom">
-                <span class="helper-text">Already have an account? <a href="/">Sign in!</a></span>
+                <span class="helper-text">Already have an account? <a href="/user/signin">Sign in!</a></span>
               </div>
             </form>
           </div>
