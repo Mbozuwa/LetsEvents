@@ -9,7 +9,7 @@
 
     <!-- BOOTSTRAP, FONT-AWESOME, LETS EVENT CSS -->
     <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/vendor/linearicons/style.css">
     <link rel="stylesheet" href="{{ asset('/css/style_alex.css') }}">
 
