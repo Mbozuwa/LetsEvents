@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php /* <!doctype html>
+=======
+<!doctype html>
+>>>>>>> 91d39561c1a86d84e3ed171b95777a4d62823af2
 <html lang="en" class="fullscreen-bg">
 <head>
     <title>Lets Event</title>
@@ -39,7 +43,11 @@
               //'start'   => $row["start_event"],
               //'end'   => $row["end_event"]
              );
+<<<<<<< HEAD
             }
+=======
+            }*/
+>>>>>>> 91d39561c1a86d84e3ed171b95777a4d62823af2
           events: [
             {
               title: 'Start project: Lets Event',
@@ -148,4 +156,7 @@
     </div>
     <!-- END WRAPPER -->
 </body>
+<<<<<<< HEAD
 */?>
+=======
+>>>>>>> 91d39561c1a86d84e3ed171b95777a4d62823af2

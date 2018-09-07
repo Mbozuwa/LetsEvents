@@ -43,7 +43,14 @@ class StartController extends Controller
         foreach ($events as $event) {
             $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $event['id'])->pluck('status');
             array_push($calendarEvents,$event['name']." | ".$event['begin_time']." | ".$event['id']." | ". $attendence);
+<<<<<<< HEAD
         }
+=======
+            
+
+        }
+
+>>>>>>> 91d39561c1a86d84e3ed171b95777a4d62823af2
         return response()->json($calendarEvents);
     }
 }
