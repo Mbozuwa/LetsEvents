@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+
     public function getSignup() {
       return view('user.signup');
     }
@@ -19,6 +20,7 @@ class UserController extends Controller
         'name' => 'required|min:4',
         'address' => 'required',
         'telephone' => 'required|digits:10',
+        'student_id' => 'min:1',
 
       ]);
       $user = new User([
@@ -27,6 +29,7 @@ class UserController extends Controller
         'name' => $request->input('name'),
         'address' => $request->input('address'),
         'telephone' => $request->input('telephone'),
+        'student_id' => $request->input('student_id'),
 
       ]);
       $user->save();
