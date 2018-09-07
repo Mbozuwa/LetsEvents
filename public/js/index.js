@@ -28,6 +28,10 @@
       var varChange = calendarEvents[i].split(" | ");
       var name = varChange[0];
       var date = varChange[1].split(" ");
+      var time = date[1]
+      var time = time.split(":");
+      var time = " - " + time[0] + ":" + time[1]
+      var name = name + time;
       var date = date[0];
       var id = varChange[2];
       var status = varChange[3];
