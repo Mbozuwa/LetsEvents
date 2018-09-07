@@ -3,7 +3,7 @@
                     <nav>
                         @if (Auth::check())
                             <ul class="nav">
-                                <li><a href="#" class=""><i class="lnr lnr-user"></i> <span>Profile</span></a></li>
+                                <li><a href="/profile/{{Auth::user()->id}}" class=""><i class="lnr lnr-user"></i> <span>Profile</span></a></li>
                             </ul>
                         @endif
                         <ul class="nav">
