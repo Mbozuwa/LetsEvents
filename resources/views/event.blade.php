@@ -4,7 +4,7 @@
                 <div class="flex-center position-ref full-height">
                     <div class="content col-md-6">
                         <h1>{{$event['name']}}</h1>
-                        <p>{{$event['begin_time']}} - {{$event['end_time']}}</p>
+                        <p>{{$newDate}} - {{$newDateEnd}}</p>
                         <p>{{$event['description']}}</p>
                         <p>{{$event['place']}} - {{$event['address']}}</p>
                         <p>Er zijn {{$count}} van de {{$event['max_participant']}} studenten die gaan</p>

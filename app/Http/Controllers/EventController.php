@@ -14,6 +14,10 @@ class EventController extends Controller
        $user = Auth::user();
        $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
        $count = \App\Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
-       return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user]);
+       $originalDate = $event['begin_time'];
+	   $newDate = date("d-m-Y H:i", strtotime($originalDate));
+	   $originalDateEnd = $event['begin_time'];
+	   $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
+       return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd]);
     }
 }
