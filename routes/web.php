@@ -27,6 +27,11 @@ Route::get('/logout', [
 Route::get('/profile', function () {
     return view('profile.profile');
 });
+Route::get('/editprofile/{id}',[
+    'uses' => 'UserController@edit',
+    'as' => 'profile.edit'
+]);
+
 Route::group(['middleware' => 'auth'] ,function() {
 Route::get('/profile/{id}',[
     'uses' => 'UserController@getProfile',

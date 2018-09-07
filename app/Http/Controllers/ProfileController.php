@@ -8,12 +8,10 @@ use Auth;
 
 class ProfileController extends Controller
 {
-
-    public function user($id) {
-    $users = \App\users::find($id);
-    dd($users);
-    return view('profile' ,['profile' => $users]);
-}
-
-
+        
+    public function update($id) {
+        $profile = User::find($id);
+        
+      }
+    }
 }
