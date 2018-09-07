@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use JavaScript;
 use Auth;
+use Session;
 
 
 class StartController extends Controller
@@ -32,6 +33,8 @@ class StartController extends Controller
 
     public function home()
     {
+        $user = Auth::user();
+        session(['user' => $user]);
         return view('welcome');
     }
 

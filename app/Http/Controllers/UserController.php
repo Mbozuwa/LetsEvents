@@ -52,9 +52,5 @@ class UserController extends Controller
       Auth::logout();
       return redirect()->back();
     }
-    public function getProfile($id) {
-        $profile = User::find($id);
 
-        return view('profile.profile', ['profile' => $profile]);
-    }
 }

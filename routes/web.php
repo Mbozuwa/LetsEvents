@@ -21,6 +21,8 @@ Route::get('/event/{id}', 'eventController@index');
 Route::get('/registration/1/{id}', 'registrationController@userGoing');
 Route::get('/registration/2/{id}', 'registrationController@userMaybe');
 Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
+Route::get('event/{id}', 'EventController@index');
+Route::post('/profile/update', 'ProfileController@update');
 
 Route::get('/logout', [
   'uses' => 'UserController@getLogout',
@@ -30,9 +32,14 @@ Route::get('/logout', [
 Route::get('/profile', function () {
     return view('profile.profile');
 });
+Route::get('/editprofile/{id}',[
+    'uses' => 'UserController@edit',
+    'as' => 'profile.edit'
+]);
+
 Route::group(['middleware' => 'auth'] ,function() {
 Route::get('/profile/{id}',[
-    'uses' => 'UserController@getProfile',
+    'uses' => 'profileController@getProfile',
     'as' => 'profile.profile'
 ]);
 });
@@ -57,8 +64,8 @@ Route::group(['middleware' => 'guest'] ,function() {
         ]);
     });
 });
-// Route::get('signin', function () { return redirect('user/signin'); })->name('login');
-// Route::get('signup', function () { return redirect('user/signup'); })->name('register');
+Route::get('signin', function () { return redirect('user/signin'); })->name('login');
+Route::get('signup', function () { return redirect('user/signup'); })->name('register');
 
 Auth::routes();
 
