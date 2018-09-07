@@ -29,7 +29,7 @@ Route::get('/logout', [
   'as' => 'user.logout'
 ]);
 
-Route::get('/profile', function () {
+Route::get('/profile/{id}', function () {
     return view('profile.profile');
 });
 Route::get('/editprofile/{id}',[
@@ -70,3 +70,5 @@ Route::get('signup', function () { return redirect('user/signup'); })->name('reg
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('student','StudentController');
+Route::get('/student/index/{id}', 'StudentController@index');

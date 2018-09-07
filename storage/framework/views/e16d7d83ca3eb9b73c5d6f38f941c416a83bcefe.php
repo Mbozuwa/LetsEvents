@@ -1,26 +1,20 @@
-<!DOCTYPE html>
-<html lang="<?php echo e(app()->getLocale()); ?>">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
-
     <title>Lets Event</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <!-- Scripts -->
-    <script src="<?php echo e(asset('js/app.js')); ?>" defer></script>
+    <!-- BOOTSTRAP, FONT-AWESOME, LETS EVENT CSS -->
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/vendor/linearicons/style.css">
+    <link rel="stylesheet" href="<?php echo e(asset('/css/style_alex.css')); ?>">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-    <!-- Styles -->
-    <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('css/style.css')); ?>">
+    <!-- CALENDAR -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
 
-<<<<<<< HEAD
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
     <!-- Scripts -->
@@ -60,65 +54,40 @@
                                 </ul>
                             <?php endif; ?>
                             <ul class="dropdown-menu">
-                                <li><a href="/signup"><i class="lnr lnr-user"></i> <span>Sign up</span></a></li>
-                                <li><a href="/signin"><i class="lnr lnr-cog"></i> <span>Sign in</span></a></li>
+                                <li><a href="/user/signup"><i class="lnr lnr-user"></i> <span>Sign up</span></a></li>
+                                <li><a href="/user/signin"><i class="lnr lnr-cog"></i> <span>Sign in</span></a></li>
                             </ul>
 
                         </li>
-=======
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
-                    test
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        <?php if(auth()->guard()->guest()): ?>
-                            <li><a class="nav-link" href="<?php echo e(route('login')); ?>"><?php echo e(__('Login')); ?></a></li>
-                            <li><a class="nav-link" href="<?php echo e(route('register')); ?>"><?php echo e(__('Register')); ?></a></li>
-                        <?php else: ?>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <?php echo e(Auth::user()->name); ?> <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
-                                       onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                        <?php echo e(__('Logout')); ?>
-
-                                    </a>
-
-                                    <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
-                                        <?php echo csrf_field(); ?>
-                                    </form>
-                                </div>
-                            </li>
-                        <?php endif; ?>
->>>>>>> development
                     </ul>
                 </div>
             </div>
         </nav>
+        <!-- END NAVBAR -->
 
-        <main class="py-4">
+        <!-- LEFT SIDEBAR -->
+            <?php echo $__env->make('layouts.navbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        <!-- END LEFT SIDEBAR -->
+
+        <!-- MAIN -->
+        <div class="main">
+            <!-- MAIN CONTENT -->
             <?php echo $__env->yieldContent('content'); ?>
-        </main>
+            <!-- END MAIN CONTENT -->
+        </div>
+            <!-- END MAIN -->
+        <div class="clearfix"></div>
+        <footer>
+            <div class="container-fluid">
+                <p class="copyright">&copy; <?php echo date("Y"); ?> Lets Event | Alex | Jasper | Michael | Raymond | Laurens</p>
+            </div>
+        </footer>
     </div>
+    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="assets/scripts/klorofil-common.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
 </body>
 </html>
