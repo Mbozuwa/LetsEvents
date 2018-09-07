@@ -18,6 +18,7 @@ Route::get('/events', 'StartController@event');
 Route::get('/', 'StartController@home');
 Route::get('start/getEvents', 'StartController@getEvents');
 Route::get('event/{id}', 'EventController@index');
+Route::post('/profile/update', 'ProfileController@update');
 
 Route::get('/logout', [
   'uses' => 'UserController@getLogout',
@@ -34,7 +35,7 @@ Route::get('/editprofile/{id}',[
 
 Route::group(['middleware' => 'auth'] ,function() {
 Route::get('/profile/{id}',[
-    'uses' => 'UserController@getProfile',
+    'uses' => 'profileController@getProfile',
     'as' => 'profile.profile'
 ]);
 });

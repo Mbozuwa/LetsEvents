@@ -5,10 +5,10 @@
 @if(Auth::check())
 <body class="p">
     <div class="col-md-12">
-        <div class="row justify-content-center">
+        {{-- <div class="row justify-content-center">
             <h2 role="presentation"><a class="profile" href="#">Profiel </a></h2>
-            <h2 role="presentation"><a class="profile" href="#">Geschiedenis</a></h2>
-        </div>
+            <h2 role="presentation"><a class="profile" href="#">Geschiedenis</a></h2> --}}
+        {{-- </div> --}}
         <div class="col-9 justify-content-center bg-dark">
             <div class="row justify-content-center">
                 <div class="col-md-9">
@@ -18,32 +18,34 @@
 
             <div class="row justify-content-end">
                 <div class="col-md-6 bg-light">
-                    <form>
+                    <form action="{{action("ProfileController@update")}}" method="POST">
+                    @csrf
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Naam:</label>
                             <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Jan Kees" value="{{$profile['name']}}">
+                            <input type="text" name="name" class="form-control" id="inputEmail3" placeholder="Jan Kees" value="{{$profile->name}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">E-mail:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="voorbeeld@gmail.com" value="{{$profile['email']}}">
+                                <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="voorbeeld@gmail.com" value="{{$profile->email}}">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">adres:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Dordrecht" value="{{$profile['address']}}">
+                                <input type="text" name="address" class="form-control" id="inputEmail3" placeholder="Dordrecht" value="{{$profile->address}}">
                             </div>
                         </div>
                          <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Telefoon:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="06-12345678" value="{{$profile['telephone']}}">
+                                <input type="" name="telephone" class="form-control" id="inputEmail3" placeholder="06-12345678" value="{{$profile->telephone}}">
                             </div>
                         </div>
-                        <button type="button" class="btn bg-success btn-lg">Bewerken</button>
+                        
+                        <button type="submit" style="margin-top: 40px;" class="btn bg-success btn-lg">Bewerken</button>
                 </form>
                 </div>
 
@@ -54,7 +56,7 @@
             <div class="d-flex justify-content-end">
                 <form>
                     <div class="form-group">
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        <input style="float:right;margin-right:280;"type="file" class="form-control-file" id="exampleFormControlFile1">
                     </div>
                 </form>
             </div>
