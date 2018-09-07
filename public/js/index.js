@@ -25,17 +25,30 @@
     var calendarEvents = data
     bobblehead = [];
     for(var i = 0; i < calendarEvents.length ; i++) {
-    var varChange = calendarEvents[i].split(" | ");
-    var name = varChange[0];
-    var date = varChange[1].split(" ");
-    var date = date[0];
-    var id = varChange[2];
-    bobblehead.push ( 
-    { eventName: name, calendar: 'Not planned', color: 'blue', date: date, id:id },
+      var varChange = calendarEvents[i].split(" | ");
+      var name = varChange[0];
+      var date = varChange[1].split(" ");
+      var date = date[0];
+      var id = varChange[2];
+      var status = varChange[3];
+      if (status == '[\"Ik ga niet\"]') {
+        var color = 'orange';
+      }
+      else if (status == '[\"Ik ga\"]'){
+        var color = 'green';
+      }
+      else if (status == '[\"Misschien\"]'){
+        var color = 'yellow';
+      }
+      else {
+        var color = 'blue';
+      }
+      bobblehead.push ( 
+      { eventName: name, calendar: 'Not planned', color: color, date: date, id:id },
 
-  );
+      );
 
-    console.log(bobblehead);
+      console.log(bobblehead);
     
     }
     return bobblehead;
