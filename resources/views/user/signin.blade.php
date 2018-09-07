@@ -23,8 +23,7 @@
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 
-
-     <script>
+  <script>
     $(document).ready(function() {
         $('#calendar').fullCalendar({
             defaultView: 'listMonth',
@@ -90,8 +89,7 @@
         });
 
       });
-
-    </script>
+  </script>
 <style>
 
   #calendar {

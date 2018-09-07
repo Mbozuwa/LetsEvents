@@ -1,4 +1,4 @@
-<!doctype html>
+<?php /* <!doctype html>
 <html lang="en" class="fullscreen-bg">
 <head>
     <title>Lets Event</title>
@@ -39,7 +39,7 @@
               //'start'   => $row["start_event"],
               //'end'   => $row["end_event"]
              );
-            }*/
+            }
           events: [
             {
               title: 'Start project: Lets Event',
@@ -148,3 +148,4 @@
     </div>
     <!-- END WRAPPER -->
 </body>
+*/?>
