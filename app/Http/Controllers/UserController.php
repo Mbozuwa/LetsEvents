@@ -9,8 +9,9 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+
     public function getSignup() {
-      return view('user.signup');
+      return view('user/signup');
     }
     public function postSignup(Request $request) {
       $this->validate($request, [
@@ -19,20 +20,18 @@ class UserController extends Controller
         'name' => 'required|min:4',
         'address' => 'required',
         'telephone' => 'required|digits:10',
-
       ]);
       $user = new User([
         'email' => $request->input('email'),
         'password' => bcrypt($request->input('password')),
         'name' => $request->input('name'),
         'address' => $request->input('address'),
-        'telephone' => $request->input('telephone'),
-
+        'telephone' => $request->input('telephone')
       ]);
       $user->save();
 
       Auth::login($user);
-      return view('welcome');
+      return redirect()->back();
     }
 
     public function getSignin() {
@@ -50,11 +49,7 @@ class UserController extends Controller
 
     public function getLogout() {
       Auth::logout();
-      return redirect()->back();
+      return view('user/signin');
     }
-    public function getProfile($id) {
-        $profile = User::find($id);
 
-        return view('profile.profile', ['profile' => $profile]);
-    }
 }

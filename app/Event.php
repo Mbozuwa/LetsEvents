@@ -15,7 +15,7 @@ class Event extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'place', 'address', 'max_participant', 'begin_time', 'end_time'
+        'name', 'description', 'place', 'address', 'max_participant','participant_amount', 'begin_time', 'end_time'
     ];
     protected $table = "event";
     /**
@@ -25,10 +25,7 @@ class Event extends Authenticatable
      */
     protected $hidden = [
     ];
-    /**
-   * public function category(){
-    *return $this->belongsToMany('App\Category');
-    *
-    *}
-    */
+    public function registration(){
+    return $this->hasOne('App\Registration');
+    }
 }

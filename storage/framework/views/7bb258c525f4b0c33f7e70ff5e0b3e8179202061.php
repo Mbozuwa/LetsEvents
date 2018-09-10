@@ -121,7 +121,7 @@
                               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
                             <?php endif; ?>
-                            <form class="form-auth-small" action="<?php echo e(route('user.signin')); ?>" method="post">
+                            <form class="form-auth-small" action="<?php echo e(route('login')); ?>" method="post">
 
                                 <div class="form-group">
                                     <label for="signin-email" class="control-label sr-only">Email</label>

@@ -25,17 +25,38 @@
     var calendarEvents = data
     bobblehead = [];
     for(var i = 0; i < calendarEvents.length ; i++) {
-    var varChange = calendarEvents[i].split(" | ");
-    var name = varChange[0];
-    var date = varChange[1].split(" ");
-    var date = date[0];
-    var id = varChange[2];
-    bobblehead.push ( 
-    { eventName: name, calendar: 'Not planned', color: 'blue', date: date, id:id },
+      var varChange = calendarEvents[i].split(" | ");
+      var name = varChange[0];
+      var date = varChange[1].split(" ");
+      var time = date[1]
+      var time = time.split(":");
+      var time = " - " + time[0] + ":" + time[1]
+      var name = name + time;
+      var date = date[0];
+      var id = varChange[2];
+      var status = varChange[3];
+      if (status == '[\"Ik ga niet\"]') {
+        var color = 'orange';
+        var calendar = 'Ik ga niet';
+      }
+      else if (status == '[\"Ik ga\"]'){
+        var color = 'green';
+        var calendar = 'Ik ga';
+      }
+      else if (status == '[\"Misschien\"]'){
+        var color = 'yellow';
+        var calendar = 'Ik ga misschien';
+      }
+      else {
+        var color = 'blue';
+        var calendar = 'geen status doorgegeven';
+      }
+      bobblehead.push ( 
+      { eventName: name, calendar: calendar, color: color, date: date, id:id },
 
-  );
+      );
 
-    console.log(bobblehead);
+      console.log(bobblehead);
     
     }
     return bobblehead;
@@ -67,7 +88,7 @@
     //Draw Month
     this.drawMonth();
 
-    this.drawLegend();
+    
   }
 
   Calendar.prototype.drawHeader = function() {
@@ -316,23 +337,6 @@
     } else {
       ele.appendChild(wrapper);
     }
-  }
-
-  Calendar.prototype.drawLegend = function() {
-    var legend = createElement('div', 'legend');
-    var calendars = this.events.map(function(e) {
-      return e.calendar + '|' + e.color;
-    }).reduce(function(memo, e) {
-      if(memo.indexOf(e) === -1) {
-        memo.push(e);
-      }
-      return memo;
-    }, []).forEach(function(e) {
-      var parts = e.split('|');
-      var entry = createElement('span', 'entry ' +  parts[1], parts[0]);
-      legend.appendChild(entry);
-    });
-    this.el.appendChild(legend);
   }
 
   Calendar.prototype.nextMonth = function() {
