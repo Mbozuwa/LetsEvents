@@ -10,7 +10,7 @@ class User extends Authenticatable
     use Notifiable;
 
     public function Student() {
-        return $this->hasOne('App\Student', 'user_id');
+        return $this->hasOne('App\Student');
     }
     /**
      * The attributes that are mass assignable.

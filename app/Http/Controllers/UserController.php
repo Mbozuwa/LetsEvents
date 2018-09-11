@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Auth;
+use Registration
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-
+    public function test() {
+        Auth::user()
+    }
     public function getSignup() {
       return view('user/signup');
     }
@@ -29,6 +32,7 @@ class UserController extends Controller
         'telephone' => $request->input('telephone')
       ]);
       $user->save();
+      // $user->student()->save($user);
 
       Auth::login($user);
       return redirect()->back();
