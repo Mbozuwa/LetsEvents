@@ -4,15 +4,13 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Auth;
-use Registration
+use Registration;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function test() {
-        Auth::user()
-    }
+
     public function getSignup() {
       return view('user/signup');
     }

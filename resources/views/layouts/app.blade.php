@@ -45,20 +45,19 @@
                                 <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>Als student, wil ik alle beschikbare evenementen kunnen inzien zodat ik me daarvoor kan inschrijven</a></li>
                             </ul>
                         </li>
-                        
+
                         <li class="dropdown">
                             @if (Auth::check())
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="http://via.placeholder.com/20?text=Placeholder.com+rocks!" class="img-circle" alt="Avatar"> <span>{{ Auth::user()->name }}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/profile/{{ Auth::user()->id }}"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-                                    <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-                                    <li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+                                    <li><a href="/profile/{{ Auth::user()->id }}"><i class="lnr lnr-user"></i> <span>Mijn profiel</span></a></li>
+                                    <li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Log uit</span></a></li>
                                 </ul>
                             @else
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Menu</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/user/signup"><i class="lnr lnr-user"></i> <span>Sign up</span></a></li>
-                                <li><a href="/user/signin"><i class="lnr lnr-cog"></i> <span>Sign in</span></a></li>
+                                <li><a href="/user/signup"><i class="lnr lnr-user"></i> <span>Registreer</span></a></li>
+                                <li><a href="/user/signin"><i class="lnr lnr-cog"></i> <span>Log in</span></a></li>
                             </ul>
                             @endif
                         </li>

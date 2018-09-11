@@ -32,7 +32,7 @@
           <div class="content">
             <div class="header">
               <div class="logo text-center">LETS EVENT</div>
-              <p class="lead">Create an account</p>
+              <p class="lead">Maak een account</p>
             </div>
             @if(count($errors) > 0)
             <div class="alert alert-danger">
@@ -43,29 +43,29 @@
             @endif
             <form class="form-auth-small" action="{{ route('user.signup') }}" method="post">
               <div class="form-group">
-                <label for="signup-email" class="control-label sr-only">Email</label>
-                <input type="email" class="form-control" name="email" id="signup-email" placeholder="Email">
+                <label for="signup-email" class="control-label sr-only">Emailadres</label>
+                <input type="email" class="form-control" name="email" id="signup-email" placeholder="Emailadres">
               </div>
               <div class="form-group">
                 <label for="signup-password" class="control-label sr-only">Wachtwoord</label>
-                <input type="password" class="form-control" name="password" id="signup-password" placeholder="Password">
+                <input type="password" class="form-control" name="password" id="signup-password" placeholder="Wachtwoord">
               </div>
               <div class="form-group">
                 <label for="signup-name" class="control-label sr-only">Naam</label>
-                <input type="text" class="form-control" name="name" id="signup-name" placeholder="Name">
+                <input type="text" class="form-control" name="name" id="signup-name" placeholder="Naam">
               </div>
               <div class="form-group">
                 <label for="signup-address" class="control-label sr-only">Adres</label>
-                <input type="text" class="form-control" name="address" id="signup-address" placeholder="Address">
+                <input type="text" class="form-control" name="address" id="signup-address" placeholder="Adres">
               </div>
               <div class="form-group">
                 <label for="signup-telephone" class="control-label sr-only">Telefoon nummer</label>
-                <input type="text" class="form-control" name="telephone" id="signup-telephone" placeholder="Phone number">
+                <input type="text" class="form-control" name="telephone" id="signup-telephone" placeholder="Telefoon nummer">
               </div>
-              <button type="submit" class="btn btn-primary btn-lg btn-block">SIGN UP</button>
+              <button type="submit" class="btn btn-primary btn-lg btn-block">REGISTREER</button>
               {{ csrf_field() }}
               <div class="bottom">
-                <span class="helper-text">Already have an account? <a href="/user/signin">Sign in!</a></span>
+                <span class="helper-text">Heb je al een account? <a href="/user/signin">Log in!</a></span>
               </div>
             </form>
           </div>

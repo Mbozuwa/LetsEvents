@@ -20,4 +20,10 @@ class EventController extends Controller
 	   $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
        return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd]);
     }
+
+    public function allEvents() {
+        $events = Event::paginate(2);
+
+        return view('Events/index')->with('events',$events);
+    }
 }
