@@ -22,6 +22,7 @@ Route::get('/registration/1/{id}', 'registrationController@userGoing');
 Route::get('/registration/2/{id}', 'registrationController@userMaybe');
 Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
 Route::get('event/{id}', 'EventController@index');
+Route::get('/notificationDelete', 'HomeController@notificationDelete');
 Route::post('/profile/update', 'ProfileController@update');
 
 Route::get('/logout', [

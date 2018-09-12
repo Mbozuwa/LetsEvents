@@ -37,12 +37,10 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                                 <i class="lnr lnr-alarm"></i>
-                                <span class="badge bg-danger">3</span>
+                                <span class="badge bg-danger">@if(Session::has('notification'))!@endif</span>
                             </a>
                             <ul class="dropdown-menu notifications">
-                                <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Als user, wil ik kunnen registreren zodat ik evenementen kan aanmaken</a></li>
-                                <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Als user, wil ik mijn profiel kunnen bekijken om het aan te passen.</a></li>
-                                <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>Als student, wil ik alle beschikbare evenementen kunnen inzien zodat ik me daarvoor kan inschrijven</a></li>
+                                @if(Session::has('notification'))<li><a href="/event/{{Session::get('event_id')}}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification')}}</a><a href="/notificationDelete">verwijder notificatie</a></li>@endif
                             </ul>
                         </li>
                         
