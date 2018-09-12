@@ -3,15 +3,20 @@
                     <nav>
                         <ul class="nav">
                             <li><a href="/" class=""><i class="lnr lnr-home"></i> <span>Thuispagina</span></a></li>
-                        </ul>
                         @if (Auth::check())
-                            <ul class="nav">
-                                <li><a href="/profile/{{ Auth::user()->id }}" class=""><i class="lnr lnr-user"></i> <span>Profiel</span></a></li>
-                            </ul>
+                            <li><a href="/profile/{{ Auth::user()->id }}" class=""><i class="lnr lnr-user"></i> <span>Profiel</span></a></li>
                         @endif
-                        <ul class="nav">
-                            <li><a href="/events/index" class=""><i class="lnr lnr-list"></i> <span>Events</span></a></li>
-
+                            <li>
+                                <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-list"></i> <span>Events</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                                <div id="subPages" class="collapse ">
+                                    <ul class="nav">
+                                        <li><a href="/events/index" class="active">Overzicht</a></li>
+                                        @foreach ($categories as $category)
+                                        <li><a href="/testCategorieId/{{ $category->id }}">{{ $category->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </li>
                         </ul>
                     </nav>
                 </div>
