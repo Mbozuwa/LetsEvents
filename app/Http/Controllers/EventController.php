@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Event;
+use App\Registration;
 use Auth;
 
 class EventController extends Controller
@@ -25,5 +26,13 @@ class EventController extends Controller
         $events = Event::paginate(2);
 
         return view('Events/index')->with('events',$events);
+    }
+    public function myEvents() {
+        $user = Auth::user();
+        $registrations = Registration::where('user_id' , $user['id'])->get();
+        $date = date('Y-m-d H:i:s');
+        $date = strtotime($date);
+
+        return view('myEvents',['registrations' => $registrations, 'date' => $date]);
     }
 }

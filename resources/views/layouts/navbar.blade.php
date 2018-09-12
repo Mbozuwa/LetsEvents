@@ -13,6 +13,11 @@
                             <li><a href="/events/index" class=""><i class="lnr lnr-list"></i> <span>Events</span></a></li>
 
                         </ul>
+                        <ul class="nav">
+                            <li><a href="/events/user" class=""><i class="fas fa-basketball-ball"></i> <span>Mijn events
+                            </span></a></li>
+
+                        </ul>
                     </nav>
                 </div>
             </div>
