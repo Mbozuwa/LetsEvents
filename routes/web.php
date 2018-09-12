@@ -23,7 +23,8 @@ Route::get('/registration/2/{id}', 'registrationController@userMaybe');
 Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
 Route::get('event/{id}', 'EventController@index');
 Route::post('/profile/update', 'ProfileController@update');
-Route::get('/events/index','EventController@allEvents');
+Route::get('/events/index/','EventController@allEvents');
+Route::get('events/create', 'EventController@create');
 Route::get('/logout', [
   'uses' => 'UserController@getLogout',
   'as' => 'user.logout'

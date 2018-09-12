@@ -7,6 +7,7 @@
                         @if (Auth::check())
                             <ul class="nav">
                                 <li><a href="/profile/{{ Auth::user()->id }}" class=""><i class="lnr lnr-user"></i> <span>Profiel</span></a></li>
+                                <li><a href="/events/create">Maak een evenement aan.</a></li>
                             </ul>
                         @endif
                         <ul class="nav">
