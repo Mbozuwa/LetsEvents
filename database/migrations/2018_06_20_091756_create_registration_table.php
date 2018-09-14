@@ -20,6 +20,8 @@ class CreateRegistrationTable extends Migration
             $table->string('status');
             $table->integer('paid');
             $table->dateTime('pay_date');
+            $table->timestamps();
+            
         });
     }
 
