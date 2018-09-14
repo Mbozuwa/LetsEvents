@@ -32,7 +32,8 @@ class EventController extends Controller
         $registrations = Registration::where('user_id' , $user['id'])->get();
         $date = date('Y-m-d H:i:s');
         $date = strtotime($date);
-
-        return view('myEvents',['registrations' => $registrations, 'date' => $date]);
+        $count = \App\Registration::where('status' , "Ik ga")->get()->count();
+        $countEvents = \App\event::all()->count();
+        return view('myEvents',['registrations' => $registrations, 'date' => $date, 'count' => $count, 'countEvents' => $countEvents]);
     }
 }
