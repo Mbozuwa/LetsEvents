@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <h2>Maak een evenement aan:</h2>
-    <form class="auth-small" action="create.blade" method="post">
+    <form class="auth-small" action="{{action('EventController@create')}}" method="post">
+        @csrf
         <div class="form-group">
             <h2>De naam:</h2><input type="text" class="form-control" name="name" placeholder="Naam">
         </div>
