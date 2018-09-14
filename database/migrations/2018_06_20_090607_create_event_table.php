@@ -25,6 +25,7 @@ class CreateEventTable extends Migration
             $table->time('end_time');
             $table->integer('registration_id');
             $table->integer('user_id');
+            $table->timestamps();
         });
     }
 

@@ -26,6 +26,8 @@ Route::get('/notificationDelete', 'HomeController@notificationDelete');
 Route::post('/profile/update', 'ProfileController@update');
 Route::get('/events/index','EventController@allEvents');
 Route::get('/events/user','EventController@myEvents');
+Route::get('/events/create', 'EventController@create');
+Route::post('events/create', 'EventController@post');
 Route::get('/logout', [
   'uses' => 'UserController@getLogout',
   'as' => 'user.logout'
