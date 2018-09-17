@@ -28,4 +28,7 @@ class Event extends Authenticatable
     public function registration(){
     return $this->hasOne('App\Registration');
     }
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }

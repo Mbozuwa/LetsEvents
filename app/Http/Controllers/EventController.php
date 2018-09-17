@@ -26,7 +26,7 @@ class EventController extends Controller
         $id = Event::find('id');
         // $count =Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
         $events = Event::orderBy('begin_time', 'asc')->paginate(2);
-        return view('Events/index', ['events' => $events]);
+        return view('events/index', ['events' => $events]);
     }
     public function create() {
         return view('events/create');
@@ -55,11 +55,22 @@ class EventController extends Controller
         $date_end = $request['end_time'];
         $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
         $post->end_time = $correctDateEnd;
-
-        // $post->end_time = $request->input('end_time');
         $post->user_id = $user->id;
+        // $post->end_time = $request->input('end_time');
         // dd($post);
         $post->save();
+        return view('/events/index');
+    }
+
+    public function MadeEvents() {
+        $user = Auth::user();
+        $userEvents = Event::where('user_id', $user['id'])->paginate(2);
+        return view('/events/made', ['userEvents' => $userEvents]);
+    }
+    public function delete($id) {
+        $user = Auth::user();
+        $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
+        $event->delete();
         return view('/home');
     }
 }

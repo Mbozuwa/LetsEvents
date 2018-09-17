@@ -19,10 +19,10 @@
             <h2>Maximaal toegestane deelnemers:</h2><input type="text" name="max_participant" class="form-control" placeholder="Max deelnemer">
         </div>
         <div class="form-group">
-            <h2>Start tijd:</h2><input type="dateTime-local"  name="begin_time" class="form-control" value="mm/dd/JJJJ --:--.--">
+            <h2>Start tijd:</h2><input type="dateTime-local"  name="begin_time" class="form-control" value="dd/mm/jj --:--">
         </div>
         <div class="form-group">
-            <h2>Eind tijd:</h2><input type="datetime-local" name="end_time" class="form-control" value="mm/dd/JJJJ --:--.--">
+            <h2>Eind tijd:</h2><input type="datetime-local" name="end_time" class="form-control" value="dd/mm/jj --:--">
         </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block" action="">Maak een event.</button>
         {{ csrf_field() }}
