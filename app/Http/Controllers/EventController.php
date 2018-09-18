@@ -22,15 +22,54 @@ class EventController extends Controller
        return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd]);
     }
 
+    public function delete($id) {
+        $user = Auth::user();
+        $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
+        $event->delete();
+        return redirect('/events/made');
+    }
+
+    public function edit($id) {
+        $event = Event::find($id);
+        return view('/events/edit', ['event' => $event]);
+    }
+    public function update(Request $request,$id) {
+        $user = Auth::user();
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'place' => 'required',
+            'address' => 'required',
+            'max_participant' => 'required',
+            'begin_time' => 'required',
+            'end_time' => 'required',
+            'user_id' => 'required'
+        ]);
+        $post = Event::find($id);
+        $post->name = $request->input('name');
+        $post->description = $request->input('description');
+        $post->place = $request->input('place');
+        $post->address = $request->input('address');
+        $post->max_participant = $request->input('max_participant');
+        $post->begin_time = $request->input('begin_time');
+        $post->end_time = $request->input('end_time');
+        $post->user_id = $user->id;
+        $post->save();
+        return redirect()->back();
+    }
+
     public function allEvents() {
-        $id = Event::find('id');
+        $events = Event::get();
+        // dd($events);
         // $count =Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
         $events = Event::orderBy('begin_time', 'asc')->paginate(2);
         return view('events/index', ['events' => $events]);
     }
+
     public function create() {
         return view('events/create');
     }
+
     public function store(Request $request) {
         $user = Auth::user();
         $request->validate([
@@ -59,7 +98,7 @@ class EventController extends Controller
         // $post->end_time = $request->input('end_time');
         // dd($post);
         $post->save();
-        return view('/events/index');
+        return redirect('/events/index');
     }
 
     public function MadeEvents() {
@@ -67,10 +106,5 @@ class EventController extends Controller
         $userEvents = Event::where('user_id', $user['id'])->paginate(2);
         return view('/events/made', ['userEvents' => $userEvents]);
     }
-    public function delete($id) {
-        $user = Auth::user();
-        $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
-        $event->delete();
-        return view('/home');
-    }
+
 }

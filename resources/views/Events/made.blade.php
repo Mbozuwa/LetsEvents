@@ -26,7 +26,7 @@
                           <h3>Eindigt: {{$event->end_time}}</h3>
                           <h3>Het adres:{{$event->address}},{{$event->place}}</h3>
                           <p>Bekijk meer details:<a href="/event/{{$event->id}}">Event pagina</a></p>
-                          <p><a href="#">Edit</a></p>
+                          <p><a href="/events/edit/{{$event->id}}">Edit</a></p>
                           @if (Auth::check())
                               <p><a href="/delete/{{$event->id}}">Verwijder</a></p>
                           @endif
