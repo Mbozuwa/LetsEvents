@@ -36,17 +36,24 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                   <label for="inputEmail3" class="col-sm-2 col-form-label">Begin tijd::</label>
+                   <label for="inputEmail3" class="col-sm-2 col-form-label">Betaling:</label>
                    <div class="col-sm-10">
-                       <input type="" name="begin_time" class="form-control" value="{{$event->begin_time}}">
+                       <input type="" name="payment" class="form-control" value="{{$event->payment}}">
+                   </div>
+               </div>
+                <div class="form-group row">
+                   <label for="inputEmail3" class="col-sm-2 col-form-label">Begin tijd:</label>
+                   <div class="col-sm-10">
+                       <input type="" name="begin_time" class="form-control" value="{{$correctDate}}">
                    </div>
                </div>
                <div class="form-group row">
                   <label for="inputEmail3" class="col-sm-2 col-form-label">Eind tijd:</label>
                   <div class="col-sm-10">
-                      <input type="" name="end_time" class="form-control" value="{{$event->end_time}}">
+                      <input type="" name="end_time" class="form-control" value="{{$correctDate2}}">
                   </div>
               </div>
+
               <input id="invisible_id" name="user_id" type="hidden" value="{{Auth::user()->id}}">
               <button type="submit" style="margin-top: 40px;" class="btn bg-success btn-lg">Bewerken</button>
         </form>

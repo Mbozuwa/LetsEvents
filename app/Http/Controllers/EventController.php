@@ -29,34 +29,7 @@ class EventController extends Controller
         return redirect('/events/made');
     }
 
-    public function edit($id) {
-        $event = Event::find($id);
-        return view('/events/edit', ['event' => $event]);
-    }
-    public function update(Request $request,$id) {
-        $user = Auth::user();
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'place' => 'required',
-            'address' => 'required',
-            'max_participant' => 'required',
-            'begin_time' => 'required',
-            'end_time' => 'required',
-            'user_id' => 'required'
-        ]);
-        $post = Event::find($id);
-        $post->name = $request->input('name');
-        $post->description = $request->input('description');
-        $post->place = $request->input('place');
-        $post->address = $request->input('address');
-        $post->max_participant = $request->input('max_participant');
-        $post->begin_time = $request->input('begin_time');
-        $post->end_time = $request->input('end_time');
-        $post->user_id = $user->id;
-        $post->save();
-        return redirect()->back();
-    }
+
 
     public function allEvents() {
         $events = Event::get();
@@ -94,6 +67,7 @@ class EventController extends Controller
         $date_end = $request['end_time'];
         $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
         $post->end_time = $correctDateEnd;
+        $post->payment = $request->input('payment');
         $post->user_id = $user->id;
         // $post->end_time = $request->input('end_time');
         // dd($post);
@@ -101,10 +75,52 @@ class EventController extends Controller
         return redirect('/events/index');
     }
 
+    public function edit($id) {
+        $event = Event::find($id);
+        $date_begin = $event['begin_time'];
+        $correctDate= date("d-m-Y H:i", strtotime($date_begin));
+        $date_end = $event['end_time'];
+        $correctDate2= date("d-m-Y H:i", strtotime($date_end));
+        return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
+    }
+
+    public function update(Request $request,$id) {
+        $user = Auth::user();
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'place' => 'required',
+            'address' => 'required',
+            'max_participant' => 'required',
+            'begin_time' => 'required',
+            'end_time' => 'required',
+            'user_id' => 'required'
+        ]);
+        $post = Event::find($id);
+        $post->name = $request->input('name');
+        $post->description = $request->input('description');
+        $post->place = $request->input('place');
+        $post->address = $request->input('address');
+        $post->max_participant = $request->input('max_participant');
+        $date_begin = $request['begin_time'];
+        $correctDate= date("Y-m-d H:i", strtotime($date_begin));
+        $post->begin_time = $correctDate;
+
+        $date_end = $request['end_time'];
+        $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
+        $post->end_time = $correctDateEnd;
+        $post->payment = $request->input('payment');
+        $post->user_id = $user->id;
+        $post->save();
+        return redirect('/events/made');
+    }
+
     public function MadeEvents() {
         $user = Auth::user();
         $userEvents = Event::where('user_id', $user['id'])->paginate(2);
-        return view('/events/made', ['userEvents' => $userEvents]);
+        $date_begin = $userEvents['begin_time'];
+        $correctDate = date("d-m-Y H:i", strtotime($date_begin));
+        return view('/events/made', ['userEvents' => $userEvents, 'correctDate' => $correctDate]);
     }
 
 }
