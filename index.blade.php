@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en" class="fullscreen-bg">
 <head>
@@ -8,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <!-- BOOTSTRAP, FONT-AWESOME, LETS EVENT CSS -->
-    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/assets/vendor/linearicons/style.css">
-    <link rel="stylesheet" href="<?php echo e(asset('/css/style_alex.css')); ?>">
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/vendor/linearicons/style.css">
+    <link rel="stylesheet" href="{{ asset('/css/style_alex.css') }}">
 
     <!-- CALENDAR -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
@@ -23,8 +22,7 @@
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 
-
-     <script>
+    {{-- <script>
     $(document).ready(function() {
         $('#calendar').fullCalendar({
             defaultView: 'listMonth',
@@ -91,7 +89,7 @@
 
       });
 
-    </script>
+    </script> --}}
 <style>
 
   #calendar {
@@ -114,14 +112,14 @@
                                 <div class="logo text-center">LETS EVENT</div>
                                 <p class="lead">Login to your account</p>
                             </div>
-                            <?php if(count($errors) > 0): ?>
+                            @if(count($errors) > 0)
                             <div class="alert alert-danger">
-                              <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <p><?php echo e($error); ?></p>
-                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              @foreach ($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                              @endforeach
                             </div>
-                            <?php endif; ?>
-                            <form class="form-auth-small" action="<?php echo e(route('login')); ?>" method="post">
+                            @endif
+                            <form class="form-auth-small" action="{{ route('user.signin') }}" method="post">
 
                                 <div class="form-group">
                                     <label for="signin-email" class="control-label sr-only">Email</label>
@@ -132,10 +130,9 @@
                                     <input type="password" class="form-control" name="password" id="signin-password" placeholder="Password">
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-lg btn-block" action="">SIGN IN</button>
-                                <?php echo e(csrf_field()); ?>
-
+                                {{ csrf_field() }}
                                 <div class="bottom">
-                                    <span class="helper-text">Don't have an account? <a href="<?php echo e(route('user.signup')); ?>">Sign up!</a></span>
+                                    <span class="helper-text">Don't have an account? <a href="{{ route('user.signup') }}">Sign up!</a></span>
                                 </div>
                             </form>
                         </div>

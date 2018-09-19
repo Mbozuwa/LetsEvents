@@ -22,8 +22,17 @@ Route::get('/registration/1/{id}', 'registrationController@userGoing');
 Route::get('/registration/2/{id}', 'registrationController@userMaybe');
 Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
 Route::get('event/{id}', 'EventController@index');
+Route::get('/notificationDelete', 'HomeController@notificationDelete');
 Route::post('/profile/update', 'ProfileController@update');
-Route::get('/events/index','EventController@allEvents');
+
+
+Route::get('/events/index/','EventController@allEvents');
+Route::get('events/create', 'EventController@create');
+Route::post('events/create', 'EventController@store');
+Route::get('events/made', 'EventController@MadeEvents');
+Route::get('/delete/{id}', 'EventController@delete');
+Route::get('/events/edit/{id}', 'EventController@edit');
+Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
 Route::get('/logout', [
   'uses' => 'UserController@getLogout',
   'as' => 'user.logout'
