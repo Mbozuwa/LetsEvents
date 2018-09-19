@@ -22,15 +22,27 @@ class EventController extends Controller
        return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd]);
     }
 
+    public function delete($id) {
+        $user = Auth::user();
+        $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
+        $event->delete();
+        return redirect('/events/made');
+    }
+
+
+
     public function allEvents() {
-        $id = Event::find('id');
+        $events = Event::get();
+        // dd($events);
         // $count =Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
         $events = Event::orderBy('begin_time', 'asc')->paginate(2);
-        return view('Events/index', ['events' => $events]);
+        return view('events/index', ['events' => $events]);
     }
+
     public function create() {
         return view('events/create');
     }
+
     public function store(Request $request) {
         $user = Auth::user();
         $request->validate([
@@ -55,12 +67,52 @@ class EventController extends Controller
         $date_end = $request['end_time'];
         $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
         $post->end_time = $correctDateEnd;
-
-        // $post->end_time = $request->input('end_time');
+        $post->payment = $request->input('payment');
         $post->user_id = $user->id;
+        // $post->end_time = $request->input('end_time');
         // dd($post);
         $post->save();
-        return view('/home');
+        return redirect('/events/index');
+    }
+
+    public function edit($id) {
+        $event = Event::find($id);
+        $date_begin = $event['begin_time'];
+        $correctDate= date("d-m-Y H:i", strtotime($date_begin));
+        $date_end = $event['end_time'];
+        $correctDate2= date("d-m-Y H:i", strtotime($date_end));
+        return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
+    }
+
+    public function update(Request $request,$id) {
+        $user = Auth::user();
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'place' => 'required',
+            'address' => 'required',
+            'max_participant' => 'required',
+            'begin_time' => 'required',
+            'end_time' => 'required',
+            'user_id' => 'required'
+        ]);
+        $post = Event::find($id);
+        $post->name = $request->input('name');
+        $post->description = $request->input('description');
+        $post->place = $request->input('place');
+        $post->address = $request->input('address');
+        $post->max_participant = $request->input('max_participant');
+        $date_begin = $request['begin_time'];
+        $correctDate= date("Y-m-d H:i", strtotime($date_begin));
+        $post->begin_time = $correctDate;
+
+        $date_end = $request['end_time'];
+        $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
+        $post->end_time = $correctDateEnd;
+        $post->payment = $request->input('payment');
+        $post->user_id = $user->id;
+        $post->save();
+        return redirect('/events/made');
     }
     public function myEvents() {
         $user = Auth::user();
@@ -70,5 +122,13 @@ class EventController extends Controller
         $count = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get()->count();
         $countEvents = \App\event::all()->count();
         return view('myEvents',['registrations' => $registrations, 'date' => $date, 'count' => $count, 'countEvents' => $countEvents]);
+    }
+
+    public function MadeEvents() {
+        $user = Auth::user();
+        $userEvents = Event::where('user_id', $user['id'])->paginate(2);
+        $date_begin = $userEvents['begin_time'];
+        $correctDate = date("d-m-Y H:i", strtotime($date_begin));
+        return view('/events/made', ['userEvents' => $userEvents, 'correctDate' => $correctDate]);
     }
 }

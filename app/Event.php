@@ -19,16 +19,18 @@ class Event extends Authenticatable
     ];
 
     protected $table = "event";
-    
+
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [];
-    
+
     public function registrations(){
         return $this->hasMany('App\Registration');
     }
-    
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }

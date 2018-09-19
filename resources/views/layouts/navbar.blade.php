@@ -6,8 +6,6 @@
                         @if (Auth::check())
                             <ul class="nav">
                                 <li><a href="/profile/{{ Auth::user()->id }}" class=""><i class="lnr lnr-user"></i> <span>Profiel</span></a></li>
-                                <li><a href="/events/create">Maak een evenement aan.</a></li>
-                            </ul>
                         @endif
                             <li>
                                 <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-list"></i> <span>Events</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
