@@ -24,7 +24,7 @@ Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
 Route::get('event/{id}', 'EventController@index');
 Route::get('/notificationDelete', 'HomeController@notificationDelete');
 Route::post('/profile/update', 'ProfileController@update');
-
+Route::get('/events/user','EventController@myEvents');
 
 Route::get('/events/index/','EventController@allEvents');
 Route::get('events/create', 'EventController@create');
