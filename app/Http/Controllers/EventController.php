@@ -29,10 +29,10 @@ class EventController extends Controller
     }
     public function myEvents() {
         $user = Auth::user();
-        $registrations = Registration::where('user_id' , $user['id'])->get();
+        $registrations = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get();
         $date = date('Y-m-d H:i:s');
         $date = strtotime($date);
-        $count = \App\Registration::where('status' , "Ik ga")->get()->count();
+        $count = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get()->count();
         $countEvents = \App\event::all()->count();
         return view('myEvents',['registrations' => $registrations, 'date' => $date, 'count' => $count, 'countEvents' => $countEvents]);
     }
