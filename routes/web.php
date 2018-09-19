@@ -24,6 +24,7 @@ Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
 Route::get('event/{id}', 'EventController@index');
 Route::post('/profile/update', 'ProfileController@update');
 Route::get('/events/index','EventController@allEvents');
+Route::get('/events/name_info', 'EventController@info');
 Route::get('/logout', [
   'uses' => 'UserController@getLogout',
   'as' => 'user.logout'

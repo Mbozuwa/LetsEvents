@@ -26,4 +26,8 @@ class EventController extends Controller
 
         return view('Events/index')->with('events',$events);
     }
+    public function info() {
+        $event = Event::get();
+        return view('/events/name_info', ['event' => $event]);
+    }
 }
