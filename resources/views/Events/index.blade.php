@@ -15,7 +15,12 @@
                             margin-bottom: 20px;
                         }
                     </style>
+
                     <div class="border">
+                        {{-- @foreach ($category as $test)
+                            {{$test}}
+                        @endforeach --}}
+
                           <h1>Het evenement: {{$event->name}}</h1>
                           <h2 class="card-text mb-auto">beschrijving: {{$event->description}}</h2>
                           <h2>Hoeveel mensen mogen mee doen: {{$event->max_participant}}</h2>

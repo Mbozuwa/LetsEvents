@@ -4,7 +4,6 @@
                         <ul class="nav">
                             <li><a href="/" class=""><i class="lnr lnr-home"></i> <span>Thuispagina</span></a></li>
                         @if (Auth::check())
-                            <ul class="nav">
                                 <li><a href="/profile/{{ Auth::user()->id }}" class=""><i class="lnr lnr-user"></i> <span>Profiel</span></a></li>
                         @endif
                             <li>
@@ -13,7 +12,7 @@
                                     <ul class="nav">
                                         <li><a href="/events/index" class="active">Overzicht</a></li>
                                         @foreach ($categories as $category)
-                                        <li><a href="/testCategorieId/{{ $category->id }}">{{ $category->name }}</a></li>
+                                        <li><a href="/categories/{{ $category->id }}">{{ $category->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -21,8 +20,7 @@
                         </ul>
                         @if (Auth::check())
                         <ul class="nav">
-                            <li><a href="/events/user" class=""><i class="fas fa-basketball-ball"></i> <span>Mijn events
-                            </span></a></li>
+                            <li><a href="/myEvents" class=""><i class="fas fa-basketball-ball"></i> <span>Mijn events</span></a></li>
                         @endif
                         </ul>
                     </nav>

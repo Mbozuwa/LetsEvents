@@ -15,8 +15,7 @@ class Categories extends Model
 	* The table associated with the model.
 	*/
 	protected $table = 'category';
-
-    public function parent(){
-        return $this->belongsTo('\App\Categories');
-    }
+	public function event() {
+      return $this->belongsToMany('App\Event');
+  }
 }
