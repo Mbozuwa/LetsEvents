@@ -9,10 +9,20 @@
                         #welcome{
                             color: black;
                         }
-                        .border{
-                            border-style:solid;
-                            margin-right: 200px;
-                            margin-bottom: 20px;
+
+                        .textbox{
+
+                            padding-right: 0px;
+                            background-color: white;
+
+                        }
+                        .image{
+                            max-width: 500px;
+                            height: auto;
+                            display: block;
+                            margin-left: auto;
+                            margin-right: auto;
+                            text-align: center;
                         }
                     </style>
                     <div class="border">

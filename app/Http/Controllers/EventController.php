@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Event;
 use App\Registration;
+use App\Category_event;
+use App\Categories;
+use App\User;
 use Auth;
 
 class EventController extends Controller
@@ -33,10 +36,11 @@ class EventController extends Controller
 
     public function allEvents() {
         $events = Event::get();
+        // $category = Category_event::get();
         // dd($events);
         // $count =Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
         $events = Event::orderBy('begin_time', 'asc')->paginate(2);
-        return view('events/index', ['events' => $events]);
+    return view('events/index', ['events' => $events /*, 'category' => $category*/]);
     }
 
     public function create() {
@@ -81,6 +85,7 @@ class EventController extends Controller
         $correctDate= date("d-m-Y H:i", strtotime($date_begin));
         $date_end = $event['end_time'];
         $correctDate2= date("d-m-Y H:i", strtotime($date_end));
+        // $categories = Categories::get();
         return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
     }
 
@@ -94,8 +99,16 @@ class EventController extends Controller
             'max_participant' => 'required',
             'begin_time' => 'required',
             'end_time' => 'required',
-            'user_id' => 'required'
+            'user_id' => 'required',
         ]);
+
+        //
+        // $test = new Category_event;
+        // // $event = Event::where('id',$id)->get();
+        // $test->event_id = $id;
+        // $test->category_id = $request->input('category_id');
+        // $test->save();
+
         $post = Event::find($id);
         $post->name = $request->input('name');
         $post->description = $request->input('description');
@@ -130,5 +143,14 @@ class EventController extends Controller
         $date_begin = $userEvents['begin_time'];
         $correctDate = date("d-m-Y H:i", strtotime($date_begin));
         return view('/events/made', ['userEvents' => $userEvents, 'correctDate' => $correctDate]);
+    }
+    public function info($id) {
+        $user = Auth::user();
+        $event = Event::find($id);
+        $category = Event::find($id)->category()->get();
+        $registered = Registration::where(['event_id' => $id])->where('status' , "Ik ga")->get();
+
+        // dd($registered);
+        return view('events/info', ['registered' => $registered, 'event' => $event, 'category' => $category, 'user' => $user]);
     }
 }

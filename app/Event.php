@@ -9,6 +9,10 @@ class Event extends Authenticatable
 {
     use Notifiable;
 
+    public function category() {
+          return $this->belongsToMany('App\Categories', 'category_event','event_id','category_id');
+        }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -28,9 +32,9 @@ class Event extends Authenticatable
     protected $hidden = [];
 
     public function registrations(){
-        return $this->hasMany('App\Registration');
+        return $this->hasMany('App\Registration','event_id');
     }
-    public function user() {
-        return $this->belongsTo('App\User');
-    }
+    // public function user() {
+    //     return $this->belongsTo('App\User');
+    // }
 }

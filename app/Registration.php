@@ -17,7 +17,7 @@ class Registration extends Model
     ];
 
     protected $table = "registration";
-    
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -29,5 +29,7 @@ class Registration extends Model
     public function event(){
         return $this->belongsTo('App\Event');
 	}
-
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }
