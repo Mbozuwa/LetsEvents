@@ -35,8 +35,7 @@ class ProfileController extends Controller
         
         $user->save();
 
-        return redirect()->back();
-
+        return redirect()->back()->with('message', 'Profiel succesvol bewerkt!');
     }
 
     /**

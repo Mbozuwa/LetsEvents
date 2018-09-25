@@ -4,6 +4,11 @@
 <body class="p">
     <div class="col-9" style="background-color:white;margin-right:50px;margin-top:10px;padding:10px;">
         <div class="col-9 justify-content-center bg-dark">
+                @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="row justify-content-center">
                 <div class="col-md-9">
                     <h1 class="profile">Profiel</h1>
@@ -38,7 +43,7 @@
                                 <input type="" name="telephone" class="form-control" id="inputEmail3" placeholder="06-12345678" value="{{$profile->telephone}}">
                             </div>
                         </div>
-                        
+
                         <button type="submit" style="margin-top: 40px;" class="btn bg-success btn-lg">Bewerken</button>
                 </form>
                 </div>
@@ -47,11 +52,10 @@
                     <div class="col-4">
                         {{-- Alert if the image doesn't require the correct validation --}}
                         @if(count($errors)>0)
-                                @foreach($errors->all() as $error)
-                                    <p class="alert alert-danger">{{$error}}</p>
-                                @endforeach
+                            @foreach($errors->all() as $error)
+                                <p class="alert alert-danger">{{$error}}</p>
+                            @endforeach
                         @endif
-
                         <img src="/uploads/{{$profile->image}}" style="max-height:200px;max-width:300px;">
                         <input style="margin-top:30px;" type="file" name="image" id="file">
                         <input type="submit" value="Upload" name="submit">
