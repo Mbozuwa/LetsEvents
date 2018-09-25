@@ -50,6 +50,7 @@ class UserController extends Controller
     }
 
     public function getLogout() {
+      session()->forget('notification');
       Auth::logout();
       return view('user/signin');
     }
