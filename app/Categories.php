@@ -16,7 +16,7 @@ class Categories extends Model
 	*/
 	protected $table = 'category';
 
-    public function parent(){
-        return $this->belongsTo('\App\Categories');
-    }
+	public function events() {
+      return $this->belongsToMany('App\Event', 'category_event', 'category_id')->withPivot('category_id', 'event_id');
+  }
 }

@@ -10,10 +10,10 @@
                             color: black;
                         }
                         .textbox{
-                       
+
                             padding-right: 0px;
                             background-color: white;
-                         
+
                         }
                         .image{
                             max-width: 500px;

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('content')
+    <br>
+    <div class="panel">
+        <div class="panel-body">
+
     <h2>Maak een evenement aan:</h2>
     <form class="auth-small" action="{{action('EventController@create')}}" method="post">
         @csrf
@@ -27,8 +31,11 @@
         <div class="form-group">
             <h2>Eind tijd:</h2><input type="datetime-local" name="end_time" class="form-control" value="dd/mm/jj --:--">
         </div>
-        <button type="submit" class="btn btn-primary btn-lg btn-block" action="">Maak een event.</button>
+        <button type="submit" class="btn btn-primary btn-lg" action="">Maak een event.</button>
         {{ csrf_field() }}
     </form>
+    <br>
+</div>
+</div>
 
 @endsection

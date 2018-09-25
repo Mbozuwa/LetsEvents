@@ -53,6 +53,14 @@
                       <input type="" name="end_time" class="form-control" value="{{$correctDate2}}">
                   </div>
               </div>
+              {{-- <div class="form-group row">
+                  <label for="cateogory" class="col-sm-2 col-form-label">Categorie:</label>
+                    <select name="category_id" id="category_id" class="form-control">
+                     <option value="">Geen</option>
+                             @foreach ($categories as $category)
+                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
+                             @endforeach
+                 </select> --}}
 
               <input id="invisible_id" name="user_id" type="hidden" value="{{Auth::user()->id}}">
               <button type="submit" style="margin-top: 40px;" class="btn bg-success btn-lg">Bewerken</button>
