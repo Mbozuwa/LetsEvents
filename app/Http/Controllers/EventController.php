@@ -147,10 +147,10 @@ class EventController extends Controller
     public function info($id) {
         $user = Auth::user();
         $event = Event::find($id);
-        $category = Event::find($id)->category()->get();
+        // $category = Event::find($id)->category()->get();
         $registered = Registration::where(['event_id' => $id])->where('status' , "Ik ga")->get();
 
         // dd($registered);
-        return view('events/info', ['registered' => $registered, 'event' => $event, 'category' => $category, 'user' => $user]);
+        return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
     }
 }
