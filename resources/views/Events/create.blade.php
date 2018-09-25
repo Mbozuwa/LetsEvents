@@ -23,7 +23,7 @@
             <h2>Maximaal toegestane deelnemers:</h2><input type="text" name="max_participant" class="form-control" placeholder="Max deelnemer">
         </div>
         <div class="form-group">
-            <h2>Betaling:</h2><input type="datetime-local" name="payment" class="form-control" value="0">
+            <h2>Betaling:</h2><input name="payment" class="form-control" value="0">
         </div>
         <div class="form-group">
             <h2>Start tijd:</h2><input type="dateTime-local"  name="begin_time" class="form-control" value="dd/mm/jj --:--">
