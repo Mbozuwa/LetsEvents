@@ -58,7 +58,7 @@
                         @endif
                         <img src="/uploads/{{$profile->image}}" style="max-height:200px;max-width:300px;">
                         <input style="margin-top:30px;" type="file" name="image" id="file">
-                        <input type="submit" value="Upload" name="submit">
+                        <input style="margin-top:10px" type="submit" value="Upload" name="submit">
                         <input type="hidden" value="{{ csrf_token() }}" name="_token"> 
                     </div>
                 </form>
