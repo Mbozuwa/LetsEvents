@@ -18,7 +18,9 @@
                     </style>
 
                     {{-- {{dd($event)}} --}}
-                    <div class="border">
+                    <div class="flex-center position-ref full-height" >
+                        <div class="content" style="background-color: white; padding:10px; margin-right:10px;">
+                        <div class="col-md-6" style="background-color: white;">
                           <h1>Het evenement: {{$event->name}}</h1>
                           <h2 class="card-text mb-auto">beschrijving: {{$event->description}}</h2>
                           <h2>Hoeveel mensen mogen mee doen: {{$event->max_participant}}</h2>
@@ -36,11 +38,16 @@
                           @if (Auth::check())
                               <p><a href="/delete/{{$event->id}}">Verwijder</a></p>
                           @endif
+                      </div>
+                      <div class="col-md-6" >
+                          <img src="/assets/img/login-bg.jpg" style="height: 47px; width: 600px; margin-bottom: 20px">
+                      </div>
                     </div>
                     <br>
                                 @endforeach
                             <!-- BASIC TABLE -->
                             {{ $userEvents->links() }}
                         @endif
-
+                    </div>
+                </div>
 @endsection
