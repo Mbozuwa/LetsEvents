@@ -9,18 +9,23 @@
                         #welcome{
                             color: black;
                         }
-                        .border{
-                            border-style:solid;
-                            margin-right: 200px;
-                            margin-bottom: 20px;
+
+                        .textbox{
+
+                            padding-right: 0px;
+                            background-color: white;
+
+                        }
+                        .image{
+                            max-width: 500px;
+                            height: auto;
+                            display: block;
+                            margin-left: auto;
+                            margin-right: auto;
+                            text-align: center;
                         }
                     </style>
-
                     <div class="border">
-                        {{-- @foreach ($category as $test)
-                            {{$test}}
-                        @endforeach --}}
-
                           <h1>Het evenement: {{$event->name}}</h1>
                           <h2 class="card-text mb-auto">beschrijving: {{$event->description}}</h2>
                           <h2>Hoeveel mensen mogen mee doen: {{$event->max_participant}}</h2>

@@ -24,7 +24,8 @@ Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
 Route::get('event/{id}', 'EventController@index');
 Route::get('/notificationDelete', 'HomeController@notificationDelete');
 Route::post('/profile/update', 'ProfileController@update');
-
+Route::get('/events/user','EventController@myEvents');
+Route::post('/profile/{id}', 'ProfileController@upload');
 
 Route::get('/events/index/','EventController@allEvents');
 Route::get('events/create', 'EventController@create');
@@ -46,6 +47,12 @@ Route::get('/logout', [
 Route::get('/profile/{id}', function () {
     return view('profile.profile');
 });
+
+Route::post('profile', [
+  'uses' => 'ProfileController@upload',
+  'as' => 'profile.profile'
+]);
+
 Route::get('/editprofile/{id}',[
     'uses' => 'UserController@edit',
     'as' => 'profile.edit'
@@ -58,6 +65,7 @@ Route::get('/profile/{id}',[
 ]);
 Route::get('events/info/{id}', 'EventController@info');
 });
+
 
 Route::group(['prefix' =>'user'], function() {
 Route::group(['middleware' => 'guest'] ,function() {
