@@ -25,13 +25,13 @@
                           <h3>Begint: {{ \Carbon\Carbon::parse($event->begin_time)->format('d-m-Y H:i')}}</h3>
                           <h3>Eindigt: {{ \Carbon\Carbon::parse($event->end_time)->format('d-m-Y H:i')}}</h3>
                           <h3>Het adres:{{$event->address}},{{$event->place}}</h3>
+                          {{-- <h3>De categorie:{{$categories->event}}</h3> --}}
                           @if ($event->payment > 0)
                               <h3>De prijs:{{$event->payment}}</h3>
                           @endif
                           <p>Bekijk meer details:<a href="/event/{{$event->id}}">Event pagina</a></p>
-                          <p>test:a:<a href="/events/info/{{$event->id}}">test</a></p>
+                          <p>Mensen die mee doen:<a href="/events/info/{{$event->id}}">Klik hier</a></p>
                           <p><a href="/events/edit/{{$event->id}}">Verander</a></p>
-                          <p><a href="/events/category/{{$event->id}}">Kies een categorie</a></p>
 
                           @if (Auth::check())
                               <p><a href="/delete/{{$event->id}}">Verwijder</a></p>

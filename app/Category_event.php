@@ -12,7 +12,7 @@ class Category_event extends Model
     public function event(){
         return $this->belongsTo('App\Event');
 	}
-    public function category() {
-        return $this->belongsTo('App\Category');
+    public function categories() {
+        return $this->belongsTo('App\Categories', 'category_id');
     }
 }

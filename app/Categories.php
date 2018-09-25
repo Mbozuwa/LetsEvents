@@ -15,7 +15,8 @@ class Categories extends Model
 	* The table associated with the model.
 	*/
 	protected $table = 'category';
-	public function event() {
-      return $this->belongsToMany('App\Event');
+
+	public function events() {
+      return $this->belongsToMany('App\Event', 'category_event', 'category_id')->withPivot('category_id', 'event_id');
   }
 }

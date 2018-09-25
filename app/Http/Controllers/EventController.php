@@ -85,8 +85,8 @@ class EventController extends Controller
         $correctDate= date("d-m-Y H:i", strtotime($date_begin));
         $date_end = $event['end_time'];
         $correctDate2= date("d-m-Y H:i", strtotime($date_end));
-        $categories = Categories::get();
-        return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2, 'categories' => $categories]);
+        // $categories = Categories::get();
+        return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
     }
 
     public function update(Request $request,$id) {
@@ -100,15 +100,14 @@ class EventController extends Controller
             'begin_time' => 'required',
             'end_time' => 'required',
             'user_id' => 'required',
-            'category_id' => 'unique:Category_event'
         ]);
 
-
-        $test = new Category_event;
-        $test->event_id = Event::find($id);
-        // $test->event_id = $event;
-        $test->category_id = $request->input('category_id');
-        $test->save();
+        //
+        // $test = new Category_event;
+        // // $event = Event::where('id',$id)->get();
+        // $test->event_id = $id;
+        // $test->category_id = $request->input('category_id');
+        // $test->save();
 
         $post = Event::find($id);
         $post->name = $request->input('name');
@@ -145,12 +144,13 @@ class EventController extends Controller
         $correctDate = date("d-m-Y H:i", strtotime($date_begin));
         return view('/events/made', ['userEvents' => $userEvents, 'correctDate' => $correctDate]);
     }
-    public function registeredUsers($id) {
+    public function info($id) {
         $user = Auth::user();
         $event = Event::find($id);
+        $category = Event::find($id)->category()->get();
         $registered = Registration::where(['event_id' => $id])->where('status' , "Ik ga")->get();
 
         // dd($registered);
-        return view('events/info', ['registered' => $registered, 'event' => $event]);
+        return view('events/info', ['registered' => $registered, 'event' => $event, 'category' => $category, 'user' => $user]);
     }
 }

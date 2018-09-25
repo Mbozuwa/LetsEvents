@@ -56,7 +56,7 @@ Route::get('/profile/{id}',[
     'uses' => 'profileController@getProfile',
     'as' => 'profile.profile'
 ]);
-Route::get('events/info/{id}', 'EventController@registeredUsers');
+Route::get('events/info/{id}', 'EventController@info');
 });
 
 Route::group(['prefix' =>'user'], function() {
