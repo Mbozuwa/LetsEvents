@@ -565,7 +565,7 @@ ul.notifications > li > .more:focus {
 }
 
 .sidebar .nav .nav {
-    background-color: #252c35;
+    background-color: #2E6DCC;
 }
 
 .sidebar .nav .nav > li > a {
@@ -578,6 +578,7 @@ ul.notifications > li > .more:focus {
 .sidebar .nav .nav > li > a.active {
     background-color: transparent;
     border-left-color: transparent;
+    font-weight: bold;
 }
 
 .sidebar .nav .nav > li > a.active a {
