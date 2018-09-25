@@ -23,6 +23,7 @@ Route::get('/registration/2/{id}', 'registrationController@userMaybe');
 Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
 Route::get('event/{id}', 'EventController@index');
 Route::post('/profile/update', 'ProfileController@update');
+Route::post('/profile/{id}', 'ProfileController@upload');
 
 Route::get('/logout', [
   'uses' => 'UserController@getLogout',
@@ -32,6 +33,12 @@ Route::get('/logout', [
 Route::get('/profile/{id}', function () {
     return view('profile.profile');
 });
+
+Route::post('profile', [
+  'uses' => 'ProfileController@upload',
+  'as' => 'profile.profile'
+]);
+
 Route::get('/editprofile/{id}',[
     'uses' => 'UserController@edit',
     'as' => 'profile.edit'
@@ -43,6 +50,7 @@ Route::get('/profile/{id}',[
     'as' => 'profile.profile'
 ]);
 });
+
 
 Route::group(['prefix' =>'user'], function() {
 Route::group(['middleware' => 'guest'] ,function() {
