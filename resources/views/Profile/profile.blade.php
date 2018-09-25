@@ -1,23 +1,17 @@
-@include('navbar.navbar')
 @extends('layouts.app')
-<link rel="stylesheet" href="{{ asset('/css/style_alex.css') }}">
 @section('content')
 @if(Auth::check())
 <body class="p">
-    <div class="col-md-12">
-        {{-- <div class="row justify-content-center">
-            <h2 role="presentation"><a class="profile" href="#">Profiel </a></h2>
-            <h2 role="presentation"><a class="profile" href="#">Geschiedenis</a></h2> --}}
-        {{-- </div> --}}
+    <div class="col-9" style="background-color:white;margin-right:50px;margin-top:10px;padding:10px;">
         <div class="col-9 justify-content-center bg-dark">
             <div class="row justify-content-center">
                 <div class="col-md-9">
-                    <h1 class="profile"> Profiel</h1>
+                    <h1 class="profile">Profiel</h1>
                 </div>
             </div>
 
             <div class="row justify-content-end">
-                <div class="col-md-6 bg-light">
+                <div class="col-md-6 bg-light" style="float=left;">
                     <form action="{{action("ProfileController@update")}}" method="POST">
                     @csrf
                         <div class="form-group row">
@@ -33,7 +27,7 @@
                             </div>
                         </div>
                          <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">adres:</label>
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Adres:</label>
                             <div class="col-sm-10">
                                 <input type="text" name="address" class="form-control" id="inputEmail3" placeholder="Dordrecht" value="{{$profile->address}}">
                             </div>
@@ -45,23 +39,30 @@
                             </div>
                         </div>
                         
-                        <button type="submit" style="margin-top: 40px;  " class="btn bg-success btn-lg">Bewerken</button>
+                        <button type="submit" style="margin-top: 40px;" class="btn bg-success btn-lg">Bewerken</button>
                 </form>
                 </div>
+                <div class="col-md-6" style="float-right;">
+                <form action="{{action("ProfileController@upload")}}" method="POST" enctype="multipart/form-data">
+                    <div class="col-4">
+                        {{-- Alert if the image doesn't require the validation --}}
+                        @if(count($errors)>0)
+                                @foreach($errors->all() as $error)
+                                    <p class="alert alert-danger">{{$error}}</p>
+                                @endforeach
+                        @endif
 
-                <div class="col-4">
-                    <img src="http://suryanation.id/assets/img/profiels/unknown.png">
-                </div>
-            </div>
-            <div class="d-flex justify-content-end">
-                <form>
-                    <div class="form-group">
-                        <input style="float:right;margin-right:280;"type="file" class="form-control-file" id="exampleFormControlFile1">
+                        <img src="/uploads/{{$profile->image}}" style="max-height:200px;max-width:300px;">
+                        <input style="margin-top:30px;" type="file" name="image" id="file">
+                        <input type="submit" value="Upload" name="submit">
+                        <input type="hidden" value="{{ csrf_token() }}" name="_token"> 
                     </div>
                 </form>
+                </div>
             </div>
         </div>
-     </div>
+    </div>
+</div>
 </body>
 
 @else
