@@ -45,7 +45,7 @@
                 <div class="col-md-6" style="float-right;">
                 <form action="{{action("ProfileController@upload")}}" method="POST" enctype="multipart/form-data">
                     <div class="col-4">
-                        {{-- Alert if the image doesn't require the validation --}}
+                        {{-- Alert if the image doesn't require the correct validation --}}
                         @if(count($errors)>0)
                                 @foreach($errors->all() as $error)
                                     <p class="alert alert-danger">{{$error}}</p>
