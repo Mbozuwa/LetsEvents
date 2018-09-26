@@ -2,7 +2,7 @@
 @section('content')
             <body>
                 <div class="flex-center position-ref full-height" >
-                    <div class="content col-md-6" style="background-color:white; " >
+                    <div class="content col-md-6" style="background-color:white; margin-top:10px; " >
                         <h1>Mijn evenementen</h1>
                         @foreach($registrations as $registration)
                             <a href="/event/{{$registration->event->id}}"><h2>{{$registration->event->name}}
@@ -18,7 +18,7 @@
                     <div class="col-md-1" >
 
                     </div>
-                    <div class="col-md-4" style="background-color:white; ">
+                    <div class="col-md-4" style="background-color:white; margin-top:10px;">
                         <h3>Je gaat/ging naar {{$count}} van de {{$countEvents}} beschikbare evenementen. </h3>
                     </div>
                     <div class="col-md-1" >
