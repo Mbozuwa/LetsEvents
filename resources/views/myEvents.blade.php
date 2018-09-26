@@ -3,7 +3,7 @@
             <body>
                 <div class="flex-center position-ref full-height" >
                     <div class="content col-md-6" style="background-color:white; " >
-                        <h1>Mijn Events</h1>
+                        <h1>Mijn evenementen</h1>
                         @foreach($registrations as $registration)
                             <a href="/event/{{$registration->event->id}}"><h2>{{$registration->event->name}}
                                 @if ($date > strtotime($registration->event->end_time))

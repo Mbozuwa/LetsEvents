@@ -20,7 +20,7 @@
                         </ul>
                         @if (Auth::check())
                         <ul class="nav">
-                            <li><a href="/myEvents" class=""><i class="fas fa-basketball-ball"></i> <span>Mijn evenementen</span></a></li>
+                            <li><a href="/events/user" class=""><i class="fas fa-basketball-ball"></i> <span>Mijn evenementen</span></a></li>
                         @endif
                         </ul>
                     </nav>
