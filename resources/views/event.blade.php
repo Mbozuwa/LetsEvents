@@ -27,7 +27,7 @@
                         <a href="/registration/3/{{$event['id']}}" ><button type="button" title="Ik ga niet"class="btn btn-default">X</button></a>
                         @else 
                         <h3>Je huidige status is <b>{{$attendence[0]['status']}}</b></h3>
-                        <h4>Status aanpassen, klik hier</h4>
+                        <!-- <h4>Status aanpassen, klik hier</h4> -->
                         @endif
                         <!-- @else 
                         <h3>U bent op het moment niet ingelogd</h3>
