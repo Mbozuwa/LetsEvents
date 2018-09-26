@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Auth;
+use Registration;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,7 +12,7 @@ class UserController extends Controller
 {
 
     public function getSignup() {
-      return view('user.signup');
+      return view('user/signup');
     }
     public function postSignup(Request $request) {
       $this->validate($request, [
@@ -20,22 +21,19 @@ class UserController extends Controller
         'name' => 'required|min:4',
         'address' => 'required',
         'telephone' => 'required|digits:10',
-        'student_id' => 'min:1',
-
       ]);
       $user = new User([
         'email' => $request->input('email'),
         'password' => bcrypt($request->input('password')),
         'name' => $request->input('name'),
         'address' => $request->input('address'),
-        'telephone' => $request->input('telephone'),
-        'student_id' => $request->input('student_id'),
-
+        'telephone' => $request->input('telephone')
       ]);
       $user->save();
+      // $user->student()->save($user);
 
       Auth::login($user);
-      return view('welcome');
+      return redirect()->back();
     }
 
     public function getSignin() {
@@ -52,8 +50,9 @@ class UserController extends Controller
     }
 
     public function getLogout() {
+      session()->forget('notification');
       Auth::logout();
-      return redirect()->back();
+      return view('user/signin');
     }
 
 }

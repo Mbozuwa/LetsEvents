@@ -16,7 +16,6 @@ class CreateCategoryEventTable extends Migration
         Schema::create('category_event', function (Blueprint $table) {
             $table->integer('category_id');
             $table->integer('event_id');
-            $table->timestamps();
         });
     }
 

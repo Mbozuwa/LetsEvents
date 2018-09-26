@@ -112,7 +112,7 @@
                         <div class="content">
                             <div class="header">
                                 <div class="logo text-center">LETS EVENT</div>
-                                <p class="lead">Login to your account</p>
+                                <p class="lead">Login met je account</p>
                             </div>
                             @if(count($errors) > 0)
                             <div class="alert alert-danger">
@@ -124,17 +124,17 @@
                             <form class="form-auth-small" action="{{ route('login') }}" method="post">
 
                                 <div class="form-group">
-                                    <label for="signin-email" class="control-label sr-only">Email</label>
-                                    <input type="email" class="form-control" name="email" id="signin-email" placeholder="Email">
+                                    <label for="signin-email" class="control-label sr-only">Emailadres</label>
+                                    <input type="email" class="form-control" name="email" id="signin-email" placeholder="Emailadres">
                                 </div>
                                 <div class="form-group">
-                                    <label for="signin-password" class="control-label sr-only">Password</label>
-                                    <input type="password" class="form-control" name="password" id="signin-password" placeholder="Password">
+                                    <label for="signin-password" class="control-label sr-only">Wachtwoord</label>
+                                    <input type="password" class="form-control" name="password" id="signin-password" placeholder="Wachtwoord">
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block" action="">SIGN IN</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" action="">LOG IN</button>
                                 {{ csrf_field() }}
                                 <div class="bottom">
-                                    <span class="helper-text">Don't have an account? <a href="{{ route('user.signup') }}">Sign up!</a></span>
+                                    <span class="helper-text">Heb je geen account? <a href="{{ route('user.signup') }}">Registreer je hier!</a></span>
                                 </div>
                             </form>
                         </div>

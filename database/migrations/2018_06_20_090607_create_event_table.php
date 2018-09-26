@@ -20,10 +20,11 @@ class CreateEventTable extends Migration
             $table->string('place');
             $table->string('adress');
             $table->integer('max_participant');
-            $table->string('place');
+            $table->integer('participant_amount');
             $table->time('begin_time');
             $table->time('end_time');
             $table->integer('registration_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
