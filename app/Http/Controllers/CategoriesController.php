@@ -20,10 +20,12 @@ class CategoriesController extends Controller
 	public function show($id)
     {
       // $category_name = DB::table('categories')->select('id', $id)->get();
+	  $category = Categories::find($id);
       $events = Categories::find($id)->events()->get();
+
 	  // Categories::find($id)->events()->get();
       // $events = $category->event();
 	  // dd(Categories::where('category_id' ,$id));
-      return view('categories/show', ['events' => $events]);
+      return view('categories/show', ['events' => $events, 'category' => $category]);
     }
 }
