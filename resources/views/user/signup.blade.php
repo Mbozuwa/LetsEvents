@@ -43,28 +43,34 @@
             @endif
             <form class="form-auth-small" action="{{ route('user.signup') }}" method="post">
               <div class="form-group">
-                <label for="signup-email" class="control-label sr-only">Emailadres</label>
-                <input type="email" class="form-control" name="email" id="signup-email" placeholder="Emailadres">
+                <label for="signup-email" class="control-label sr-only"></label>
+                <p>E-mail *</p><input type="email" class="form-control" name="email" id="signup-email">
               </div>
               <div class="form-group">
+                  <p>Wachtwoord *</p>
                 <label for="signup-password" class="control-label sr-only">Wachtwoord</label>
-                <input type="password" class="form-control" name="password" id="signup-password" placeholder="Wachtwoord">
+                <input type="password" class="form-control" name="password" id="signup-password">
               </div>
               <div class="form-group">
+                  <p>Naam *</p>
                 <label for="signup-name" class="control-label sr-only">Naam</label>
-                <input type="text" class="form-control" name="name" id="signup-name" placeholder="Naam">
+                <input type="text" class="form-control" name="name" id="signup-name">
               </div>
               <div class="form-group">
+                  <p>Adres *</p>
                 <label for="signup-address" class="control-label sr-only">Adres</label>
-                <input type="text" class="form-control" name="address" id="signup-address" placeholder="Adres">
+                <input type="text" class="form-control" name="address" id="signup-address">
               </div>
               <div class="form-group">
+                  <p>Telefoon nummer *</p>
                 <label for="signup-telephone" class="control-label sr-only">Telefoon nummer</label>
-                <input type="text" class="form-control" name="telephone" id="signup-telephone" placeholder="Telefoon nummer">
+                <input type="text" class="form-control" name="telephone" id="signup-telephone">
               </div>
               <button type="submit" class="btn btn-primary btn-lg btn-block">REGISTREER</button>
               {{ csrf_field() }}
               <div class="bottom">
+                <small>De met een (*) gemarkeerde velden moeten worden ingevuld.</small>
+                <br>  
                 <span class="helper-text">Heb je al een account? <a href="/user/signin">Log in!</a></span>
               </div>
             </form>
