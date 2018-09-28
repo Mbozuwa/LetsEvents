@@ -144,6 +144,12 @@ class EventController extends Controller
         $correctDate = date("d-m-Y H:i", strtotime($date_begin));
         return view('/events/made', ['userEvents' => $userEvents, 'correctDate' => $correctDate]);
     }
+
+    /*
+    *The info function gets all the users that are registered with an event that is in the $id.
+    *The auth user gets the current logged in user.
+    *
+    */
     public function info($id) {
         $user = Auth::user();
         $event = Event::find($id);
