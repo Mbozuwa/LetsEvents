@@ -20,7 +20,7 @@ class EventController extends Controller
        $count = \App\Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
        $originalDate = $event['begin_time'];
 	   $newDate = date("d-m-Y H:i", strtotime($originalDate));
-	   $originalDateEnd = $event['begin_time'];
+	   $originalDateEnd = $event['end_time'];
 	   $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
        return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd]);
     }
@@ -137,12 +137,10 @@ class EventController extends Controller
         return view('myEvents',['registrations' => $registrations, 'date' => $date, 'count' => $count, 'countEvents' => $countEvents]);
     }
 
-    public function MadeEvents() {
+    public function madeEvents() {
         $user = Auth::user();
         $userEvents = Event::where('user_id', $user['id'])->paginate(2);
-        $date_begin = $userEvents['begin_time'];
-        $correctDate = date("d-m-Y H:i", strtotime($date_begin));
-        return view('/events/made', ['userEvents' => $userEvents, 'correctDate' => $correctDate]);
+        return view('/events/made', ['userEvents' => $userEvents, ]);
     }
 
     /*
