@@ -28,15 +28,7 @@ Route::get('/events/user','EventController@myEvents');
 Route::post('/profile', 'ProfileController@upload');
 Route::post('/profile/{id}', 'ProfileController@check');
 
-Route::get('/events/index/','EventController@allEvents');
-Route::get('events/create', 'EventController@create');
-Route::post('events/create', 'EventController@store');
-Route::get('events/made', 'EventController@MadeEvents');
-Route::get('/delete/{id}', 'EventController@delete');
-Route::get('/events/edit/{id}', 'EventController@edit');
-Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
-Route::get('events/category/{id}', 'EventController@chooseCategory');
-Route::post('events/category/{id}', 'EventController@saveCategory');
+
 
 Route::get('/categories/{id}', 'CategoriesController@show');
 
@@ -64,7 +56,20 @@ Route::get('/profile/{id}',[
     'uses' => 'profileController@getProfile',
     'as' => 'profile.profile'
 ]);
-Route::get('events/info/{id}', 'EventController@info');
+Route::get('events/info/{id}', 'EventController@info');\
+
+Route::get('/events/user','EventController@myEvents');
+
+Route::get('/events/index/','EventController@allEvents');
+Route::get('events/create', 'EventController@create');
+Route::post('events/create', 'EventController@store');
+Route::get('events/made', 'EventController@MadeEvents');
+Route::get('/delete/{id}', 'EventController@delete');
+Route::get('/events/edit/{id}', 'EventController@edit');
+Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
+Route::get('events/category/{id}', 'EventController@chooseCategory');
+Route::post('events/category/{id}', 'EventController@saveCategory');
+
 });
 
 
