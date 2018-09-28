@@ -12,9 +12,12 @@ class ProfileController extends Controller
 {
     //Function to get all the user data.
     public function getProfile($id) {
-        $profile = User::find($id);
-        $user = Auth::user();
-        return view('profile.profile', ['profile' => $profile]);
+        if (auth::user()->id == $id){
+            $profile = User::find($id);
+            return view('profile.profile', ['profile' => $profile]);
+        }
+
+        return redirect()->back()->with('error', 'Dat is niet jouw profiel!'); 
     }
 
     //Functions checks if these textfields are filled in.
@@ -27,6 +30,7 @@ class ProfileController extends Controller
         ]);
 
         $user = Auth::user();
+
     //This gets replaces the old data with the data that is requested.
         $user->name = $request->input('name');
         $user->email = $request->input('email');
