@@ -25,8 +25,8 @@ Route::get('event/{id}', 'EventController@index');
 Route::get('/notificationDelete', 'HomeController@notificationDelete');
 Route::post('/profile/update', 'ProfileController@update');
 Route::post('/profile/{id}', 'ProfileController@upload');
-
-
+Route::get('/activity/{id}', 'AdminController@activity');
+Route::get('/admin', 'AdminController@index');
 Route::get('/categories/{id}', 'CategoriesController@show');
 
 Route::get('/logout', [
