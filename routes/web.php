@@ -25,7 +25,8 @@ Route::get('event/{id}', 'EventController@index');
 Route::get('/notificationDelete', 'HomeController@notificationDelete');
 Route::post('/profile/update', 'ProfileController@update');
 Route::get('/events/user','EventController@myEvents');
-Route::post('/profile/{id}', 'ProfileController@upload');
+Route::post('/profile', 'ProfileController@upload');
+Route::post('/profile/{id}', 'ProfileController@check');
 
 Route::get('/events/index/','EventController@allEvents');
 Route::get('events/create', 'EventController@create');
