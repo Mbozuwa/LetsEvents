@@ -68,7 +68,7 @@ Route::get('events/create', 'EventController@create');
 Route::post('events/create', 'EventController@store');
 Route::get('events/made', 'EventController@MadeEvents');
 Route::get('/delete/{id}', 'EventController@delete');
-Route::get('/events/edit/{id}', 'EventController@edit');
+Route::get('/event/edit/{id}', 'EventController@edit');
 Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
 Route::get('events/category/{id}', 'EventController@chooseCategory');
 Route::post('events/category/{id}', 'EventController@saveCatesgory');
