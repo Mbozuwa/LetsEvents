@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <div class="flex-center position-ref full-height" >
+        @if (Auth::id() == $event->user_id)
+
         {{-- <div class="content" style="background-color: white; padding:10px; margin-right:10px;"> --}}
             <div class="col-lg-6 " style="background-color: white; padding:10px; margin-top:10px; margin-bottom:10px;">
             {{-- {{dd($event)}} --}}
@@ -42,6 +44,9 @@
               <input id="invisible_id" name="user_id" type="hidden" value="{{Auth::user()->id}}">
               <button type="submit" style="margin-top: 40px;" class="btn btn-primary btn-lg">Bewerken</button>
         </form>
+    @else
+        <h2>You do not belong here!!!</h2>
+    @endif
         </div>
     </div>
 </div>

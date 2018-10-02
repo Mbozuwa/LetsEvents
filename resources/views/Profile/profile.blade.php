@@ -5,10 +5,14 @@
     <div class="col-9" style="background-color:white;margin-right:50px;margin-top:10px;padding:10px;">
         <div class="col-9 justify-content-center bg-dark">
                 @if(session()->has('message'))
-                <div class="alert alert-success">
-                    {{ session()->get('message') }}
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @elseif(session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
                 </div>
-            @endif
+                @endif
             <div class="row justify-content-center">
                 <div class="col-md-9">
                     <h1 class="profile">Profiel</h1>
