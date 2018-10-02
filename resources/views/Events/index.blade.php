@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('content')
     @if (count($events) == 0)
+    <div class="col-md-6" style="background-color: white; margin-top:10px;">
         <h2>Er zijn nog geen evenementen gemaakt.</h2>
-        <h2>Maak<a href="/events/create">hier</a> een evenement aan.</h2>
+        <h2>Maak <a href="/events/create">hier</a> een evenement aan.</h2>
+    </div>
     @else
 @foreach ($events as $event)
                     <style media="screen">
