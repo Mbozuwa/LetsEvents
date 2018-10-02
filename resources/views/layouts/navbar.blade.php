@@ -22,6 +22,9 @@
                         <ul class="nav">
                             <li><a href="/events/user" class=""><i class="fas fa-basketball-ball"></i> <span>Mijn evenementen</span></a></li>
                         @endif
+                        @if ( Auth::user()->role_id == 2)
+                            <li><a href="/admin" class=""><i class="fas fa-toolbox""></i> <span>Admin</span></a></li>
+                        @endif
                         </ul>
                     </nav>
                 </div>
