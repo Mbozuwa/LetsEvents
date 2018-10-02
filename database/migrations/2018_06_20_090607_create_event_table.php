@@ -22,7 +22,7 @@ class CreateEventTable extends Migration
             $table->integer('max_participant');
             $table->integer('participant_amount');
             $table->time('begin_time');
-            $table->varchar('payment')->nullable();
+            $table->string('payment', 250)->nullable();
             $table->time('end_time');
             $table->integer('registration_id');
             $table->integer('user_id');
