@@ -6,16 +6,7 @@
     @else
 @foreach ($userEvents as $event)
 
-                    <style media="screen">
-                        #welcome{
-                            color: black;
-                        }
-                        .border{
-                            border-style:solid;
-                            margin-right: 200px;
-                            margin-bottom: 20px;
-                        }
-                    </style>
+
 
                     {{-- {{dd($event)}} --}}
                     <div class="flex-center position-ref full-height" >
@@ -34,7 +25,6 @@
                           <p>Bekijk meer details: <a href="/event/{{$event->id}}">Event pagina</a></p>
                           <p>Mensen die mee doen: <a href="/events/info/{{$event->id}}">Klik hier</a></p>
                           
-                            <p>Catagories:<a href="/events/categories/{{$event->id}}">Klik hier</a></p>
                             <button style="margin-top: 40px;" class="btn bg-success btn-lg"><a href="/events/edit/{{$event->id}}"><i class="far fa-edit"></i></a></button>
                             @if (Auth::check())
                                   <button style="margin-top: 40px;" class="btn bg-danger btn-lg"><a href="/delete/{{$event->id}}"><i class="fas fa-trash-alt"></i></a></button>
@@ -43,6 +33,12 @@
                       </div>
                     </div>
                     <br>
+                    <div> 
+                        @foreach ($categories as $category)
+                        <i class="fas fa-plus-circle" style="color:green; margin:5px;"></i><a href="/categories/{{ $category->id }}">{{ $category->name }}</a><br>
+                        @endforeach
+
+                    </div>
                                 @endforeach
                             <!-- BASIC TABLE -->
                             {{ $userEvents->links() }}
