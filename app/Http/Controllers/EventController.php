@@ -21,7 +21,7 @@ class EventController extends Controller
        $count = \App\Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
        $originalDate = $event['begin_time'];
 	   $newDate = date("d-m-Y H:i", strtotime($originalDate));
-	   $originalDateEnd = $event['begin_time'];
+	   $originalDateEnd = $event['end_time'];
 	   $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
        return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
     }
@@ -103,12 +103,6 @@ class EventController extends Controller
             'user_id' => 'required',
         ]);
 
-        //
-        // $test = new Category_event;
-        // // $event = Event::where('id',$id)->get();
-        // $test->event_id = $id;
-        // $test->category_id = $request->input('category_id');
-        // $test->save();
 
         $post = Event::find($id);
         $post->name = $request->input('name');
@@ -138,12 +132,10 @@ class EventController extends Controller
         return view('myEvents',['registrations' => $registrations, 'date' => $date, 'count' => $count, 'countEvents' => $countEvents]);
     }
 
-    public function MadeEvents() {
+    public function madeEvents() {
         $user = Auth::user();
         $userEvents = Event::where('user_id', $user['id'])->paginate(2);
-        $date_begin = $userEvents['begin_time'];
-        $correctDate = date("d-m-Y H:i", strtotime($date_begin));
-        return view('/events/made', ['userEvents' => $userEvents, 'correctDate' => $correctDate]);
+        return view('/events/made', ['userEvents' => $userEvents, ]);
     }
 
     /*
@@ -159,5 +151,17 @@ class EventController extends Controller
 
         // dd($registered);
         return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
+    }
+    public function CategoriesEvent() {
+        $user = Auth::user();
+        $userEvents = Event::where('user_id', $user['id'])->paginate(2);
+        $date_begin = $userEvents['begin_time'];
+        $correctDate = date("d-m-Y H:i", strtotime($date_begin));
+        return view('/events/categories', ['userEvents' => $userEvents, 'correctDate' => $correctDate]);
+        // $test = new Category_event;
+        // $event = Event::where('id',$id)->get();
+        // $test->event_id = $id;
+        // $test->category_id = $request->input('category_id');
+        // $test->save();
     }
 }
