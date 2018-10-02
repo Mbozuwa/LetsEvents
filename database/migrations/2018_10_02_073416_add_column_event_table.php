@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnPaymentEventTable extends Migration
+class AddColumnEventTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColumnPaymentEventTable extends Migration
      */
     public function up()
     {
-        Schema::table('event', function (Blueprint $table) {
-            $table->string('payment', 250)->nullable();
+        Schema::table('registration', function (Blueprint $table) {
+            $table->foreign('event_id')->references('id')->on('event')->onDelete('no action')->change();
         });
     }
 
