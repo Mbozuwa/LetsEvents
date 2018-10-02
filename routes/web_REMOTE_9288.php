@@ -29,6 +29,7 @@ Route::post('/profile', 'ProfileController@upload');
 Route::post('/profile/{id}', 'ProfileController@check');
 
 
+
 Route::get('/categories/{id}', 'CategoriesController@show');
 
 Route::get('/logout', [
@@ -67,9 +68,7 @@ Route::get('/delete/{id}', 'EventController@delete');
 Route::get('/events/edit/{id}', 'EventController@edit');
 Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
 Route::get('events/category/{id}', 'EventController@chooseCategory');
-Route::post('events/category/{id}', 'EventController@saveCatesgory');
-Route::get('events/categories/{id}', 'EventController@CategoriesEvent');
-
+Route::post('events/category/{id}', 'EventController@saveCategory');
 
 });
 

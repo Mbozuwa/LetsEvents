@@ -102,12 +102,6 @@ class EventController extends Controller
             'user_id' => 'required',
         ]);
 
-        //
-        // $test = new Category_event;
-        // // $event = Event::where('id',$id)->get();
-        // $test->event_id = $id;
-        // $test->category_id = $request->input('category_id');
-        // $test->save();
 
         $post = Event::find($id);
         $post->name = $request->input('name');
@@ -156,5 +150,17 @@ class EventController extends Controller
 
         // dd($registered);
         return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
+    }
+    public function CategoriesEvent() {
+        $user = Auth::user();
+        $userEvents = Event::where('user_id', $user['id'])->paginate(2);
+        $date_begin = $userEvents['begin_time'];
+        $correctDate = date("d-m-Y H:i", strtotime($date_begin));
+        return view('/events/categories', ['userEvents' => $userEvents, 'correctDate' => $correctDate]);
+        // $test = new Category_event;
+        // $event = Event::where('id',$id)->get();
+        // $test->event_id = $id;
+        // $test->category_id = $request->input('category_id');
+        // $test->save();
     }
 }
