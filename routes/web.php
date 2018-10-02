@@ -24,7 +24,8 @@ Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
 Route::get('event/{id}', 'EventController@index');
 Route::get('/notificationDelete', 'HomeController@notificationDelete');
 Route::post('/profile/update', 'ProfileController@update');
-
+Route::get('/ban/{id}', 'ProfileController@ban');
+Route::get('/unban/{id}', 'ProfileController@unban');
 Route::post('/profile/{id}', 'ProfileController@upload');
 Route::get('/activity/{id}', 'AdminController@activity');
 Route::get('/admin', 'AdminController@index');
