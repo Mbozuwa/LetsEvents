@@ -60,7 +60,7 @@ class EventController extends Controller
         ]);
         $post = new Event();
         $post->name = $request->input('name');
-        $post->description = $request->input('name');
+        $post->description = $request->input('description');
         $post->place = $request->input('place');
         $post->address = $request->input('address');
         $post->max_participant = $request->input('max_participant');

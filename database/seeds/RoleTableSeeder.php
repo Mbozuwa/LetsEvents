@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CategorySeeder extends Seeder
+class RoleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,9 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        DB:table('category')
+        DB::table('role')->insert([
+            ['role' => 1],
+            ['role' => 2]
+        ]);
     }
 }
