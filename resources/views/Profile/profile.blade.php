@@ -27,6 +27,7 @@
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Naam:</label>
                             <div class="col-sm-10">
                             <input type="text" name="name" class="form-control" id="inputEmail3" placeholder="Jan Kees" value="{{$profile->name}}">
+                            <input type="hidden" name="id" class="form-control" value="{{$profile->id}}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -47,7 +48,24 @@
                                 <input type="" name="telephone" class="form-control" id="inputEmail3" placeholder="06-12345678" value="{{$profile->telephone}}">
                             </div>
                         </div>
-
+                        @if($user['role_id'] == 2)
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Type:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="role_id" id="sel1">
+                                @if ($profile['role_id'] == 2)
+                                <option value="1">Gebruiker</option>
+                                <option value="2" selected="selected">Beheerder</option>
+                                @else 
+                                <option value="1" selected="selected">Gebruiker</option>
+                                <option value="2">Beheerder</option>
+                                @endif
+                              </select>
+                            </div>
+                        </div>
+                        @else
+                            <input type="hidden" value="1" name="role_id">
+                        @endif
                         <button type="submit" style="margin-top: 40px;" class="btn bg-success btn-lg">Bewerken</button>
                 </form>
                 </div>

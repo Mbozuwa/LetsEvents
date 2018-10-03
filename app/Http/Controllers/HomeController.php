@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+            $user = Auth::user();
+            if ($user->active == 0) {
+            return redirect('/logout')->with('error', 'Uw profiel is niet actief. Neem contact op met de systeembeheerder.'); 
+        }
         return view('welcome');
     }
     public function notificationDelete()
