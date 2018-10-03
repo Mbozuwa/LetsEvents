@@ -39,9 +39,9 @@
                           <p>Mensen die mee doen: <a href="/events/info/{{$event->id}}">Klik hier</a></p>
 
                             <p>Catagories:<a href="/events/categories/{{$event->id}}">Klik hier</a></p>
-                            <button style="margin-top: 40px;" class="btn bg-success btn-lg"><a href="/event/edit/{{$event->id}}"><i class="far fa-edit"></i></a></button>
+                            <button style="margin-top: 40px;" class="btn bg-success btn-lg"><a href="/event/edit/{{$event->id}}"><i class="far fa-edit" style="color:white;"></i></a></button>
                             @if (Auth::check())
-                                  <button style="margin-top: 40px;" class="btn bg-danger btn-lg"><a href="/delete/{{$event->id}}"><i class="fas fa-trash-alt"></i></a></button>
+                                  <button style="margin-top: 40px;" class="btn bg-danger btn-lg"><a href="/delete/{{$event->id}}"><i class="fas fa-trash-alt" style="color:white;"></i></a></button>
                           @endif
 
                       </div>
