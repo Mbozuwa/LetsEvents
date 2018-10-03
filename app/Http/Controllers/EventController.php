@@ -26,12 +26,6 @@ class EventController extends Controller
        return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
     }
 
-    public function delete($id) {
-        $user = Auth::user();
-        $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
-        $event->delete();
-        return redirect('/events/made');
-    }
 
 
 
@@ -135,7 +129,7 @@ class EventController extends Controller
     public function madeEvents() {
         $user = Auth::user();
         $userEvents = Event::where('user_id', $user['id'])->paginate(2);
-        return view('/events/made', ['userEvents' => $userEvents, ]);
+        return view('/events/made', ['userEvents' => $userEvents]);
     }
 
     /*
@@ -143,6 +137,17 @@ class EventController extends Controller
     *The auth user gets the current logged in user.
     *
     */
+    public function delete($id) {
+        $user = Auth::user();
+        $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
+        try {
+            $event->delete($id);
+        } catch (\Illuminate\Database\QueryException $exception) {
+            return back()->withError('Dit evenement kan niet verwijderd worden.');
+        }
+        return redirect('/events/made');
+    }
+
     public function info($id) {
         $user = Auth::user();
         $event = Event::find($id);

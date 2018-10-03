@@ -4,7 +4,10 @@
         <h2>Nog geen evenementen gemaakt.</h2>
         <h2>Maak <a href="/events/create">hier</a> een evenement aan.</h2>
     @else
-
+        <p>@if(session('error'))
+            <div class="alert alert-danger">{{session('error')}}</div>
+        @endif
+        </p>
 @foreach ($userEvents as $event)
 
                     <style media="screen">
@@ -34,13 +37,13 @@
                           @endif
                           <p>Bekijk meer details: <a href="/event/{{$event->id}}">Event pagina</a></p>
                           <p>Mensen die mee doen: <a href="/events/info/{{$event->id}}">Klik hier</a></p>
-                          
+
                             <p>Catagories:<a href="/events/categories/{{$event->id}}">Klik hier</a></p>
-                            <button style="margin-top: 40px;" class="btn bg-success btn-lg"><a href="/events/edit/{{$event->id}}"><i class="far fa-edit"></i></a></button>
+                            <button style="margin-top: 40px;" class="btn bg-success btn-lg"><a href="/event/edit/{{$event->id}}"><i class="far fa-edit"></i></a></button>
                             @if (Auth::check())
                                   <button style="margin-top: 40px;" class="btn bg-danger btn-lg"><a href="/delete/{{$event->id}}"><i class="fas fa-trash-alt"></i></a></button>
-                              
                           @endif
+
                       </div>
                     </div>
                     <br>
