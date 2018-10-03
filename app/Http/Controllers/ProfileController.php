@@ -10,7 +10,7 @@ use \Input as Input;
 
 class ProfileController extends Controller
 {
-    //Function to get all the user data.
+    //Function to get all the user data and checking if this is the user bound to the profile.
     public function getProfile($id) {
         if (auth::user()->id == $id){
             $profile = User::find($id);
@@ -63,6 +63,10 @@ class ProfileController extends Controller
             $file->move('uploads', $file->getClientOriginalName());
             $user->image = $fileName;
         }
+        else {
+            return redirect()->back();
+            }
+
         //saves the image name to the database.
         $user->save();
 
