@@ -1,8 +1,10 @@
 <?php
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-class AddColumnPaymentEventTable extends Migration
+
+class AddColumnActiveToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -11,10 +13,11 @@ class AddColumnPaymentEventTable extends Migration
      */
     public function up()
     {
-        Schema::table('event', function (Blueprint $table) {
-            $table->string('payment', 250)->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('active')->default(1);
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -22,7 +25,7 @@ class AddColumnPaymentEventTable extends Migration
      */
     public function down()
     {
-        Schema::table('event', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

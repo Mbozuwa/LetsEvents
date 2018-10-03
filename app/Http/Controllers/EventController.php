@@ -16,13 +16,14 @@ class EventController extends Controller
     public function index($id) {
        $event = \App\event::find($id);
        $user = Auth::user();
+       $organiser = \App\User::find($user['id']);
        $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
        $count = \App\Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
        $originalDate = $event['begin_time'];
 	   $newDate = date("d-m-Y H:i", strtotime($originalDate));
 	   $originalDateEnd = $event['end_time'];
 	   $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
-       return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd]);
+       return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
     }
 
     public function delete($id) {
@@ -60,7 +61,7 @@ class EventController extends Controller
         ]);
         $post = new Event();
         $post->name = $request->input('name');
-        $post->description = $request->input('name');
+        $post->description = $request->input('description');
         $post->place = $request->input('place');
         $post->address = $request->input('address');
         $post->max_participant = $request->input('max_participant');

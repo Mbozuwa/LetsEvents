@@ -13,8 +13,14 @@ class ProfileController extends Controller
     //Function to get all the user data.
     public function getProfile($id) {
         if (auth::user()->id == $id){
+            $user = Auth::user();
             $profile = User::find($id);
-            return view('profile.profile', ['profile' => $profile]);
+            return view('profile.profile', ['profile' => $profile, 'user' => $user]);
+        }
+        elseif (Auth::user()->role_id == 2){
+            $user = Auth::user();
+            $profile = User::find($id);
+            return view('profile.profile', ['profile' => $profile, 'user' => $user]);
         }
 
         return redirect()->back()->with('error', 'Dat is niet jouw profiel!'); 
@@ -23,12 +29,28 @@ class ProfileController extends Controller
     //Functions checks if these textfields are filled in.
     public function update(Request $request) {
         $request->validate([
+            'id' => 'required',
             'name' => 'required',
             'email' => 'required',
             'address' => 'required',
-            'telephone' => 'required'
+            'telephone' => 'required',
+            'role_id' => 'nullable'
         ]);
+        if (Auth::user()->role_id == 2){
+        $user = User::find($request->input('id'));
 
+    //This gets replaces the old data with the data that is requested.
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->address = $request->input('address');
+        $user->telephone = $request->input('telephone');
+        $user->role_id = $request->input('role_id');
+        
+        $user->save();
+
+        return redirect()->back()->with('message', 'Profiel succesvol bewerkt!');
+        }
+        else{
         $user = Auth::user();
 
     //This gets replaces the old data with the data that is requested.
@@ -40,6 +62,7 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()->back()->with('message', 'Profiel succesvol bewerkt!');
+        }
     }
 
     /**
@@ -68,4 +91,24 @@ class ProfileController extends Controller
 
         return redirect()->back();
     } 
+    public function ban($id){
+
+        $user = User::find($id);
+
+        $user->active = 0;
+        
+        $user->save();
+
+        return redirect()->back();
+    } 
+    public function unban($id){
+
+        $user = User::find($id);
+
+        $user->active = 1;
+        
+        $user->save();
+
+        return redirect()->back();
+    }
 }
