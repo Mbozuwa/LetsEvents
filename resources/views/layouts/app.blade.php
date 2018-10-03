@@ -20,6 +20,9 @@
 
     <!-- SCRIPTS -->
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    @stack('dateTimePicker')
+    
 </head>
 <body>
     <div id="wrapper">
@@ -88,7 +91,7 @@
     </div>
     <script src="{{ asset('/assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
-    <script src="{{ asset('/assets/scripts/klorofil-common.js') }}"></script>
+    <script src="{{ asset('/assets/scripts/common.js') }}"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
 </body>
