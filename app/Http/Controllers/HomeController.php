@@ -33,6 +33,6 @@ class HomeController extends Controller
     public function notificationDelete()
     {
         session()->forget('notification');
-        return view('welcome');
+        return redirect()->back();
     }
 }
