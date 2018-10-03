@@ -18,7 +18,7 @@ class EventController extends Controller
     public function index($id) {
        $event = \App\event::find($id);
        $user = Auth::user();
-       $organiser = \App\User::find($user['id']);
+       $organiser = \App\User::find($event['user_id']);
        $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
        $count = \App\Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
        $originalDate = $event['begin_time'];
