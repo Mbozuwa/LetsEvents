@@ -16,12 +16,16 @@ class CreateRegistrationTable extends Migration
         Schema::create('registration', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('event_id');
+            $table->integer('event_id')->unsigned()->nullable();
+            $table->index('event_id');
             $table->string('status');
-            $table->integer('paid');
-            $table->dateTime('pay_date');
+            $table->integer('paid')->nullable();
+            $table->dateTime('pay_date')->nullable();
             $table->timestamps();
-            
+
+        });
+        Schema::table('registration', function ($table) {
+            $table->foreign('event_id')->references('id')->on('event')->onDelete('restrict')->change();
         });
     }
 

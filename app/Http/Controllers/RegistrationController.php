@@ -20,15 +20,9 @@ class RegistrationController extends Controller
       ]);
       $registration->save();
       $event = \App\event::find($id);
-      $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
-      $count = \App\Registration::where('event_id', $id)->get()->count();
-      $originalDate = $event['begin_time'];
-      $newDate = date("d-m-Y H:i", strtotime($originalDate));
-      $originalDateEnd = $event['begin_time'];
-      $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
       session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
       session(['event_id' => $id]);
-      return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd]);
+      return redirect('/event/'.$id);
     }
     public function userMaybe($id) {
     	$user = Auth::user();
@@ -40,15 +34,9 @@ class RegistrationController extends Controller
       ]);
       $registration->save();
       $event = \App\event::find($id);
-      $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
-      $count = \App\Registration::where('event_id', $id)->get()->count();
-      $originalDate = $event['begin_time'];
-      $newDate = date("d-m-Y H:i", strtotime($originalDate));
-      $originalDateEnd = $event['begin_time'];
-      $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
       session(['notification' => 'Je gaat misschien naar het evenement: '.$event['name']]);
       session(['event_id' => $id]);
-      return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd]);
+      return redirect('/event/'.$id);
     }
     public function userNotGoing($id) {
     	$user = Auth::user();
@@ -60,14 +48,8 @@ class RegistrationController extends Controller
       ]);
       $registration->save();
       $event = \App\event::find($id);
-      $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
-      $count = \App\Registration::where('event_id', $id)->get()->count();
-      $originalDate = $event['begin_time'];
-      $newDate = date("d-m-Y H:i", strtotime($originalDate));
-      $originalDateEnd = $event['begin_time'];
-      $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
       session(['notification' => 'Je gaat niet naar het evenement: '.$event['name']]);
       session(['event_id' => $id]);
-      return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd]);
+      return redirect('/event/'.$id);
     }
 }
