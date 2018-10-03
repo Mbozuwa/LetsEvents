@@ -74,7 +74,6 @@
                                 <div class="event-info">
                                     <h3 class="info-header">ALGEMENE INFORMATIE</h3>
                                     <ul class="list-unstyled list-justify">
-                                        <li>Evenement gemaakt door <span>{{ $organiser->name }}</span></li>
                                         <li>Adres <span>{{ $event['address'] }}</span></li>
                                         <li>Plaats <span>{{ $event['place'] }}</span></li>
                                         <li>Aantal deelnemers <span>{{ $count }}</span></li>
