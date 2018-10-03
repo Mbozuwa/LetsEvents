@@ -11,6 +11,8 @@ use App\Categories;
 use App\User;
 use Auth;
 
+use \Input as Input;
+
 class EventController extends Controller
 {
     public function index($id) {
@@ -57,7 +59,8 @@ class EventController extends Controller
             'address' => 'required',
             'max_participant' => 'required',
             'begin_time' => 'required',
-            'end_time' => 'required'
+            'end_time' => 'required',
+            'image' => 'required'
         ]);
         $post = new Event();
         $post->name = $request->input('name');
@@ -65,17 +68,36 @@ class EventController extends Controller
         $post->place = $request->input('place');
         $post->address = $request->input('address');
         $post->max_participant = $request->input('max_participant');
-        $date_begin = $request['begin_time'];
+        $date_begin = $request->input('begin_time');
         $correctDate= date("Y-m-d H:i", strtotime($date_begin));
         $post->begin_time = $correctDate;
 
-        $date_end = $request['end_time'];
+        $date_end = $request->input('end_time');
         $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
         $post->end_time = $correctDateEnd;
         $post->payment = $request->input('payment');
+
+        $post->signup_time = date("Y-m-d H:i", strtotime($request->input('signup_time')));
+        if(empty($request->input('signup_time')))
+        {
+            $post->signup_time = $correctDate;
+        }
+
+        if(Input::hasFile('image'))
+        {
+            $request->validate([
+                'image' => 'dimensions:max_width=500,max_height=500'
+            ]);
+
+            $file     = Input::file('image');
+            $fileExt   = $file->getClientOriginalExtension();
+            $fileRename = time().'.'.$fileExt;
+            $uploadDir    = public_path('uploads/events');
+            $file->move($uploadDir, $fileRename);
+            $post->image = $fileRename;
+        }
+
         $post->user_id = $user->id;
-        // $post->end_time = $request->input('end_time');
-        // dd($post);
         $post->save();
         return redirect('/events/index');
     }
