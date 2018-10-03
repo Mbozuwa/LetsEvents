@@ -4,19 +4,9 @@
         <h2>Nog geen evenementen gemaakt.</h2>
         <h2>Maak <a href="/events/create">hier</a> een evenement aan.</h2>
     @else
-
 @foreach ($userEvents as $event)
 
-                    <style media="screen">
-                        #welcome{
-                            color: black;
-                        }
-                        .border{
-                            border-style:solid;
-                            margin-right: 200px;
-                            margin-bottom: 20px;
-                        }
-                    </style>
+
 
                     {{-- {{dd($event)}} --}}
                     <div class="flex-center position-ref full-height" >
@@ -25,8 +15,8 @@
                           <h1>Het evenement: {{$event->name}}</h1>
                           <h2 class="card-text mb-auto">Beschrijving: {{$event->description}}</h2>
                           <h2>Maximum aantal deelnemers: {{$event->max_participant}}</h2>
-                          <h3>Begin tijd: @dateFormat($event->begin_time)</h3>
-                          <h3>Eind tijd: @dateFormat($event->end_time) </h3>
+                          <h3>Begin tijd: {{ \Carbon\Carbon::parse($event->begin_time)->format('d-m-Y H:i')}}</h3>
+                          <h3>Eind tijd: {{ \Carbon\Carbon::parse($event->end_time)->format('d-m-Y H:i')}}</h3>
                           <h3>Adres: {{$event->address}}, {{$event->place}}</h3>
                           {{-- <h3>De categorie:{{$categories->event}}</h3> --}}
                           @if ($event->payment > 0)
@@ -35,7 +25,6 @@
                           <p>Bekijk meer details: <a href="/event/{{$event->id}}">Event pagina</a></p>
                           <p>Mensen die mee doen: <a href="/events/info/{{$event->id}}">Klik hier</a></p>
                           
-                            <p>Catagories:<a href="/events/categories/{{$event->id}}">Klik hier</a></p>
                             <button style="margin-top: 40px;" class="btn bg-success btn-lg"><a href="/events/edit/{{$event->id}}"><i class="far fa-edit"></i></a></button>
                             @if (Auth::check())
                                   <button style="margin-top: 40px;" class="btn bg-danger btn-lg"><a href="/delete/{{$event->id}}"><i class="fas fa-trash-alt"></i></a></button>
@@ -44,12 +33,16 @@
                       </div>
                     </div>
                     <br>
+                    <div> 
+                        @foreach ($categories as $category)
+                        <i class="fas fa-plus-circle" style="color:green; margin:5px;"></i><a href="/categories/{{ $category->id }}">{{ $category->name }}</a><br>
+                        @endforeach
+
+                    </div>
                                 @endforeach
                             <!-- BASIC TABLE -->
-                            {{-- {{ $userEvents->links() }} --}}
+                            {{ $userEvents->links() }}
                         @endif
-                        {{ $userEvents->links() }}
-
                     </div>
                 </div>
 @endsection
