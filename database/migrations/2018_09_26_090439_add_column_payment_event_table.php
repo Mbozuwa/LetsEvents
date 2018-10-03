@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class AddColumnPaymentEventTable extends Migration
 {
     /**
@@ -17,7 +15,6 @@ class AddColumnPaymentEventTable extends Migration
             $table->string('payment', 250)->nullable();
         });
     }
-
     /**
      * Reverse the migrations.
      *
