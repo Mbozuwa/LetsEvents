@@ -35,8 +35,12 @@
                     <br>
                     <div> 
                         @foreach ($categories as $category)
-                        <i class="fas fa-plus-circle" style="color:green; margin:5px;"></i><a href="/categories/{{ $category->id }}">{{ $category->name }}</a><br>
+                        <input type="checkbox" id="category_name" name="feature" value="category_name"  />
+                        <label for="category_name">{{ $category->name }}</label><br>
+
+                        {{-- <a href="/events/categories/{{$event->id}}"><i class="fas fa-plus-circle" style="color:green; margin:5px;"></i></a><a href="/categories/{{ $category->id }}">{{ $category->name }}</a><br> --}}
                         @endforeach
+                        
 
                     </div>
                                 @endforeach
