@@ -15,19 +15,28 @@
                         
                     </div>
                     <div class="col-md-4" style="background-color:white; min-height: 130px;">
-                        <!-- @if (!empty($user)) -->
-                        @if (empty($attendence[0]))
-                        <h2>Laat weten of je komt</h2><br>
-                        @else 
-                        <h2>Verander je status</h2>
-                        @endif
                         @if (empty($attendence[0]))
                         <a href="/registration/1/{{$event['id']}}" ><button type="button" title="Ik ga" class="btn btn-success">V</button></a>
                         <a href="/registration/2/{{$event['id']}}" ><button type="button" title="Ik ga misschien" class="btn btn-warning">?</button></a>
                         <a href="/registration/3/{{$event['id']}}" ><button type="button" title="Ik ga niet"class="btn btn-danger">X</button></a>
                         @else 
-                        <h3>Je huidige status is <b>{{$attendence[0]['status']}}</b></h3>
-                        <!-- <h4>Status aanpassen, klik hier</h4> -->
+                        <h3>Je huidige status is: <br />
+                        <b>{{$attendence[0]['status']}}</b></h3>
+                        {{-- <h4>Status wijzigen</h4> --}}
+                        @endif
+                        <!-- @if (!empty($user)) -->
+                        @if (empty($attendence[0]))
+                        <h2>Laat weten of je komt</h2><br>
+                        @else 
+                        <h2>Verander je status</h2>
+                        {{-- <form action="post"> --}}
+                            <select class="form-control">
+                                <option value="1">Ik ga</option>
+                                <option value="2" selected="selected">Ik ga misschien</option>
+                                <option value="2">Ik ga niet</option>
+                            </select>
+                            <a href="/event/{{$event['id']}}" style="color: white;"><button style="margin-top: 10px;" class="btn bg-success btn-lg">Pas aan</button></a>
+                        {{-- </form> --}}
                         @endif
                         <!-- @else 
                         <h3>U bent op het moment niet ingelogd</h3>
