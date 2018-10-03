@@ -114,6 +114,11 @@
                                 <div class="logo text-center">LETS EVENT</div>
                                 <p class="lead">Login met je account</p>
                             </div>
+                            @if(session()->has('error'))
+                            <div class="alert alert-danger">
+                                {{ session()->get('error') }}
+                            </div>
+                            @endif
                             @if(count($errors) > 0)
                             <div class="alert alert-danger">
                               @foreach ($errors->all() as $error)
