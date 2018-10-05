@@ -97,6 +97,8 @@ class EventController extends Controller
     }
 
     public function edit($id) {
+        $eventUser = Event::find($id);
+        if (Auth::id() == $eventUser->user_id){
         $event = Event::find($id);
         $date_begin = $event['begin_time'];
         $correctDate= date("d-m-Y H:i", strtotime($date_begin));
@@ -104,6 +106,8 @@ class EventController extends Controller
         $correctDate2= date("d-m-Y H:i", strtotime($date_end));
         // $categories = Categories::get();
         return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
+    }
+        return redirect()->back()->with('error', 'Dat is niet jouw evenement!');
     }
 
     public function update(Request $request,$id) {
@@ -139,13 +143,13 @@ class EventController extends Controller
         return redirect('/events/made');
     }
     public function myEvents() {
-        $user = Auth::user();
-        $registrations = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get();
-        $date = date('Y-m-d H:i:s');
-        $date = strtotime($date);
-        $count = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get()->count();
-        $countEvents = \App\event::all()->count();
-        return view('myEvents',['registrations' => $registrations, 'date' => $date, 'count' => $count, 'countEvents' => $countEvents]);
+            $user = Auth::user();
+            $registrations = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get();
+            $date = date('Y-m-d H:i:s');
+            $date = strtotime($date);
+            $count = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get()->count();
+            $countEvents = \App\event::all()->count();
+            return view('myEvents',['registrations' => $registrations, 'date' => $date, 'count' => $count, 'countEvents' => $countEvents]);
     }
 
     public function madeEvents() {
@@ -163,7 +167,7 @@ class EventController extends Controller
         $user = Auth::user();
         $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
         try {
-            $event->delete($id);
+            $event->delete();
         } catch (\Illuminate\Database\QueryException $exception) {
             return back()->withError('Dit evenement kan niet verwijderd worden.');
         }
@@ -171,6 +175,9 @@ class EventController extends Controller
     }
 
     public function info($id) {
+        $eventUser = Event::find($id);
+        if (Auth::id() == $eventUser->user_id){
+
         $user = Auth::user();
         $event = Event::find($id);
         // $category = Event::find($id)->category()->get();
@@ -178,6 +185,7 @@ class EventController extends Controller
 
         // dd($registered);
         return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
+    }      return redirect()->back()->with('error', 'Deze informatie gaat jou niks aan!');
     }
     public function CategoriesEvent() {
         $user = Auth::user();

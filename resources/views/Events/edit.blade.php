@@ -5,7 +5,9 @@
     <link href="{{ asset('/assets/vendor/bootstrap/css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
     <script src="{{ asset('/assets/vendor/bootstrap/js/bootstrap-datetimepicker.js') }}"></script>
-    @endpush
+    @endpush<p>@if(session('error'))
+        <div class="alert alert-danger">{{session('error')}}</div>
+    @endif
         <div class="main-content">
             <div class="container-fluid">
                 <h3 class="page-title">Wijzigen van het evenement</h3>
@@ -73,27 +75,6 @@
                                     <h2>You do not belong here!!!</h2>
                                 @endif
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Afbeeldingen uploaden voor event</h3>
-                            </div>
-                            <form action="{{ action("EventController@upload") }}" method="POST" enctype="multipart/form-data">
-                                <div class="panel-body">
-                                    {{-- Alert if the image doesn't require the correct validation --}}
-                                    @if(count($errors)>0)
-                                        @foreach($errors->all() as $error)
-                                            <p class="alert alert-danger">{{ $error }}</p>
-                                        @endforeach
-                                    @endif
-                                    <input style="margin-top:30px;" type="file" name="eventImage" id="file">
-                                    <input style="margin-top:10px" type="submit" value="Upload" name="submit">
-                                    <input type="hidden" value="{{ csrf_token() }}" name="_token"> 
-                                </div>
-                            </form>
                         </div>
                     </div>
 
