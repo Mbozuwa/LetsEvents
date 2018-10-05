@@ -78,7 +78,11 @@
                                 <p class="alert alert-danger">{{$error}}</p>
                             @endforeach
                         @endif
-                        <img src="/uploads/{{$profile->image}}" style="max-height:200px;max-width:300px;">
+                        @if(empty($profile->image))
+                        <img src="/uploads/unknown.png" class="profile-image"/>
+                        @else
+                        <img src="/uploads/{{ $profile->image }}" class="profile-image"/>
+                        @endif
                         <input style="margin-top:30px;" type="file" name="image" id="file">
                         <input style="margin-top:10px" type="submit" value="Upload" name="submit">
                         <input type="hidden" value="{{ csrf_token() }}" name="_token"> 

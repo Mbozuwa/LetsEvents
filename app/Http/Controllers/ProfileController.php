@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
+use File;
 use \Input as Input;
 
 class ProfileController extends Controller
@@ -68,29 +69,32 @@ class ProfileController extends Controller
     /**
      * Function uploads the image to the database.
      */
-	public function upload(Request $request){
-
-		if(Input::hasFile('image')){
-
-            //check if the image has the following dimensions
+    public function upload(Request $request){
+        if(Input::hasFile('image'))
+        {
             $request->validate([
                 'image' => 'dimensions:max_width=500,max_height=500'
-           ]);
+            ]);
 
             $user = Auth::user();
+            $file     = Input::file('image');
+            $fileExt   = $file->getClientOriginalExtension();
+            $fileRename = time().'_'.uniqid().'.'.$fileExt;
+            $uploadDir    = public_path('uploads');
 
-            // image from the request is written to the uploads folder.
-            $file = Input::file('image');
-            $fileName = $file->getClientOriginalName();
-            $location = 'uploads/' . $file->getClientOriginalName();
-            $file->move('uploads', $file->getClientOriginalName());
-            $user->image = $fileName;
+            $currentImage = $uploadDir.'/'.$user->image;
+            if (File::exists($currentImage)) {
+                File::delete($currentImage);
+            }
+            $file->move($uploadDir, $fileRename);
+            $user->image = $fileRename;
         }
+
         //saves the image name to the database.
         $user->save();
-
         return redirect()->back();
-    } 
+    }
+
     public function ban($id){
 
         $user = User::find($id);
@@ -100,7 +104,8 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()->back();
-    } 
+    }
+
     public function unban($id){
 
         $user = User::find($id);
