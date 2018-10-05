@@ -30,7 +30,7 @@
                             }
                         </script>
                     @else
-                        <a href="unban/{{$user->id}}"><i class="far fa-circle"></i></a></td>
+                        <a href="/unban/{{$user->id}}"><i class="far fa-circle"></i></a></td>
                     @endif
                   </tr>
                 @endforeach
