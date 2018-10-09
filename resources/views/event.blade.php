@@ -30,7 +30,11 @@
                                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">EVENT INFORMATIE <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                                @if(strtotime("now") < strtotime($event['end_time']))
                                                 <li><a href="edit/{{ $event['id'] }}">Bewerken</a></li>
+                                                @else 
+                                                <li><a style="pointer-events: none;cursor: default;opacity: 0.5;">Bewerken</a></li>
+                                                @endif
                                                 <li><a href="../events/info/{{ $event['id' ]}}">Deelnemers</a></li>
                                             </ul>
                                         </div>
