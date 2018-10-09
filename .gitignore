@@ -18,3 +18,5 @@ app/Event_LOCAL_14088.php
 app/Event_BASE_14088.php
 app/Event_BACKUP_14088.php
 *.jpg
+*.png
+*.gif

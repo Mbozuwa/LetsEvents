@@ -71,6 +71,7 @@
                                         <span class="h6">Dit veld leeghouden als deelnemers zich altijd mogen aanmelden.</span>
                                         <span style="float:right;" class="h6">Dit is verplicht *</span>
                                     </div>
+                                    {{ csrf_field() }}
                                     <button type="submit" class="btn btn-primary btn-lg" action="">Maak een evenement aan.</button>
                             </div>
                         </div>
@@ -79,13 +80,12 @@
                     <div class="col-md-4">
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Afbeeldingen uploaden voor event</h3>
+                                <h3 class="panel-title">Afbeeldingen uploaden voor evenement</h3>
                             </div>
                                 <div class="panel-body">
-                                    <input type="file" name="image" id="file">
+                                    <input type="file" name="image" id="file" accept="image/*">
                                     <input type="hidden" value="{{ csrf_token() }}" name="_token"> 
                                 </div>
-                                {{ csrf_field() }}
                             </form>
                         </div>
                     </div>
