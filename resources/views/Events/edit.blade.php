@@ -70,7 +70,7 @@
                                     {{ csrf_field() }}
                                 </form>
                                 @else
-                                    <h2>You do not belong here!!!</h2>
+                                    <h2>Jij hoort hier niet!</h2>
                                 @endif
                             </div>
                         </div>
