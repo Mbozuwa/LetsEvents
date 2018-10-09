@@ -14,6 +14,13 @@
                         <div class="panel">
                             <div class="panel-body">
                             @if (Auth::id() == $event->user_id)
+                                @if(count($errors) > 0)
+                                <div class="alert alert-danger">
+                                  @foreach ($errors->all() as $error)
+                                    <p>{{$error}}</p>
+                                  @endforeach
+                                </div>
+                                @endif
                                 <form action="{{ Route('updateEvent', ['id'=> $event->id]) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
@@ -96,7 +103,7 @@
                             </div>
                             <div class="panel-body">
                                 <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo-edit" alt="{{ $event['name'] }}"/>
-                                De bovenstaande afbeelding wordt voor je evenement gebruikt. Als je deze wilt wijzigen uploadt dan hierboven een nieuwe afbeelding.
+                                <span class="event-logo-edit-caption">De bovenstaande afbeelding wordt voor je evenement gebruikt. Als je deze wilt wijzigen uploadt dan hierboven een nieuwe afbeelding.</span>
                             </div>
                         </div>
                     </div>
