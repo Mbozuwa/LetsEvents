@@ -11,6 +11,8 @@ use App\Categories;
 use App\User;
 use Auth;
 
+use \File;
+
 use \Input as Input;
 
 class EventController extends Controller
@@ -100,7 +102,7 @@ class EventController extends Controller
 
             $file     = Input::file('image');
             $fileExt   = $file->getClientOriginalExtension();
-            $fileRename = time().'.'.$fileExt;
+            $fileRename = time().'_'.uniqid().'.'.$fileExt;
             $uploadDir    = public_path('uploads/events');
             $file->move($uploadDir, $fileRename);
             $post->image = $fileRename;
@@ -131,9 +133,8 @@ class EventController extends Controller
             'max_participant' => 'required',
             'begin_time' => 'required',
             'end_time' => 'required',
-            'user_id' => 'required',
+            'user_id' => 'required'
         ]);
-
 
         $post = Event::find($id);
         $post->name = $request->input('name');
@@ -149,6 +150,28 @@ class EventController extends Controller
         $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
         $post->end_time = $correctDateEnd;
         $post->payment = $request->input('payment');
+
+        if($request->hasFile('image'))
+        {
+            $request->validate([
+                'image' => 'dimensions:max_width=500,max_height=500'
+            ]);
+
+            $file     = Input::file('image');
+            $fileExt   = $file->getClientOriginalExtension();
+            $fileRename = time().'_'.uniqid().'.'.$fileExt;
+            $uploadDir    = public_path('uploads/events');
+
+            $event = Event::find($id);
+            $currentImage = $uploadDir.'/'.$event->image;
+            if (File::exists($currentImage)) {
+                File::delete($currentImage);
+            }
+
+            $file->move($uploadDir, $fileRename);
+            $post->image = $fileRename;
+        }
+
         $post->user_id = $user->id;
         $post->save();
         return redirect('/events/made');
