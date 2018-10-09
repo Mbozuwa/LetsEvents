@@ -38,15 +38,19 @@ class EventController extends Controller
     }
 
     public function updateStatus(Request $request, $id, $status) {
+        if($status == "Ik ga" || $status == "Misschien" || $status == "Ik ga niet"){
         $event = \App\event::find($id);
         $user = Auth::user();
         $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->first();
         $attendence->status = $status;
 
         $attendence->save();
-
         return redirect()->back()->with('message', 'Status succesvol bewerkt!');
-    }
+        }
+        else{
+            return redirect()->back()->with('error', 'Niet gelukt!');
+        }
+}
 
     public function allEvents() {
         $events = Event::get();

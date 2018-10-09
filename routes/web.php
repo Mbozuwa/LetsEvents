@@ -31,27 +31,26 @@ Route::group(['middleware' => 'auth'] ,function() {
 
 
 // ProfileController
+
 Route::get('/profile/{id}', function () {
   return view('profile.profile');
 });
 
-Route::get('/editprofile/{id}',[
-  'uses' => 'UserController@edit',
-  'as' => 'profile.edit'
-]);
-
 Route::group(['middleware' => 'auth'] ,function() {
   Route::get('/ban/{id}', 'ProfileController@ban');
   Route::get('/unban/{id}', 'ProfileController@unban');
-
-  Route::post('/profile/{id}', 'ProfileController@upload');
-  Route::post('/profile/{id}', 'ProfileController@check');
-  Route::post('/profile/update', 'ProfileController@update');
-  Route::post('/profile', 'ProfileController@upload');
   Route::get('/profile/{id}',[
       'uses' => 'profileController@getProfile',
       'as' => 'profile.profile'
   ]);
+  Route::get('/editprofile/{id}',[
+    'uses' => 'UserController@edit',
+    'as' => 'profile.edit'
+  ]);
+  
+  Route::post('/profile/update', 'ProfileController@update');
+  Route::post('/profile/{id}', 'ProfileController@upload');
+  Route::post('/profile', 'ProfileController@upload');
 });
 
 // StartController
