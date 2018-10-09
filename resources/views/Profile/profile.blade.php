@@ -66,7 +66,7 @@
                         @else
                             <input type="hidden" value="1" name="role_id">
                         @endif
-                        <button type="submit" style="margin-top: 40px;" class="btn bg-success btn-lg">Bewerken</button>
+                        <button type="submit" style="margin-top: 40px;color:white;" class="btn bg-success btn-lg">Bewerken</button>
                 </form>
                 </div>
                 <div class="col-md-6" style="float-right;">

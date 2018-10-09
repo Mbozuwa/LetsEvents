@@ -11,71 +11,80 @@
 |
 */
 
+// EventController
+Route::group(['middleware' => 'auth'] ,function() {
+  Route::get('/event/{id}', 'EventController@index');
+  Route::get('/events/user','EventController@myEvents');
+  Route::get('/events/info/{id}', 'EventController@info');
+  Route::get('/events/index/','EventController@allEvents');
+  Route::get('/events/create', 'EventController@create');
+  Route::get('/events/made', 'EventController@MadeEvents');
+  Route::get('/delete/{id}', 'EventController@delete');
+  Route::get('/event/edit/{id}', 'EventController@edit');
+  Route::get('/events/category/{id}', 'EventController@chooseCategory');
+  Route::get('/events/categories/{id}', 'EventController@CategoriesEvent');
+  Route::get('/events/updateStatus/{id}/{status}', 'EventController@updateStatus');
+  
+  Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
+  Route::post('/events/create', 'EventController@store');
+});
 
 
+// ProfileController
+Route::get('/profile/{id}', function () {
+  return view('profile.profile');
+});
+
+Route::get('/editprofile/{id}',[
+  'uses' => 'UserController@edit',
+  'as' => 'profile.edit'
+]);
+
+Route::group(['middleware' => 'auth'] ,function() {
+  Route::get('/ban/{id}', 'ProfileController@ban');
+  Route::get('/unban/{id}', 'ProfileController@unban');
+
+  Route::post('/profile/{id}', 'ProfileController@upload');
+  Route::post('/profile/{id}', 'ProfileController@check');
+  Route::post('/profile/update', 'ProfileController@update');
+  Route::post('/profile', 'ProfileController@upload');
+  Route::get('/profile/{id}',[
+      'uses' => 'profileController@getProfile',
+      'as' => 'profile.profile'
+  ]);
+});
+
+// StartController
 Route::get('/index', 'StartController@index');
 Route::get('/events', 'StartController@event');
 Route::get('/', 'StartController@home');
 Route::get('start/getEvents', 'StartController@getEvents');
-Route::get('/event/{id}', 'eventController@index');
+
+//registrationController
 Route::get('/registration/1/{id}', 'registrationController@userGoing');
 Route::get('/registration/2/{id}', 'registrationController@userMaybe');
 Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
-Route::get('event/{id}', 'EventController@index');
+
+//homeController
 Route::get('/notificationDelete', 'HomeController@notificationDelete');
-Route::post('/profile/update', 'ProfileController@update');
-Route::get('/ban/{id}', 'ProfileController@ban');
-Route::get('/unban/{id}', 'ProfileController@unban');
-Route::post('/profile/{id}', 'ProfileController@upload');
+Route::get('/home', 'HomeController@index')->name('home');
+
+//adminController
 Route::get('/activity/{id}', 'AdminController@activity');
 Route::get('/admin', 'AdminController@index');
-Route::get('/events/user','EventController@myEvents');
-Route::post('/profile', 'ProfileController@upload');
-Route::post('/profile/{id}', 'ProfileController@check');
 
+//studentController
+Route::resource('student','StudentController');
+Route::get('/student/index/{id}', 'StudentController@index');
+
+//categoryController
 Route::get('/categories/{id}', 'CategoriesController@show');
 
+//userController
 Route::get('/logout', [
   'uses' => 'UserController@getLogout',
   'as' => 'user.logout'
 ]);
-
-Route::get('/profile/{id}', function () {
-    return view('profile.profile');
-});
-
-Route::post('profile', [
-  'uses' => 'ProfileController@upload',
-  'as' => 'profile.profile'
-]);
-
-Route::get('/editprofile/{id}',[
-    'uses' => 'UserController@edit',
-    'as' => 'profile.edit'
-]);
-
-Route::group(['middleware' => 'auth'] ,function() {
-Route::get('/profile/{id}',[
-    'uses' => 'profileController@getProfile',
-    'as' => 'profile.profile'
-]);
-Route::get('events/info/{id}', 'EventController@info');\
-
-Route::get('/events/user','EventController@myEvents');
-
-Route::get('/events/index/','EventController@allEvents');
-Route::get('events/create', 'EventController@create');
-Route::post('events/create', 'EventController@store');
-Route::get('events/made', 'EventController@MadeEvents');
-Route::get('/delete/{id}', 'EventController@delete');
-Route::get('/event/edit/{id}', 'EventController@edit');
-Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
-Route::get('events/category/{id}', 'EventController@chooseCategory');
-Route::post('events/category/{id}', 'EventController@saveCatesgory');
-Route::get('events/categories/{id}', 'EventController@CategoriesEvent');
-
-
-});
 
 
 Route::group(['prefix' =>'user'], function() {
@@ -103,6 +112,3 @@ Route::group(['middleware' => 'guest'] ,function() {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('student','StudentController');
-Route::get('/student/index/{id}', 'StudentController@index');

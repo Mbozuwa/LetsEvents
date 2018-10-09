@@ -37,7 +37,16 @@ class EventController extends Controller
         return redirect('/events/made');
     }
 
+    public function updateStatus(Request $request, $id, $status) {
+        $event = \App\event::find($id);
+        $user = Auth::user();
+        $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->first();
+        $attendence->status = $status;
 
+        $attendence->save();
+
+        return redirect()->back()->with('message', 'Status succesvol bewerkt!');
+    }
 
     public function allEvents() {
         $events = Event::get();
