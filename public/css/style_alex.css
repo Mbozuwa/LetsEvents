@@ -1946,7 +1946,11 @@ ul.activity-timeline > li:last-child:after {
 }
 
 .event-logo-edit {
-    width: 100%;
+    max-width: 100%;
+}
+
+.event-logo-edit-caption {
+    display: block;
 }
 
 .event-header .event-title {
@@ -2004,6 +2008,10 @@ ul.activity-timeline > li:last-child:after {
 /********************
  * OTHER
  ********************/
+input[type=file] {
+    max-width: 100%;
+}
+
 .profile-image {
     max-height:200px;
     max-width:300px;
