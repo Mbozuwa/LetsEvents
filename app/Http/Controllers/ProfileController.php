@@ -11,7 +11,7 @@ use \Input as Input;
 
 class ProfileController extends Controller
 {
-    //Function to get all the user data.
+    //Function to get all the user data and checking if this is the user bound to the profile.
     public function getProfile($id) {
         if (auth::user()->id == $id){
             $user = Auth::user();
@@ -89,7 +89,9 @@ class ProfileController extends Controller
             $file->move($uploadDir, $fileRename);
             $user->image = $fileRename;
         }
-
+        else {
+            return redirect()->back();
+            }
         //saves the image name to the database.
         $user->save();
         return redirect()->back();

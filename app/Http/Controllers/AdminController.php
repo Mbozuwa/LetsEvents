@@ -29,7 +29,7 @@ class AdminController extends Controller
             return redirect('/');
         }
         $users = \App\user::all();
-        $activities =\App\Event::where('user_id', $id)->get();
+        $activities = "";
         return view('admin' ,['users' => $users, 'activities' => $activities]);
         }
         else {
