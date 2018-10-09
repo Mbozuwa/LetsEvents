@@ -5,7 +5,9 @@
     <link href="{{ asset('/assets/vendor/bootstrap/css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
     <script src="{{ asset('/assets/vendor/bootstrap/js/bootstrap-datetimepicker.js') }}"></script>
-    @endpush
+    @endpush<p>@if(session('error'))
+        <div class="alert alert-danger">{{session('error')}}</div>
+    @endif
         <div class="main-content">
             <div class="container-fluid">
                 <h3 class="page-title">Wijzigen van het evenement</h3>
