@@ -44,7 +44,7 @@
             <form class="form-auth-small" action="{{ route('user.signup') }}" method="post">
               <div class="form-group">
                 <label for="signup-email" class="control-label sr-only"></label>
-                <p>E-mail *</p><input type="email" class="form-control" name="email" id="signup-email">
+                <p>E-mail *</p><input type="text" class="form-control" name="email" id="signup-email">
               </div>
               <div class="form-group">
                   <p>Wachtwoord *</p>
@@ -70,7 +70,7 @@
               {{ csrf_field() }}
               <div class="bottom">
                 <small>De met een (*) gemarkeerde velden moeten worden ingevuld.</small>
-                <br>  
+                <br>
                 <span class="helper-text">Heb je al een account? <a href="/user/signin">Log in!</a></span>
               </div>
             </form>

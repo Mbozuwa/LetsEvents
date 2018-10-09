@@ -19,8 +19,8 @@ Route::group(['middleware' => 'auth'] ,function() {
   Route::get('/events/index/','EventController@allEvents');
   Route::get('/events/create', 'EventController@create');
   Route::get('/events/made', 'EventController@MadeEvents');
-  Route::get('/delete/{id}', 'EventController@delete');
-  Route::get('/event/edit/{id}', 'EventController@edit');
+  Route::get('/events/delete/{id}', 'EventController@delete');
+  Route::get('/events/edit/{id}', 'EventController@edit');
   Route::get('/events/category/{id}', 'EventController@chooseCategory');
   Route::get('/events/categories/{id}', 'EventController@CategoriesEvent');
   Route::get('/events/updateStatus/{id}/{status}', 'EventController@updateStatus');
@@ -31,27 +31,26 @@ Route::group(['middleware' => 'auth'] ,function() {
 
 
 // ProfileController
+
 Route::get('/profile/{id}', function () {
   return view('profile.profile');
 });
 
-Route::get('/editprofile/{id}',[
-  'uses' => 'UserController@edit',
-  'as' => 'profile.edit'
-]);
-
 Route::group(['middleware' => 'auth'] ,function() {
   Route::get('/ban/{id}', 'ProfileController@ban');
   Route::get('/unban/{id}', 'ProfileController@unban');
-
-  Route::post('/profile/{id}', 'ProfileController@upload');
-  Route::post('/profile/{id}', 'ProfileController@check');
-  Route::post('/profile/update', 'ProfileController@update');
-  Route::post('/profile', 'ProfileController@upload');
   Route::get('/profile/{id}',[
       'uses' => 'profileController@getProfile',
       'as' => 'profile.profile'
   ]);
+  Route::get('/editprofile/{id}',[
+    'uses' => 'UserController@edit',
+    'as' => 'profile.edit'
+  ]);
+  
+  Route::post('/profile/update', 'ProfileController@update');
+  Route::post('/profile/{id}', 'ProfileController@upload');
+  Route::post('/profile', 'ProfileController@upload');
 });
 
 // StartController
