@@ -1,55 +1,104 @@
 @extends('layouts.app')
 @section('content')
-    <div class="flex-center position-ref full-height" >
-        @if (Auth::id() == $event->user_id)
+    @push('dateTimePicker')
+<!-- EVENT CREATE / EDIT -->
+    <link href="{{ asset('/assets/vendor/bootstrap/css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+    <script src="{{ asset('/assets/vendor/bootstrap/js/bootstrap-datetimepicker.js') }}"></script>
+    @endpush
+        <div class="main-content">
+            <div class="container-fluid">
+                <h3 class="page-title">Wijzigen van het evenement</h3>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="panel">
+                            <div class="panel-body">
+                            @if (Auth::id() == $event->user_id)
+                                <form action="{{ Route('updateEvent', ['id'=> $event->id]) }}" method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label class="h2">De naam:</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Naam" value="{{ $event->name }}" autocomplete="off"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="h2">De beschrijving:</label>
+                                        <textarea class="form-control" name="description" placeholder="Beschrijving" rows="4" maxlength="420">{{ $event->description }}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="h2">De plaats:</label>
+                                        <input type="text" class="form-control" name="place" placeholder="Plaats" value="{{ $event->place }}" autocomplete="off"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="h2">Het adres:</label>
+                                        <input type="text" name="address" class="form-control" placeholder="Adres" value="{{ $event->address }}" autocomplete="off"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="h2">Maximaal aantal deelnemers:</label>
+                                        <input type="text" name="max_participant" class="form-control" placeholder="Max deelnemers" value="{{ $event->max_participant }}" autocomplete="off"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="h2">Bedrag in euro's:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">&euro;</span>
+                                            <input name="payment" class="form-control" value="0" type="text" value="{{ $event->payment }}" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="h2">Start tijd:</label>
+                                        <div class="input-group date" style="width:100%;">
+                                            <input type="text" name="begin_time" class="form-control" id="startTime" value="{{ $correctDate }}" placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="h2">Eind tijd:</label>
+                                        <div class="input-group date" style="width:100%;">
+                                            <input type="text" name="end_time" id="endTime" class="form-control" value="{{ $correctDate2 }}" placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
+                                        </div>
+                                    </div>
 
-        {{-- <div class="content" style="background-color: white; padding:10px; margin-right:10px;"> --}}
-            <div class="col-lg-6 " style="background-color: white; padding:10px; margin-top:10px; margin-bottom:10px;">
-            {{-- {{dd($event)}} --}}
-            <form action="{{Route('updateEvent', ['id'=> $event->id])}}" method="POST">
-            @csrf
-                <div class="form-group">
-                    <h2>Naam:</h2><input type="text" name="name" class="form-control" id="inputEmail3" placeholder="Jan Kees" value="{{$event->name}}">
-                </div>
-                <div class="form-group">
-                <h2>Beschrijving:</h2><input type="text" name="description" class="form-control" value="{{$event->description}}">
-                </div>
-                <div class="form-group">
-                <h2>Plaats:</h2><input type="text" name="place" class="form-control" value="{{$event->place}}">
-                </div>
-                 <div class="form-group">
-                    <h2>Het adres: <input type="text" name="address" class="form-control" value="{{$event->address}}">
-                </div>
-                 <div class="form-group">
-                        <h2>Maximum aantal deelnemers:</h2><input type="" name="max_participant" class="form-control" value="{{$event->max_participant}}">
-                </div>
-                <div class="form-group">
-                     <h2>Betaling in euro's:</h2>  <input type="" name="payment" class="form-control"  placeholder="Mag leeg zijn."value="{{$event->payment}}">
-               </div>
-                <div class="form-group">
-                    <h2>Begin tijd:</h2><input type="" name="begin_time" class="form-control" value="{{$correctDate}}">
-               </div>
-               <div class="form-group">
-                      <h2>Eind tijd:</h2><input type="" name="end_time" class="form-control" value="{{$correctDate2}}">
-              </div>
-              {{-- <div class="form-group row">
-                  <label for="cateogory" class="col-sm-2 col-form-label">Categorie:</label>
-                    <select name="category_id" id="category_id" class="form-control">
-                     <option value="">Geen</option>
-                             @foreach ($categories as $category)
-                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
-                             @endforeach
-                 </select> --}}
+                                    {{-- <div class="form-group row">
+                                    <label for="cateogory" class="col-sm-2 col-form-label">Categorie:</label>
+                                    <select name="category_id" id="category_id" class="form-control">
+                                    <option value="">Geen</option>
+                                         @foreach ($categories as $category)
+                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                         @endforeach
+                                    </select> --}}
 
-              <input id="invisible_id" name="user_id" type="hidden" value="{{Auth::user()->id}}">
-              <button type="submit" style="margin-top: 40px;" class="btn btn-primary btn-lg">Bewerken</button>
-        </form>
-    @else
-        <h2>You do not belong here!!!</h2>
-    @endif
+                                    <input id="invisible_id" name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                                    <button type="submit" class="btn btn-primary btn-lg" action="">Wijzig het evenement</button>
+                                    {{ csrf_field() }}
+                                </form>
+                                @else
+                                    <h2>You do not belong here!!!</h2>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-</body>
+        <script type="text/javascript">
+            $(function () {
+                $("#startTime").datetimepicker(
+                {
+                    format: "DD-MM-YYYY HH:mm",
+                    minDate: moment().toDate(),
+                    locale: "nl"
+                });
+                $('#endTime').datetimepicker(
+                {
+                    format: "DD-MM-YYYY HH:mm",
+                    minDate: moment().add("d", 1).toDate(),
+                    locale: "nl"
+                });
+                $('#signupTime').datetimepicker(
+                {
+                    format: "DD-MM-YYYY HH:mm",
+                    minDate: moment().subtract("h", 1).toDate(),
+                    locale: "nl"
+                });
+            });
+        </script>
 @endsection
