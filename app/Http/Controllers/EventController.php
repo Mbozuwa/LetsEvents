@@ -30,12 +30,6 @@ class EventController extends Controller
        return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
     }
 
-    public function delete($id) {
-        $user = Auth::user();
-        $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
-        $event->delete();
-        return redirect('/events/made');
-    }
 
     public function updateStatus(Request $request, $id, $status) {
         if($status == "Ik ga" || $status == "Misschien" || $status == "Ik ga niet"){
@@ -118,6 +112,8 @@ class EventController extends Controller
     }
 
     public function edit($id) {
+        $eventUser = Event::find($id);
+        if (Auth::id() == $eventUser->user_id){
         $event = Event::find($id);
         $date_begin = $event['begin_time'];
         $correctDate= date("d-m-Y H:i", strtotime($date_begin));
@@ -125,6 +121,8 @@ class EventController extends Controller
         $correctDate2= date("d-m-Y H:i", strtotime($date_end));
         // $categories = Categories::get();
         return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
+    }
+        return redirect()->back()->with('error', 'Dat is niet jouw evenement!');
     }
 
     public function update(Request $request,$id) {
@@ -181,27 +179,47 @@ class EventController extends Controller
         return redirect('/events/made');
     }
     public function myEvents() {
-        $user = Auth::user();
-        $registrations = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get();
-        $date = date('Y-m-d H:i:s');
-        $date = strtotime($date);
-        $count = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get()->count();
-        $countEvents = \App\event::all()->count();
-        return view('myEvents',['registrations' => $registrations, 'date' => $date, 'count' => $count, 'countEvents' => $countEvents]);
+            $user = Auth::user();
+            $registrations = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get();
+            $date = date('Y-m-d H:i:s');
+            $date = strtotime($date);
+            $count = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get()->count();
+            $countEvents = \App\event::all()->count();
+            return view('myEvents',['registrations' => $registrations, 'date' => $date, 'count' => $count, 'countEvents' => $countEvents]);
     }
 
     public function madeEvents() {
         $user = Auth::user();
         $userEvents = Event::where('user_id', $user['id'])->paginate(2);
-        return view('/events/made', ['userEvents' => $userEvents, ]);
+        return view('/events/made', ['userEvents' => $userEvents]);
     }
 
     /*
     *The info function gets all the users that are registered with an event that is in the $id.
     *The auth user gets the current logged in user.
-    *
     */
+    public function delete($id) {
+        $user = Auth::user();
+        $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
+
+        if ($event !== 0) {
+            // code...
+        try {
+            $event->delete();
+            return redirect('/events/made')->with('message', 'Evenement succesvol verwijderd.');
+
+        } catch (\Illuminate\Database\QueryException $exception) {
+            return back()->withError('Dit evenement kan niet verwijderd worden.');
+        }
+    }
+
+        return redirect('/events/made');
+    }
+
     public function info($id) {
+        $eventUser = Event::find($id);
+        if (Auth::id() == $eventUser->user_id){
+
         $user = Auth::user();
         $event = Event::find($id);
         // $category = Event::find($id)->category()->get();
@@ -209,6 +227,7 @@ class EventController extends Controller
 
         // dd($registered);
         return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
+    }      return redirect()->back()->with('error', 'Deze informatie gaat jou niks aan!');
     }
     public function CategoriesEvent() {
         $user = Auth::user();

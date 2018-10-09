@@ -85,6 +85,7 @@
                                 <div class="panel-body">
                                     <input type="file" name="image" id="file" accept="image/*">
                                     <input type="hidden" value="{{ csrf_token() }}" name="_token"> 
+
                                 </div>
                             </form>
                         </div>
