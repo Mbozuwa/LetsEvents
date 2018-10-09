@@ -161,16 +161,22 @@ class EventController extends Controller
     /*
     *The info function gets all the users that are registered with an event that is in the $id.
     *The auth user gets the current logged in user.
-    *
     */
     public function delete($id) {
         $user = Auth::user();
         $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
+
+        if ($event !== 0) {
+            // code...
         try {
             $event->delete();
+            return redirect('/events/made')->with('message', 'Evenement succesvol verwijderd.');
+
         } catch (\Illuminate\Database\QueryException $exception) {
             return back()->withError('Dit evenement kan niet verwijderd worden.');
         }
+    }
+
         return redirect('/events/made');
     }
 

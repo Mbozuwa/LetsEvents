@@ -4,10 +4,18 @@
         <h2>Nog geen evenementen gemaakt.</h2>
         <h2>Maak <a href="/events/create">hier</a> een evenement aan.</h2>
     @else
-        <p>@if(session('error'))
-            <div class="alert alert-danger">{{session('error')}}</div>
-        @endif
-        </p>
+        <div class="col-9 justify-content-center bg-dark" style="padding-top:10px; padding-right:10px;">
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @elseif(session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+                @endif
+            </div>  
+            <div class="row justify-content-center">
 @foreach ($userEvents as $event)
 
                     <style media="screen">
@@ -22,9 +30,9 @@
                     </style>
 
                     {{-- {{dd($event)}} --}}
-                    <div class="flex-center position-ref full-height" >
-                        <div class="content" style="background-color: white; padding:10px; margin-right:10px; margin-top:10px; margin-bottom:-10px;">
-                        <div  style="background-color: white;">
+                    <div class="flex-center position-ref full-height">
+                        <div class="content" style="background-color: white; padding:10px; margin-right:10px; margin-bottom:-10px;">
+                        <div style="background-color: white;">
                           <h1>Het evenement: {{$event->name}}</h1>
                           <h2 class="card-text mb-auto">Beschrijving: {{$event->description}}</h2>
                           <h2>Maximum aantal deelnemers: {{$event->max_participant}}</h2>
