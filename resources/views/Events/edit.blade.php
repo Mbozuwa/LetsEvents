@@ -5,7 +5,9 @@
     <link href="{{ asset('/assets/vendor/bootstrap/css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
     <script src="{{ asset('/assets/vendor/bootstrap/js/bootstrap-datetimepicker.js') }}"></script>
-    @endpush
+    @endpush<p>@if(session('error'))
+        <div class="alert alert-danger">{{session('error')}}</div>
+    @endif
         <div class="main-content">
             <div class="container-fluid">
                 <h3 class="page-title">Wijzigen van het evenement</h3>
@@ -14,6 +16,13 @@
                         <div class="panel">
                             <div class="panel-body">
                             @if (Auth::id() == $event->user_id)
+                                @if(count($errors) > 0)
+                                <div class="alert alert-danger">
+                                  @foreach ($errors->all() as $error)
+                                    <p>{{$error}}</p>
+                                  @endforeach
+                                </div>
+                                @endif
                                 <form action="{{ Route('updateEvent', ['id'=> $event->id]) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
@@ -69,7 +78,7 @@
                                     {{ csrf_field() }}
                                     <button type="submit" class="btn btn-primary btn-lg" action="">Wijzig het evenement</button>
                                 @else
-                                    <h2>You do not belong here!!!</h2>
+                                    <h2>Jij hoort hier niet!</h2>
                                 @endif
                             </div>
                         </div>
@@ -96,7 +105,7 @@
                             </div>
                             <div class="panel-body">
                                 <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo-edit" alt="{{ $event['name'] }}"/>
-                                De bovenstaande afbeelding wordt voor je evenement gebruikt. Als je deze wilt wijzigen uploadt dan hierboven een nieuwe afbeelding.
+                                <span class="event-logo-edit-caption">De bovenstaande afbeelding wordt voor je evenement gebruikt. Als je deze wilt wijzigen uploadt dan hierboven een nieuwe afbeelding.</span>
                             </div>
                         </div>
                     </div>

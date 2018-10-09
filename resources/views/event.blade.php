@@ -24,6 +24,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     @if(Auth::user()->role_id == 2 || $event['user_id'] == Auth::user()->id)
                                     <div class="col-md-3 text-right">
                                         <div class="btn-group">
@@ -40,6 +41,7 @@
                                         </div>
                                     </div>
                                     @endif
+
                                 </div>
                                 <div class="event-subheader">
                                     <div class="layout-table event-metrics">
@@ -87,7 +89,9 @@
                                         @else
                                         <li>Aanmelden kan <span>altijd</span></li>
                                         @endif
+                                        
                                         <li><br/>Dit evenement is gemaakt door {{ $organiser->name }}</li>
+
                                     </ul>
                                 </div>
                                 <hr>
