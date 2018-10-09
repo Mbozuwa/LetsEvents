@@ -206,7 +206,7 @@ class EventController extends Controller
             // code...
         try {
             $event->delete();
-            return redirect('/events/made')->with('message', 'Evenement succesvol verwijderd.');
+            return redirect('/event/made')->with('message', 'Evenement succesvol verwijderd.');
 
         } catch (\Illuminate\Database\QueryException $exception) {
             return back()->withError('Dit evenement kan niet verwijderd worden.');

@@ -19,8 +19,8 @@ Route::group(['middleware' => 'auth'] ,function() {
   Route::get('/events/index/','EventController@allEvents');
   Route::get('/events/create', 'EventController@create');
   Route::get('/events/made', 'EventController@MadeEvents');
-  Route::get('/delete/{id}', 'EventController@delete');
-  Route::get('/event/edit/{id}', 'EventController@edit');
+  Route::get('/events/delete/{id}', 'EventController@delete');
+  Route::get('/events/edit/{id}', 'EventController@edit');
   Route::get('/events/category/{id}', 'EventController@chooseCategory');
   Route::get('/events/categories/{id}', 'EventController@CategoriesEvent');
   Route::get('/events/updateStatus/{id}/{status}', 'EventController@updateStatus');
