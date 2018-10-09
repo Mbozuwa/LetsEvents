@@ -35,7 +35,7 @@
                           <p>Bekijk meer details: <a href="/event/{{$event->id}}">Event pagina</a></p>
                           <p>Mensen die mee doen: <a href="/events/info/{{$event->id}}">Klik hier</a></p>
                           
-                            <p>Catagories:<a href="/events/categories/{{$event->id}}">Klik hier</a></p>
+                            {{-- <p>Catagories:<a href="/events/categories/{{$event->id}}">Klik hier</a></p> --}}
                             <a href="/event/edit/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-success btn-lg"><i class="far fa-edit" style="color:white;"></i></button></a>
                             @if (Auth::check())
                             <a href="/delete/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-danger btn-lg"><i class="fas fa-trash-alt" style="color:white;"></i></button></a>
