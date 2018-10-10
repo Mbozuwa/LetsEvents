@@ -69,9 +69,17 @@ class UserController extends Controller
     }
 
     public function getLogout() {
+        $columns = [
+            'begin_time AS start',
+            /* 'end_time AS end', */
+            'name AS title'
+        ];
+        $allEvents = Event::orderBy('begin_time', 'asc')->get($columns);
+        $currentEvents = $allEvents->toJson();
+        
       session()->forget('notification');
       Auth::logout();
-      return view('user/signin');
+      return view('user/signin', compact('currentEvents'));
     }
 
 }
