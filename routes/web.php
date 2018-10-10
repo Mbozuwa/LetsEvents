@@ -24,6 +24,10 @@ Route::group(['middleware' => 'auth'] ,function() {
   Route::get('/events/category/{id}', 'EventController@chooseCategory');
   Route::get('/events/categories/{id}', 'EventController@CategoriesEvent');
   Route::get('/events/updateStatus/{id}/{status}', 'EventController@updateStatus');
+  Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
+  Route::post('events/categories/{id}', 'EventController@saveCategory');
+  Route::get('events/categories/{id}', 'EventController@chooseCategoryWithEvent');
+
   
   Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
   Route::post('/events/create', 'EventController@store');
@@ -84,6 +88,10 @@ Route::get('/logout', [
   'uses' => 'UserController@getLogout',
   'as' => 'user.logout'
 ]);
+
+
+
+
 
 
 Route::group(['prefix' =>'user'], function() {
