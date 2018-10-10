@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+    <div class="col-9 justify-content-center bg-dark" style="padding-top:10px; padding-right:10px;">
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @elseif(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+            @endif
+        </div>
             <body>
                 <div class="flex-center position-ref full-height" >
                     <div class="content col-md-6" style="background-color:white; margin-top:10px; " >

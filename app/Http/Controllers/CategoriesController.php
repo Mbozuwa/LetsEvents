@@ -23,6 +23,7 @@ class CategoriesController extends Controller
 	  $category = Categories::find($id);
       $events = Categories::find($id)->events()->get();
 
+	  $test = Event::find($id)->category();
 	  // Categories::find($id)->events()->get();
       // $events = $category->event();
 	  // dd(Categories::where('category_id' ,$id));

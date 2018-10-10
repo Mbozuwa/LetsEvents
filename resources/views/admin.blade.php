@@ -1,6 +1,17 @@
 @extends('layouts.app')
 @section('content')
 <body>
+    <div class="col-9 justify-content-center bg-dark" style="padding-top:10px; padding-right:10px;">
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @elseif(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+            @endif
+        </div>
     <div class="flex-center position-ref full-height" >
         <div class="content col-md-6" style="background-color: white; margin-top: 10px;">
               <table class="table table-hover">
@@ -18,8 +29,8 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td><a href="/activity/{{$user->id}}"><button type="button" class="btn btn-primary">Activiteit</button></a></td>
-                    <td><a href="/profile/{{$user->id}}"><i class="fas fa-pencil-alt" style="margin-right: 5px;"></i></a>  
-                    @if ($user->active == 1) 
+                    <td><a href="/profile/{{$user->id}}"><i class="fas fa-pencil-alt" style="margin-right: 5px;"></i></a>
+                    @if ($user->active == 1)
                         <a onclick="popup('{{$user->id}}')"><i class="fas fa-ban"></i></a></td>
                         <script>
                             function popup(id) {
@@ -40,7 +51,7 @@
 
         </div>
         <div class="col-md-1" >
-            
+
         </div>
         <div class="col-md-4" style="background-color:white; margin-top: 10px;">
             @if ($activities)
@@ -52,7 +63,7 @@
 
         </div>
         <div class="col-md-1" >
-            
+
         </div>
 
     </div>

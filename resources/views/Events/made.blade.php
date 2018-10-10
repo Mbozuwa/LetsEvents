@@ -14,7 +14,7 @@
                     {{ session()->get('error') }}
                 </div>
                 @endif
-            </div>  
+            </div>
             <div class="row justify-content-center">
 @foreach ($userEvents as $event)
 

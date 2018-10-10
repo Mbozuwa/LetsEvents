@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+    <div class="col-9 justify-content-center bg-dark" style="padding-top:10px; padding-right:10px;">
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @elseif(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+            @endif
+        </div>
     @if (Auth::id() == $event->user_id)
 
         <div class="content" style=" padding:10px; margin-right:10px; margin-top:10px; margin-bottom:-10px;">
