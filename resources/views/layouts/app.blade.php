@@ -48,8 +48,13 @@
                         </li>
 
                         <li class="dropdown">
-                            @if (Auth::check())
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="http://via.placeholder.com/20?text=Placeholder.com+rocks!" class="img-circle" alt="Avatar"> <span>{{ Auth::user()->name }}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                            @if(Auth::check())
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                @if(empty(Auth::user()->image))
+                                <img src="/uploads/unknown.png" class="img-circle" alt="Avatar">
+                                @else
+                                <img src="/uploads/{{ Auth::user()->image }}" class="img-circle" alt="Avatar">
+                                @endif <span>{{ Auth::user()->name }}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/profile/{{ Auth::user()->id }}"><i class="lnr lnr-user"></i> <span>Mijn profiel</span></a></li>
                                     <li><a href="/events/create"><i class="lnr lnr-plus-circle"></i>Maak een evenement aan.</a></li>

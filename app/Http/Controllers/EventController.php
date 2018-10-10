@@ -11,6 +11,8 @@ use App\Categories;
 use App\User;
 use Auth;
 
+use \File;
+
 use \Input as Input;
 
 class EventController extends Controller
@@ -29,7 +31,20 @@ class EventController extends Controller
     }
 
 
+    public function updateStatus(Request $request, $id, $status) {
+        if($status == "Ik ga" || $status == "Misschien" || $status == "Ik ga niet"){
+        $event = \App\event::find($id);
+        $user = Auth::user();
+        $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->first();
+        $attendence->status = $status;
 
+        $attendence->save();
+        return redirect()->back()->with('message', 'Status succesvol bewerkt!');
+        }
+        else{
+            return redirect()->back()->with('error', 'Niet gelukt!');
+        }
+}
 
     public function allEvents() {
         $events = Event::get();
@@ -85,7 +100,7 @@ class EventController extends Controller
 
             $file     = Input::file('image');
             $fileExt   = $file->getClientOriginalExtension();
-            $fileRename = time().'.'.$fileExt;
+            $fileRename = time().'_'.uniqid().'.'.$fileExt;
             $uploadDir    = public_path('uploads/events');
             $file->move($uploadDir, $fileRename);
             $post->image = $fileRename;
@@ -120,9 +135,8 @@ class EventController extends Controller
             'max_participant' => 'required',
             'begin_time' => 'required',
             'end_time' => 'required',
-            'user_id' => 'required',
+            'user_id' => 'required'
         ]);
-
 
         $post = Event::find($id);
         $post->name = $request->input('name');
@@ -138,6 +152,28 @@ class EventController extends Controller
         $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
         $post->end_time = $correctDateEnd;
         $post->payment = $request->input('payment');
+
+        if($request->hasFile('image'))
+        {
+            $request->validate([
+                'image' => 'dimensions:max_width=500,max_height=500'
+            ]);
+
+            $file     = Input::file('image');
+            $fileExt   = $file->getClientOriginalExtension();
+            $fileRename = time().'_'.uniqid().'.'.$fileExt;
+            $uploadDir    = public_path('uploads/events');
+
+            $event = Event::find($id);
+            $currentImage = $uploadDir.'/'.$event->image;
+            if (File::exists($currentImage)) {
+                File::delete($currentImage);
+            }
+
+            $file->move($uploadDir, $fileRename);
+            $post->image = $fileRename;
+        }
+
         $post->user_id = $user->id;
         $post->save();
         return redirect('/events/made');
@@ -170,7 +206,7 @@ class EventController extends Controller
             // code...
         try {
             $event->delete();
-            return redirect('/events/made')->with('message', 'Evenement succesvol verwijderd.');
+            return redirect('/event/made')->with('message', 'Evenement succesvol verwijderd.');
 
         } catch (\Illuminate\Database\QueryException $exception) {
             return back()->withError('Dit evenement kan niet verwijderd worden.');
@@ -193,16 +229,30 @@ class EventController extends Controller
         return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
     }      return redirect()->back()->with('error', 'Deze informatie gaat jou niks aan!');
     }
-    public function CategoriesEvent() {
+    public function chooseCategoryWithEvent($id) {
         $user = Auth::user();
-        $userEvents = Event::where('user_id', $user['id'])->paginate(2);
-        $date_begin = $userEvents['begin_time'];
-        $correctDate = date("d-m-Y H:i", strtotime($date_begin));
-        return view('/events/categories', ['userEvents' => $userEvents, 'correctDate' => $correctDate]);
+        $userEvents = Event::where(['user_id'=> $user['id'], 'id' => $id ])->paginate(2);
+        $categoryEvents = Event::find($id)->category()->get();
+        $categories = categories::all();
+        return view('/events/categories', ['userEvents' => $userEvents, 'categoryEvents' => $categoryEvents, 'categories' => $categories]);
         // $test = new Category_event;
         // $event = Event::where('id',$id)->get();
         // $test->event_id = $id;
         // $test->category_id = $request->input('category_id');
         // $test->save();
+    }
+    public function saveCategory(Request $request,$id){
+        $saveCategory = new Category_event;
+        // dd($request);
+        // $event = Event::where('id',$id)->get();
+        $saveCategory->category_id = $request->input('category_name');
+        $saveCategory->event_id = $id;
+        $saveCategory->save();
+        return redirect()->back()->with('success', 'De categorie is aangemaakt.');
+        // $category->event_id = $request->input($event_id);
+        // $event = Event::find($event-id);
+
+        
+        
     }
 }

@@ -35,6 +35,24 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    @if(Auth::user()->role_id == 2 || $event['user_id'] == Auth::user()->id)
+                                    <div class="col-md-3 text-right">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">EVENT INFORMATIE <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                                @if(strtotime("now") < strtotime($event['end_time']))
+                                                <li><a href="edit/{{ $event['id'] }}">Bewerken</a></li>
+                                                @else 
+                                                <li><a style="pointer-events: none;cursor: default;opacity: 0.5;">Bewerken</a></li>
+                                                @endif
+                                                <li><a href="../events/info/{{ $event['id' ]}}">Deelnemers</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    @endif
+
                                 </div>
                                 <div class="event-subheader">
                                     <div class="layout-table event-metrics">
@@ -82,6 +100,9 @@
                                         @else
                                         <li>Aanmelden kan <span>altijd</span></li>
                                         @endif
+                                        
+                                        <li><br/>Dit evenement is gemaakt door {{ $organiser->name }}</li>
+
                                     </ul>
                                 </div>
                                 <hr>
@@ -123,11 +144,12 @@
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">WIJZIGEN <span class="caret"></span>
                                                     </button>
+                                                    {{-- {{dd($event->id)}} --}}
                                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                                         {{-- Zou hetzelfde moeten werken als de aanmeldknoppen alleen een update ipv insert. --}}
-                                                        <li><a href="#">Ik ga</a></li>
-                                                        <li><a href="#">Ik ga misschien</a></li>
-                                                        <li><a href="#">Ik ga niet</a></li>
+                                                        <li name="ga"><a href="/events/updateStatus/{{$event->id}}/Ik ga">Ik ga</a></li>
+                                                        <li name="mischien"><a href="/events/updateStatus/{{$event->id}}/Misschien">Ik ga misschien</a></li>
+                                                        <li name="niet"><a href="/events/updateStatus/{{$event->id}}/Ik ga niet">Ik ga niet</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -148,7 +170,7 @@
                                             <div class="media">
                                                 <div class="media-body">
                                                     <h2 class="event-title">Aanmeldtijd verlopen!</h2>
-                                                    Helaas, de tijd om je aan te melden voor dit evenement is voorbij. Als je, je al eerder hebt aangemeld voor dit evenement is het niet meer mogelijk om je af te melden.
+                                                    Helaas, de tijd om je aan te melden voor dit evenement is voorbij. Als je je al eerder hebt aangemeld voor dit evenement, dan is het niet meer mogelijk om je af te melden.
                                                 </div>
                                             </div>
                                         </div>
@@ -158,7 +180,7 @@
                                         <div class="media">
                                             <div class="media-body">
                                                 <h2 class="event-title">Maximaal aantal deelnemers!</h2>
-                                                Helaas, dit evenement zit aan het maximaal aantal deelnemers, hierdoor kan je, je niet meer aanmelden.
+                                                Helaas, dit evenement zit aan het maximaal aantal deelnemers, hierdoor kan je je niet meer aanmelden.
                                             </div>
                                         </div>
                                     </div>

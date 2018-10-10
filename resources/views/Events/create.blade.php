@@ -35,51 +35,54 @@
                                 <form action="{{ action('EventController@create') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label class="h2">De naam:</label>
+                                        <label class="h2">De naam: *</label>
                                         <input type="text" class="form-control" name="name" placeholder="Naam" required/>
                                     </div>
                                     <div class="form-group">
-                                        <label class="h2">De beschrijving:</label>
+                                        <label class="h2">De beschrijving: *</label>
                                         <textarea class="form-control" name="description" placeholder="Beschrijving" rows="4" maxlength="420" required/></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label class="h2">De plaats:</label>
+                                        <label class="h2">De plaats: *</label>
                                         <input type="text" class="form-control" name="place" placeholder="Plaats" required/>
                                     </div>
                                     <div class="form-group">
-                                        <label class="h2">Het adres:</label>
+                                        <label class="h2">Het adres: *</label>
                                         <input type="text" name="address" class="form-control" placeholder="Adres" required/>
                                     </div>
                                     <div class="form-group">
-                                        <label class="h2">Maximaal aantal deelnemers:</label>
+                                        <label class="h2">Maximaal aantal deelnemers: *</label>
                                         <input type="text" name="max_participant" class="form-control" placeholder="Max deelnemers" required/>
                                     </div>
                                     <div class="form-group">
-                                        <label class="h2">Bedrag in euro's:</label>
+                                        <label class="h2">Bedrag in euro's: *</label>
                                         <div class="input-group">
                                             <span class="input-group-addon">&euro;</span>
                                             <input name="payment" class="form-control" value="0" type="text"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="h2">Start tijd:</label>
+                                        <label class="h2">Start tijd: *</label>
                                         <div class="input-group date" style="width:100%;">
                                             <input type="text" name="begin_time" class="form-control" id="startTime" placeholder="dd-mm-jjjj --:--" required/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="h2">Eind tijd:</label>
+                                        <label class="h2">Eind tijd: *</label>
                                         <div class="input-group date" style="width:100%;">
                                             <input type="text" name="end_time" id="endTime" class="form-control" placeholder="dd-mm-jjjj --:--" required/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="h2">Deelnemers kunnen zich aanmelden tot:</label>
+                                        <label class="h2">Max aanmeld tijd:</label>
                                         <div class="input-group date" style="width:100%;">
                                             <input type="text" name="signup_time" id="signupTime" class="form-control" placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
                                         </div>
+                                        <br>
                                         <span class="h6">Dit veld leeghouden als deelnemers zich altijd mogen aanmelden.</span>
+                                        <span style="float:right;" class="h6">Dit is verplicht *</span>
                                     </div>
+                                    {{ csrf_field() }}
                                     <button type="submit" class="btn btn-primary btn-lg" action="">Maak een evenement aan.</button>
                             </div>
                         </div>
@@ -88,13 +91,13 @@
                     <div class="col-md-4">
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Afbeeldingen uploaden voor event</h3>
+                                <h3 class="panel-title">Afbeeldingen uploaden voor evenement</h3>
                             </div>
                                 <div class="panel-body">
-                                    <input type="file" name="image" id="file">
-                                    <input type="hidden" value="{{ csrf_token() }}" name="_token">
+                                    <input type="file" name="image" id="file" accept="image/*">
+                                    <input type="hidden" value="{{ csrf_token() }}" name="_token"> 
+
                                 </div>
-                                {{ csrf_field() }}
                             </form>
                         </div>
                     </div>

@@ -54,12 +54,16 @@
 
         </div>
         <div class="col-md-4" style="background-color:white; margin-top: 10px;">
+            <h1>Evenementen</h1>
+            <table class="table table-hover">
             @if ($activities)
-                <h1>Evenementen</h1>
                 @foreach($activities as $activity)
-                <h3><a href="/event/{{$activity->id}}">{{$activity->name}}</a></h3>
+                <tr>
+                    <td><a href="/event/{{$activity->id}}">{{$activity->name}}</a></td>
+                </tr>
                 @endforeach
             @endif
+            </table>
 
         </div>
         <div class="col-md-1" >

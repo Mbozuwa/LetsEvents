@@ -7,6 +7,7 @@ use Auth;
 use Registration;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Event;
 
 class UserController extends Controller
 {
@@ -47,7 +48,15 @@ class UserController extends Controller
     *The second function validates the inputs of the login form and if the inputted data is correct the user gets logged in automaticcly.
     */
     public function getSignin() {
-      return view('user.signin');
+        $columns = [
+            'begin_time AS start',
+            /* 'end_time AS end', */
+            'name AS title'
+        ];
+        $allEvents = Event::orderBy('begin_time', 'asc')->get($columns);
+        $currentEvents = $allEvents->toJson();
+
+        return view('user.signin', compact('currentEvents'));
     }
     public function postSignin(Request $request)    {
       $this->validate($request, [
@@ -60,9 +69,17 @@ class UserController extends Controller
     }
 
     public function getLogout() {
+        $columns = [
+            'begin_time AS start',
+            /* 'end_time AS end', */
+            'name AS title'
+        ];
+        $allEvents = Event::orderBy('begin_time', 'asc')->get($columns);
+        $currentEvents = $allEvents->toJson();
+        
       session()->forget('notification');
       Auth::logout();
-      return view('user/signin');
+      return view('user/signin', compact('currentEvents'));
     }
 
 }
