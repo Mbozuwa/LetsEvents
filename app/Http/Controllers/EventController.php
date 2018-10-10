@@ -229,16 +229,25 @@ class EventController extends Controller
         return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
     }      return redirect()->back()->with('error', 'Deze informatie gaat jou niks aan!');
     }
-    public function CategoriesEvent() {
+    public function chooseCategoryWithEvent($id) {
         $user = Auth::user();
-        $userEvents = Event::where('user_id', $user['id'])->paginate(2);
-        $date_begin = $userEvents['begin_time'];
-        $correctDate = date("d-m-Y H:i", strtotime($date_begin));
-        return view('/events/categories', ['userEvents' => $userEvents, 'correctDate' => $correctDate]);
-        // $test = new Category_event;
+        $userEvents = Event::where(['user_id'=> $user['id'], 'id' => $id ])->paginate(2);
+        $categoryEvents = category_event::where('event_id', $id)->get();
+        $categories = categories::all();
+        return view('/events/categories', ['userEvents' => $userEvents, 'categoryEvents' => $categoryEvents, 'categories' => $categories]);
+    }
+    public function saveCategory(Request $request,$id){
+        $saveCategory = new Category_event;
+        // dd($request);
         // $event = Event::where('id',$id)->get();
-        // $test->event_id = $id;
-        // $test->category_id = $request->input('category_id');
-        // $test->save();
+        $saveCategory->category_id = $request->input('category_name');
+        $saveCategory->event_id = $id;
+        $saveCategory->save();
+        return redirect()->back()->with('success', 'De categorie is aangemaakt.');
+        // $category->event_id = $request->input($event_id);
+        // $event = Event::find($event-id);
+
+        
+        
     }
 }
