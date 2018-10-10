@@ -4,7 +4,18 @@
         <h2>Nog geen evenementen gemaakt.</h2>
         <h2>Maak <a href="/events/create">hier</a> een evenement aan.</h2>
     @else
-
+        <div class="col-9 justify-content-center bg-dark" style="padding-top:10px; padding-right:10px;">
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @elseif(session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+                @endif
+            </div>  
+            <div class="row justify-content-center">
 @foreach ($userEvents as $event)
 
                     <style media="screen">
@@ -19,9 +30,9 @@
                     </style>
 
                     {{-- {{dd($event)}} --}}
-                    <div class="flex-center position-ref full-height" >
-                        <div class="content" style="background-color: white; padding:10px; margin-right:10px; margin-top:10px; margin-bottom:-10px;">
-                        <div  style="background-color: white;">
+                    <div class="flex-center position-ref full-height">
+                        <div class="content" style="background-color: white; padding:10px; margin-right:10px; margin-bottom:-10px;">
+                        <div style="background-color: white;">
                           <h1>Het evenement: {{$event->name}}</h1>
                           <h2 class="card-text mb-auto">Beschrijving: {{$event->description}}</h2>
                           <h2>Maximum aantal deelnemers: {{$event->max_participant}}</h2>
@@ -34,13 +45,9 @@
                           @endif
                           <p>Bekijk meer details: <a href="/event/{{$event->id}}">Event pagina</a></p>
                           <p>Mensen die mee doen: <a href="/events/info/{{$event->id}}">Klik hier</a></p>
-                          
-                            <p>Catagories:<a href="/events/categories/{{$event->id}}">Klik hier</a></p>
+                            {{-- <p>Catagories:<a href="/events/categories/{{$event->id}}">Klik hier</a></p> --}}
                             <a href="/events/edit/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-success btn-lg"><i class="far fa-edit" style="color:white;"></i></button></a>
-                            @if (Auth::check())
-                            <a href="/delete/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-danger btn-lg"><i class="fas fa-trash-alt" style="color:white;"></i></button></a>
-                              
-                          @endif
+                            <a href="/events/delete/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-danger btn-lg"><i class="fas fa-trash-alt" style="color:white;"></i></button></a>
                       </div>
                     </div>
                     <br>

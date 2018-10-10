@@ -12,13 +12,6 @@
     <link rel="stylesheet" href="{{ asset('/assets/vendor/linearicons/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/style_alex.css') }}">
 
-    <!-- CALENDAR -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
-
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 
@@ -44,7 +37,7 @@
             <form class="form-auth-small" action="{{ route('user.signup') }}" method="post">
               <div class="form-group">
                 <label for="signup-email" class="control-label sr-only"></label>
-                <p>E-mail *</p><input type="email" class="form-control" name="email" id="signup-email">
+                <p>E-mail *</p><input type="text" class="form-control" name="email" id="signup-email">
               </div>
               <div class="form-group">
                   <p>Wachtwoord *</p>
@@ -70,7 +63,7 @@
               {{ csrf_field() }}
               <div class="bottom">
                 <small>De met een (*) gemarkeerde velden moeten worden ingevuld.</small>
-                <br>  
+                <br>
                 <span class="helper-text">Heb je al een account? <a href="/user/signin">Log in!</a></span>
               </div>
             </form>
