@@ -232,14 +232,9 @@ class EventController extends Controller
     public function chooseCategoryWithEvent($id) {
         $user = Auth::user();
         $userEvents = Event::where(['user_id'=> $user['id'], 'id' => $id ])->paginate(2);
-        $categoryEvents = Event::find($id)->category()->get();
+        $categoryEvents = category_event::where('event_id', $id)->get();
         $categories = categories::all();
         return view('/events/categories', ['userEvents' => $userEvents, 'categoryEvents' => $categoryEvents, 'categories' => $categories]);
-        // $test = new Category_event;
-        // $event = Event::where('id',$id)->get();
-        // $test->event_id = $id;
-        // $test->category_id = $request->input('category_id');
-        // $test->save();
     }
     public function saveCategory(Request $request,$id){
         $saveCategory = new Category_event;
