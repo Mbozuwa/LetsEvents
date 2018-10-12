@@ -73,15 +73,15 @@
                 <form action="{{action("ProfileController@upload")}}" method="POST" enctype="multipart/form-data">
                     <div class="col-4">
                         {{-- Alert if the image doesn't require the correct validation --}}
-                        @if(count($errors)>0)
-                            @foreach($errors->all() as $error)
-                                <p class="alert alert-danger">{{$error}}</p>
-                            @endforeach
+                        @if(session()->has('image'))
+                            <div class="alert alert-danger">
+                                {{ session()->get('image') }}
+                            </div>
                         @endif
                         @if(empty($profile->image))
-                        <img src="/uploads/unknown.png" class="profile-image"/>
-                        @else
-                        <img src="/uploads/{{ $profile->image }}" class="profile-image" style="max-height: 200px;max-width: 300px;" />
+                            <img src="unknown.png" class="profile-image"/>
+                        @else                        
+                            <img src="/uploads/{{ $profile->image }}" class="profile-image" style="max-height: 200px;max-width: 300px;"/>
                         @endif
                         <input style="margin-top:30px;" type="file" name="image" id="file">
                         <input style="margin-top:10px" type="submit" value="Upload" name="submit">
