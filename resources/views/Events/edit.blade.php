@@ -23,7 +23,7 @@
                     <div class="col-md-7">
                         <div class="panel">
                             <div class="panel-body">
-                            @if (Auth::id() == $event->user_id)
+                            @if (Auth::id() == $event->user_id || Auth::user()->role_id == 2)
                                 @if(count($errors) > 0)
                                 <div class="alert alert-danger">
                                   @foreach ($errors->all() as $error)

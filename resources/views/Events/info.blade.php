@@ -7,7 +7,7 @@
                     <div class="col-md-11">
                         <div class="panel">
                             <div class="panel-body">
-                                @if (Auth::id() == $event->user_id)
+                                @if (Auth::id() == $event->user_id || Auth::user()->role_id)
                                     @if (count($registered) == 0)
                                     <h2>Niemand doet mee aan het evenement<a href="/event/{{$event->id}}"> {{$event->name}}</a></h2>
                                     @else
