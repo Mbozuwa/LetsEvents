@@ -113,7 +113,7 @@ class EventController extends Controller
 
     public function edit($id) {
         $eventUser = Event::find($id);
-        if (Auth::id() == $eventUser->user_id){
+        if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2){
         $event = Event::find($id);
         $date_begin = $event['begin_time'];
         $correctDate= date("d-m-Y H:i", strtotime($date_begin));
@@ -218,7 +218,7 @@ class EventController extends Controller
 
     public function info($id) {
         $eventUser = Event::find($id);
-        if (Auth::id() == $eventUser->user_id){
+        if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2){
 
         $user = Auth::user();
         $event = Event::find($id);
