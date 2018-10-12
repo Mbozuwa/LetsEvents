@@ -34,10 +34,10 @@
               @endforeach
             </div>
             @endif
-            <form class="form-auth-small" name="signUp" onsubmit="return validateForm()"  action="{{ route('user.signup') }}" method="post">
+            <form class="form-auth-small" name="signUp" onsubmit="return validatePassword() || validatePhoneNumber()"  action="{{ route('user.signup') }}" method="post">
               <div class="form-group">
                 <label for="signup-email" class="control-label sr-only"></label>
-                <p>E-mail *</p><input type="email" class="form-control" name="email" id="signup-email" required>
+                <p>E-mail *</p><input type="email" class="form-control" name="email" id="signup-email" size="10" required>
               </div>
               <div class="form-group">
                   <p>Wachtwoord *</p>
@@ -57,7 +57,7 @@
               <div class="form-group">
                   <p>Telefoon nummer *</p>
                 <label for="signup-telephone" class="control-label sr-only">Telefoon nummer</label>
-                <input type="number" class="form-control" name="telephone" id="signup-telephone" required>
+                <input type="text" class="form-control" name="telephone" id="signup-telephone" required>
               </div>
               <button type="submit" class="btn btn-primary btn-lg btn-block">REGISTREER</button>
               {{ csrf_field() }}
@@ -75,25 +75,33 @@
   <!-- END WRAPPER -->
     <script type="text/javascript">
 
-window.onload = function() {
-    document.getElementById('signup-email').focus();
+// window.onload = function() {
+//     document.getElementById('signup-email').focus();
+// }
+function validatePassword()
+{
+     var passwordId = document.signUp.password;
+     if (passwordId.value.length < 8) {
+         document.signUp.password.style.border = '1px solid #999999';
+         alert('het wachtwoord is niet lang genoeg');
+         return false;
+    }
 }
 
-function validateForm()
-      {
-         var passwordId = document.signUp.password;
-         if (passwordId.value.length < 8) {
-             alert('het wachtwoord is niet lang genoeg');
-             return false;
-         } else {
-             return true;
-         }
-         var number = document.signUp.telephone;
-         if (number.value.length > 10 && number.value.length < 10) {
-             alert('Het telefoon nummer klopt niet');
-             return false;
-         }
-     }
+function validatePhoneNumber()
+{
+    var phoneId = document.signUp.telephone;
+    // phoneId.toString().length;
+    console.log(phoneId);
+    // console.log(phoneId);
+    if (phoneId.value.length < 10 || phoneId.value.length > 10) {
+        document.signUp.telephone.style.border = '1px solid #999999';
+        alert('het telephone is niet lang genoeg');
+        return false;
+   }
+}
+
+// alert(validatePhoneNumber());
     </script>
 </body>
 </html>

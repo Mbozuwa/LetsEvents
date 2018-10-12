@@ -63,11 +63,11 @@
 
                                 <div class="form-group">
                                     <label for="signin-email" class="control-label sr-only">Emailadres</label>
-                                    <input type="email" class="form-control" name="email" id="signin-email" placeholder="Emailadres">
+                                    <input type="email" class="form-control" name="email" id="signin-email" placeholder="Emailadres" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="signin-password" class="control-label sr-only">Wachtwoord</label>
-                                    <input type="password" class="form-control" name="password" id="signin-password" placeholder="Wachtwoord">
+                                    <input type="password" class="form-control" name="password" id="signin-password" placeholder="Wachtwoord" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-lg btn-block" action="">LOG IN</button>
                                 {{ csrf_field() }}
