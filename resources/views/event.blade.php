@@ -32,7 +32,7 @@
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                                 @if(strtotime("now") < strtotime($event['end_time']))
-                                                <li><a href="edit/{{ $event['id'] }}">Bewerken</a></li>
+                                                <li><a href="/events/edit/{{ $event['id'] }}">Bewerken</a></li>
                                                 @else 
                                                 <li><a style="pointer-events: none;cursor: default;opacity: 0.5;">Bewerken</a></li>
                                                 @endif
