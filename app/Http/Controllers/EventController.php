@@ -220,6 +220,9 @@ class EventController extends Controller
 
     public function info($id) {
         $eventUser = Event::find($id);
+        if ($eventUser == null) {
+            return redirect()->back()->with('error', 'Dit evenement bestaat niet');
+        } else {
         if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2){
 
         $user = Auth::user();
@@ -229,6 +232,7 @@ class EventController extends Controller
 
         // dd($registered);
         return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
+    }
     }      return redirect()->back()->with('error', 'Deze informatie gaat jou niks aan!');
     }
     public function chooseCategoryWithEvent($id) {

@@ -8,11 +8,11 @@
                         {{ $userEvents->links() }}
                     </div>
 
-                @elseif(session()->has('error'))
+                @if(session()->has('error'))
                 <div class="alert alert-danger">
                     {{ session()->get('error') }}
                 </div>
-                @endif
+            @endif
             </div>
             <div class="row justify-content-center">
 @foreach ($userEvents as $event)
