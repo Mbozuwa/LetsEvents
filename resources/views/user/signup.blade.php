@@ -88,6 +88,7 @@ function validatePassword()
     }
 }
 
+
 function validatePhoneNumber()
 {
     var phoneId = document.signUp.telephone;
