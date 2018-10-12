@@ -9,8 +9,8 @@ class Event extends Authenticatable
 {
     use Notifiable;
 
-    public function category() {
-          return $this->belongsToMany('App\Categories', 'category_event','event_id','category_id');
+    public function categories() {
+          return $this->belongsToMany('App\Category', 'category_event','event_id','category_id');
         }
 
     /**

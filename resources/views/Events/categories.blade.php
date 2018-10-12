@@ -35,47 +35,25 @@
                                   <button style="margin-top: 40px;" class="btn bg-danger btn-lg"><a href="/delete/{{$event->id}}"><i class="fas fa-trash-alt" style="color:white;"></i></a></button>
                               
                           @endif
-                          
                           <div class="right_float" >
-                            
-                           
 
                             <form action="{{action('EventController@saveCategory', $event->id)}}" method="post">
-                           @foreach ($categoryEvents as $catEvents)
-                           
-                               @csrf
-                               {{-- {{dd($category->id)}} --}}
-                               {{-- {{dd($categoryEvents)}} style="float:right;" --}}
-                               {{-- @foreach ($categoryEvents as $item)
-                               @if($item->category_id && $event->id )
-                               <h2>hallo</h2>
-                               @else
-                               <h2>nope</h2>
-                               @endif 
-                               @endforeach --}}
-                            
-                            @if ($catEvents->category_id)
-                            <p>hallo</p>
-                               
-                           <input type="checkbox" id="category_name" name="category_name" value="{{$catEvents->id}}" checked="checked" />
-                           <label for="category_name">{{ $catEvents->name }}</label><br>
-                           @else
-                           <p>niet hallo</p>
-                           <input type="checkbox" id="category_name" name="category_name" value="{{$catEvents->id}}"  />
-                           <label for="category_name">{{ $catEvents->name }}</label><br>
-                           @endif
-                           @endforeach
-                           <button type="submit">verzenden</button>
-                           
-                           </form>
+                                @csrf
+                                @foreach ($categories as $category)
 
-
-                           {{-- @else --}}
+                                    @foreach ($category->events as $catEvent)
+                                        @if($catEvent->id == $event->id)
+                                            <h2>aangevinkt</h2>
+                                        @endif 
+                                    @endforeach
+                                    
+                                    <input type="checkbox" id="category_name" name="category_name" value="{{$category->id}}"  />
+                                    <label for="category_name">{{ $category->name }}</label><br>
+                                @endforeach
+                                
+                                <button type="submit">verzenden</button>
                             
-                            
-
-                           {{-- @endif --}}
-                            
+                            </form>
                             {{-- <a href="/events/categories/{{$event->id}}"><i class="fas fa-plus-circle" style="color:green; margin:5px;"></i></a><a href="/categories/{{ $category->id }}">{{ $category->name }}</a><br> --}}
                             
     

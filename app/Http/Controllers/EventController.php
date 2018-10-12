@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Event;
 use App\Registration;
-use App\Category_event;
-use App\Categories;
+use App\CategoryEvent;
+use App\Category;
 use App\User;
 use Auth;
 
@@ -119,7 +119,7 @@ class EventController extends Controller
         $correctDate= date("d-m-Y H:i", strtotime($date_begin));
         $date_end = $event['end_time'];
         $correctDate2= date("d-m-Y H:i", strtotime($date_end));
-        // $categories = Categories::get();
+        // $categories = Category::get();
         return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
     }
         return redirect()->back()->with('error', 'Dat is niet jouw evenement!');
@@ -232,8 +232,8 @@ class EventController extends Controller
     public function chooseCategoryWithEvent($id) {
         $user = Auth::user();
         $userEvents = Event::where(['user_id'=> $user['id'], 'id' => $id ])->paginate(2);
-        $categoryEvents = Event::find($id)->category()->get();
-        $categories = categories::all();
+        $categoryEvents = Event::find($id)->categories()->get();
+        $categories = Category::all();
         return view('/events/categories', ['userEvents' => $userEvents, 'categoryEvents' => $categoryEvents, 'categories' => $categories]);
         // $test = new Category_event;
         // $event = Event::where('id',$id)->get();
@@ -242,7 +242,7 @@ class EventController extends Controller
         // $test->save();
     }
     public function saveCategory(Request $request,$id){
-        $saveCategory = new Category_event;
+        $saveCategory = new CategoryEvent;
         // dd($request);
         // $event = Event::where('id',$id)->get();
         $saveCategory->category_id = $request->input('category_name');
