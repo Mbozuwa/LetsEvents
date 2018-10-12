@@ -1,5 +1,17 @@
 @extends('layouts.app')
 @section('content')
+    <div class="col-9 justify-content-center bg-dark" style="padding-top:10px; padding-right:10px;">
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @elseif(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+            @endif
+        </div>
+            <body>
         <div class="main-content">
             <div class="container-fluid">
                 <h3 class="page-title">Mijn evenementen</h3>
@@ -14,6 +26,7 @@
                                         @endif</h2></a>
                                     <p>{{$registration->event->description}}</p>
                                     <p>{{$registration->event->place}} - {{$registration->event->address}}</p>
+
 
                                 @endforeach
                             </div>

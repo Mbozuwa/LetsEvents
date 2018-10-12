@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
         <div class="main-content">
             <div class="container-fluid">
                 <h3 class="page-title">Deelnemers aan dit evenement</h3>
