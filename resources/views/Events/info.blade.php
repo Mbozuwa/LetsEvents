@@ -1,35 +1,40 @@
 @extends('layouts.app')
 @section('content')
-    @if (Auth::id() == $event->user_id)
 
-        <div class="content" style=" padding:10px; margin-right:10px; margin-top:10px; margin-bottom:-10px;">
-        <div class="col-md-6" style="background-color: white;">
-    @if (count($registered) == 0)
-        <h2>Niemand doet mee aan het evenement<a href="/event/{{$event->id}}"> {{$event->name}}</a></h2>
-    @else
-        <h2>Dit zijn de deelnemers die meedoen aan het evenement:<a href="/event/{{$event->id}}"> {{$event->name}}</a>: </h2>
+        <div class="main-content">
+            <div class="container-fluid">
+                <h3 class="page-title">Deelnemers aan dit evenement</h3>
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="panel">
+                            <div class="panel-body">
+                                @if (Auth::id() == $event->user_id)
+                                    @if (count($registered) == 0)
+                                    <h2>Niemand doet mee aan het evenement<a href="/event/{{$event->id}}"> {{$event->name}}</a></h2>
+                                    @else
+                                    <h2>Dit zijn de deelnemers die meedoen aan het evenement:<a href="/event/{{$event->id}}"> {{$event->name}}</a>: </h2>
 
-        @foreach ($registered as $value)
-            <h2>Naam: {{$value->user->name }}</h2>
-            <h2>E-mail: {{$value->user->email}}</h2>
-            <h2>Tel: {{$value->user->telephone}}</h2>
+                                    @foreach ($registered as $value)
+                                        <h2>Naam: {{$value->user->name }}</h2>
+                                        <h2>E-mail: {{$value->user->email}}</h2>
+                                        <h2>Tel: {{$value->user->telephone}}</h2>
 
-            <br>
-        @endforeach
-        {{-- <h2>Categorie:</h2> --}}
-        {{-- @foreach ($category as $test)
-            <h2>{{$test->name}}</h2>
+                                        <hr>
+                                    @endforeach
+<!--                                     {{-- <h2>Categorie:</h2> --}}
+                                    {{-- @foreach ($category as $test)
+                                        <h2>{{$test->name}}</h2>
 
-        @endforeach --}}
+                                    @endforeach --}} -->
+                                    @endif
+                                @else 
+                                    <h2>Je hoort hier niet te zijn.</h2>
+                                @endif
 
-@endif
-@else
-<h2>Je hoort hier niet te zijn.</h2>
-    @endif
-
-
-</div>
-</div>
-
-
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 @endsection
