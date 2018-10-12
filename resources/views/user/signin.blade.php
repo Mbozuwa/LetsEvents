@@ -1,4 +1,3 @@
-{{-- @extends('layouts.app') --}}
 <!doctype html>
 <html lang="en" class="fullscreen-bg">
 <head>
@@ -8,98 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <!-- BOOTSTRAP, FONT-AWESOME, LETS EVENT CSS -->
-    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/assets/vendor/linearicons/style.css">
-    <link rel="stylesheet" href="{{ asset('/css/style_alex.css') }}">
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/assets/vendor/linearicons/style.css"/>
+    <link rel="stylesheet" href="{{ asset('/css/style_alex.css') }}"/>
 
     <!-- CALENDAR -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
+    <link rel="stylesheet" href="{{ asset('/css/calendar/fullcalendar.css') }}"/>
+    <script src="{{ asset('/js/calendar/jquery.min.js') }}"></script>
+    <script src="{{ asset('/js/calendar/moment.min.js') }}"></script>
+    <script src="{{ asset('/js/calendar/fullcalendar.js') }}"></script>
+    <script src="{{ asset('/js/calendar/nl-be.js') }}"></script>
 
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 
-
-     <script>
-    $(document).ready(function() {
-        $('#calendar').fullCalendar({
-            defaultView: 'listMonth',
-            defaultDate: '2018-09-01',
-            editable: false,
-            eventLimit: false,
-            /*events: 'load.php',
-            foreach($result as $row)
-            {
-             $data[] = array(
-              'id'   => $row["id"],
-              'title'   => $row["name"],
-              'event_date'   => $row["event_date"],
-              //'start'   => $row["start_event"],
-              //'end'   => $row["end_event"]
-             );
-            }*/
-          events: [
-            {
-              title: 'Start project: Lets Event',
-              start: '2018-06-15'
-            },
-            {
-              title: 'Trello backlog',
-              start: '2018-06-15 11:24',
-              end: '2018-06-15 12:00'
-            },
-            {
-              title: 'Project kickoff',
-              start: '2018-06-19'
-            },
-            {
-              title: 'Stand up',
-              start: '2018-06-20 08:45'
-            },
-            {
-              title: 'Weekend',
-              start: '2018-06-23'
-            },
-            {
-              title: 'Zomervakantie',
-              start: '2018-06-30'
-            },
-
-            {
-              title: 'Nieuw schooljaar',
-              start: '2018-08-29'
-            },
-            {
-              title: 'Stand-up',
-              start: '2018-08-29'
-            },
-            {
-              title: 'NIEUWE MAAND TEST',
-              start: '2018-09-03'
-            },
-            {
-              title: 'NIEUWE MAAND TEST MET EINDTIJD',
-              start: '2018-09-04 09:40',
-              end: '2018-09-04 12:00'
-            }
-          ]
+    <script>
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                defaultView: 'listMonth',
+                locale: 'nl-be',
+                editable: false,
+                eventLimit: false,
+                events: {!! $currentEvents !!}
+            });
         });
-
-      });
-
     </script>
-<style>
-
-  #calendar {
-    max-width: 630px;
-    margin: 0 auto;
-  }
-
-</style>
 </head>
 
 <body>
@@ -114,6 +47,11 @@
                                 <div class="logo text-center">LETS EVENT</div>
                                 <p class="lead">Login met je account</p>
                             </div>
+                            @if(session()->has('error'))
+                            <div class="alert alert-danger">
+                                {{ session()->get('error') }}
+                            </div>
+                            @endif
                             @if(count($errors) > 0)
                             <div class="alert alert-danger">
                               @foreach ($errors->all() as $error)
@@ -125,11 +63,11 @@
 
                                 <div class="form-group">
                                     <label for="signin-email" class="control-label sr-only">Emailadres</label>
-                                    <input type="email" class="form-control" name="email" id="signin-email" placeholder="Emailadres">
+                                    <input type="email" class="form-control" name="email" id="signin-email" placeholder="Emailadres" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="signin-password" class="control-label sr-only">Wachtwoord</label>
-                                    <input type="password" class="form-control" name="password" id="signin-password" placeholder="Wachtwoord">
+                                    <input type="password" class="form-control" name="password" id="signin-password" placeholder="Wachtwoord" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-lg btn-block" action="">LOG IN</button>
                                 {{ csrf_field() }}

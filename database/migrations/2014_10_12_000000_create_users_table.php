@@ -20,11 +20,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('address');
             $table->string('telephone');
-            $table->integer('student_id');
-            $table->integer('role_id');
+            $table->integer('student_id')->nullable();
+            $table->integer('role_id')->default(1);
             $table->rememberToken();
             $table->timestamps();
-            $table->string('image');
+            $table->string('image')->default('unknown.png');
         });
     }
 

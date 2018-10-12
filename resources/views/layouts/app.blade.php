@@ -20,6 +20,9 @@
 
     <!-- SCRIPTS -->
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    @stack('dateTimePicker')
+    
 </head>
 <body>
     <div id="wrapper">
@@ -45,8 +48,13 @@
                         </li>
 
                         <li class="dropdown">
-                            @if (Auth::check())
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="http://via.placeholder.com/20?text=Placeholder.com+rocks!" class="img-circle" alt="Avatar"> <span>{{ Auth::user()->name }}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                            @if(Auth::check())
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                @if(empty(Auth::user()->image))
+                                <img src="/uploads/unknown.png" class="img-circle" alt="Avatar">
+                                @else
+                                <img src="/uploads/{{ Auth::user()->image }}" class="img-circle" alt="Avatar">
+                                @endif <span>{{ Auth::user()->name }}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/profile/{{ Auth::user()->id }}"><i class="lnr lnr-user"></i> <span>Mijn profiel</span></a></li>
                                     <li><a href="/events/create"><i class="lnr lnr-plus-circle"></i>Maak een evenement aan.</a></li>
@@ -88,7 +96,7 @@
     </div>
     <script src="{{ asset('/assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
-    <script src="{{ asset('/assets/scripts/klorofil-common.js') }}"></script>
+    <script src="{{ asset('/assets/scripts/common.js') }}"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
 </body>
