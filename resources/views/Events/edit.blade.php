@@ -4,10 +4,18 @@
 <!-- EVENT CREATE / EDIT -->
     <link href="{{ asset('/assets/vendor/bootstrap/css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-    <script src="{{ asset('/assets/vendor/bootstrap/js/bootstrap-datetimepicker.js') }}"></script>
-    @endpush<p>@if(session('error'))
-        <div class="alert alert-danger">{{session('error')}}</div>
-    @endif
+    <script src="{{ asset('/assets/vendor/bootstrap/js/bootstrap-datetimepicker.js') }}"></script>\
+    <div class="col-9 justify-content-center bg-dark" style="padding-top:10px; padding-right:10px;">
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @elseif(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+            @endif
+        </div>
         <div class="main-content">
             <div class="container-fluid">
                 <h3 class="page-title">Wijzigen van het evenement</h3>
@@ -15,7 +23,7 @@
                     <div class="col-md-7">
                         <div class="panel">
                             <div class="panel-body">
-                            @if (Auth::id() == $event->user_id)
+                            @if (Auth::id() == $event->user_id || Auth::user()->role_id == 2)
                                 @if(count($errors) > 0)
                                 <div class="alert alert-danger">
                                   @foreach ($errors->all() as $error)
