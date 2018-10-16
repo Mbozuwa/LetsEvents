@@ -51,6 +51,19 @@
                                         
                                     @endforeach
                                     
+                           @foreach ($categoryEvents as $catEvents)
+                               
+                           <input type="checkbox" id="category_name" name="category_name" value="{{$catEvents->id}}" checked="checked" />
+                           <label for="category_name">{{ $catEvents->category_id }}</label><br>
+
+                            @endforeach
+                           <button type="submit">verzenden</button>
+                           
+                           </form>
+
+
+                           {{-- @else --}}
+                            
                             
                                     <label for="category_name">{{ $category->name }}</label><br>
                                 @endforeach

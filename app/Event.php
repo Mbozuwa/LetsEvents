@@ -19,7 +19,7 @@ class Event extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'place', 'address', 'max_participant','participant_amount', 'begin_time', 'end_time'
+        'name', 'description', 'place', 'address', 'max_participant','participant_amount', 'begin_time', 'end_time', 'signup_time'
     ];
 
     protected $table = "event";
