@@ -12,7 +12,7 @@
 */
 
 // EventController
-Route::group(['middleware' => 'auth'] ,function() {
+Route::group(['middleware' => 'auth.custom'] ,function() {
   Route::get('/event/{id}', 'EventController@index');
   Route::get('/events/user','EventController@myEvents');
   Route::get('/events/info/{id}', 'EventController@info');
@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'] ,function() {
   Route::post('events/categories/{id}', 'EventController@saveCategory');
   Route::get('events/categories/{id}', 'EventController@chooseCategoryWithEvent');
 
-  
+
   Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
   Route::post('/events/create', 'EventController@store');
 });
@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'] ,function() {
     'uses' => 'UserController@edit',
     'as' => 'profile.edit'
   ]);
-  
+
   Route::post('/profile/update', 'ProfileController@update');
   Route::post('/profile/{id}', 'ProfileController@upload');
   Route::post('/profile', 'ProfileController@upload');
@@ -116,4 +116,3 @@ Route::group(['middleware' => 'guest'] ,function() {
 // Route::get('signup', function () { return redirect('user/signup'); })->name('register');
 
 Auth::routes();
-
