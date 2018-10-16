@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Categories;
+use App\Category;
 use View;
 use Illuminate\Support\Facades\Schema;
 
@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function($view)
         {
-            $view->with('categories', Categories::all());
+            $view->with('categories', Category::all());
         });
     }
 }

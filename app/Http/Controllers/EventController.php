@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Event;
 use App\Registration;
-use App\Category_event;
-use App\Categories;
+use App\CategoryEvent;
+use App\Category;
 use App\User;
 use Auth;
 
@@ -113,6 +113,15 @@ class EventController extends Controller
 
     public function edit($id) {
         $eventUser = Event::find($id);
+    //     if (Auth::id() == $eventUser->user_id){
+    //     $event = Event::find($id);
+    //     $date_begin = $event['begin_time'];
+    //     $correctDate= date("d-m-Y H:i", strtotime($date_begin));
+    //     $date_end = $event['end_time'];
+    //     $correctDate2= date("d-m-Y H:i", strtotime($date_end));
+    //     // $categories = Category::get();
+    //     return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
+    // }
         if ($eventUser == null) {
             return redirect()->back()->with('error', 'Dit evenement bestaat niet');
         } else {
@@ -235,12 +244,14 @@ class EventController extends Controller
     public function chooseCategoryWithEvent($id) {
         $user = Auth::user();
         $userEvents = Event::where(['user_id'=> $user['id'], 'id' => $id ])->paginate(2);
+        $categoryEvents = Event::find($id)->categories()->get();
+        $categories = Category::all();
         $categoryEvents = category_event::where('event_id', $id)->get();
         $categories = categories::all();
         return view('/events/categories', ['userEvents' => $userEvents, 'categoryEvents' => $categoryEvents, 'categories' => $categories]);
     }
     public function saveCategory(Request $request,$id){
-        $saveCategory = new Category_event;
+        $saveCategory = new CategoryEvent;
         // dd($request);
         // $event = Event::where('id',$id)->get();
         $saveCategory->category_id = $request->input('category_name');
