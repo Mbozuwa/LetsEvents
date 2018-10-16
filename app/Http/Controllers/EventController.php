@@ -166,8 +166,8 @@ class EventController extends Controller
             $fileRename = time().'_'.uniqid().'.'.$fileExt;
             $uploadDir    = public_path('uploads/events');
 
-            $event = Event::find($id);
-            $currentImage = $uploadDir.'/'.$event->image;
+            //$event = Event::find($id);
+            $currentImage = $uploadDir.'/'.$post->image;
             if (File::exists($currentImage)) {
                 File::delete($currentImage);
             }
@@ -175,8 +175,7 @@ class EventController extends Controller
             $file->move($uploadDir, $fileRename);
             $post->image = $fileRename;
         }
-
-        $post->user_id = $user->id;
+        
         $post->save();
         return redirect('/events/made');
     }
