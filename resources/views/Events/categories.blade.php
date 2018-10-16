@@ -38,16 +38,20 @@
                           <div class="right_float" >
 
                             <form action="{{action('EventController@saveCategory', $event->id)}}" method="post">
+                                {{-- <input type="checkbox" @if (false) checked @endif> --}}
                                 @csrf
                                 @foreach ($categories as $category)
-
+                                    
                                     @foreach ($category->events as $catEvent)
                                         @if($catEvent->id == $event->id)
-                                            <h2>aangevinkt</h2>
+                                            <input type="checkbox" id="category_name" name="category_name" value="{{$category->id}}" checked />
+                                        @else
+                                            <input type="checkbox" id="category_name" name="category_name" value="{{$category->id}}" />
                                         @endif 
+                                        
                                     @endforeach
                                     
-                                    <input type="checkbox" id="category_name" name="category_name" value="{{$category->id}}"  />
+                            
                                     <label for="category_name">{{ $category->name }}</label><br>
                                 @endforeach
                                 
