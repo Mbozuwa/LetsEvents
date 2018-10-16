@@ -20,11 +20,13 @@ class CategoriesController extends Controller
 	public function show($id)
     {
       // $category_name = DB::table('categories')->select('id', $id)->get();
+
 	  $category = Category::find($id);
       $events = Category::find($id)->events()->get();
 
 	  // Category::find($id)->events()->get();
 	  $test = Event::find($id)->category();
+
 	  // Categories::find($id)->events()->get();
       // $events = $category->event();
 	  // dd(Category::where('category_id' ,$id));
