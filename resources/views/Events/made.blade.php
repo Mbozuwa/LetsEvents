@@ -7,6 +7,14 @@
                         <!-- PAGINATE FUNCTION -->
                         {{ $userEvents->links() }}
                     </div>
+
+                @if(session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
+            </div>
+            <div class="row justify-content-center">
 @foreach ($userEvents as $event)
                     <div class="col-md-6">
                         <div class="panel">
