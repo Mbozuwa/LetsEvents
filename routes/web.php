@@ -35,12 +35,10 @@ Route::group(['middleware' => 'auth'] ,function() {
 
 
 // ProfileController
-
-Route::get('/profile/{id}', function () {
-  return view('profile.profile');
-});
-
 Route::group(['middleware' => 'auth'] ,function() {
+  Route::get('/profile/{id}', function () {
+    return view('profile.profile');
+  });
   Route::get('/ban/{id}', 'ProfileController@ban');
   Route::get('/unban/{id}', 'ProfileController@unban');
   Route::get('/profile/{id}',[

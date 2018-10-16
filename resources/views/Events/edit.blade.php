@@ -5,9 +5,18 @@
     <link href="{{ asset('/assets/vendor/bootstrap/css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
     <script src="{{ asset('/assets/vendor/bootstrap/js/bootstrap-datetimepicker.js') }}"></script>
-    @endpush<p>@if(session('error'))
-        <div class="alert alert-danger">{{session('error')}}</div>
-    @endif
+    @endpush
+    <div class="col-9 justify-content-center bg-dark" style="padding-top:10px; padding-right:10px;">
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @elseif(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+            @endif
+        </div>
         <div class="main-content">
             <div class="container-fluid">
                 <h3 class="page-title">Wijzigen van het evenement</h3>
@@ -15,7 +24,7 @@
                     <div class="col-md-7">
                         <div class="panel">
                             <div class="panel-body">
-                            @if (Auth::id() == $event->user_id)
+                            @if (Auth::id() == $event->user_id || Auth::user()->role_id == 2)
                                 @if(count($errors) > 0)
                                 <div class="alert alert-danger">
                                   @foreach ($errors->all() as $error)
@@ -55,13 +64,13 @@
                                     <div class="form-group">
                                         <label class="h2">Start tijd:</label>
                                         <div class="input-group date" style="width:100%;">
-                                            <input type="text" name="begin_time" class="form-control" id="startTime" placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
+                                            <input type="text" name="begin_time" class="form-control" id="startTime" value="{{ date('d-m-Y H:i', strtotime($event->begin_time)) }}" placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="h2">Eind tijd:</label>
                                         <div class="input-group date" style="width:100%;">
-                                            <input type="text" name="end_time" id="endTime" class="form-control" placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
+                                            <input type="text" name="end_time" id="endTime" class="form-control" value="{{ date('d-m-Y H:i', strtotime($event->end_time)) }}"placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
                                         </div>
                                     </div>
 
@@ -74,7 +83,7 @@
                                          @endforeach
                                     </select> --}}
 
-                                    <input id="invisible_id" name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                                    <input id="invisible_id" name="user_id" type="hidden" value="{{ $event->user_id }}">
                                     {{ csrf_field() }}
                                     <button type="submit" class="btn btn-primary btn-lg" action="">Wijzig het evenement</button>
                                 @else
@@ -114,18 +123,17 @@
                 </div>
             </div>
         </div>
+
         <script type="text/javascript">
             $(function () {
                 $("#startTime").datetimepicker(
                 {
                     format: "DD-MM-YYYY HH:mm",
-                    minDate: moment().toDate(),
                     locale: "nl"
                 });
                 $('#endTime').datetimepicker(
                 {
                     format: "DD-MM-YYYY HH:mm",
-                    minDate: moment().add("h", 1).toDate(),
                     locale: "nl"
                 });
             });

@@ -42,29 +42,11 @@
 
                             <form action="{{action('EventController@saveCategory', $event->id)}}" method="post">
                            @foreach ($categoryEvents as $catEvents)
-                           
-                               @csrf
-                               {{-- {{dd($category->id)}} --}}
-                               {{-- {{dd($categoryEvents)}} style="float:right;" --}}
-                               {{-- @foreach ($categoryEvents as $item)
-                               @if($item->category_id && $event->id )
-                               <h2>hallo</h2>
-                               @else
-                               <h2>nope</h2>
-                               @endif 
-                               @endforeach --}}
-                            
-                            @if ($catEvents->category_id)
-                            <p>hallo</p>
                                
                            <input type="checkbox" id="category_name" name="category_name" value="{{$catEvents->id}}" checked="checked" />
-                           <label for="category_name">{{ $catEvents->name }}</label><br>
-                           @else
-                           <p>niet hallo</p>
-                           <input type="checkbox" id="category_name" name="category_name" value="{{$catEvents->id}}"  />
-                           <label for="category_name">{{ $catEvents->name }}</label><br>
-                           @endif
-                           @endforeach
+                           <label for="category_name">{{ $catEvents->category_id }}</label><br>
+
+                            @endforeach
                            <button type="submit">verzenden</button>
                            
                            </form>
