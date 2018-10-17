@@ -13,10 +13,8 @@
 
 // EventController
 Route::group(['middleware' => 'auth.custom'] ,function() {
-  Route::get('/event/{id}', 'EventController@index');
   Route::get('/events/user','EventController@myEvents');
   Route::get('/events/info/{id}', 'EventController@info');
-  Route::get('/events/index/','EventController@allEvents');
   Route::get('/events/create', 'EventController@create');
   Route::get('/events/made', 'EventController@MadeEvents');
   Route::get('/events/delete/{id}', 'EventController@delete');
@@ -32,6 +30,9 @@ Route::group(['middleware' => 'auth.custom'] ,function() {
   Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
   Route::post('/events/create', 'EventController@store');
 });
+
+    Route::get('/event/{id}', 'EventController@index');
+    Route::get('/events/index/','EventController@allEvents');
 
 
 // ProfileController
