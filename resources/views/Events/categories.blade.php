@@ -35,12 +35,22 @@
                                   <button style="margin-top: 40px;" class="btn bg-danger btn-lg"><a href="/delete/{{$event->id}}"><i class="fas fa-trash-alt" style="color:white;"></i></a></button>
                               
                           @endif
-                          
                           <div class="right_float" >
-                            
-                           
 
                             <form action="{{action('EventController@saveCategory', $event->id)}}" method="post">
+                                {{-- <input type="checkbox" @if (false) checked @endif> --}}
+                                @csrf
+                                @foreach ($categories as $category)
+                                    
+                                    @foreach ($category->events as $catEvent)
+                                        @if($catEvent->id == $event->id)
+                                            <input type="checkbox" id="category_name" name="category_name" value="{{$category->id}}" checked />
+                                        @else
+                                            <input type="checkbox" id="category_name" name="category_name" value="{{$category->id}}" />
+                                        @endif 
+                                        
+                                    @endforeach
+                                    
                            @foreach ($categoryEvents as $catEvents)
                                
                            <input type="checkbox" id="category_name" name="category_name" value="{{$catEvents->id}}" checked="checked" />
@@ -55,9 +65,12 @@
                            {{-- @else --}}
                             
                             
-
-                           {{-- @endif --}}
+                                    <label for="category_name">{{ $category->name }}</label><br>
+                                @endforeach
+                                
+                                <button type="submit">verzenden</button>
                             
+                            </form>
                             {{-- <a href="/events/categories/{{$event->id}}"><i class="fas fa-plus-circle" style="color:green; margin:5px;"></i></a><a href="/categories/{{ $category->id }}">{{ $category->name }}</a><br> --}}
                             
     

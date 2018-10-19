@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Categories;
+use App\Category;
 
 class CategoriesController extends Controller
 {
@@ -14,19 +14,22 @@ class CategoriesController extends Controller
 	*/
 	public function index()
 	{
-		$categories = Categories::all();
+		$categories = Category::all();
 	}
 
 	public function show($id)
     {
       // $category_name = DB::table('categories')->select('id', $id)->get();
-	  $category = Categories::find($id);
-      $events = Categories::find($id)->events()->get();
 
+	  $category = Category::find($id);
+      $events = Category::find($id)->events()->get();
+
+	  // Category::find($id)->events()->get();
 	  $test = Event::find($id)->category();
+
 	  // Categories::find($id)->events()->get();
       // $events = $category->event();
-	  // dd(Categories::where('category_id' ,$id));
+	  // dd(Category::where('category_id' ,$id));
       return view('categories/show', ['events' => $events, 'category' => $category]);
     }
 }

@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Event;
 use App\Registration;
-use App\Category_event;
-use App\Categories;
+use App\CategoryEvent;
+use App\Category;
 use App\User;
 use Auth;
+
 use \File;
+
 use \Input as Input;
 
 class EventController extends Controller
@@ -89,6 +91,14 @@ class EventController extends Controller
         {
             $post->signup_time = $correctDate;
         }
+        if(!empty($request->input('signup_time')))
+        {
+            if(strtotime($request->input('signup_time')) >= strtotime($request->input('end_time')))
+            {
+                //Some error bc signup_time is equal or higher then end_time.
+                return redirect()->back()->with('error', 'De tijd om je aan te melden is na de eind tijd van het evenement.');
+            }
+        }
 
         if(Input::hasFile('image'))
         {
@@ -111,18 +121,27 @@ class EventController extends Controller
 
     public function edit($id) {
         $eventUser = Event::find($id);
+    //     if (Auth::id() == $eventUser->user_id){
+    //     $event = Event::find($id);
+    //     $date_begin = $event['begin_time'];
+    //     $correctDate= date("d-m-Y H:i", strtotime($date_begin));
+    //     $date_end = $event['end_time'];
+    //     $correctDate2= date("d-m-Y H:i", strtotime($date_end));
+    //     // $categories = Category::get();
+    //     return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
+    // }
         if ($eventUser == null) {
-            return redirect()->back()->with('error', 'Dit evenement bestaat niet.');
+            return redirect()->back()->with('error', 'Dit evenement bestaat niet');
         } else {
-            if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2){
-                $event = Event::find($id);
-                $date_begin = $event['begin_time'];
-                $correctDate= date("d-m-Y H:i", strtotime($date_begin));
-                $date_end = $event['end_time'];
-                $correctDate2= date("d-m-Y H:i", strtotime($date_end));
-                // $categories = Categories::get();
-                return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
-        }
+        if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2){
+        $event = Event::find($id);
+        $date_begin = $event['begin_time'];
+        $correctDate= date("d-m-Y H:i", strtotime($date_begin));
+        $date_end = $event['end_time'];
+        $correctDate2= date("d-m-Y H:i", strtotime($date_end));
+        // $categories = Categories::get();
+        return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
+    }
 }
         return redirect()->back()->with('error', 'Dat is niet jouw evenement!');
     }
@@ -166,8 +185,8 @@ class EventController extends Controller
             $fileRename = time().'_'.uniqid().'.'.$fileExt;
             $uploadDir    = public_path('uploads/events');
 
-            $event = Event::find($id);
-            $currentImage = $uploadDir.'/'.$event->image;
+            //$event = Event::find($id);
+            $currentImage = $uploadDir.'/'.$post->image;
             if (File::exists($currentImage)) {
                 File::delete($currentImage);
             }
@@ -175,8 +194,7 @@ class EventController extends Controller
             $file->move($uploadDir, $fileRename);
             $post->image = $fileRename;
         }
-
-        $post->user_id = $user->id;
+        
         $post->save();
         return redirect('/events/made');
     }
@@ -204,25 +222,22 @@ class EventController extends Controller
         $user = Auth::user();
         $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
 
-        if ($event !== 0) {
-            // code...
+            if($event == null) {
+                return redirect()->back();
+            } else {
         try {
             $event->delete();
-            return redirect('/event/made')->with('message', 'Evenement succesvol verwijderd.');
+            return redirect('/events/made')->with('message', 'Evenement succesvol verwijderd.');
 
         } catch (\Illuminate\Database\QueryException $exception) {
             return back()->withError('Dit evenement kan niet verwijderd worden.');
         }
     }
-
         return redirect('/events/made');
     }
 
     public function info($id) {
         $eventUser = Event::find($id);
-        if ($eventUser == null) {
-            return redirect()->back()->with('error', 'Dit evenement bestaat niet');
-        } else {
         if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2){
 
         $user = Auth::user();
@@ -232,18 +247,19 @@ class EventController extends Controller
 
         // dd($registered);
         return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
-    }
     }      return redirect()->back()->with('error', 'Deze informatie gaat jou niks aan!');
     }
     public function chooseCategoryWithEvent($id) {
         $user = Auth::user();
         $userEvents = Event::where(['user_id'=> $user['id'], 'id' => $id ])->paginate(2);
+        $categoryEvents = Event::find($id)->categories()->get();
+        $categories = Category::all();
         $categoryEvents = category_event::where('event_id', $id)->get();
         $categories = categories::all();
         return view('/events/categories', ['userEvents' => $userEvents, 'categoryEvents' => $categoryEvents, 'categories' => $categories]);
     }
     public function saveCategory(Request $request,$id){
-        $saveCategory = new Category_event;
+        $saveCategory = new CategoryEvent;
         // dd($request);
         // $event = Event::where('id',$id)->get();
         $saveCategory->category_id = $request->input('category_name');
