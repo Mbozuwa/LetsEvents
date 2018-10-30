@@ -1,23 +1,34 @@
 <?php
+/*================================================================*\
+|| # Localization file
+|+==================================================================
+|| # To create a new language;
+|| # Create a new folder in /resources/lang with the corresponding
+|| # language - add a msg.php file and copy everything from the EN
+|| # language file into the new one... Translate and done!
+|| # Add a new translation by using {{ __('*CODE*') }}
+|| # inside the view. Translation must be present in every language.
+|| # - Laurens :-)
+\*================================================================*/
 
 return [
     'app.name' => 'LETS EVENT',
     'calender.countrycode' => 'en-gb',
-    
+
     'welcome' => 'Welcome',
     'lang.nl' => 'Dutch',
     'lang.en' => 'English',
     'langShortcode.nl' => 'NL',
     'langShortcode.en' => 'EN',
 
-	'menu' => 'Menu',
-	'menu.register' => 'Register',
-	'menu.login' => 'Log in',
-	'menu.logout' => 'Log out',
-	'menu.myProfile' => 'My profile',
-	'menu.createEvent' => 'Create an event',
-	'menu.createdEvents' => 'My events',
-    
+    'menu' => 'Menu',
+    'menu.register' => 'Register',
+    'menu.login' => 'Log in',
+    'menu.logout' => 'Log out',
+    'menu.myProfile' => 'My profile',
+    'menu.createEvent' => 'Create an event',
+    'menu.createdEvents' => 'My events',
+
     'nav.home' => 'Home',
     'nav.profile' => 'Profile',
     'nav.events' => 'Events',

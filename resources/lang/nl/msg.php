@@ -1,7 +1,18 @@
 <?php
+/*================================================================*\
+|| # Localization file
+|+==================================================================
+|| # To create a new language;
+|| # Create a new folder in /resources/lang with the corresponding
+|| # language - add a msg.php file and copy everything from the EN
+|| # language file into the new one... Translate and done!
+|| # Add a new translation by using {{ __('*CODE*') }}
+|| # inside the view. Translation must be present in every language.
+|| # - Laurens :-)
+\*================================================================*/
 
 return [
-	'app.name' => 'LETS EVENT',
+    'app.name' => 'LETS EVENT',
     'calender.countrycode' => 'nl-be',
 
     'welcome' => 'Welkom',
@@ -10,14 +21,14 @@ return [
     'langShortcode.nl' => 'NL',
     'langShortcode.en' => 'EN',
 
-	'menu' => 'Menu',
-	'menu.register' => 'Registreer',
-	'menu.login' => 'Log in',
-	'menu.logout' => 'Uitloggen',
-	'menu.myProfile' => 'Mijn profiel',
-	'menu.createEvent' => 'Maak een evenement aan',
-	'menu.createdEvents' => 'Gemaakte evenementen',
-	
+    'menu' => 'Menu',
+    'menu.register' => 'Registreer',
+    'menu.login' => 'Log in',
+    'menu.logout' => 'Uitloggen',
+    'menu.myProfile' => 'Mijn profiel',
+    'menu.createEvent' => 'Maak een evenement aan',
+    'menu.createdEvents' => 'Gemaakte evenementen',
+
     'nav.home' => 'Startpagina',
     'nav.profile' => 'Profiel',
     'nav.events' => 'Evenementen',
@@ -25,7 +36,7 @@ return [
     'nav.myEvents' => 'Mijn evenementen',
     'nav.admin' => 'Admin',
 
-	'notification.delete' => 'Verwijder notificatie',
+    'notification.delete' => 'Verwijder notificatie',
 
     'event.iGo' => 'Ik ga',
     'event.iMaybe' => 'Ik ga misschien',
