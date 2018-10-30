@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'app.name' => 'LETS EVENT',
+    'calender.countrycode' => 'en-gb',
+    
+    'welcome' => 'Welcome',
+    'lang.nl' => 'Dutch',
+    'lang.en' => 'English',
+    'langShortcode.nl' => 'NL',
+    'langShortcode.en' => 'EN',
+
+	'menu' => 'Menu',
+	'menu.register' => 'Register',
+	'menu.login' => 'Log in',
+	'menu.logout' => 'Log out',
+	'menu.myProfile' => 'My profile',
+	'menu.createEvent' => 'Create an event',
+	'menu.createdEvents' => 'My events',
+    
+    'nav.home' => 'Home',
+    'nav.profile' => 'Profile',
+    'nav.events' => 'Events',
+    'nav.overview' => 'Overview',
+    'nav.myEvents' => 'My events',
+    'nav.admin' => 'Admin',
+
+    'notification.delete' => 'Delete notification',
+
+    'event.iGo' => 'I\'m participating',
+    'event.iMaybe' => 'I might go',
+    'event.iDontGo' => 'I won\'t participate',
+    'event.noStatus' => 'No status',
+
+    'email' => 'Email',
+    'password' => 'Password',
+
+    /*Signin page*/
+    'signin.logyouracc' => 'Login to your account',
+    'signin.noaccount' => 'Don\'t have an account?',
+    'signin.register' => 'Sign up!',
+    'signin.btn' => 'SIGN IN',
+
+    /*Signup page*/
+    'signup.createacc' => 'Create an account',
+    'signup.name' => 'Name',
+    'signup.address' => 'Address',
+    'signup.phone' => 'Phone number',
+    'signup.requiredfields' => 'The fields marked with a (*) are required.',
+    'signup.btn' => 'SIGN UP',
+    'signup.alreadyacc' => 'Already have an account?',
+    'signup.login' => 'Sign in!',
+];
