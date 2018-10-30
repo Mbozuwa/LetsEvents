@@ -21,7 +21,7 @@
                                   <tr>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
-                                    <td><a href="/activity/{{$user->id}}"><button type="button" class="btn btn-primary">Activiteit</button></a></td>
+                                    <td><a href="/events/index/{{$user->name}}"><button type="button" class="btn btn-primary">Activiteit</button></a></td>
                                     <td style="padding-left:0px;"><a href="/profile/{{$user->id}}"><i class="fas fa-pencil-alt" style="margin-right: 5px;"></i></a>
                                     @if ($user->active == 1)
                                         <a onclick="popup('{{$user->id}}')"><i class="fas fa-ban"></i></a></td>
