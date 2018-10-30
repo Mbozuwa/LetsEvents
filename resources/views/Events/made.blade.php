@@ -2,17 +2,23 @@
 @section('content')
 <div class="main-content">
             <div class="container-fluid">
+                @if(session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
+            @if(session()->has('message'))
+            <div class="alert alert-danger">
+                {{ session()->get('message') }}
+            </div>
+        @endif
             @if (count($userEvents) >= 1)
                     <div class="col-md-12" style="margin-top: -25px;">
                         <!-- PAGINATE FUNCTION -->
                         {{ $userEvents->links() }}
                     </div>
 
-                @if(session()->has('error'))
-                <div class="alert alert-danger">
-                    {{ session()->get('error') }}
-                </div>
-            @endif
+
             </div>
             <div class="row justify-content-center">
 @foreach ($userEvents as $event)
@@ -26,6 +32,8 @@
                                                 <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo" alt="{{ $event['name'] }}"/>
                                             </div>
                                             <div class="media-body">
+                                                het id:{{$event->id}}
+
                                                 <h2 class="event-title">{{ $event['name'] }}</h2>
                                                 @if(strtotime("now") >= strtotime($event['begin_time']) && strtotime("now") <= strtotime($event['end_time']))
                                                 <span class="label label-success status">DIT EVENEMENT IS NU BEZIG</span>
@@ -94,6 +102,7 @@
 
                                 <hr>
                                 <p>Bekijk meer details: <a href="/event/{{$event->id}}">Event pagina</a></p>
+
                                 <p>Mensen die mee doen: <a href="/events/info/{{$event->id}}">Klik hier</a></p>
 
                                 <!-- <p>Catagories:<a href="/events/categories/{{$event->id}}">Klik hier</a></p> -->

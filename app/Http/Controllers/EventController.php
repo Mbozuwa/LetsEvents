@@ -46,16 +46,16 @@ class EventController extends Controller
         }
 }
 
-    public function allEvents() {
-        $events = Event::get();
-        $name = "";
-    return view('events/index', ['events' => $events , 'name' => $name]);
-    }
-    public function allEventsSearch($name) {
-        $events = Event::get();
+public function allEvents() {
+    $events = Event::get();
+    $name = "";
+return view('events/index', ['events' => $events , 'name' => $name]);
+}
+public function allEventsSearch($name) {
+    $events = Event::get();
 
-    return view('events/index', ['events' => $events, 'name' => $name]);
-    }
+return view('events/index', ['events' => $events, 'name' => $name]);
+}
 
     public function create() {
         return view('events/create');
@@ -196,7 +196,7 @@ class EventController extends Controller
             $file->move($uploadDir, $fileRename);
             $post->image = $fileRename;
         }
-        
+
         $post->save();
         return redirect('/events/made');
     }
@@ -222,21 +222,22 @@ class EventController extends Controller
     */
     public function delete($id) {
         $user = Auth::user();
-        $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
-
-            if($event == null) {
-                return redirect()->back();
-            } else {
         try {
-            $event->delete();
+            $event = Event::find(array('user_id' => $user->id, 'id' => $id));
+            // dd($event);
+            if (!isset($event[0]->name) ) {
+                return redirect()->back()->with('error', 'Het evenement bestaat niet');
+            }
+            // dd($event);
+            $event[0]->delete();
             return redirect('/events/made')->with('message', 'Evenement succesvol verwijderd.');
+        }  catch (\Illuminate\Database\QueryException $exception) {
+            return back()->with('error', 'Dit evenement kan niet verwijderd worden.');
+    }
+}
 
-        } catch (\Illuminate\Database\QueryException $exception) {
-            return back()->withError('Dit evenement kan niet verwijderd worden.');
-        }
-    }
-        return redirect('/events/made');
-    }
+        // return redirect('/events/made');
+
 
     public function info($id) {
         $eventUser = Event::find($id);
