@@ -18,8 +18,10 @@ return [
     'welcome' => 'Welkom',
     'lang.nl' => 'Nederlands',
     'lang.en' => 'Engels',
+    'lang.de' => 'Duits',
     'langShortcode.nl' => 'NL',
     'langShortcode.en' => 'EN',
+    'langShortcode.de' => 'DE',
 
     'menu' => 'Menu',
     'menu.register' => 'Registreer',
