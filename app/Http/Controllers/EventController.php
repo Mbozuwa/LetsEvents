@@ -91,6 +91,14 @@ class EventController extends Controller
         {
             $post->signup_time = $correctDate;
         }
+        if(!empty($request->input('signup_time')))
+        {
+            if(strtotime($request->input('signup_time')) >= strtotime($request->input('end_time')))
+            {
+                //Some error bc signup_time is equal or higher then end_time.
+                return redirect()->back()->with('error', 'De tijd om je aan te melden is na de eind tijd van het evenement.');
+            }
+        }
 
         if(Input::hasFile('image'))
         {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Event;
 
 class LoginController extends Controller
 {
@@ -35,5 +36,16 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm(){
+        $columns = [
+            'begin_time AS start',
+            /* 'end_time AS end', */
+            'name AS title'
+        ];
+        $allEvents = Event::orderBy('begin_time', 'asc')->get($columns);
+        $currentEvents = $allEvents->toJson();
+        return view('auth.login')->with(compact('currentEvents'));
     }
 }
