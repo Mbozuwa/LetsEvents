@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('locale/change/{lang}', function($lang){
+    Session::put('locale', $lang);
+    return redirect()->back();
+});
+
 // EventController
 Route::group(['middleware' => 'auth.custom'] ,function() {
   Route::get('/events/user','EventController@myEvents');

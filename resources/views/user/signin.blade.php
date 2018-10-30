@@ -17,7 +17,7 @@
     <script src="{{ asset('/js/calendar/jquery.min.js') }}"></script>
     <script src="{{ asset('/js/calendar/moment.min.js') }}"></script>
     <script src="{{ asset('/js/calendar/fullcalendar.js') }}"></script>
-    <script src="{{ asset('/js/calendar/nl-be.js') }}"></script>
+    @if(__('msg.calender.countrycode') == "nl-be")<script src="{{ asset('/js/calendar/nl-be.js') }}"></script>@else<script src="{{ asset('/js/calendar/en-gb.js') }}"></script>@endif
 
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
@@ -26,7 +26,7 @@
         $(document).ready(function() {
             $('#calendar').fullCalendar({
                 defaultView: 'listMonth',
-                locale: 'nl-be',
+                locale: '{{ __('msg.calender.countrycode') }}',
                 editable: false,
                 eventLimit: false,
                 events: {!! $currentEvents !!}
@@ -44,8 +44,8 @@
                     <div class="left">
                         <div class="content">
                             <div class="header">
-                                <div class="logo text-center">LETS EVENT</div>
-                                <p class="lead">Login met je account</p>
+                                <div class="logo text-center">{{ __('msg.app.name') }}</div>
+                                <p class="lead">{{ __('msg.signin.logyouracc') }}</p>
                             </div>
                             @if(session()->has('error'))
                             <div class="alert alert-danger">
@@ -62,17 +62,17 @@
                             <form class="form-auth-small" action="{{ route('login') }}" method="post">
 
                                 <div class="form-group">
-                                    <label for="signin-email" class="control-label sr-only">Emailadres</label>
-                                    <input type="email" class="form-control" name="email" id="signin-email" placeholder="Emailadres" required>
+                                    <label for="signin-email" class="control-label sr-only">{{ __('msg.email') }}</label>
+                                    <input type="email" class="form-control" name="email" id="signin-email" placeholder="{{ __('msg.email') }}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="signin-password" class="control-label sr-only">Wachtwoord</label>
-                                    <input type="password" class="form-control" name="password" id="signin-password" placeholder="Wachtwoord" required>
+                                    <label for="signin-password" class="control-label sr-only">{{ __('msg.password') }}</label>
+                                    <input type="password" class="form-control" name="password" id="signin-password" placeholder="{{ __('msg.password') }}" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block" action="">LOG IN</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" action="">{{ __('msg.signin.btn') }}</button>
                                 {{ csrf_field() }}
                                 <div class="bottom">
-                                    <span class="helper-text">Heb je geen account? <a href="{{ route('user.signup') }}">Registreer je hier!</a></span>
+                                    <span class="helper-text">{{__('msg.signin.noaccount') }} <a href="{{ route('user.signup') }}">{{ __('msg.signin.register') }}</a></span>
                                 </div>
                             </form>
                         </div>

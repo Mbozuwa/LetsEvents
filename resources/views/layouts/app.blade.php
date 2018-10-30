@@ -34,7 +34,7 @@
         <!-- NAVBAR -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="brand">
-                <a href="#">LETS EVENT</a>
+                <a href="#">{{ __('msg.app.name') }}</a>
             </div>
             <div class="container-fluid">
                 <div class="navbar-btn">
@@ -48,7 +48,18 @@
                                 <span class="badge bg-danger">@if(Session::has('notification'))!@endif</span>
                             </a>
                             <ul class="dropdown-menu notifications">
-                                @if(Session::has('notification'))<li><a href="/event/{{Session::get('event_id')}}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification')}}</a><a href="/notificationDelete">verwijder notificatie</a></li>@endif
+                                @if(Session::has('notification'))<li><a href="/event/{{Session::get('event_id')}}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification')}}</a><a href="/notificationDelete">{{ __('msg.notification.delete') }}</a></li>@endif
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-earth"></i></a>
+                            <ul class="dropdown-menu">
+                            <?php /* @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                <li><a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"><span>Nederlands</span></a></li>
+                            @endforeach */ ?>
+                                <li><a rel="alternate" hreflang="__('msg.langShortcode.nl')" href="{{ url('locale/change/nl') }}"><span>{{ __('msg.lang.nl') }}</span></a></li>
+                                <li><a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/en') }}"><span>{{ __('msg.lang.en') }}</span></a></li>
                             </ul>
                         </li>
 
@@ -61,16 +72,16 @@
                                 <img src="/uploads/{{ Auth::user()->image }}" class="img-circle" alt="Avatar">
                                 @endif <span>{{ Auth::user()->name }}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/profile/{{ Auth::user()->id }}"><i class="lnr lnr-user"></i> <span>Mijn profiel</span></a></li>
-                                    <li><a href="/events/create"><i class="lnr lnr-plus-circle"></i>Maak een evenement aan.</a></li>
-                                    <li><a href="/events/made"><i class="lnr lnr-menu"></i>Gemaakte evenementen.</a></li>
-                                    <li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Log uit</span></a></li>
+                                    <li><a href="/profile/{{ Auth::user()->id }}"><i class="lnr lnr-user"></i> <span>{{ __('msg.menu.myProfile') }}</span></a></li>
+                                    <li><a href="/events/create"><i class="lnr lnr-plus-circle"></i>{{ __('msg.menu.createEvent') }}</a></li>
+                                    <li><a href="/events/made"><i class="lnr lnr-menu"></i>{{ __('msg.menu.createdEvents') }}</a></li>
+                                    <li><a href="/logout"><i class="lnr lnr-exit"></i> <span>{{ __('msg.menu.logout') }}</span></a></li>
                                 </ul>
                             @else
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Menu</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>{{ __('msg.menu') }}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/user/signup"><i class="lnr lnr-user"></i> <span>Registreer</span></a></li>
-                                <li><a href="/user/signin"><i class="lnr lnr-cog"></i> <span>Log in</span></a></li>
+                                <li><a href="/user/signin"><i class="lnr lnr-user"></i> <span>{{ __('msg.menu.login') }}</span></a></li>
+                                <li><a href="/user/signup"><i class="lnr lnr-cog"></i> <span>{{ __('msg.menu.register') }}</span></a></li>
                             </ul>
                             @endif
                         </li>
