@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth.custom'] ,function() {
 
     Route::get('/event/{id}', 'EventController@index');
     Route::get('/events/index/','EventController@allEvents');
+    Route::get('/events/index/{name}','EventController@allEventsSearch');
 
 
 // ProfileController
