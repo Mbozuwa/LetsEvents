@@ -2,12 +2,6 @@
 @section('content')
 <div class="main-content">
             <div class="container-fluid">
-            @if (count($userEvents) >= 1)
-                    <div class="col-md-12" style="margin-top: -25px;">
-                        <!-- PAGINATE FUNCTION -->
-                        {{ $userEvents->links() }}
-                    </div>
-
                 @if(session()->has('error'))
                 <div class="alert alert-danger">
                     {{ session()->get('error') }}
@@ -18,6 +12,13 @@
                 {{ session()->get('message') }}
             </div>
         @endif
+            @if (count($userEvents) >= 1)
+                    <div class="col-md-12" style="margin-top: -25px;">
+                        <!-- PAGINATE FUNCTION -->
+                        {{ $userEvents->links() }}
+                    </div>
+
+
             </div>
             <div class="row justify-content-center">
 @foreach ($userEvents as $event)

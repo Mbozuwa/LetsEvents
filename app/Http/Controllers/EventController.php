@@ -48,13 +48,11 @@ class EventController extends Controller
 
     public function allEvents() {
         $events = Event::get();
-        $name = "";
-    return view('events/index', ['events' => $events , 'name' => $name]);
-    }
-    public function allEventsSearch($name) {
-        $events = Event::get();
-
-    return view('events/index', ['events' => $events, 'name' => $name]);
+        // $category = Category_event::get();
+        // dd($events);
+        // $count =Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
+        $events = Event::orderBy('begin_time', 'asc')->paginate(2);
+    return view('events/index', ['events' => $events /*, 'category' => $category*/]);
     }
 
     public function create() {
@@ -222,18 +220,18 @@ class EventController extends Controller
     */
     public function delete($id) {
         $user = Auth::user();
-        $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
-        // dd($id);
-            if ($id == 0 && !$event->user_id == $user['id']) {
-            return redirect()->back()->with('error', 'why');
-        } else {
         try {
-            $event->delete();
+            $event = Event::find(array('user_id' => $user->id, 'id' => $id));
+            // dd($event);
+            if (!isset($event[0]->name) ) {
+                return redirect()->back()->with('error', 'Het evenement bestaat niet');
+            }
+            // dd($event);
+            $event[0]->delete();
             return redirect('/events/made')->with('message', 'Evenement succesvol verwijderd.');
         }  catch (\Illuminate\Database\QueryException $exception) {
             return back()->with('error', 'Dit evenement kan niet verwijderd worden.');
     }
-}
 }
 
         // return redirect('/events/made');
