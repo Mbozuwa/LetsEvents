@@ -36,7 +36,7 @@ class Event extends Authenticatable
     }
     // each event has ONE user which it recognises by it's id
     public function user(){
-        return $this->hasOne('App\user','id');
+        return $this->hasOne('App\user','id', 'user_id');
     }
     // public function user() {
     //     return $this->belongsTo('App\User');
