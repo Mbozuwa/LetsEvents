@@ -194,7 +194,7 @@ class EventController extends Controller
             $file->move($uploadDir, $fileRename);
             $post->image = $fileRename;
         }
-        
+
         $post->save();
         return redirect('/events/made');
     }
@@ -221,20 +221,21 @@ class EventController extends Controller
     public function delete($id) {
         $user = Auth::user();
         $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
-
-            if($event == null) {
-                return redirect()->back();
-            } else {
+        // dd($id);
+            if ($id == 0 && !$event->user_id == $user['id']) {
+            return redirect()->back()->with('error', 'why');
+        } else {
         try {
             $event->delete();
             return redirect('/events/made')->with('message', 'Evenement succesvol verwijderd.');
+        }  catch (\Illuminate\Database\QueryException $exception) {
+            return back()->with('error', 'Dit evenement kan niet verwijderd worden.');
+    }
+}
+}
 
-        } catch (\Illuminate\Database\QueryException $exception) {
-            return back()->withError('Dit evenement kan niet verwijderd worden.');
-        }
-    }
-        return redirect('/events/made');
-    }
+        // return redirect('/events/made');
+
 
     public function info($id) {
         $eventUser = Event::find($id);
