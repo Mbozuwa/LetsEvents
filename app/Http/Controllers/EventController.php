@@ -51,6 +51,7 @@ class EventController extends Controller
         $name = "";
     return view('events/index', ['events' => $events , 'name' => $name]);
     }
+
     public function allEventsSearch($name) {
         $events = Event::get();
 
