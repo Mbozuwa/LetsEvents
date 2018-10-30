@@ -24,8 +24,8 @@
         <div class="auth-box register">
           <div class="content">
             <div class="header">
-              <div class="logo text-center">LETS EVENT</div>
-              <p class="lead">Maak een account</p>
+              <div class="logo text-center">{{ __('msg.app.name') }}</div>
+              <p class="lead">{{ __('msg.signup.createacc') }}</p>
             </div>
             @if(count($errors) > 0)
             <div class="alert alert-danger">
@@ -37,34 +37,34 @@
             <form class="form-auth-small" name="signUp" onsubmit="return validatePassword() || validatePhoneNumber()"  action="{{ route('user.signup') }}" method="post">
               <div class="form-group">
                 <label for="signup-email" class="control-label sr-only"></label>
-                <p>E-mail *</p><input type="email" class="form-control" name="email" id="signup-email" size="10" required>
+                <p>{{ __('msg.email') }} *</p><input type="email" class="form-control" name="email" id="signup-email" size="10" required>
               </div>
               <div class="form-group">
-                  <p>Wachtwoord *</p>
-                <label for="signup-password" class="control-label sr-only">Wachtwoord</label>
+                  <p>{{ __('msg.password') }} *</p>
+                <label for="signup-password" class="control-label sr-only">{{ __('msg.password') }}</label>
                 <input type="password" class="form-control" name="password" id="signup-password" required>
               </div>
               <div class="form-group">
-                  <p>Naam *</p>
-                <label for="signup-name" class="control-label sr-only">Naam</label>
+                  <p>{{ __('msg.signup.name') }} *</p>
+                <label for="signup-name" class="control-label sr-only">{{ __('msg.signup.name') }}</label>
                 <input type="text" class="form-control" name="name" id="signup-name" required>
               </div>
               <div class="form-group">
-                  <p>Adres *</p>
-                <label for="signup-address" class="control-label sr-only">Adres</label>
+                  <p>{{ __('msg.signup.address') }} *</p>
+                <label for="signup-address" class="control-label sr-only">{{ __('msg.signup.address') }}</label>
                 <input type="text" class="form-control" name="address" id="signup-address" required>
               </div>
               <div class="form-group">
-                  <p>Telefoon nummer *</p>
-                <label for="signup-telephone" class="control-label sr-only">Telefoon nummer</label>
+                  <p>{{ __('msg.signup.phone') }} *</p>
+                <label for="signup-telephone" class="control-label sr-only">{{ __('msg.signup.phone') }}</label>
                 <input type="text" class="form-control" name="telephone" id="signup-telephone" required>
               </div>
-              <button type="submit" class="btn btn-primary btn-lg btn-block">REGISTREER</button>
+              <button type="submit" class="btn btn-primary btn-lg btn-block">{{ __('msg.signup.btn') }}</button>
               {{ csrf_field() }}
               <div class="bottom">
-                <small>De met een (*) gemarkeerde velden moeten worden ingevuld.</small>
+                <small>{{ __('msg.signup.requiredfields') }}</small>
                 <br>
-                <span class="helper-text">Heb je al een account? <a href="/user/signin">Log in!</a></span>
+                <span class="helper-text">{{ __('msg.signup.alreadyacc') }} <a href="/user/signin">{{ __('msg.signup.login') }}</a></span>
               </div>
             </form>
           </div>
