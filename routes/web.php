@@ -81,6 +81,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/activity/{id}', 'AdminController@activity');
 Route::get('/admin', 'AdminController@index');
 
+//schoolController
+Route::group(['middleware' => 'auth.custom'], function () {
 Route::get('/school/index', 'SchoolController@index');
 
 Route::get('/school/create', 'schoolController@create');
@@ -91,6 +93,7 @@ Route::post('/school/update/{id}', 'schoolController@update')->name('updateSchoo
 
 Route::get('/school/delete/{id}', 'schoolController@delete');
 Route::post('/school/delete/{id}', 'schoolController@delete');
+});
 
 //studentController
 Route::resource('student','StudentController');
