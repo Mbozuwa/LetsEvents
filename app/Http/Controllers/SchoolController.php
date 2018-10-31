@@ -51,7 +51,7 @@ class SchoolController extends Controller
             return redirect()->back();
         }
         $school->delete();
-        return redirect('/schools');
+        return redirect('/school/index');
     }
     public function create() {
         if (Auth::user()->role_id != 2) {
