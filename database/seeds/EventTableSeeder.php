@@ -6,7 +6,7 @@ class EventTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
+     *Puts already made data in the db
      * @return void
      */
     public function run()
