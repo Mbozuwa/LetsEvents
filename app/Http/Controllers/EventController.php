@@ -254,14 +254,13 @@ class EventController extends Controller
         $userEvents = Event::where(['user_id'=> $user['id'], 'id' => $id ])->paginate(2);
         $categoryEvents = Event::find($id)->categories()->get();
         $categories = Category::all();
-        $categoryEvents = category_event::where('event_id', $id)->get();
-        $categories = categories::all();
+        $categoryEvents = categoryEvent::where('event_id', $id)->get();
+        
         return view('/events/categories', ['userEvents' => $userEvents, 'categoryEvents' => $categoryEvents, 'categories' => $categories]);
     }
     public function saveCategory(Request $request,$id){
+        CategoryEvent::where('event_id',$id)->delete();
         $saveCategory = new CategoryEvent;
-        // dd($request);
-        // $event = Event::where('id',$id)->get();
         $saveCategory->category_id = $request->input('category_name');
         $saveCategory->event_id = $id;
         $saveCategory->save();

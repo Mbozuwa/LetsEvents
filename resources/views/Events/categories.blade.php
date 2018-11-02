@@ -41,43 +41,52 @@
                                 {{-- <input type="checkbox" @if (false) checked @endif> --}}
                                 @csrf
                                 @foreach ($categories as $category)
-                                    
-                                    @foreach ($category->events as $catEvent)
+                                @php
+                                    $checked='';  
+                                @endphp    
+                                
+                                    {{--         @foreach ($category->events as $catEvent)
                                         @if($catEvent->id == $event->id)
                                             <input type="checkbox" id="category_name" name="category_name" value="{{$category->id}}" checked />
                                         @else
                                             <input type="checkbox" id="category_name" name="category_name" value="{{$category->id}}" />
                                         @endif 
                                         
-                                    @endforeach
-                                    
-                           @foreach ($categoryEvents as $catEvents)
-                               
-                           <input type="checkbox" id="category_name" name="category_name" value="{{$catEvents->id}}" checked="checked" />
-                           <label for="category_name">{{ $catEvents->category_id }}</label><br>
+                                    @endforeach --}}
+                                    {{-- @dd($category); --}}
+                                    @php
+                                        $checked='';
+                                    @endphp
+                                     
+                                    @foreach ($categoryEvents as $catEvents)
+                                        {{ $catEvents->category_id }}
+                                        {{ $category->id }}
+                                    <br>
+                                    @php
+                                        
+                                         
+                                        if($catEvents->category_id == $category->id){
+                                            $checked = ' checked="checked" ';
+                                        }
+                                    @endphp 
+                                        @endforeach
+                                      <input type="checkbox" id="category_name" name="category_name" value="{{$category->id}}" {{$checked}} />
 
-                            @endforeach
-                           <button type="submit">verzenden</button>
-                           
-                           </form>
+                                     
 
-
-                           {{-- @else --}}
-                            
-                            
-                                    <label for="category_name">{{ $category->name }}</label><br>
-                                @endforeach
-                                
-                                <button type="submit">verzenden</button>
-                            
-                            </form>
-                            {{-- <a href="/events/categories/{{$event->id}}"><i class="fas fa-plus-circle" style="color:green; margin:5px;"></i></a><a href="/categories/{{ $category->id }}">{{ $category->name }}</a><br> --}}
-                            
-    
-                        </div>
-                      </div>
-                    </div>
-                    <br>
+                                        
+                                        
+                                                <label for="category_name">{{ $category->name }}</label><br>
+                                            @endforeach
+                                            
+                                            <button type="submit">verzenden</button>
+                                        
+                                        </form>
+                
+                                    </div>
+                                </div>
+                                </div>
+                                <br>
                     
                                 @endforeach
                             <!-- BASIC TABLE -->
