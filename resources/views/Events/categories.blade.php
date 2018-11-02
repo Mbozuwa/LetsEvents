@@ -41,38 +41,35 @@
                                 {{-- <input type="checkbox" @if (false) checked @endif> --}}
                                 @csrf
                                 @foreach ($categories as $category)
-                                @php
-                                    $checked='';  
-                                @endphp    
                                 
-
+                                    @php
+                                        $checked='';  
+                                    @endphp    
                                     
-                                     
                                     @foreach ($categoryEvents as $catEvents)
                                         {{ $catEvents->category_id }}
                                         {{ $category->id }}
-                                    <br>
-                                    @php
-                                        
-                                         
-                                        if($catEvents->category_id == $category->id){
-                                            $checked = ' checked="checked" ';
-                                        }
-                                    @endphp 
-                                        @endforeach
-                                      <input type="checkbox" id="category_name" name="category_name" value="{{$category->id}}" {{$checked}} />
+                                        <br>
+                                        @php            
+                                            if($catEvents->category_id == $category->id){
+                                                $checked = ' checked="checked" ';
+                                            }
+                                        @endphp
 
-                                     
-
-                                        
-                                        
-                                                <label for="category_name">{{ $category->name }}</label><br>
-                                            @endforeach
+                                    @endforeach
+                                      
+                                    <input type="checkbox" id="category_name" name="category_id[]" value="{{$category->id}}" {{$checked}} />
+                                    <label for="category_name">{{ $category->name }}</label><br>                                    
+                                @endforeach
                                             
-                                            <button type="submit">verzenden</button>
+                                <button type="submit">verzenden</button>
                                         
-                                        </form>
+                            </form>
                 
+
+
+
+
                                     </div>
                                 </div>
                                 </div>
