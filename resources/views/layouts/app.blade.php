@@ -58,19 +58,19 @@
                                 <li>
                                     <a rel="alternate" hreflang="__('msg.langShortcode.nl')" href="{{ url('locale/change/nl') }}">
                                         <span>{{ __('msg.lang.nl') }}</span>
-                                        <span style="float:right;"><img src="https://theme.stepofweb.com/Smarty/v2.3.0/HTML_BS4/assets/images/_smarty/flags/nl.png"/></span>
+                                        <span style="float:right;"><img src="{{ asset('/assets/img/nl.png') }}"/></span>
                                     </a>
                                 </li>
                                 <li>
                                     <a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/en') }}">
                                         <span>{{ __('msg.lang.en') }}</span>
-                                        <span style="float:right;"><img src="https://theme.stepofweb.com/Smarty/v2.3.0/HTML_BS4/assets/images/_smarty/flags/gb.png"/></span>
+                                        <span style="float:right;"><img src="{{ asset('/assets/img/gb.png') }}"/></span>
                                     </a>
                                 </li>
                                 <li>
                                     <a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/de') }}">
                                         <span>{{ __('msg.lang.de') }}</span>
-                                        <span style="float:right;"><img src="https://theme.stepofweb.com/Smarty/v2.3.0/HTML_BS4/assets/images/_smarty/flags/de.png"/></span>
+                                        <span style="float:right;"><img src="{{ asset('/assets/img/de.png') }}"/></span>
                                     </a>
                                 </li>
                             </ul>

@@ -36,7 +36,7 @@
                             <td>{{ $event['max_participant'] }}</td>
                             <td>@dateFormat($event->begin_time)</td>
                             <td>@dateFormat($event->end_time)</td>
-                            <td>{{ $event->user->name }}</td>
+                            <td>{{ $event->user['name'] }}</td>
                         </tr>
                         @endforeach
                     </tbody>
