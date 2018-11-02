@@ -27,7 +27,7 @@
 
 
     @stack('dateTimePicker')
-    
+
 </head>
 <body>
     <div id="wrapper">
@@ -55,11 +55,24 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-earth"></i></a>
                             <ul class="dropdown-menu">
-                            <?php /* @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                <li><a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"><span>Nederlands</span></a></li>
-                            @endforeach */ ?>
-                                <li><a rel="alternate" hreflang="__('msg.langShortcode.nl')" href="{{ url('locale/change/nl') }}"><span>{{ __('msg.lang.nl') }}</span></a></li>
-                                <li><a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/en') }}"><span>{{ __('msg.lang.en') }}</span></a></li>
+                                <li>
+                                    <a rel="alternate" hreflang="__('msg.langShortcode.nl')" href="{{ url('locale/change/nl') }}">
+                                        <span>{{ __('msg.lang.nl') }}</span>
+                                        <span style="float:right;"><img src="https://theme.stepofweb.com/Smarty/v2.3.0/HTML_BS4/assets/images/_smarty/flags/nl.png"/></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/en') }}">
+                                        <span>{{ __('msg.lang.en') }}</span>
+                                        <span style="float:right;"><img src="https://theme.stepofweb.com/Smarty/v2.3.0/HTML_BS4/assets/images/_smarty/flags/gb.png"/></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/de') }}">
+                                        <span>{{ __('msg.lang.de') }}</span>
+                                        <span style="float:right;"><img src="https://theme.stepofweb.com/Smarty/v2.3.0/HTML_BS4/assets/images/_smarty/flags/de.png"/></span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
@@ -73,6 +86,10 @@
                                 @endif <span>{{ Auth::user()->name }}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/profile/{{ Auth::user()->id }}"><i class="lnr lnr-user"></i> <span>{{ __('msg.menu.myProfile') }}</span></a></li>
+                                    @if(Auth::user()->role_id == 2)
+
+                                    <li><a href="/school/create" ><i class="lnr lnr-plus-circle"></i> Een nieuwe school</a></li>
+                                    @endif
                                     <li><a href="/events/create"><i class="lnr lnr-plus-circle"></i>{{ __('msg.menu.createEvent') }}</a></li>
                                     <li><a href="/events/made"><i class="lnr lnr-menu"></i>{{ __('msg.menu.createdEvents') }}</a></li>
                                     <li><a href="/logout"><i class="lnr lnr-exit"></i> <span>{{ __('msg.menu.logout') }}</span></a></li>

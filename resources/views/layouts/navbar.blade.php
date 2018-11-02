@@ -22,7 +22,8 @@
                         <ul class="nav">
                             <li><a href="/events/user" class=""><i class="fas fa-basketball-ball"></i> <span>{{ __('msg.nav.myEvents') }}</span></a></li>
                         @if ( Auth::user()->role_id == 2)
-                            <li><a href="/admin" class=""><i class="fas fa-toolbox""></i> <span>{{ __('msg.nav.admin') }}</span></a></li>
+                            <li><a href="/admin" class=""><i class="fas fa-toolbox"></i> <span>{{ __('msg.nav.admin') }}</span></a></li>
+                            <li><a href="/school/index" class=""><i class="fas fa-school"></i> <span>Scholen</span></a></li>
                         @endif
                         @endif
                         </ul>
