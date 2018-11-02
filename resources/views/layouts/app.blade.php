@@ -58,19 +58,19 @@
                                 <li>
                                     <a rel="alternate" hreflang="__('msg.langShortcode.nl')" href="{{ url('locale/change/nl') }}">
                                         <span>{{ __('msg.lang.nl') }}</span>
-                                        <span style="float:right;"><img src="{{ asset('/assets/img/nl.png') }}"/></span>
+                                        <span style="float:right;"><img src="{{ asset('/assets/img/flag-nl.png') }}"/></span>
                                     </a>
                                 </li>
                                 <li>
                                     <a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/en') }}">
                                         <span>{{ __('msg.lang.en') }}</span>
-                                        <span style="float:right;"><img src="{{ asset('/assets/img/gb.png') }}"/></span>
+                                        <span style="float:right;"><img src="{{ asset('/assets/img/flag-gb.png') }}"/></span>
                                     </a>
                                 </li>
                                 <li>
                                     <a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/de') }}">
                                         <span>{{ __('msg.lang.de') }}</span>
-                                        <span style="float:right;"><img src="{{ asset('/assets/img/de.png') }}"/></span>
+                                        <span style="float:right;"><img src="{{ asset('/assets/img/flag-de.png') }}"/></span>
                                     </a>
                                 </li>
                             </ul>
