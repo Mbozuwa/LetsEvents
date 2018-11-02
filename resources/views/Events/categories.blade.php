@@ -45,18 +45,8 @@
                                     $checked='';  
                                 @endphp    
                                 
-                                    {{--         @foreach ($category->events as $catEvent)
-                                        @if($catEvent->id == $event->id)
-                                            <input type="checkbox" id="category_name" name="category_name" value="{{$category->id}}" checked />
-                                        @else
-                                            <input type="checkbox" id="category_name" name="category_name" value="{{$category->id}}" />
-                                        @endif 
-                                        
-                                    @endforeach --}}
-                                    {{-- @dd($category); --}}
-                                    @php
-                                        $checked='';
-                                    @endphp
+
+                                    
                                      
                                     @foreach ($categoryEvents as $catEvents)
                                         {{ $catEvents->category_id }}
