@@ -132,10 +132,13 @@ class EventController extends Controller
     //     // $categories = Category::get();
     //     return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
     // }
-        if ($eventUser == null) {
-            return redirect()->back()->with('error', 'Dit evenement bestaat niet');
-        } else {
-        if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2){
+        /* This wel get put back when this version is put in the buggy branch.
+        * if ($eventUser == null) {
+        *     return redirect()->back()->with('error', 'Dit evenement bestaat niet');
+        * } else {
+        * if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2){
+        * if (Auth::user()->role_id == 2){
+        */
         $event = Event::find($id);
         $date_begin = $event['begin_time'];
         $correctDate= date("d-m-Y H:i", strtotime($date_begin));
@@ -143,10 +146,12 @@ class EventController extends Controller
         $correctDate2= date("d-m-Y H:i", strtotime($date_end));
         // $categories = Categories::get();
         return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
-    }
 }
-        return redirect()->back()->with('error', 'Dat is niet jouw evenement!');
-    }
+        /* This wel get put back when this version is put in the buggy branch.
+        *  return redirect()->back()->with('error', 'Dat is niet jouw evenement!');
+        *  return redirect()->back();
+        */
+
 
     public function update(Request $request,$id) {
         $user = Auth::user();
@@ -196,7 +201,7 @@ class EventController extends Controller
             $file->move($uploadDir, $fileRename);
             $post->image = $fileRename;
         }
-        
+
         $post->save();
         return redirect('/events/made');
     }

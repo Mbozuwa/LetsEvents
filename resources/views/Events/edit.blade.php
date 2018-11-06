@@ -24,14 +24,16 @@
                     <div class="col-md-7">
                         <div class="panel">
                             <div class="panel-body">
-                            @if (Auth::id() == $event->user_id || Auth::user()->role_id == 2)
+                            {{--
+                            Dit wordt weer goed gezet nadat het in de buggy branch is gezet.
+                             @if (Auth::id() == $event->user_id || Auth::user()->role_id == 2)
                                 @if(count($errors) > 0)
                                 <div class="alert alert-danger">
                                   @foreach ($errors->all() as $error)
                                     <p>{{$error}}</p>
                                   @endforeach
                                 </div>
-                                @endif
+                                @endif --}}
                                 <form action="{{ Route('updateEvent', ['id'=> $event->id]) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
@@ -41,7 +43,6 @@
                                     <div class="form-group">
                                         <label class="h2">De beschrijving:</label>
                                         <textarea class="form-control" name="description" placeholder="Beschrijving" rows="4" maxlength="420" required>{{ $event->description }}</textarea>
-                                    </div>
                                     <div class="form-group">
                                         <label class="h2">De plaats:</label>
                                         <input type="text" class="form-control" name="place" placeholder="Plaats" value="{{ $event->place }}" required/>
@@ -86,9 +87,11 @@
                                     <input id="invisible_id" name="user_id" type="hidden" value="{{ $event->user_id }}">
                                     {{ csrf_field() }}
                                     <button type="submit" class="btn btn-primary btn-lg" action="">Wijzig het evenement</button>
-                                @else
+                                {{--
+                                    Dit wordt ook terug gezet nadat het in de buggy branch wordt gezet
+                                    @else
                                     <h2>Jij hoort hier niet!</h2>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
                     </div>
@@ -100,7 +103,7 @@
                             </div>
                                 <div class="panel-body">
                                     <input type="file" name="image" id="file" accept="image/*">
-                                    <input type="hidden" value="{{ csrf_token() }}" name="_token"> 
+                                    <input type="hidden" value="{{ csrf_token() }}" name="_token">
                                 </div>
                             </form>
                         </div>
