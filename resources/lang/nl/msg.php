@@ -19,6 +19,8 @@ return [
     'lang.nl' => 'Nederlands',
     'lang.en' => 'Engels',
     'lang.de' => 'Duits',
+    'lang.ch' => 'Chinees',
+
     'langShortcode.nl' => 'NL',
     'langShortcode.en' => 'EN',
     'langShortcode.de' => 'DE',
