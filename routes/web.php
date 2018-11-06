@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('locale/change/{lang}', function($lang){
+    Session::put('locale', $lang);
+    return redirect()->back();
+});
+
 // EventController
 Route::group(['middleware' => 'auth.custom'] ,function() {
   Route::get('/events/user','EventController@myEvents');
@@ -33,6 +38,7 @@ Route::group(['middleware' => 'auth.custom'] ,function() {
 
     Route::get('/event/{id}', 'EventController@index');
     Route::get('/events/index/','EventController@allEvents');
+    Route::get('/events/index/{name}','EventController@allEventsSearch');
 
 
 // ProfileController
@@ -74,6 +80,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 //adminController
 Route::get('/activity/{id}', 'AdminController@activity');
 Route::get('/admin', 'AdminController@index');
+
+//schoolController
+Route::group(['middleware' => 'auth.custom'], function () {
+Route::get('/school/index', 'SchoolController@index');
+
+Route::get('/school/create', 'schoolController@create');
+Route::post('/school/create', 'schoolController@store')->name('createSchool');
+
+Route::get('/school/edit/{id}', 'schoolController@edit');
+Route::post('/school/update/{id}', 'schoolController@update')->name('updateSchool');
+
+Route::get('/school/delete/{id}', 'schoolController@delete');
+Route::post('/school/delete/{id}', 'schoolController@delete');
+});
 
 //studentController
 Route::resource('student','StudentController');

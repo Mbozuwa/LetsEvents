@@ -13,7 +13,7 @@
         </div>
 <div class="main-content">
                 <div class="container-fluid">
-                    <h3 class="page-title">Welkom</h3>
+                    <h3 class="page-title">{{ __('msg.welcome') }}</h3>
                     <div class="row">
                         <div class="col-md-8">
                             <!-- BASIC TABLE -->
@@ -30,19 +30,19 @@
                                             <tbody>
                                               <tr>
                                                 <td><div class="event-category green"></div></td>
-                                                <td>Ik ga</td>
+                                                <td>{{ __('msg.event.iGo') }}</td>
                                               </tr>
                                               <tr>
                                                 <td><div class="event-category yellow"></div></td>
-                                                <td>Ik ga misschien</td>
+                                                <td>{{ __('msg.event.iMaybe') }}</td>
                                               </tr>
                                               <tr>
                                                 <td><div class="event-category orange"></div></td>
-                                                <td>Ik ga niet</td>
+                                                <td>{{ __('msg.event.iDontGo') }}</td>
                                               </tr>
                                               <tr>
                                                 <td><div class="event-category blue"></div></td>
-                                                <td>Geen status</td>
+                                                <td>{{ __('msg.event.noStatus') }}</td>
                                               </tr>
                                             </tbody>
                                         </table>

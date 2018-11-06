@@ -48,11 +48,13 @@ class EventController extends Controller
 
     public function allEvents() {
         $events = Event::get();
-        // $category = Category_event::get();
-        // dd($events);
-        // $count =Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
-        $events = Event::orderBy('begin_time', 'asc')->paginate(2);
-    return view('events/index', ['events' => $events /*, 'category' => $category*/]);
+        $name = "";
+    return view('events/index', ['events' => $events , 'name' => $name]);
+    }
+    public function allEventsSearch($name) {
+        $events = Event::get();
+
+    return view('events/index', ['events' => $events, 'name' => $name]);
     }
 
     public function create() {
