@@ -73,6 +73,12 @@
                                         <span style="float:right;"><img src="{{ asset('/assets/img/flag-de.png') }}"/></span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/ch') }}">
+                                        <span>{{ __('msg.lang.ch') }}</span>
+                                        <span style="float:right;"><img src="{{ asset('/assets/img/flag-de.png') }}"/></span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
