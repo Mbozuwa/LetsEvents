@@ -26,6 +26,8 @@
                             <li><a href="/school/index" class=""><i class="fas fa-school"></i> <span>Scholen</span></a></li>
                         @endif
                         @endif
+                        {{-- <li><a href="/student/index" class=""><i class="fas fa-school"></i> <span>Studenten test</span></a></li> --}}
+
                         </ul>
                     </nav>
                 </div>

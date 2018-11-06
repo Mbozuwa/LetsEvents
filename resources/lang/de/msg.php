@@ -19,9 +19,12 @@ return [
     'lang.nl' => 'Niederländisch',
     'lang.en' => 'Englisch',
     'lang.de' => 'Deutsch',
+    'lang.ch' => 'chinesisch',
     'langShortcode.nl' => 'NL',
     'langShortcode.en' => 'EN',
     'langShortcode.de' => 'DE',
+    'langShortcode.de' => 'CH',
+
 
     'menu' => 'Menü',
     'menu.register' => 'Registrieren',
