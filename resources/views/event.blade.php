@@ -21,7 +21,11 @@
                                     <div class="col-md-9">
                                         <div class="media">
                                             <div class="media-left">
+                                                @if(empty($profile->image))
+                                                <img src="{{ asset('uploads/unknown.png') }}" class="event-logo"/>
+                                                @else
                                                 <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo" alt="{{ $event['name'] }}"/>
+                                                @endif
                                             </div>
                                             <div class="media-body">
                                                 <h2 class="event-title">{{ $event['name'] }}</h2>
