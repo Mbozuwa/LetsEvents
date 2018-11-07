@@ -19,11 +19,12 @@ return [
     'lang.nl' => 'Niederländisch',
     'lang.en' => 'Englisch',
     'lang.de' => 'Deutsch',
-    'lang.ch' => 'chinesisch',
+    'lang.cn' => 'chinesisch',
+
     'langShortcode.nl' => 'NL',
     'langShortcode.en' => 'EN',
     'langShortcode.de' => 'DE',
-    'langShortcode.de' => 'CH',
+    'langShortcode.cn' => 'CH',
 
 
     'menu' => 'Menü',
