@@ -913,7 +913,7 @@ fieldset[disabled] .btn {
 .panel .right {
     position: absolute;
     right: 20px;
-    top: 32%;
+    top: 50%;
 }
 
 .panel.panel-headline .panel-heading {
