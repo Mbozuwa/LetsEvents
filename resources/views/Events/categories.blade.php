@@ -47,9 +47,8 @@
                                     @endphp    
                                     
                                     @foreach ($categoryEvents as $catEvents)
-                                        {{ $catEvents->category_id }}
-                                        {{ $category->id }}
-                                        <br>
+                                        
+                                        
                                         @php            
                                             if($catEvents->category_id == $category->id){
                                                 $checked = ' checked="checked" ';
