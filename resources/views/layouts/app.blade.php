@@ -74,9 +74,9 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/ch') }}">
+                                    <a rel="alternate" hreflang="__('msg.langShortcode.ch')" href="{{ url('locale/change/ch') }}">
                                         <span>{{ __('msg.lang.ch') }}</span>
-                                        <span style="float:right;"><img src="{{ asset('/assets/img/flag-de.png') }}"/></span>
+                                        <span style="float:right;"><img src="{{ asset('/assets/img/flag-cn.png') }}"/></span>
                                     </a>
                                 </li>
                             </ul>
