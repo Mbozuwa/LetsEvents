@@ -251,6 +251,7 @@ class EventController extends Controller
         return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
     }      return redirect()->back()->with('error', 'Deze informatie gaat jou niks aan!');
     }
+    //choosing a categorie for an event
     public function chooseCategoryWithEvent($id) {
         $user = Auth::user();
         $userEvents = Event::where(['user_id'=> $user['id'], 'id' => $id ])->paginate(2);
@@ -260,19 +261,20 @@ class EventController extends Controller
         
         return view('/events/categories', ['userEvents' => $userEvents, 'categoryEvents' => $categoryEvents, 'categories' => $categories]);
     }
+    //Saving the category in to database
     public function saveCategory(Request $request,$id){
         $catIds = $request->input('category_id');
         CategoryEvent::where('event_id',$id)->delete();
             foreach ($catIds as $catId) {
-                // var_dump($catId); 
+               
             
             $saveCategory = new CategoryEvent;
-            // $saveCategory->category_id = $request->input('category_id');
+            $saveCategory->category_id = $catId;
             $saveCategory->event_id = $id;
-            
+            $saveCategory->save();
             
             }
-        $saveCategory->save();
+       
         return redirect()->back()->with('success', 'De categorie is aangemaakt.');
         
        
