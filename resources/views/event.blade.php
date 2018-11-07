@@ -21,7 +21,7 @@
                                     <div class="col-md-9">
                                         <div class="media">
                                             <div class="media-left">
-                                                @if(empty($profile->image))
+                                                @if(empty($event['image']))
                                                 <img src="{{ asset('uploads/events/unknown.png') }}" class="event-logo"/>
                                                 @else
                                                 <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo" alt="{{ $event['name'] }}"/>

@@ -11,6 +11,7 @@
 |
 */
 
+/* Choose another language and store it in the session */
 Route::get('locale/change/{lang}', function($lang){
     Session::put('locale', $lang);
     return redirect()->back();
