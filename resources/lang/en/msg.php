@@ -75,4 +75,8 @@ return [
     'eventtable.begintime' => 'Begin time',
     'eventtable.endtime' => 'End time',
     'eventtable.eventby' => 'Created by',
+    'eventtable.noEvents.title' => 'No events created',
+    'eventtable.noEvents.desc1' => 'At this moment no events have been created.',
+    'eventtable.noEvents.click' => 'Click here',
+    'eventtable.noEvents.desc2' => 'to create an new event.',
 ];

@@ -64,11 +64,11 @@ class EventController extends Controller
     public function store(Request $request) {
         $user = Auth::user();
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'place' => 'required',
+            'name' => 'required|max:50',
+            'description' => 'required|max:1400',
+            'place' => 'required|alpha',
             'address' => 'required',
-            'max_participant' => 'required',
+            'max_participant' => 'required|alpha_num',
             'begin_time' => 'required',
             'end_time' => 'required',
             'image' => 'required'
@@ -151,11 +151,11 @@ class EventController extends Controller
     public function update(Request $request,$id) {
         $user = Auth::user();
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'place' => 'required',
+            'name' => 'required|max:50',
+            'description' => 'required|max:1400',
+            'place' => 'required|alpha',
             'address' => 'required',
-            'max_participant' => 'required',
+            'max_participant' => 'required|alpha_num',
             'begin_time' => 'required',
             'end_time' => 'required',
             'user_id' => 'required'
@@ -280,8 +280,5 @@ class EventController extends Controller
        
         // $category->event_id = $request->input($event_id);
         // $event = Event::find($event-id);
-
-
-
     }
 }

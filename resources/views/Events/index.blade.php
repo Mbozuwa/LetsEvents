@@ -45,13 +45,13 @@
     </div>
 </div>
         @else
-            <h3 class="page-title">Geen evenementen</h3>
+            <h3 class="page-title">{{ __('msg.eventtable.noEvents.title') }}</h3>
             <div class="row">
                 <div class="col-md-11">
                     <div class="panel">
                         <div class="panel-body">
-                            Op dit moment zijn er geen evenementen aangemaakt.<br/>
-                            <a href="/events/create">Klik hier</a> om een evenement aan te maken.
+                            {{ __('msg.eventtable.noEvents.desc1') }}<br/>
+                            <a href="/events/create">{{ __('msg.eventtable.noEvents.click') }}</a> {{ __('msg.eventtable.noEvents.desc2') }}
                         </div>
                     </div>
                 </div>
