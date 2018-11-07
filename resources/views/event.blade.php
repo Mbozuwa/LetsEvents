@@ -22,7 +22,7 @@
                                         <div class="media">
                                             <div class="media-left">
                                                 @if(empty($profile->image))
-                                                <img src="{{ asset('uploads/unknown.png') }}" class="event-logo"/>
+                                                <img src="{{ asset('uploads/events/unknown.png') }}" class="event-logo"/>
                                                 @else
                                                 <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo" alt="{{ $event['name'] }}"/>
                                                 @endif
@@ -71,7 +71,7 @@
                                         <div class="cell">
                                             <div class="main-info-item">
                                                 <span class="title">EINDDATUM</span>
-                                                <span class="value">@dateFormat($event->end_time)</span>
+                                                <span class="value">@dateFormat($event->begin_time)</span>
                                             </div>
                                         </div>
                                         <div class="cell">
