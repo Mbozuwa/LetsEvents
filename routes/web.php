@@ -96,8 +96,11 @@ Route::post('/school/delete/{id}', 'schoolController@delete');
 });
 
 //studentController
-Route::resource('student','StudentController');
-Route::get('/student/index/{id}', 'StudentController@index');
+Route::get('/student/index','StudentController@index');
+Route::get('/student/show', 'StudentController@show');
+Route::post('/student/show', 'StudentController@chooseSchool')->name('chooseSchool');
+Route::get('/student/edit/{id}', 'StudentController@edit');
+
 
 //categoryController
 Route::get('/categories/{id}', 'CategoriesController@show');

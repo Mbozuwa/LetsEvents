@@ -29,4 +29,5 @@
                                   <button type="submit" class="btn btn-primary btn-lg" action="">Wijzig het evenement</button>
                           </div>
                       </div>
+                  </form>
 @endsection
