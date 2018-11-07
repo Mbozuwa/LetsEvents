@@ -39,6 +39,7 @@ return [
     'nav.overview' => 'Overview',
     'nav.myEvents' => 'My events',
     'nav.admin' => 'Admin',
+    'nav.schools' => 'Schools',
 
     'notification.delete' => 'Delete notification',
 
