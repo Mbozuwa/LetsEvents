@@ -86,7 +86,6 @@ Route::group(['middleware' => 'auth'] ,function() {
 });
 
 //adminController
-Route::get('/activity/{id}', 'AdminController@activity');
 Route::get('/admin', 'AdminController@index');
 
 //schoolController
