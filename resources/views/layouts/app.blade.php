@@ -17,7 +17,7 @@
 
     <!-- DATATABLE -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="{{ asset('/js/jquery.dataTables.js') }}"></script>
 
     <!-- CALENDAR -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
@@ -42,7 +42,7 @@
                 </div>
                 <div id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
+                        @if(Session::has('notification'))<li class="dropdown">
                             <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                                 <i class="lnr lnr-alarm"></i>
                                 <span class="badge bg-danger">@if(Session::has('notification'))!@endif</span>
@@ -50,7 +50,7 @@
                             <ul class="dropdown-menu notifications">
                                 @if(Session::has('notification'))<li><a href="/event/{{Session::get('event_id')}}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification')}}</a><a href="/notificationDelete">{{ __('msg.notification.delete') }}</a></li>@endif
                             </ul>
-                        </li>
+                        </li>@endif
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-earth"></i></a>
@@ -58,19 +58,25 @@
                                 <li>
                                     <a rel="alternate" hreflang="__('msg.langShortcode.nl')" href="{{ url('locale/change/nl') }}">
                                         <span>{{ __('msg.lang.nl') }}</span>
-                                        <span style="float:right;"><img src="https://theme.stepofweb.com/Smarty/v2.3.0/HTML_BS4/assets/images/_smarty/flags/nl.png"/></span>
+                                        <span style="float:right;"><img src="{{ asset('/assets/img/flag-nl.png') }}"/></span>
                                     </a>
                                 </li>
                                 <li>
                                     <a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/en') }}">
                                         <span>{{ __('msg.lang.en') }}</span>
-                                        <span style="float:right;"><img src="https://theme.stepofweb.com/Smarty/v2.3.0/HTML_BS4/assets/images/_smarty/flags/gb.png"/></span>
+                                        <span style="float:right;"><img src="{{ asset('/assets/img/flag-gb.png') }}"/></span>
                                     </a>
                                 </li>
                                 <li>
                                     <a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/de') }}">
                                         <span>{{ __('msg.lang.de') }}</span>
-                                        <span style="float:right;"><img src="https://theme.stepofweb.com/Smarty/v2.3.0/HTML_BS4/assets/images/_smarty/flags/de.png"/></span>
+                                        <span style="float:right;"><img src="{{ asset('/assets/img/flag-de.png') }}"/></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a rel="alternate" hreflang="__('msg.langShortcode.ch')" href="{{ url('locale/change/ch') }}">
+                                        <span>{{ __('msg.lang.ch') }}</span>
+                                        <span style="float:right;"><img src="{{ asset('/assets/img/flag-cn.png') }}"/></span>
                                     </a>
                                 </li>
                             </ul>
