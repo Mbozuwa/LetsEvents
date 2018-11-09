@@ -27,7 +27,7 @@ class ProfileController extends Controller
         return redirect()->back()->with('error', 'Dat is niet jouw profiel!'); 
     }
 
-    //Functions checks if these textfields are filled in.
+    //Function checks if these textfields are filled in.
     public function update(Request $request) {
         $request->validate([
             'id' => 'required',
@@ -81,7 +81,9 @@ class ProfileController extends Controller
             $fileExt   = $file->getClientOriginalExtension();
             $fileRename = time().'_'.uniqid().'.'.$fileExt;
             $uploadDir    = public_path('uploads');
-
+            /**
+             * makes a timestamp for the image name, so it won't replace another image with the same name
+             */
             $currentImage = $uploadDir.'/'.$user->image;
             if (File::exists($currentImage)) {
                 File::delete($currentImage);
@@ -97,23 +99,22 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * This function sets the user inactive
+     */
     public function ban($id){
-
         $user = User::find($id);
-
         $user->active = 0;
-        
         $user->save();
 
         return redirect()->back();
     }
-
+    /**
+     * This function sets the user active
+     */
     public function unban($id){
-
         $user = User::find($id);
-
         $user->active = 1;
-        
         $user->save();
 
         return redirect()->back();
