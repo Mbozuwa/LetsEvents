@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Student;
+use App\Schools;
 use App\User;
+use Auth;
 
 class StudentController extends Controller
 {
@@ -22,11 +25,23 @@ class StudentController extends Controller
          //     $test =User::find($id);
          //     return view('layouts.navbar')->with('test', $test);
          // }
-    public function index($id)
+         /*
+         *Gets all the students and returns the student index page
+         */
+    public function index()
     {
-        $student = User::find($id);
+        $students = Student::all();
+        $users = User::all();
+        $schools = Schools::all();
          // $user = $student->id;
-        return view('student.index')->with('student', $student);
+        return view('student/index', ['students' => $students, 'users' => $users, 'schools' => $schools]);
+    }
+    public function show()
+    {
+        $user = Auth::user();
+        $student = Student::find(['user_id' => $user->id]);
+        $schools = Schools::all();
+        return view('student/show', ['student' => $student, 'schools' => $schools]);
     }
 
     /**
@@ -34,9 +49,24 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function Chooseschool(Request $request)
     {
+        $student = new Student;
+        // dd($request->input('school'));
+        $student->school_id = $request->input('school');
+
+        $student->user_id = Auth::user()->id;
+        $student->save();
+        return redirect()->back();
+    }
+    public function edit($id) {
+        $student = Student::where('user_id', $id)->get();
+        $user = Auth::user();
+        // $studentSchool = Student::find('user_id', $user->id);
         //
+        // dd($student->school_id);
+        $schools = Schools::all();
+        return view('/student/edit', ['student' => $student]);
     }
 
     /**
@@ -56,10 +86,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -67,10 +94,6 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

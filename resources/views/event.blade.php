@@ -21,7 +21,11 @@
                                     <div class="col-md-9">
                                         <div class="media">
                                             <div class="media-left">
+                                                @if(empty($event->image))
+                                                <img src="{{ asset('uploads/events/unknown.png') }}" class="event-logo"/>
+                                                @else
                                                 <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo" alt="{{ $event['name'] }}"/>
+                                                @endif
                                             </div>
                                             <div class="media-body">
                                                 <h2 class="event-title">{{ $event['name'] }}</h2>
@@ -67,7 +71,7 @@
                                         <div class="cell">
                                             <div class="main-info-item">
                                                 <span class="title">EINDDATUM</span>
-                                                <span class="value">@dateFormat($event->end_time)</span>
+                                                <span class="value">@dateFormat($event->begin_time)</span>
                                             </div>
                                         </div>
                                         <div class="cell">

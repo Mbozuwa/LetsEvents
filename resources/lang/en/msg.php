@@ -19,9 +19,12 @@ return [
     'lang.nl' => 'Dutch',
     'lang.en' => 'English',
     'lang.de' => 'German',
+    'lang.cn' => 'Chinese',
+
     'langShortcode.nl' => 'NL',
     'langShortcode.en' => 'EN',
     'langShortcode.de' => 'DE',
+    'langShortcode.cn' => 'CN',
 
     'menu' => 'Menu',
     'menu.register' => 'Register',
@@ -63,4 +66,17 @@ return [
     'signup.btn' => 'SIGN UP',
     'signup.alreadyacc' => 'Already have an account?',
     'signup.login' => 'Sign in!',
+
+    /*Event overview*/
+    'eventtable.name' => 'Name',
+    'eventtable.place' => 'Country',
+    'eventtable.address' => 'Address',
+    'eventtable.maxparticipants' => 'Max participants',
+    'eventtable.begintime' => 'Begin time',
+    'eventtable.endtime' => 'End time',
+    'eventtable.eventby' => 'Created by',
+    'eventtable.noEvents.title' => 'No events created',
+    'eventtable.noEvents.desc1' => 'At this moment no events have been created.',
+    'eventtable.noEvents.click' => 'Click here',
+    'eventtable.noEvents.desc2' => 'to create an new event.',
 ];

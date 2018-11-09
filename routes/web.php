@@ -11,6 +11,7 @@
 |
 */
 
+/* Choose another language and store it in the session */
 Route::get('locale/change/{lang}', function($lang){
     Session::put('locale', $lang);
     return redirect()->back();
@@ -77,6 +78,13 @@ Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
 Route::get('/notificationDelete', 'HomeController@notificationDelete');
 Route::get('/home', 'HomeController@index')->name('home');
 
+//errorController
+Route::group(['middleware' => 'auth'] ,function() {
+  Route::get('/forbidden', 'ErrorController@forbidden')->name('forbidden');
+  Route::get('/pagenotfound', 'ErrorController@pageNotFound')->name('notfound');
+  Route::get('/internal', 'ErrorController@internal')->name('internal');
+});
+
 //adminController
 Route::get('/activity/{id}', 'AdminController@activity');
 Route::get('/admin', 'AdminController@index');
@@ -96,8 +104,11 @@ Route::post('/school/delete/{id}', 'schoolController@delete');
 });
 
 //studentController
-Route::resource('student','StudentController');
-Route::get('/student/index/{id}', 'StudentController@index');
+Route::get('/student/index','StudentController@index');
+Route::get('/student/show', 'StudentController@show');
+Route::post('/student/show', 'StudentController@chooseSchool')->name('chooseSchool');
+Route::get('/student/edit/{id}', 'StudentController@edit');
+
 
 //categoryController
 Route::get('/categories/{id}', 'CategoriesController@show');
