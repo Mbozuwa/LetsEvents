@@ -31,8 +31,8 @@ class SchoolController extends Controller
         return redirect('/');
     }
         $request->validate([
-            'name' => 'required',
-            'place' => 'required',
+            'name' => 'required|max:40',
+            'place' => 'required|alpha',
             'address' => 'required'
         ]);
         $school = Schools::find($id);
@@ -64,8 +64,8 @@ class SchoolController extends Controller
         return redirect('/');
     }
         $request->validate([
-            'name' => 'required',
-            'place' => 'required',
+            'name' => 'required|max:40',
+            'place' => 'required|alpha',
             'address' => 'required'
         ]);
         $school = new Schools;
