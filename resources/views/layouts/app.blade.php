@@ -48,7 +48,7 @@
                                 <span class="badge bg-danger">@if(Session::has('notification'))!@endif</span>
                             </a>
                             <ul class="dropdown-menu notifications">
-                                @if(Session::has('notification'))<li><a href="/event/{{Session::get('event_id')}}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification')}}</a><a href="/notificationDelete">{{ __('msg.notification.delete') }}</a></li>@endif
+                                @if(Session::has('notification'))<li><a href="/event/{{ Session::get('event_id') }}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification') }}</a><a href="/notificationDelete">{{ __('msg.notification.delete') }}</a></li>@endif
                             </ul>
                         </li>@endif
 
@@ -74,8 +74,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a rel="alternate" hreflang="__('msg.langShortcode.ch')" href="{{ url('locale/change/ch') }}">
-                                        <span>{{ __('msg.lang.ch') }}</span>
+                                    <a rel="alternate" hreflang="__('msg.langShortcode.cn')" href="{{ url('locale/change/cn') }}">
+                                        <span>{{ __('msg.lang.cn') }}</span>
                                         <span style="float:right;"><img src="{{ asset('/assets/img/flag-cn.png') }}"/></span>
                                     </a>
                                 </li>
