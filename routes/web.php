@@ -11,6 +11,7 @@
 |
 */
 
+/* Choose another language and store it in the session */
 Route::get('locale/change/{lang}', function($lang){
     Session::put('locale', $lang);
     return redirect()->back();
@@ -77,8 +78,14 @@ Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
 Route::get('/notificationDelete', 'HomeController@notificationDelete');
 Route::get('/home', 'HomeController@index')->name('home');
 
+//errorController
+Route::group(['middleware' => 'auth'] ,function() {
+  Route::get('/forbidden', 'ErrorController@forbidden')->name('forbidden');
+  Route::get('/pagenotfound', 'ErrorController@pageNotFound')->name('notfound');
+  Route::get('/internal', 'ErrorController@internal')->name('internal');
+});
+
 //adminController
-Route::get('/activity/{id}', 'AdminController@activity');
 Route::get('/admin', 'AdminController@index');
 
 //schoolController

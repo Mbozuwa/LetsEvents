@@ -16,7 +16,12 @@ use \File;
 use \Input as Input;
 
 class EventController extends Controller
-{
+{   
+
+    /**
+     * showing an event and it details for the person who made it
+     */
+
     public function index($id) {
        $event = \App\event::find($id);
        $user = Auth::user();
@@ -30,45 +35,66 @@ class EventController extends Controller
        return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
     }
 
+    /**
+     * In an event changing if you are still going to an event or not 
+     */
 
     public function updateStatus(Request $request, $id, $status) {
-        if($status == "Ik ga" || $status == "Misschien" || $status == "Ik ga niet"){
-        $event = \App\event::find($id);
-        $user = Auth::user();
-        $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->first();
-        $attendence->status = $status;
-
-        $attendence->save();
-        return redirect()->back()->with('message', 'Status succesvol bewerkt!');
+        if($status == "Ik ga" || $status == "Misschien" || $status == "Ik ga niet")
+        {
+            $event = \App\event::find($id);
+            $user = Auth::user();
+            $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->first();
+            $attendence->status = $status;
+            $attendence->save();
+            return redirect()->back()->with('message', 'Status succesvol bewerkt!');
         }
-        else{
+        else
+        {
             return redirect()->back()->with('error', 'Niet gelukt!');
         }
-}
+    }
+
+    /**
+     * All events 
+     */
 
     public function allEvents() {
         $events = Event::get();
         $name = "";
     return view('events/index', ['events' => $events , 'name' => $name]);
     }
+
+    /**
+     * All events with a secific name 
+     */
+
     public function allEventsSearch($name) {
         $events = Event::get();
 
     return view('events/index', ['events' => $events, 'name' => $name]);
     }
 
+    /**
+     * ? @alex????
+     */
+
     public function create() {
         return view('events/create');
     }
 
+    /**
+     * making an event with required fields and storing the data in the database
+     */
+
     public function store(Request $request) {
         $user = Auth::user();
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'place' => 'required',
+            'name' => 'required|max:50',
+            'description' => 'required|max:1400',
+            'place' => 'required|alpha',
             'address' => 'required',
-            'max_participant' => 'required',
+            'max_participant' => 'required|alpha_num',
             'begin_time' => 'required',
             'end_time' => 'required',
             'image' => 'required'
@@ -121,47 +147,42 @@ class EventController extends Controller
         return redirect('/events/index');
     }
 
+    /**
+     * editing events from ur user id
+     */
+    
     public function edit($id) {
         $eventUser = Event::find($id);
-    //     if (Auth::id() == $eventUser->user_id){
-    //     $event = Event::find($id);
-    //     $date_begin = $event['begin_time'];
-    //     $correctDate= date("d-m-Y H:i", strtotime($date_begin));
-    //     $date_end = $event['end_time'];
-    //     $correctDate2= date("d-m-Y H:i", strtotime($date_end));
-    //     // $categories = Category::get();
-    //     return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
-    // }
-         // This wel get put back when this version is put in the buggy branch.
-         if ($eventUser == null) {
-             return redirect()->back()->with('error', 'Dit evenement bestaat niet');
-         } else {
-         if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2){
-         if (Auth::user()->role_id == 2){
 
-        $event = Event::find($id);
-        $date_begin = $event['begin_time'];
-        $correctDate= date("d-m-Y H:i", strtotime($date_begin));
-        $date_end = $event['end_time'];
-        $correctDate2= date("d-m-Y H:i", strtotime($date_end));
-        // $categories = Categories::get();
-        return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
-} } else {
-        // This wel get put back when this version is put in the buggy branch.
-          return redirect()->back()->with('error', 'Dat is niet jouw evenement!');
-      }
-         return redirect()->back();
-     }
-}
+        if ($eventUser == null) {
+            return redirect()->back()->with('error', 'Dit evenement bestaat niet');
+        } 
+        else {
+            if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2)
+            {
+                $event = Event::find($id);
+                $date_begin = $event['begin_time'];
+                $correctDate= date("d-m-Y H:i", strtotime($date_begin));
+                $date_end = $event['end_time'];
+                $correctDate2= date("d-m-Y H:i", strtotime($date_end));
+                return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
+            }
+        }
+        return redirect()->back()->with('error', 'Dat is niet jouw evenement!');
+    }
 
+    /**
+     * updating/overriding an events information
+     */
+    
     public function update(Request $request,$id) {
         $user = Auth::user();
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'place' => 'required',
+            'name' => 'required|max:50',
+            'description' => 'required|max:1400',
+            'place' => 'required|alpha',
             'address' => 'required',
-            'max_participant' => 'required',
+            'max_participant' => 'required|alpha_num',
             'begin_time' => 'required',
             'end_time' => 'required',
             'user_id' => 'required'
@@ -206,6 +227,11 @@ class EventController extends Controller
         $post->save();
         return redirect('/events/made');
     }
+
+    /**
+     * getting the events form a user with time and date using the user id
+     */
+
     public function myEvents() {
             $user = Auth::user();
             $registrations = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get();
@@ -216,16 +242,20 @@ class EventController extends Controller
             return view('myEvents',['registrations' => $registrations, 'date' => $date, 'count' => $count, 'countEvents' => $countEvents]);
     }
 
+    /**
+     * getting all the events form a user that he made
+     */
+
     public function madeEvents() {
         $user = Auth::user();
         $userEvents = Event::where('user_id', $user['id'])->paginate(2);
         return view('/events/made', ['userEvents' => $userEvents]);
     }
 
-    /*
-    *The info function gets all the users that are registered with an event that is in the $id.
-    *The auth user gets the current logged in user.
-    */
+    /**
+     * Deletes the event from the user it belongs to
+     */
+
     public function delete($id) {
         $user = Auth::user();
         $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
@@ -244,20 +274,30 @@ class EventController extends Controller
         return redirect('/events/made');
     }
 
+    /*
+    *The info function gets all the users that are registered with an event that is in the $id.
+    *The auth user gets the current logged in user.
+    */
+
     public function info($id) {
         $eventUser = Event::find($id);
         if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2){
 
-        $user = Auth::user();
-        $event = Event::find($id);
-        // $category = Event::find($id)->category()->get();
-        $registered = Registration::where(['event_id' => $id])->where('status' , "Ik ga")->get();
+            $user = Auth::user();
+            $event = Event::find($id);
+            // $category = Event::find($id)->category()->get();
+            $registered = Registration::where(['event_id' => $id])->where('status' , "Ik ga")->get();
 
-        // dd($registered);
-        return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
-    }      return redirect()->back()->with('error', 'Deze informatie gaat jou niks aan!');
+            // dd($registered);
+            return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
+        }      
+        return redirect()->back()->with('error', 'Deze informatie gaat jou niks aan!');
     }
-    //choosing a categorie for an event
+
+    /**
+     * choosing a categorie for an event 
+     */
+    
     public function chooseCategoryWithEvent($id) {
         $user = Auth::user();
         $userEvents = Event::where(['user_id'=> $user['id'], 'id' => $id ])->paginate(2);
@@ -267,7 +307,12 @@ class EventController extends Controller
         
         return view('/events/categories', ['userEvents' => $userEvents, 'categoryEvents' => $categoryEvents, 'categories' => $categories]);
     }
-    //Saving the category in to database
+    
+    
+    /**
+     * Saving the category in to database
+     */
+
     public function saveCategory(Request $request,$id){
         $catIds = $request->input('category_id');
         CategoryEvent::where('event_id',$id)->delete();
@@ -282,12 +327,6 @@ class EventController extends Controller
             }
        
         return redirect()->back()->with('success', 'De categorie is aangemaakt.');
-        
-       
-        // $category->event_id = $request->input($event_id);
-        // $event = Event::find($event-id);
-
-
 
     }
 }
