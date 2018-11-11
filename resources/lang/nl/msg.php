@@ -40,6 +40,8 @@ return [
     'nav.overview' => 'Overzicht',
     'nav.myEvents' => 'Mijn evenementen',
     'nav.admin' => 'Admin',
+    'nav.schools' => 'Scholen',
+
 
     'notification.delete' => 'Verwijder notificatie',
 
