@@ -47,6 +47,22 @@ class EventController extends Controller
             $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->first();
             $attendence->status = $status;
             $attendence->save();
+            if ($status == "Ik ga") {
+                session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
+                session(['notificationAlarmDelete' => false]);
+                session(['event_id' => $id]);
+            }
+            elseif ($status == "Misschien") {
+                session(['notification' => 'Je gaat misschien naar het evenement: '.$event['name']]);
+                session(['notificationAlarmDelete' => false]);
+                session(['event_id' => $id]);
+            }
+            elseif ($status == "Ik ga niet") {
+                session(['notification' => 'Je gaat niet naar het evenement: '.$event['name']]);
+                session(['notificationAlarmDelete' => false]);
+                session(['event_id' => $id]);
+            }
+            
             return redirect()->back()->with('message', 'Status succesvol bewerkt!');
         }
         else

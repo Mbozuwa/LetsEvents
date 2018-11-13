@@ -76,6 +76,7 @@ Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
 
 //homeController
 Route::get('/notificationDelete', 'HomeController@notificationDelete');
+Route::get('/notificationDeleteAlarm', 'HomeController@notificationAlarmDelete');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //errorController

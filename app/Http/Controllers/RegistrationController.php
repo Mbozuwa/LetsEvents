@@ -23,6 +23,7 @@ class RegistrationController extends Controller
         
         $registration->save();
         $event = \App\event::find($id);
+        session(['notificationAlarmDelete' => false]);
         session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
         session(['event_id' => $id]);
         return redirect('/event/'.$id);
@@ -40,6 +41,7 @@ class RegistrationController extends Controller
 
         $registration->save();
         $event = \App\event::find($id);
+        session(['notificationAlarmDelete' => false]);
         session(['notification' => 'Je gaat misschien naar het evenement: '.$event['name']]);
         session(['event_id' => $id]);
         return redirect('/event/'.$id);
@@ -57,6 +59,7 @@ class RegistrationController extends Controller
 
         $registration->save();
         $event = \App\event::find($id);
+        session(['notificationAlarmDelete' => false]);
         session(['notification' => 'Je gaat niet naar het evenement: '.$event['name']]);
         session(['event_id' => $id]);
         return redirect('/event/'.$id);

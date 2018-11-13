@@ -58,7 +58,7 @@
                                         <label class="h2">Bedrag in euro's:</label>
                                        <div class="input-group">
                                            <span class="input-group-addon">&euro;</span>
-                                           <input name="payment" class="form-control" value="0" type="text" value="{{ $event->payment }}"/>
+                                           <input name="payment" class="form-control" type="text" value="{{ $event->payment }}"/>
                                        </div>
                                    </div>
                                    <div class="form-group">
