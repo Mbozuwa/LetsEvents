@@ -46,7 +46,7 @@ return [
 
     'event.iGo' => 'I\'m participating',
     'event.iMaybe' => 'I might go',
-    'event.iDontGo' => 'I won\'t participate',
+    'event.iDontGo' => 'I\'m not participating',
     'event.noStatus' => 'No status',
 
     'email' => 'Email',
