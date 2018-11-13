@@ -44,16 +44,13 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-                                <i class="lnr lnr-alarm" onclick="deleteSign()"></i>
-                                <span id="notificationAlarm" class="badge bg-danger">@if(Session::has('notification'))!@endif</span>
+                                <i class="lnr lnr-alarm"></i>
+                                @if (session('notificationAlarmDelete') == false)
+                                    <span onclick="notificationAlarmDelete()" class="badge bg-danger">@if(Session::has('notification'))!@endif</span>
+                                @endif
                                 <script>
-                                     function deleteSign() {
-                                        var alarm = document.getElementById("notificationAlarm");
-                                        if (alarm.style.display === "none") {
-                                            alarm.style.display = "block";
-                                        } else {
-                                            alarm.style.display = "none";
-                                        }
+                                    function notificationAlarmDelete(){
+                                        window.location.href = "/notificationDeleteAlarm";
                                     }
                                 </script>
                             </a>
