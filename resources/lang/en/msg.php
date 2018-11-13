@@ -102,6 +102,6 @@ return [
     'profile.admin' => 'Admin',
     'profile.edit' => 'Edit',
     'profile.header' => 'My profile',
-
+    'profile.image' => '*The picture cannot be bigger then 500 x 500*',
 
 ];
