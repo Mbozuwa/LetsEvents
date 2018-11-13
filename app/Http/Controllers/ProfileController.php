@@ -35,10 +35,10 @@ class ProfileController extends Controller
     public function update(Request $request) {
         $request->validate([
             'id' => 'required',
-            'name' => 'required',
-            'email' => 'required',
-            'address' => 'required',
-            'telephone' => 'required',
+            'name' => 'required|alpha|max:25',
+            'email' => 'required|email',
+            'address' => 'required|between:1,30',
+            'telephone' => 'required|digits:10',
             'role_id' => 'nullable'
         ]);
         if (Auth::user()->role_id == 2){

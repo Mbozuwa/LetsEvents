@@ -19,11 +19,12 @@ return [
     'lang.nl' => 'Niederländisch',
     'lang.en' => 'Englisch',
     'lang.de' => 'Deutsch',
-    'lang.ch' => 'chinesisch',
+    'lang.cn' => 'chinesisch',
+
     'langShortcode.nl' => 'NL',
     'langShortcode.en' => 'EN',
     'langShortcode.de' => 'DE',
-    'langShortcode.de' => 'CH',
+    'langShortcode.cn' => 'CH',
 
 
     'menu' => 'Menü',
@@ -67,12 +68,18 @@ return [
     'signup.alreadyacc' => 'Hast du schon einen Account?',
     'signup.login' => 'Melde dich an!',
 
-    /*403 Error page*/
-    '403' => 'Du solltest nicht hier sein!',
     
     /*404 Error page*/
     '404' => 'Kann die Seite nicht finden!',
 
     /*500 Error page*/
     '500' => 'Beim Server ist ein Fehler aufgetreten!',
+    /*Profile overview*/
+    'profile.email' => 'Email',
+    'profile.phoneNumber' => 'Telefon',
+    'profile.type' => 'Type',
+    'profile.user' => 'Benutzer',
+    'profile.admin' => 'Administrator',
+    'profile.edit' => 'Bearbeiten',
+    'profile.header' => 'Mein Profil',
 ];

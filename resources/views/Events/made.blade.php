@@ -29,12 +29,19 @@
                                     <div class="col-md-7">
                                         <div class="media">
                                             <div class="media-left">
+                                                @if(empty($event['image']))
+                                                <img src="{{ asset('uploads/events/unknown.png') }}" class="event-logo"/>
+                                                @else
                                                 <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo" alt="{{ $event['name'] }}"/>
+                                                @endif
                                             </div>
                                             <div class="media-body">
-                                                het id:{{$event->id}}
-
                                                 <h2 class="event-title">{{ $event['name'] }}</h2>
+
+                                                @if(Auth::user()->role_id == 2)
+                                                <span class="label label-warning status">ID: {{ $event->id }}</span>
+                                                @endif
+
                                                 @if(strtotime("now") >= strtotime($event['begin_time']) && strtotime("now") <= strtotime($event['end_time']))
                                                 <span class="label label-success status">DIT EVENEMENT IS NU BEZIG</span>
                                                 @elseif(strtotime("now") >= strtotime($event['end_time']))

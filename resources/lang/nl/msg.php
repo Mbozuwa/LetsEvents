@@ -19,11 +19,12 @@ return [
     'lang.nl' => 'Nederlands',
     'lang.en' => 'Engels',
     'lang.de' => 'Duits',
-    'lang.ch' => 'Chinees',
+    'lang.cn' => 'Chinees',
 
     'langShortcode.nl' => 'NL',
     'langShortcode.en' => 'EN',
     'langShortcode.de' => 'DE',
+    'langShortcode.cn' => 'CN',
 
     'menu' => 'Menu',
     'menu.register' => 'Registreer',
@@ -39,6 +40,8 @@ return [
     'nav.overview' => 'Overzicht',
     'nav.myEvents' => 'Mijn evenementen',
     'nav.admin' => 'Admin',
+    'nav.schools' => 'Scholen',
+
 
     'notification.delete' => 'Verwijder notificatie',
 
@@ -74,4 +77,27 @@ return [
 
     /*500 Error page*/
     '500' => 'Er is een fout bij de server opgetreden!',
+    /*Event overview*/
+    'eventtable.name' => 'Naam',
+    'eventtable.place' => 'Plaats',
+    'eventtable.address' => 'Adres',
+    'eventtable.maxparticipants' => 'Max deelnemers',
+    'eventtable.begintime' => 'Begin tijd',
+    'eventtable.endtime' => 'Eind tijd',
+    'eventtable.eventby' => 'Aangemaakt door',
+    'eventtable.noEvents.title' => 'Geen evenementen',
+    'eventtable.noEvents.desc1' => 'Op dit moment zijn er geen evenementen aangemaakt.',
+    'eventtable.noEvents.click' => 'Klik hier',
+    'eventtable.noEvents.desc2' => 'om een evenement aan te maken.',
+
+    /*Profile overview*/
+    'profile.name' => 'Naam',
+    'profile.email' => 'Email',
+    'profile.address' => 'Adres',
+    'profile.phoneNumber' => 'Telefoon',
+    'profile.type' => 'Type',
+    'profile.user' => 'Gebruiker',
+    'profile.admin' => 'Beheerder',
+    'profile.edit' => 'Bewerken',
+    'profile.header' => 'Mijn profiel'
 ];

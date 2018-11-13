@@ -21,7 +21,7 @@
                                     <div class="col-md-9">
                                         <div class="media">
                                             <div class="media-left">
-                                                @if(empty($profile->image))
+                                                @if(empty($event->image))
                                                 <img src="{{ asset('uploads/events/unknown.png') }}" class="event-logo"/>
                                                 @else
                                                 <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo" alt="{{ $event['name'] }}"/>
@@ -39,7 +39,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     @if(Auth::check())
                                         @if(Auth::user()->role_id == 2 || $event['user_id'] == Auth::user()->id)
                                         <div class="col-md-3 text-right">
@@ -49,7 +49,7 @@
                                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                                     @if(strtotime("now") < strtotime($event['end_time']))
                                                     <li><a href="/events/edit/{{ $event['id'] }}">Bewerken</a></li>
-                                                    @else 
+                                                    @else
                                                     <li><a style="pointer-events: none;cursor: default;opacity: 0.5;">Bewerken</a></li>
                                                     @endif
                                                     <li><a href="../events/info/{{ $event['id' ]}}">Deelnemers</a></li>
@@ -106,7 +106,7 @@
                                         @else
                                         <li>Aanmelden kan <span>altijd</span></li>
                                         @endif
-                                        
+
                                         <li><br/>Dit evenement is gemaakt door {{ $organiser->name }}</li>
 
                                     </ul>

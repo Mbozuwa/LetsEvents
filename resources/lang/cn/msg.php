@@ -19,10 +19,11 @@ return [
     'lang.nl' => '荷蘭人',
     'lang.en' => '英語',
     'lang.de' => '德語',
+    
     'langShortcode.nl' => 'NL',
     'langShortcode.en' => 'EN',
     'langShortcode.de' => 'DE',
-    'langShortcode.ch' => 'CH',
+    'langShortcode.cn' => 'CH',
 
 
     'menu' => '菜單',

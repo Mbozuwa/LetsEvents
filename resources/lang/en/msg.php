@@ -19,11 +19,12 @@ return [
     'lang.nl' => 'Dutch',
     'lang.en' => 'English',
     'lang.de' => 'German',
-    'lang.ch' => 'Chinese',
+    'lang.cn' => 'Chinese',
+
     'langShortcode.nl' => 'NL',
     'langShortcode.en' => 'EN',
     'langShortcode.de' => 'DE',
-    'langShortcode.de' => 'CH',
+    'langShortcode.cn' => 'CN',
 
     'menu' => 'Menu',
     'menu.register' => 'Register',
@@ -39,12 +40,13 @@ return [
     'nav.overview' => 'Overview',
     'nav.myEvents' => 'My events',
     'nav.admin' => 'Admin',
+    'nav.schools' => 'Schools',
 
     'notification.delete' => 'Delete notification',
 
     'event.iGo' => 'I\'m participating',
     'event.iMaybe' => 'I might go',
-    'event.iDontGo' => 'I won\'t participate',
+    'event.iDontGo' => 'I\'m not participating',
     'event.noStatus' => 'No status',
 
     'email' => 'Email',
@@ -66,7 +68,6 @@ return [
     'signup.alreadyacc' => 'Already have an account?',
     'signup.login' => 'Sign in!',
 
-    /*403 Error page*/
     '403' => 'You do not belong here!',
     
     /*404 Error page*/
@@ -74,4 +75,26 @@ return [
 
     /*500 Error page*/
     '500' => 'Something went wrong with the server!',
+    /*Event overview*/
+    'eventtable.place' => 'Country',
+    'eventtable.address' => 'Address',
+    'eventtable.maxparticipants' => 'Max participants',
+    'eventtable.begintime' => 'Begin time',
+    'eventtable.endtime' => 'End time',
+    'eventtable.eventby' => 'Created by',
+    'eventtable.noEvents.title' => 'No events created',
+    'eventtable.noEvents.desc1' => 'At this moment no events have been created.',
+    'eventtable.noEvents.click' => 'Click here',
+    'eventtable.noEvents.desc2' => 'to create an new event.',
+
+    /*Profile overview*/
+    'profile.name' => 'Name',
+    'profile.email' => 'Email',
+    'profile.address' => 'Address',
+    'profile.phoneNumber' => 'Telephone',
+    'profile.type' => 'Type',
+    'profile.user' => 'User',
+    'profile.admin' => 'Admin',
+    'profile.edit' => 'Edit',
+    'profile.header' => 'My profile'
 ];

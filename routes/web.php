@@ -10,7 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Language
+
+/* Choose another language and store it in the session */
 Route::get('locale/change/{lang}', function($lang){
     Session::put('locale', $lang);
     return redirect()->back();
@@ -85,7 +86,6 @@ Route::group(['middleware' => 'auth'] ,function() {
 });
 
 //adminController
-Route::get('/activity/{id}', 'AdminController@activity');
 Route::get('/admin', 'AdminController@index');
 
 //schoolController
