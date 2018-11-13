@@ -42,15 +42,25 @@
                 </div>
                 <div id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right">
-                        @if(Session::has('notification'))<li class="dropdown">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-                                <i class="lnr lnr-alarm"></i>
-                                <span class="badge bg-danger">@if(Session::has('notification'))!@endif</span>
+                                <i class="lnr lnr-alarm" onclick="deleteSign()"></i>
+                                <span id="notificationAlarm" class="badge bg-danger">@if(Session::has('notification'))!@endif</span>
+                                <script>
+                                     function deleteSign() {
+                                        var alarm = document.getElementById("notificationAlarm");
+                                        if (alarm.style.display === "none") {
+                                            alarm.style.display = "block";
+                                        } else {
+                                            alarm.style.display = "none";
+                                        }
+                                    }
+                                </script>
                             </a>
                             <ul class="dropdown-menu notifications">
-                                @if(Session::has('notification'))<li><a href="/event/{{ Session::get('event_id') }}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification') }}</a><a href="/notificationDelete">{{ __('msg.notification.delete') }}</a></li>@endif
+                                @if(Session::has('notification'))<li><a href="/event/{{Session::get('event_id')}}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification')}}</a><a href="/notificationDelete">verwijder notificatie</a></li>@endif
                             </ul>
-                        </li>@endif
+                        </li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-earth"></i></a>
