@@ -81,4 +81,15 @@ return [
     'eventtable.noEvents.desc1' => 'Op dit moment zijn er geen evenementen aangemaakt.',
     'eventtable.noEvents.click' => 'Klik hier',
     'eventtable.noEvents.desc2' => 'om een evenement aan te maken.',
+
+    /*Profile overview*/
+    'profile.name' => 'Naam',
+    'profile.email' => 'Email',
+    'profile.address' => 'Adres',
+    'profile.phoneNumber' => 'Telefoon',
+    'profile.type' => 'Type',
+    'profile.user' => 'Gebruiker',
+    'profile.admin' => 'Beheerder',
+    'profile.edit' => 'Bewerken',
+    'profile.header' => 'Mijn profiel'
 ];

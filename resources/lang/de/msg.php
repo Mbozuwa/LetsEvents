@@ -67,4 +67,15 @@ return [
     'signup.btn' => 'registrieren',
     'signup.alreadyacc' => 'Hast du schon einen Account?',
     'signup.login' => 'Melde dich an!',
+
+    /*Profile overview*/
+    'profile.name' => 'Name',
+    'profile.email' => 'Email',
+    'profile.address' => 'Adresse',
+    'profile.phoneNumber' => 'Telefon',
+    'profile.type' => 'Type',
+    'profile.user' => 'Benutzer',
+    'profile.admin' => 'Administrator',
+    'profile.edit' => 'Bearbeiten',
+    'profile.header' => 'Mein Profil'
 ];
