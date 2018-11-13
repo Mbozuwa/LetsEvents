@@ -153,6 +153,7 @@ class EventController extends Controller
     
     public function edit($id) {
         $eventUser = Event::find($id);
+
         if ($eventUser == null) {
             return redirect()->back()->with('error', 'Dit evenement bestaat niet');
         } 
@@ -222,7 +223,7 @@ class EventController extends Controller
             $file->move($uploadDir, $fileRename);
             $post->image = $fileRename;
         }
-        
+
         $post->save();
         return redirect('/events/made');
     }
