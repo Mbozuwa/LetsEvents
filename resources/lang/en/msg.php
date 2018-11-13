@@ -19,11 +19,12 @@ return [
     'lang.nl' => 'Dutch',
     'lang.en' => 'English',
     'lang.de' => 'German',
-    'lang.ch' => 'Chinese',
+    'lang.cn' => 'Chinese',
+
     'langShortcode.nl' => 'NL',
     'langShortcode.en' => 'EN',
     'langShortcode.de' => 'DE',
-    'langShortcode.de' => 'CH',
+    'langShortcode.cn' => 'CN',
 
     'menu' => 'Menu',
     'menu.register' => 'Register',
@@ -39,12 +40,13 @@ return [
     'nav.overview' => 'Overview',
     'nav.myEvents' => 'My events',
     'nav.admin' => 'Admin',
+    'nav.schools' => 'Schools',
 
     'notification.delete' => 'Delete notification',
 
     'event.iGo' => 'I\'m participating',
     'event.iMaybe' => 'I might go',
-    'event.iDontGo' => 'I won\'t participate',
+    'event.iDontGo' => 'I\'m not participating',
     'event.noStatus' => 'No status',
 
     'email' => 'Email',
@@ -65,4 +67,28 @@ return [
     'signup.btn' => 'SIGN UP',
     'signup.alreadyacc' => 'Already have an account?',
     'signup.login' => 'Sign in!',
+
+    /*Event overview*/
+    'eventtable.name' => 'Name',
+    'eventtable.place' => 'Country',
+    'eventtable.address' => 'Address',
+    'eventtable.maxparticipants' => 'Max participants',
+    'eventtable.begintime' => 'Begin time',
+    'eventtable.endtime' => 'End time',
+    'eventtable.eventby' => 'Created by',
+    'eventtable.noEvents.title' => 'No events created',
+    'eventtable.noEvents.desc1' => 'At this moment no events have been created.',
+    'eventtable.noEvents.click' => 'Click here',
+    'eventtable.noEvents.desc2' => 'to create an new event.',
+
+    /*Profile overview*/
+    'profile.name' => 'Name',
+    'profile.email' => 'Email',
+    'profile.address' => 'Address',
+    'profile.phoneNumber' => 'Telephone',
+    'profile.type' => 'Type',
+    'profile.user' => 'User',
+    'profile.admin' => 'Admin',
+    'profile.edit' => 'Edit',
+    'profile.header' => 'My profile'
 ];

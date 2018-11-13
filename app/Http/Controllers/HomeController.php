@@ -23,6 +23,11 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+     /**
+     * Save user data in a variable
+     * Check if the user has an active profile (if not redirect to logout)
+     * Else return home
+     */
     {
             $user = Auth::user();
             if ($user->active == 0) {
@@ -31,6 +36,10 @@ class HomeController extends Controller
         return view('welcome');
     }
     public function notificationDelete()
+    /**
+     * Deletes the notification currently saved in the session
+     * Redirect back
+     */
     {
         session()->forget('notification');
         return redirect()->back();

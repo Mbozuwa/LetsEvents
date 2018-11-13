@@ -29,6 +29,10 @@ class StudentController extends Controller
          *Gets all the students and returns the student index page
          */
     public function index()
+    /**
+     * Retrieve all studens, users and schools.
+     * Return view with all variables
+     */
     {
         $students = Student::all();
         $users = User::all();
@@ -37,6 +41,11 @@ class StudentController extends Controller
         return view('student/index', ['students' => $students, 'users' => $users, 'schools' => $schools]);
     }
     public function show()
+    /**
+     * Find the student with the corresponding user_id.
+     * Find all schools.
+     * Return view with students and schools
+     */
     {
         $user = Auth::user();
         $student = Student::find(['user_id' => $user->id]);
@@ -50,6 +59,10 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function Chooseschool(Request $request)
+    /**
+     * Create a new student with the selected school and user_id
+     * redirect back
+     */
     {
         $student = new Student;
         // dd($request->input('school'));
@@ -59,7 +72,12 @@ class StudentController extends Controller
         $student->save();
         return redirect()->back();
     }
-    public function edit($id) {
+    public function edit($id)
+     /**
+     * Get the student corresponding with the user
+     * Return view with student variable
+     */
+     {
         $student = Student::where('user_id', $id)->get();
         $user = Auth::user();
         // $studentSchool = Student::find('user_id', $user->id);

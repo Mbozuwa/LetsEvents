@@ -7,6 +7,10 @@ use Auth;
 
 class AdminController extends Controller
 {
+    /**
+     * This function checks if the user is in face an admin (if the user is not an admin he'll be redirected back)
+     * Then retrieve all the users and return the view
+     */
     public function index()
     {
         if (Auth::check()) {
@@ -21,19 +25,5 @@ class AdminController extends Controller
             return redirect('/logout');
         }
         
-    }
-    public function activity($id)
-    {
-        if (Auth::check()) {
-            if (Auth::user()->role_id != 2) {
-            return redirect('/');
-        }
-        $users = \App\user::all();
-        $activities =\App\Event::where('user_id', $id)->get();
-        return view('admin' ,['users' => $users, 'activities' => $activities]);
-        }
-        else {
-            return redirect('/logout');
-        }
     }
 }
