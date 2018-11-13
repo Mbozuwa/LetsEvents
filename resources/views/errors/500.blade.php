@@ -5,7 +5,7 @@
     <div class="container">
         <div style="margin-top: 150px;" class="row">
             <h1 style="text-align:center;font-size:150px;"> 500 </h1>
-            <h1 style="text-align:center;color:light-grey;margin-top:50px;">Een foutje bij de server!</h1>
+            <h1 style="text-align:center;color:light-grey;margin-top:50px;">{{__('msg.500')}}</h1>
         </div>
     </div>
     

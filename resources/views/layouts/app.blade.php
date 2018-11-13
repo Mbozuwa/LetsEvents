@@ -80,12 +80,6 @@
                                         <span style="float:right;"><img src="{{ asset('/assets/img/flag-de.png') }}"/></span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a rel="alternate" hreflang="__('msg.langShortcode.cn')" href="{{ url('locale/change/cn') }}">
-                                        <span>{{ __('msg.lang.cn') }}</span>
-                                        <span style="float:right;"><img src="{{ asset('/assets/img/flag-cn.png') }}"/></span>
-                                    </a>
-                                </li>
                             </ul>
                         </li>
 
