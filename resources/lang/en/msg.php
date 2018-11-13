@@ -65,4 +65,13 @@ return [
     'signup.btn' => 'SIGN UP',
     'signup.alreadyacc' => 'Already have an account?',
     'signup.login' => 'Sign in!',
+
+    /*403 Error page*/
+    '403' => 'You do not belong here!',
+    
+    /*404 Error page*/
+    '404' => 'Could not find the webpage!',
+
+    /*500 Error page*/
+    '500' => 'Something went wrong with the server!',
 ];

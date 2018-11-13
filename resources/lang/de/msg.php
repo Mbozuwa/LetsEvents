@@ -66,4 +66,13 @@ return [
     'signup.btn' => 'registrieren',
     'signup.alreadyacc' => 'Hast du schon einen Account?',
     'signup.login' => 'Melde dich an!',
+
+    /*403 Error page*/
+    '403' => 'Du solltest nicht hier sein!',
+    
+    /*404 Error page*/
+    '404' => 'Kann die Seite nicht finden!',
+
+    /*500 Error page*/
+    '500' => 'Beim Server ist ein Fehler aufgetreten!',
 ];

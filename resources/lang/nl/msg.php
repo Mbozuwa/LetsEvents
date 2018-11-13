@@ -65,4 +65,13 @@ return [
     'signup.btn' => 'REGISTREER',
     'signup.alreadyacc' => 'Heb je al een account?',
     'signup.login' => 'Log in!',
+
+    /*403 Error page*/
+    '403' => 'Jij hoort hier niet te zijn!',
+    
+    /*404 Error page*/
+    '404' => 'Kan de pagina niet vinden!',
+
+    /*500 Error page*/
+    '500' => 'Er is een fout bij de server opgetreden!',
 ];
