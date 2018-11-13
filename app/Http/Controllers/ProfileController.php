@@ -11,7 +11,9 @@ use \Input as Input;
 
 class ProfileController extends Controller
 {
-    //Function to get all the user data and checking if this is the user bound to the profile.
+    /**
+     * Function to get all the user data and checking if this is the user bound to the profile.
+     */
     public function getProfile($id) {
         if (auth::user()->id == $id){
             $user = Auth::user();
@@ -27,7 +29,9 @@ class ProfileController extends Controller
         return redirect()->back()->with('error', 'Dat is niet jouw profiel!'); 
     }
 
-    //Functions checks if these textfields are filled in.
+    /**
+     * Function checks if these textfields are filled in.
+     */
     public function update(Request $request) {
         $request->validate([
             'id' => 'required',
@@ -40,7 +44,9 @@ class ProfileController extends Controller
         if (Auth::user()->role_id == 2){
         $user = User::find($request->input('id'));
 
-    //This gets replaces the old data with the data that is requested.
+    /**
+     * This gets replaces the old data with the data that is requested.
+     */
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->address = $request->input('address');
@@ -54,7 +60,9 @@ class ProfileController extends Controller
         else{
         $user = Auth::user();
 
-    //This gets replaces the old data with the data that is requested.
+    /**
+     * This gets replaces the old data with the data that is requested. 
+     */
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->address = $request->input('address');
@@ -81,7 +89,9 @@ class ProfileController extends Controller
             $fileExt   = $file->getClientOriginalExtension();
             $fileRename = time().'_'.uniqid().'.'.$fileExt;
             $uploadDir    = public_path('uploads');
-
+            /**
+             * makes a timestamp for the image name, so it won't replace another image with the same name
+             */
             $currentImage = $uploadDir.'/'.$user->image;
             if (File::exists($currentImage)) {
                 File::delete($currentImage);
@@ -92,28 +102,29 @@ class ProfileController extends Controller
         else {
             return redirect()->back();
             }
-        //saves the image name to the database.
+        /**
+         * saves the image name to the database.
+         */
         $user->save();
         return redirect()->back();
     }
 
+    /**
+     * This function sets the user inactive
+     */
     public function ban($id){
-
         $user = User::find($id);
-
         $user->active = 0;
-        
         $user->save();
 
         return redirect()->back();
     }
-
+    /**
+     * This function sets the user active
+     */
     public function unban($id){
-
         $user = User::find($id);
-
         $user->active = 1;
-        
         $user->save();
 
         return redirect()->back();
