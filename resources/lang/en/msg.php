@@ -80,4 +80,15 @@ return [
     'eventtable.noEvents.desc1' => 'At this moment no events have been created.',
     'eventtable.noEvents.click' => 'Click here',
     'eventtable.noEvents.desc2' => 'to create an new event.',
+
+    /*Profile overview*/
+    'profile.name' => 'Name',
+    'profile.email' => 'Email',
+    'profile.address' => 'Address',
+    'profile.phoneNumber' => 'Telephone',
+    'profile.type' => 'Type',
+    'profile.user' => 'User',
+    'profile.admin' => 'Admin',
+    'profile.edit' => 'Edit',
+    'profile.header' => 'My profile'
 ];
