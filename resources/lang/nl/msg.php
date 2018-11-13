@@ -75,8 +75,12 @@ return [
     /*404 Error page*/
     '404' => 'Kan de pagina niet vinden!',
 
+    /*413 Error page*/
+    '413' => 'De toegestuurde data is te groot!',
+
     /*500 Error page*/
     '500' => 'Er is een fout bij de server opgetreden!',
+
     /*Event overview*/
     'eventtable.name' => 'Naam',
     'eventtable.place' => 'Plaats',
