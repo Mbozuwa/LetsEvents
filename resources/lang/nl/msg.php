@@ -103,5 +103,6 @@ return [
     'profile.user' => 'Gebruiker',
     'profile.admin' => 'Beheerder',
     'profile.edit' => 'Bewerken',
-    'profile.header' => 'Mijn profiel'
+    'profile.header' => 'Mijn profiel',
+    'profile.image' => '*De foto mag niet groter zijn dan 500 x 500*',
 ];
