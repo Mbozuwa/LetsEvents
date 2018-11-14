@@ -14,7 +14,6 @@ class SchoolController extends Controller
     *then $schools gets returned to the index view of school.
     */
     public function index() {
-        abort('413');
             if (Auth::user()->role_id != 2) {
             return redirect('/');
         }
