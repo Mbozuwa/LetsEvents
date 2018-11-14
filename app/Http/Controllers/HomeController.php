@@ -46,7 +46,7 @@ class HomeController extends Controller
     }
     public function notificationAlarmDelete()
     /**
-     * Deletes the notification currently saved in the session
+     * Deletes the notification "!" currently saved in the session
      * Redirect back
      */
     {

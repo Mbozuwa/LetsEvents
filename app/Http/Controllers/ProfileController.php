@@ -35,10 +35,10 @@ class ProfileController extends Controller
     public function update(Request $request) {
         $request->validate([
             'id' => 'required',
-            'name' => 'required|alpha|max:25',
-            'email' => 'required|email',
+            'name' => 'required|regex:/^[\pL\s\-]+$/u|max:25',
+            'email' => 'required|email|regex:/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/',
             'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
-            'telephone' => 'required|digits:10',
+            'telephone' => 'required|regex:/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/',
             'role_id' => 'nullable'
         ]);
         if (Auth::user()->role_id == 2){
