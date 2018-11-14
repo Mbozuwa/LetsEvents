@@ -10,6 +10,7 @@ use App\CategoryEvent;
 use App\Category;
 use App\User;
 use Auth;
+use Validator;
 
 use \File;
 
@@ -105,10 +106,9 @@ class EventController extends Controller
 
     public function store(Request $request) {
         session(['rememberEvent' => $request->all()]);
-        // var_dump(session('rememberEvent'));
-        // die;
+       
         $user = Auth::user();
-        $request->validate([
+        $validator = Validator::make($request->all(),[
             'name' => 'required|max:50',
             'description' => 'required|max:1400',
             'place' => 'required|alpha',
@@ -116,8 +116,15 @@ class EventController extends Controller
             'max_participant' => 'required|alpha_num',
             'begin_time' => 'required',
             'end_time' => 'required',
-            'image' => 'required'
+            'image' => 'required',
         ]);
+        if ($validator->fails())
+        {
+            return redirect()->back()->with($validator)->withInput();
+        }
+        //if else in of buiten de request
+        
+
         $post = new Event();
         $post->name = $request->input('name');
         $post->description = $request->input('description');
@@ -163,7 +170,7 @@ class EventController extends Controller
 
         $post->user_id = $user->id;
         $post->save();
-        return redirect('/events/index' . $post->name);
+        return redirect('/events/index');
     }
 
     /**
@@ -335,9 +342,12 @@ class EventController extends Controller
     public function saveCategory(Request $request,$id){
         $catIds = $request->input('category_id');
         CategoryEvent::where('event_id',$id)->delete();
+        
+            if($catIds === null){
+            return redirect()->back()->with('success', 'De categorie is aangepast.');
+            }
+            
             foreach ($catIds as $catId) {
-
-
             $saveCategory = new CategoryEvent;
             $saveCategory->category_id = $catId;
             $saveCategory->event_id = $id;
@@ -345,7 +355,7 @@ class EventController extends Controller
 
             }
 
-        return redirect()->back()->with('success', 'De categorie is aangemaakt.');
+        return redirect()->back()->with('success', 'De categorie is aangepast.');
 
     }
 }
