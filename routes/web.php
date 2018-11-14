@@ -83,6 +83,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'] ,function() {
   Route::get('/forbidden', 'ErrorController@forbidden')->name('forbidden');
   Route::get('/pagenotfound', 'ErrorController@pageNotFound')->name('notfound');
+  Route::get('/data', 'ErrorController@toLong')->name('toLong');
   Route::get('/internal', 'ErrorController@internal')->name('internal');
 });
 

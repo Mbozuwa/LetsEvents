@@ -68,8 +68,19 @@ return [
     'signup.alreadyacc' => 'Already have an account?',
     'signup.login' => 'Sign in!',
 
+    /*403 Error page*/
+    '403' => 'You do not belong here!',
+    
+    /*404 Error page*/
+    '404' => 'Could not find the webpage!',
+    
+    /*413 Error page*/
+    '413' => 'The sent data is too big!',
+
+    /*500 Error page*/
+    '500' => 'Something went wrong with the server!',
+
     /*Event overview*/
-    'eventtable.name' => 'Name',
     'eventtable.place' => 'Country',
     'eventtable.address' => 'Address',
     'eventtable.maxparticipants' => 'Max participants',
@@ -90,5 +101,7 @@ return [
     'profile.user' => 'User',
     'profile.admin' => 'Admin',
     'profile.edit' => 'Edit',
-    'profile.header' => 'My profile'
+    'profile.header' => 'My profile',
+    'profile.image' => '*The picture cannot be bigger then 500 x 500*',
+
 ];

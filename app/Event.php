@@ -34,7 +34,9 @@ class Event extends Authenticatable
     public function registrations(){
         return $this->hasMany('App\Registration','event_id');
     }
-    // each event has ONE user which it recognises by it's id
+    /** 
+     * each event has ONE user which recognises it by it's id
+     */
     public function user(){
         return $this->hasOne('App\user','id', 'user_id');
     }

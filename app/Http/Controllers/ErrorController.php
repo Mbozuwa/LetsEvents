@@ -16,6 +16,11 @@ class ErrorController extends Controller
         return view('errors.404');
     }
 
+    // Gives the 413.blade view with the error 413
+    public function toLong() {
+        return view('errors.413');
+    }
+
     // Gives the 403.blade view with the error 403
     public function internal() {
         return view('errors.403');
