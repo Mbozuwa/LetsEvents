@@ -97,7 +97,7 @@ function validatePhoneNumber()
     // console.log(phoneId);
     if (phoneId.value.length < 10 || phoneId.value.length > 10) {
         document.signUp.telephone.style.border = '1px solid #999999';
-        alert('het telephone is niet lang genoeg');
+        alert('het telefoon nummer is niet lang genoeg');
         return false;
    }
 }
