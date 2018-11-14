@@ -37,7 +37,7 @@ class ProfileController extends Controller
             'id' => 'required',
             'name' => 'required|alpha|max:25',
             'email' => 'required|email',
-            'address' => 'required|between:1,30',
+            'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
             'telephone' => 'required|digits:10',
             'role_id' => 'nullable'
         ]);

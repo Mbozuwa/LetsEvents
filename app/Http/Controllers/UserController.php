@@ -30,7 +30,7 @@ class UserController extends Controller
         'email' => 'email|required|unique:users',
         'password' => 'required|min:8|max:255',
         'name' => 'required|min:3',
-        'address' => 'required',
+        'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
         'telephone' => 'required|digits:10',
       ]);
       $user = new User([
