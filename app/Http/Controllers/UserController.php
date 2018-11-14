@@ -31,7 +31,7 @@ class UserController extends Controller
         'password' => 'required|min:8|max:255',
         'name' => 'required|regex:/^[\pL\s\-]+$/u|max:25|min:3',
         'address' => 'required|between:1,30',
-        'telephone' => 'required|regex:/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/',
+        'telephone' => 'required|regex:/^[0-9]{3}-[0-9]{4}-[0-9]{3}$/',
       ]);
       $user = new User([
         'email' => $request->input('email'),
