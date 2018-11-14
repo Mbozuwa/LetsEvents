@@ -55,7 +55,7 @@ class ProfileController extends Controller
         
         $user->save();
 
-        return redirect()->back()->with('message', 'Profiel succesvol bewerkt!');
+        return redirect()->back()->with('message', __('msg.ProfileController.edit'));
         }
         else{
         $user = Auth::user();
@@ -70,7 +70,7 @@ class ProfileController extends Controller
         
         $user->save();
 
-        return redirect()->back()->with('message', 'Profiel succesvol bewerkt!');
+        return redirect()->back()->with('message', __('msg.ProfileController.edit'));
         }
     }
 
