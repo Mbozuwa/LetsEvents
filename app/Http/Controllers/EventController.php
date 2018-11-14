@@ -342,9 +342,12 @@ class EventController extends Controller
     public function saveCategory(Request $request,$id){
         $catIds = $request->input('category_id');
         CategoryEvent::where('event_id',$id)->delete();
+        
+            if($catIds === null){
+            return redirect()->back()->with('success', 'De categorie is aangepast.');
+            }
+            
             foreach ($catIds as $catId) {
-
-
             $saveCategory = new CategoryEvent;
             $saveCategory->category_id = $catId;
             $saveCategory->event_id = $id;
@@ -352,7 +355,7 @@ class EventController extends Controller
 
             }
 
-        return redirect()->back()->with('success', 'De categorie is aangemaakt.');
+        return redirect()->back()->with('success', 'De categorie is aangepast.');
 
     }
 }
