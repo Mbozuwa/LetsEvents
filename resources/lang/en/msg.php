@@ -104,4 +104,7 @@ return [
     'profile.header' => 'My profile',
     'profile.image' => '*The picture cannot be bigger then 500 x 500*',
 
+    /*ProfileController overview*/
+    'ProfileController.edit' => 'Profile succesfully edited',
+
 ];
