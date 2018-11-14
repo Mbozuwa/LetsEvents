@@ -69,6 +69,18 @@ return [
     'signup.alreadyacc' => 'Heb je al een account?',
     'signup.login' => 'Log in!',
 
+    /*403 Error page*/
+    '403' => 'Jij hoort hier niet te zijn!',
+    
+    /*404 Error page*/
+    '404' => 'Kan de pagina niet vinden!',
+
+    /*413 Error page*/
+    '413' => 'De toegestuurde data is te groot!',
+
+    /*500 Error page*/
+    '500' => 'Er is een fout bij de server opgetreden!',
+
     /*Event overview*/
     'eventtable.name' => 'Naam',
     'eventtable.place' => 'Plaats',
@@ -91,5 +103,6 @@ return [
     'profile.user' => 'Gebruiker',
     'profile.admin' => 'Beheerder',
     'profile.edit' => 'Bewerken',
-    'profile.header' => 'Mijn profiel'
+    'profile.header' => 'Mijn profiel',
+    'profile.image' => '*De foto mag niet groter zijn dan 500 x 500*',
 ];
