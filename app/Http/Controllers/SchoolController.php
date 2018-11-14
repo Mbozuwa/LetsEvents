@@ -14,7 +14,6 @@ class SchoolController extends Controller
     *then $schools gets returned to the index view of school.
     */
     public function index() {
-        abort('413');
             if (Auth::user()->role_id != 2) {
             return redirect('/');
         }
@@ -58,7 +57,7 @@ class SchoolController extends Controller
         $request->validate([
             'name' => 'required|max:40',
             'place' => 'required|alpha',
-            'address' => 'required'
+            'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^'
         ]);
         $school = Schools::find($id);
         $school->name =   $request->input('name');
@@ -111,7 +110,7 @@ class SchoolController extends Controller
         $request->validate([
             'name' => 'required|max:40',
             'place' => 'required|alpha',
-            'address' => 'required'
+            'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^'
         ]);
         $school = new Schools;
         $school->name =   $request->input('name');

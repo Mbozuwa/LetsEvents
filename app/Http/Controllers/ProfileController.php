@@ -35,43 +35,28 @@ class ProfileController extends Controller
     public function update(Request $request) {
         $request->validate([
             'id' => 'required',
-            'name' => 'required|alpha|max:25',
-            'email' => 'required|email',
-            'address' => 'required|between:1,30',
-            'telephone' => 'required|digits:10',
+            'name' => 'required|regex:/^[\pL\s\-]+$/u|max:25',
+            'email' => 'required|email|regex:/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/',
+            'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
+            'telephone' => 'required|regex:/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/',
             'role_id' => 'nullable'
         ]);
+        /**
+         * This gets replaces the old data with the data that is requested.
+         */
         if (Auth::user()->role_id == 2){
-        $user = User::find($request->input('id'));
-
-    /**
-     * This gets replaces the old data with the data that is requested.
-     */
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->address = $request->input('address');
-        $user->telephone = $request->input('telephone');
-        $user->role_id = $request->input('role_id');
-        
-        $user->save();
-
-        return redirect()->back()->with('message', 'Profiel succesvol bewerkt!');
+            $user = User::find($request->input('id'));
+        }else{
+            $user = Auth::user();
         }
-        else{
-        $user = Auth::user();
-
-    /**
-     * This gets replaces the old data with the data that is requested. 
-     */
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->address = $request->input('address');
-        $user->telephone = $request->input('telephone');
-        
-        $user->save();
-
-        return redirect()->back()->with('message', 'Profiel succesvol bewerkt!');
-        }
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->address = $request->input('address');
+            $user->telephone = $request->input('telephone');
+            $user->role_id = $request->input('role_id');
+            
+            $user->save();
+            return redirect()->back()->with('message', __('msg.ProfileController.edit'));
     }
 
     /**

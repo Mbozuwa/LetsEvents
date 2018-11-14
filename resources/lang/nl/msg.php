@@ -105,4 +105,7 @@ return [
     'profile.edit' => 'Bewerken',
     'profile.header' => 'Mijn profiel',
     'profile.image' => '*De foto mag niet groter zijn dan 500 x 500*',
+    
+    /*ProfileController overview*/
+    'ProfileController.edit' => 'Profiel succesvol bewerkt!',
 ];
