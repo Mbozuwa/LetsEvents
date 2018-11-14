@@ -32,27 +32,27 @@
                                         </div>
                                     @endforeach
                                 @endif
-                                <form action="{{ action('EventController@create') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ action('EventController@create') }}" method="post" enctype="multipart/form-data" name="form">
                                     @csrf
                                     <div class="form-group">
                                         <label class="h2">De naam: *</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Naam" required/>
+                                        <input type="text" class="form-control" name="name" placeholder="Naam" required id="input"/>
                                     </div>
                                     <div class="form-group">
                                         <label class="h2">De beschrijving: *</label>
-                                        <textarea class="form-control" name="description" placeholder="Beschrijving" rows="4" maxlength="420" required/></textarea>
+                                        <textarea class="form-control" name="description" placeholder="Beschrijving" rows="4" maxlength="420" required id="input"/></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label class="h2">De plaats: *</label>
-                                        <input type="text" class="form-control" name="place" placeholder="Plaats" required/>
+                                        <input type="text" class="form-control" name="place" placeholder="Plaats" required id="input"/>
                                     </div>
                                     <div class="form-group">
                                         <label class="h2">Het adres: *</label>
-                                        <input type="text" name="address" class="form-control" placeholder="Adres" required/>
+                                        <input type="text" name="address" class="form-control" placeholder="Adres" required id="input"/>
                                     </div>
                                     <div class="form-group">
                                         <label class="h2">Maximaal aantal deelnemers: *</label>
-                                        <input type="text" name="max_participant" class="form-control" placeholder="Max deelnemers" required/>
+                                        <input type="text" name="max_participant" class="form-control" placeholder="Max deelnemers" required id="input"/>
                                     </div>
                                     <div class="form-group">
                                         <label class="h2">Bedrag in euro's: *</label>
@@ -64,13 +64,13 @@
                                     <div class="form-group">
                                         <label class="h2">Start tijd: *</label>
                                         <div class="input-group date" style="width:100%;">
-                                            <input type="text" name="begin_time" class="form-control" id="startTime" placeholder="dd-mm-jjjj --:--" required/>
+                                            <input type="text" name="begin_time" class="form-control" id="startTime" placeholder="dd-mm-jjjj --:--" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="h2">Eind tijd: *</label>
                                         <div class="input-group date" style="width:100%;">
-                                            <input type="text" name="end_time" id="endTime" class="form-control" placeholder="dd-mm-jjjj --:--" required/>
+                                            <input type="text" name="end_time" id="endTime" class="form-control" placeholder="dd-mm-jjjj --:--" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -83,7 +83,7 @@
                                         <span style="float:right;" class="h6">Dit is verplicht *</span>
                                     </div>
                                     {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-primary btn-lg" action="">Maak een evenement aan.</button>
+                                    <button type="submit"  class="inputCheckBtn btn btn-primary btn-lg" action="">Maak een evenement aan.</button>
                             </div>
                         </div>
                     </div>
@@ -125,5 +125,33 @@
                     locale: "nl"
                 });
             });
+            function inputCheck() {
+                jQuery(".inputCheckBtn").attr("disabled", "disabled");
+                var returnValue = true;
+
+                jQuery("input").each(function(){
+                    if(jQuery(this).attr("required")){
+                        if(jQuery(this).val().length <= 0){
+                            jQuery(this).css("border", "1px solid red").css("background-color", "#ffcccc");
+                            returnValue = false;
+                        }
+                    }
+                })
+                jQuery("textarea").each(function() {
+                    if(jQuery(this).attr("required")) {
+                        if(jQuery(this).val().length <= 0) {
+                            jQuery(this).css("border", "1px solid red").css("background-color", "#ffcccc");
+                            returnValue = false;
+                        }
+                    }
+                })
+                if(!returnValue){
+                    jQuery(".inputCheckBtn").attr("disabled", false);
+                }
+               
+                return returnValue;
+
+
+            }
         </script>
 @endsection

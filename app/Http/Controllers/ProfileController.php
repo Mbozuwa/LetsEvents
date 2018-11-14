@@ -37,7 +37,7 @@ class ProfileController extends Controller
             'id' => 'required',
             'name' => 'required|regex:/^[\pL\s\-]+$/u|max:25',
             'email' => 'required|email|regex:/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/',
-            'address' => 'required|between:1,30',
+            'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
             'telephone' => 'required|regex:/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/',
             'role_id' => 'nullable'
         ]);
@@ -55,7 +55,7 @@ class ProfileController extends Controller
         
         $user->save();
 
-        return redirect()->back()->with('message', 'Profiel succesvol bewerkt!');
+        return redirect()->back()->with('message', __('msg.ProfileController.edit'));
         }
         else{
         $user = Auth::user();
@@ -70,7 +70,7 @@ class ProfileController extends Controller
         
         $user->save();
 
-        return redirect()->back()->with('message', 'Profiel succesvol bewerkt!');
+        return redirect()->back()->with('message', __('msg.ProfileController.edit'));
         }
     }
 

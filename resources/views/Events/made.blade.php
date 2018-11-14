@@ -115,7 +115,7 @@
                                 <p>Catagories:<a href="/events/categories/{{$event->id}}">Klik hier</a></p>
                                 <a href="/events/edit/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-success btn-lg"><i class="far fa-edit" style="color:white;"></i></button></a>
                                 @if (Auth::check())
-                                <a href="/delete/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-danger btn-lg"><i class="fas fa-trash-alt" style="color:white;"></i></button></a>
+                                <a href="/events/delete/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-danger btn-lg"><i class="fas fa-trash-alt" style="color:white;"></i></button></a>
                                 @endif
                             </div>
                         </div>
