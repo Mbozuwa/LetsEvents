@@ -42,15 +42,22 @@
                 </div>
                 <div id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right">
-                        @if(Session::has('notification'))<li class="dropdown">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                                 <i class="lnr lnr-alarm"></i>
-                                <span class="badge bg-danger">@if(Session::has('notification'))!@endif</span>
+                                @if (session('notificationAlarmDelete') == false)
+                                    <span onclick="notificationAlarmDelete()" class="badge bg-danger">@if(Session::has('notification'))!@endif</span>
+                                @endif
+                                <script>
+                                    function notificationAlarmDelete(){
+                                        window.location.href = "/notificationDeleteAlarm";
+                                    }
+                                </script>
                             </a>
                             <ul class="dropdown-menu notifications">
-                                @if(Session::has('notification'))<li><a href="/event/{{ Session::get('event_id') }}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification') }}</a><a href="/notificationDelete">{{ __('msg.notification.delete') }}</a></li>@endif
+                                @if(Session::has('notification'))<li><a href="/event/{{Session::get('event_id')}}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification')}}</a><a href="/notificationDelete">verwijder notificatie</a></li>@endif
                             </ul>
-                        </li>@endif
+                        </li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-earth"></i></a>
@@ -71,12 +78,6 @@
                                     <a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/de') }}">
                                         <span>{{ __('msg.lang.de') }}</span>
                                         <span style="float:right;"><img src="{{ asset('/assets/img/flag-de.png') }}"/></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a rel="alternate" hreflang="__('msg.langShortcode.cn')" href="{{ url('locale/change/cn') }}">
-                                        <span>{{ __('msg.lang.cn') }}</span>
-                                        <span style="float:right;"><img src="{{ asset('/assets/img/flag-cn.png') }}"/></span>
                                     </a>
                                 </li>
                             </ul>

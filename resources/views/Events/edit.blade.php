@@ -56,83 +56,83 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="h2">Bedrag in euro's:</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">&euro;</span>
-                                            <input name="payment" class="form-control" value="0" type="text" value="{{ $event->payment }}"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="h2">Start tijd:</label>
-                                        <div class="input-group date" style="width:100%;">
-                                            <input type="text" name="begin_time" class="form-control" id="startTime" value="{{ date('d-m-Y H:i', strtotime($event->begin_time)) }}" placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="h2">Eind tijd:</label>
-                                        <div class="input-group date" style="width:100%;">
-                                            <input type="text" name="end_time" id="endTime" class="form-control" value="{{ date('d-m-Y H:i', strtotime($event->end_time)) }}"placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
-                                        </div>
-                                    </div>
+                                       <div class="input-group">
+                                           <span class="input-group-addon">&euro;</span>
+                                           <input name="payment" class="form-control" type="text" value="{{ $event->payment }}"/>
+                                       </div>
+                                   </div>
+                                   <div class="form-group">
+                                       <label class="h2">Start tijd:</label>
+                                       <div class="input-group date" style="width:100%;">
+                                           <input type="text" name="begin_time" class="form-control" id="startTime" value="{{ date('d-m-Y H:i', strtotime($event->begin_time)) }}" placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
+                                       </div>
+                                   </div>
+                                   <div class="form-group">
+                                       <label class="h2">Eind tijd:</label>
+                                       <div class="input-group date" style="width:100%;">
+                                           <input type="text" name="end_time" id="endTime" class="form-control" value="{{ date('d-m-Y H:i', strtotime($event->end_time)) }}"placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
+                                       </div>
+                                   </div>
 
-                                    {{-- <div class="form-group row">
-                                    <label for="category" class="col-sm-2 col-form-label">Categorie:</label>
-                                    <select name="category_id" id="category_id" class="form-control">
-                                    <option value="">Geen</option>
-                                         @foreach ($categories as $category)
-                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                         @endforeach
-                                    </select> --}}
+                                   {{-- <div class="form-group row">
+                                   <label for="category" class="col-sm-2 col-form-label">Categorie:</label>
+                                   <select name="category_id" id="category_id" class="form-control">
+                                   <option value="">Geen</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                   </select> --}}
 
-                                    <input id="invisible_id" name="user_id" type="hidden" value="{{ $event->user_id }}">
-                                    {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-primary btn-lg" action="">Wijzig het evenement</button>
-                                @else
-                                    <h2>Jij hoort hier niet!</h2>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+                                   <input id="invisible_id" name="user_id" type="hidden" value="{{ $event->user_id }}">
+                                   {{ csrf_field() }}
+                                   <button type="submit" class="btn btn-primary btn-lg" action="">Wijzig het evenement</button>
+                               @else
+                                   <h2>Jij hoort hier niet!</h2>
+                               @endif
+                           </div>
+                       </div>
+                   </div>
 
-                    <div class="col-md-4">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Afbeeldingen uploaden voor evenement</h3>
-                            </div>
-                                <div class="panel-body">
-                                    <input type="file" name="image" id="file" accept="image/*">
-                                    <input type="hidden" value="{{ csrf_token() }}" name="_token"> 
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                   <div class="col-md-4">
+                       <div class="panel">
+                           <div class="panel-heading">
+                               <h3 class="panel-title">Afbeeldingen uploaden voor evenement</h3>
+                           </div>
+                               <div class="panel-body">
+                                   <input type="file" name="image" id="file" accept="image/*">
+                                   <input type="hidden" value="{{ csrf_token() }}" name="_token">
+                               </div>
+                           </form>
+                       </div>
+                   </div>
 
-                    @if(!empty($event->image))
-                    <div class="col-md-4">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Evenement afbeelding</h3>
-                            </div>
-                            <div class="panel-body">
-                                <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo-edit" alt="{{ $event['name'] }}"/>
-                                <span class="event-logo-edit-caption">De bovenstaande afbeelding wordt voor je evenement gebruikt. Als je deze wilt wijzigen uploadt dan hierboven een nieuwe afbeelding.</span>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
+                   @if(!empty($event->image))
+                   <div class="col-md-4">
+                       <div class="panel">
+                           <div class="panel-heading">
+                               <h3 class="panel-title">Evenement afbeelding</h3>
+                           </div>
+                           <div class="panel-body">
+                               <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo-edit" alt="{{ $event['name'] }}"/>
+                               <span class="event-logo-edit-caption">De bovenstaande afbeelding wordt voor je evenement gebruikt. Als je deze wilt wijzigen uploadt dan hierboven een nieuwe afbeelding.</span>
+                           </div>
+                       </div>
+                   </div>
+                   @endif
 
-                </div>
-            </div>
-        </div>
+               </div>
+           </div>
+       </div>
 
-        <script type="text/javascript">
-            $(function () {
-                $("#startTime").datetimepicker(
-                {
-                    format: "DD-MM-YYYY HH:mm",
-                    locale: "nl"
-                });
-                $('#endTime').datetimepicker(
-                {
+       <script type="text/javascript">
+           $(function () {
+               $("#startTime").datetimepicker(
+               {
+                   format: "DD-MM-YYYY HH:mm",
+                   locale: "nl"
+               });
+               $('#endTime').datetimepicker(
+               {
                     format: "DD-MM-YYYY HH:mm",
                     locale: "nl"
                 });

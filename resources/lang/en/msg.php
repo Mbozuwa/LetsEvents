@@ -40,12 +40,13 @@ return [
     'nav.overview' => 'Overview',
     'nav.myEvents' => 'My events',
     'nav.admin' => 'Admin',
+    'nav.schools' => 'Schools',
 
     'notification.delete' => 'Delete notification',
 
     'event.iGo' => 'I\'m participating',
     'event.iMaybe' => 'I might go',
-    'event.iDontGo' => 'I won\'t participate',
+    'event.iDontGo' => 'I\'m not participating',
     'event.noStatus' => 'No status',
 
     'email' => 'Email',
@@ -67,8 +68,19 @@ return [
     'signup.alreadyacc' => 'Already have an account?',
     'signup.login' => 'Sign in!',
 
+    /*403 Error page*/
+    '403' => 'You do not belong here!',
+    
+    /*404 Error page*/
+    '404' => 'Could not find the webpage!',
+    
+    /*413 Error page*/
+    '413' => 'The sent data is too big!',
+
+    /*500 Error page*/
+    '500' => 'Something went wrong with the server!',
+
     /*Event overview*/
-    'eventtable.name' => 'Name',
     'eventtable.place' => 'Country',
     'eventtable.address' => 'Address',
     'eventtable.maxparticipants' => 'Max participants',
@@ -79,4 +91,17 @@ return [
     'eventtable.noEvents.desc1' => 'At this moment no events have been created.',
     'eventtable.noEvents.click' => 'Click here',
     'eventtable.noEvents.desc2' => 'to create an new event.',
+
+    /*Profile overview*/
+    'profile.name' => 'Name',
+    'profile.email' => 'Email',
+    'profile.address' => 'Address',
+    'profile.phoneNumber' => 'Telephone',
+    'profile.type' => 'Type',
+    'profile.user' => 'User',
+    'profile.admin' => 'Admin',
+    'profile.edit' => 'Edit',
+    'profile.header' => 'My profile',
+    'profile.image' => '*The picture cannot be bigger then 500 x 500*',
+
 ];

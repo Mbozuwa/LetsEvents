@@ -67,4 +67,40 @@ return [
     'signup.btn' => 'registrieren',
     'signup.alreadyacc' => 'Hast du schon einen Account?',
     'signup.login' => 'Melde dich an!',
+
+    /*Event overview*/
+    'eventtable.name' => 'Name',
+    'eventtable.place' => 'Platzieren',
+    'eventtable.address' => 'Addresse',
+    'eventtable.maxparticipants' => 'Max Teilnehmer',
+    'eventtable.begintime' => 'Start Zeit',
+    'eventtable.endtime' => 'Ende der Zet',
+    'eventtable.eventby' => 'Erstelt Von',
+    'eventtable.noEvents.title' => 'Kein Ereignisse',
+    'eventtable.noEvents.desc1' => 'Zu diesem Zeitpunkt wurden noch keine Ereignisse erstellt.',
+    'eventtable.noEvents.click' => 'Hier Klincken',
+    'eventtable.noEvents.desc2' => 'eine Veranstaltung erstellen.',
+
+    /*403 Error page*/
+    '403' => 'du solltest nicht hier sein!',
+    
+    /*404 Error page*/
+    '404' => 'Kann die Seite nicht finden!',
+
+    /*413 Error page*/
+    '413' => 'Die wichtigsten Daten sind der Groot!',
+
+    /*500 Error page*/
+    '500' => 'Beim Server ist ein Fehler aufgetreten!',
+
+    /*Profile overview*/
+    'profile.email' => 'Email',
+    'profile.phoneNumber' => 'Telefon',
+    'profile.type' => 'Type',
+    'profile.user' => 'Benutzer',
+    'profile.admin' => 'Administrator',
+    'profile.edit' => 'Bearbeiten',
+    'profile.header' => 'Mein Profil',
+    'profile.image' => '*Das Foto darf nicht größer als 500 x 500 sein*',
+
 ];
