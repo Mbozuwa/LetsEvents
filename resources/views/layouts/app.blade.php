@@ -44,16 +44,13 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-                                <i class="lnr lnr-alarm" onclick="deleteSign()"></i>
-                                <span id="notificationAlarm" class="badge bg-danger">@if(Session::has('notification'))!@endif</span>
+                                <i class="lnr lnr-alarm"></i>
+                                @if (session('notificationAlarmDelete') == false)
+                                    <span onclick="notificationAlarmDelete()" class="badge bg-danger">@if(Session::has('notification'))!@endif</span>
+                                @endif
                                 <script>
-                                     function deleteSign() {
-                                        var alarm = document.getElementById("notificationAlarm");
-                                        if (alarm.style.display === "none") {
-                                            alarm.style.display = "block";
-                                        } else {
-                                            alarm.style.display = "none";
-                                        }
+                                    function notificationAlarmDelete(){
+                                        window.location.href = "/notificationDeleteAlarm";
                                     }
                                 </script>
                             </a>
@@ -81,12 +78,6 @@
                                     <a rel="alternate" hreflang="__('msg.langShortcode.en')" href="{{ url('locale/change/de') }}">
                                         <span>{{ __('msg.lang.de') }}</span>
                                         <span style="float:right;"><img src="{{ asset('/assets/img/flag-de.png') }}"/></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a rel="alternate" hreflang="__('msg.langShortcode.cn')" href="{{ url('locale/change/cn') }}">
-                                        <span>{{ __('msg.lang.cn') }}</span>
-                                        <span style="float:right;"><img src="{{ asset('/assets/img/flag-cn.png') }}"/></span>
                                     </a>
                                 </li>
                             </ul>

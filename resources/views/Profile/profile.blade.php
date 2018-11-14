@@ -85,6 +85,7 @@
                                             <input style="margin-top:30px;" type="file" name="image" id="file">
                                             <input style="margin-top:10px" type="submit" value="Upload" name="submit">
                                             <input type="hidden" value="{{ csrf_token() }}" name="_token">
+                                            <p style="margin-top:40px;float:right;">{{__('msg.profile.image')}}</p>
                                         </div>
                                     </form>
                                     </div>

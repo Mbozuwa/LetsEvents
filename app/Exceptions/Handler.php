@@ -58,6 +58,11 @@ class Handler extends ExceptionHandler
                 return redirect()->route('notfound');
                 break;
 
+                // to Long
+                case 413: 
+                return redirect()->route('toLong');
+                break;
+
                 // Forbidden
                 case 500:
                 return redirect()->route('forbidden');
