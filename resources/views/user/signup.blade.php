@@ -57,7 +57,7 @@
               <div class="form-group">
                   <p>{{ __('msg.signup.phone') }} *</p>
                 <label for="signup-telephone" class="control-label sr-only">{{ __('msg.signup.phone') }}</label>
-                <input type="text" class="form-control" name="telephone" id="signup-telephone" placeholder="061-2345-6789" required>
+                <input type="text" class="form-control" name="telephone" id="signup-telephone" placeholder="061-2345-678" required>
               </div>
               <button type="submit" class="btn btn-primary btn-lg btn-block">{{ __('msg.signup.btn') }}</button>
               {{ csrf_field() }}
