@@ -81,6 +81,7 @@ return [
     '500' => 'Something went wrong with the server!',
 
     /*Event overview*/
+    'eventtable.name' => 'Name',
     'eventtable.place' => 'Country',
     'eventtable.address' => 'Address',
     'eventtable.maxparticipants' => 'Max participants',
