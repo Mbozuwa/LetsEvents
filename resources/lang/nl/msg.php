@@ -71,7 +71,7 @@ return [
 
     /*403 Error page*/
     '403' => 'Jij hoort hier niet te zijn!',
-    
+
     /*404 Error page*/
     '404' => 'Kan de pagina niet vinden!',
 
@@ -105,7 +105,21 @@ return [
     'profile.edit' => 'Bewerken',
     'profile.header' => 'Mijn profiel',
     'profile.image' => '*De foto mag niet groter zijn dan 500 x 500*',
-    
+
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profiel succesvol bewerkt!',
+
+    /*Schools overview*/
+    'school.name' => 'Naam',
+    'school.place' => 'Plaats',
+    'school.address' => 'Het adres',
+    'school.edit' => 'Bewerken',
+    'school.delete' => 'Verwijder',
+    'school.school' => 'De school',
+    'school.schools' => 'De scholen',
+    'school.editSchool' => 'Pas de school aan.',
+    'school.editSchoolTitle' => 'Pas een school aan',
+    'school.new' => 'Een nieuwe school'
+
+
 ];

@@ -17,7 +17,11 @@
                                     {{ session()->get('error') }}
                                 </div>
                                 @endif
-
+                                <div class="panel">
+                                    <div class="panel-body">
+                                        {{$profile->id}}
+                                    </div>
+                                </div>
                                 <div class="row justify-content-end">
                                     <div class="col-md-6 bg-light" style="float=left;">
                                         <form action="{{action("ProfileController@update")}}" method="POST">
@@ -67,6 +71,38 @@
                                             @endif
                                             <button type="submit" style="margin-top: 40px;color:white;" class="btn bg-success btn-lg">{{__('msg.profile.edit')}}</button>
                                     </form>
+                                    <form class="" action="{{Route('editStudent', ['id' => Auth::user()->id])}}" method="post">
+                                        @csrf
+                                            <div class="form-group row">
+                                                <label for="school" class="col-sm-2 col-form-label">{{__('msg.school')}}:</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control" name="school">
+                                                        @foreach ($schools as $school)
+                                                            @php
+                                                                $selected='';
+                                                            @endphp
+                                                            @if ($selectedSchool)
+                                                                @foreach ($selectedSchool as $key)
+                                                                    @php
+                                                                        if ($key['id'] == $school->id) {
+                                                                            $selected = 'selected = "selected"';
+                                                                        }
+                                                                    @endphp
+                                                                @endforeach
+                                                            @endif
+                                                                <option name="school"  value="{{$school->id}}" {{$selected}}>{{$school->name}} </option>
+                                                            @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="btn btn-primary btn-lg">Edit je school</button>
+                                    </form>
+
+                                    {{-- @endif --}}
+
+
+
                                     </div>
                                     <div class="col-md-6" style="float-right;">
                                     <form action="{{action("ProfileController@upload")}}" method="POST" enctype="multipart/form-data">
