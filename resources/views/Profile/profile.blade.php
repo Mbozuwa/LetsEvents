@@ -17,11 +17,11 @@
                                     {{ session()->get('error') }}
                                 </div>
                                 @endif
-                                <div class="panel">
+                                {{-- <div class="panel">
                                     <div class="panel-body">
                                         {{$profile->id}}
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row justify-content-end">
                                     <div class="col-md-6 bg-light" style="float=left;">
                                         <form action="{{action("ProfileController@update")}}" method="POST">
@@ -74,7 +74,7 @@
                                     <form class="" action="{{Route('editStudent', ['id' => Auth::user()->id])}}" method="post">
                                         @csrf
                                             <div class="form-group row">
-                                                <label for="school" class="col-sm-2 col-form-label">{{__('msg.school')}}:</label>
+                                                <label for="school" class="col-sm-2 col-form-label">{{__('msg.school.school')}}:</label>
                                                 <div class="col-sm-10">
                                                     <select class="form-control" name="school">
                                                         @foreach ($schools as $school)
