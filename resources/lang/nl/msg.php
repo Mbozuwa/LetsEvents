@@ -154,7 +154,7 @@ return [
     'school.schools' => 'De scholen',
     'school.editSchool' => 'Pas de school aan.',
     'school.editSchoolTitle' => 'Pas een school aan',
-    'school.new' => 'Een nieuwe school'
+    'school.new' => 'Een nieuwe school',
 
     /*Controller messages*/
     'EventController.updateStatus.success' => 'Status succesvol bewerkt!',
