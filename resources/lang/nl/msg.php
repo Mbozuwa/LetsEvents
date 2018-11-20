@@ -42,7 +42,9 @@ return [
     'nav.admin' => 'Admin',
     'nav.schools' => 'Scholen',
 
-
+    'notification.iGo' => 'Je gaat naar het evenement:',
+    'notification.iMaybe' => 'Je gaat misschien naar het evenement:',
+    'notification.iDontGo' => 'Je gaat niet naar het evenement:',
     'notification.delete' => 'Verwijder notificatie',
 
     'event.iGo' => 'Ik ga',
@@ -52,6 +54,13 @@ return [
 
     'email' => 'E-mailadres',
     'password' => 'Wachtwoord',
+    'address' => 'Adres',
+    'place' => 'Plaats',
+    'edit' => 'Bewerken',
+    'modify' => 'Wijzigen',
+    'participants' => 'Deelnemers',
+    'participantsAmount' => 'Aantal deelnemers',
+    'participantsMax' => 'Max. deelnemers',
 
     /*Signin page*/
     'signin.logyouracc' => 'Login met je account',
@@ -94,6 +103,31 @@ return [
     'eventtable.noEvents.click' => 'Klik hier',
     'eventtable.noEvents.desc2' => 'om een evenement aan te maken.',
 
+    /*Event show (event.blade)*/
+    'event.info.soon' => 'DIT EVENEMENT BEGINT BINNENKORT',
+    'event.info.now' => 'DIT EVENEMENT IS NU BEZIG',
+    'event.info.ended' => 'DIT EVENEMENT IS AFGELOPEN',
+    'event.startdate' => 'BEGINDATUM',
+    'event.enddate' => 'EINDDATUM',
+    'event.regFees' => 'INSCHRIJFKOSTEN',
+    'event.about' => 'OVER DIT EVENEMENT',
+    'event.info' => 'ALGEMENE INFORMATIE',
+    'event.eventinfo' => 'EVENT INFORMATIE',
+    'event.signupTime' => 'Aanmelden kan tot',
+    'event.signupNoTime' => 'Aanmelden kan',
+    'event.signupAlways' => 'altijd',
+    'event.createdBy' => 'Dit evenement is gemaakt door',
+    'event.tothisevent' => 'naar dit evenement',
+    'event.userStatus' => 'Je huidige status',
+    'event.letusknow' => 'Laat weten of je komt',
+
+    'error.event.title1' => 'Aanmeldtijd verlopen!',
+    'error.event.desc1' => 'Helaas, de tijd om je aan te melden voor dit evenement is voorbij. Als je je al eerder hebt aangemeld voor dit evenement, dan is het niet meer mogelijk om je af te melden.',
+    'error.event.title2' => 'Maximaal aantal deelnemers!',
+    'error.event.desc2' => 'Helaas, dit evenement zit aan het maximaal aantal deelnemers, hierdoor kan je je niet meer aanmelden.',
+    'error.event.title3' => 'Je bent op dit moment niet ingelogd!',
+    'error.event.desc3' => 'Klik hier om in te loggen en je aan te melden voor dit evenement.',
+
     /*Profile overview*/
     'profile.name' => 'Naam',
     'profile.email' => 'Email',
@@ -109,6 +143,7 @@ return [
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profiel succesvol bewerkt!',
 
+
     /*Schools overview*/
     'school.name' => 'Naam',
     'school.place' => 'Plaats',
@@ -121,5 +156,15 @@ return [
     'school.editSchoolTitle' => 'Pas een school aan',
     'school.new' => 'Een nieuwe school'
 
+    /*Controller messages*/
+    'EventController.updateStatus.success' => 'Status succesvol bewerkt!',
+    'EventController.updateStatus.error' => 'Niet gelukt!',
+    'EventController.store.error' => 'De tijd om je aan te melden is na de eind tijd van het evenement.',
+    'EventController.edit.error1' => 'Dit evenement bestaat niet.',
+    'EventController.edit.error2' => 'Dat is niet jouw evenement!',
+    'EventController.delete.success' => 'Evenement succesvol verwijderd.',
+    'EventController.delete.error' => 'Dit evenement kan niet verwijderd worden.',
+    'EventController.info.error' => 'Deze informatie gaat jou niks aan!',
+    'EventController.saveCategory.success' => 'De categorie is aangepast.'
 
 ];

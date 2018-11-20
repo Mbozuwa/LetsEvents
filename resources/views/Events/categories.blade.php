@@ -54,7 +54,7 @@
                     @endforeach
                         
                     <input type="checkbox" id="category_name" name="category_id[]" value="{{$category->id}}" {{$checked}} />
-                    <label for="category_name">{{ $category->name }}</label><br>                                    
+                    <label>{{ $category->name }}</label><br>                                    
                 @endforeach
                 <br>       
                 <button type="submit" class="btn btn-primary btn-lg">verzenden</button>
