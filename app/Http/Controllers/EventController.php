@@ -111,7 +111,7 @@ class EventController extends Controller
         $validator = Validator::make($request->all(),[
             'name' => 'required|max:50',
             'description' => 'required|max:1400',
-            'place' => 'required|alpha',
+            'place' => 'required|regex:^[a-zA-Z.\s]+$^',
             'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
             'max_participant' => 'required|alpha_num',
             'begin_time' => 'required',
@@ -206,7 +206,7 @@ class EventController extends Controller
         $request->validate([
             'name' => 'required|max:50',
             'description' => 'required|max:1400',
-            'place' => 'required|alpha',
+            'place' => 'required|regex:^[a-zA-Z.\s]+$^',
             'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
             'max_participant' => 'required|alpha_num',
             'begin_time' => 'required',
