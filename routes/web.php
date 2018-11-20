@@ -53,6 +53,7 @@ Route::group(['middleware' => 'auth'] ,function() {
       'uses' => 'profileController@getProfile',
       'as' => 'profile.profile'
   ]);
+
   Route::get('/editprofile/{id}',[
     'uses' => 'UserController@edit',
     'as' => 'profile.edit'
@@ -107,7 +108,8 @@ Route::post('/school/delete/{id}', 'schoolController@delete');
 //studentController
 Route::get('/student/index','StudentController@index');
 Route::get('/student/show', 'StudentController@show');
-Route::post('/student/show', 'StudentController@chooseSchool')->name('chooseSchool');
+// Route::post('/student/show', 'StudentController@chooseSchool')->name('chooseSchool');
+Route::post('/student/edit/{id}', 'StudentController@chooseSchool')->name('editStudent');
 Route::get('/student/edit/{id}', 'StudentController@edit');
 
 

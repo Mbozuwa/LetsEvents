@@ -83,7 +83,7 @@
                                         <span style="float:right;" class="h6">Dit is verplicht *</span>
                                     </div>
                                     {{ csrf_field() }}
-                                    <button type="submit"  class="inputCheckBtn btn btn-primary btn-lg" action="">Maak een evenement aan.</button>
+                                    <button type="submit" class="inputCheckBtn btn btn-primary btn-lg" onclick="inputCheck()"action="">Maak een evenement aan.</button>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                             </div>
                                 <div class="panel-body">
                                     <input type="file" name="image" id="file" accept="image/*">
-                                    <input type="hidden" value="{{ csrf_token() }}" name="_token"> 
+                                    <input type="hidden" value="{{ csrf_token() }}" name="_token">
 
                                 </div>
                             </form>
@@ -148,7 +148,7 @@
                 if(!returnValue){
                     jQuery(".inputCheckBtn").attr("disabled", false);
                 }
-               
+
                 return returnValue;
 
 

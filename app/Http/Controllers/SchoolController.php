@@ -20,7 +20,7 @@ class SchoolController extends Controller
         $schools = Schools::all();
         // $students = Students::all();
         // $students->userStudent;
-        return view('/school/index', ['schools' => $schools]);
+        return view('/school/index')->with('schools', $schools);
     }
     /*
     *This function returns the edit view.
