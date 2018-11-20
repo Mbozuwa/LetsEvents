@@ -22,20 +22,28 @@
                                     @if (count($registered) == 0)
                                     <h2>Niemand doet mee aan het evenement<a href="/event/{{$event->id}}"> {{$event->name}}</a></h2>
                                     @else
-                                    <h2>Dit zijn de deelnemers die meedoen aan het evenement:<a href="/event/{{$event->id}}"> {{$event->name}}</a>: </h2>
+                                    <h2>Deelnemers van evenement:<a href="/event/{{$event->id}}"> {{$event->name}}</a> </h2>
 
-                                    @foreach ($registered as $value)
-                                        <h2>Naam: {{$value->user->name }}</h2>
-                                        <h2>E-mail: {{$value->user->email}}</h2>
-                                        <h2>Tel: {{$value->user->telephone}}</h2>
-
-                                        <hr>
-                                    @endforeach
-<!--                                     {{-- <h2>Categorie:</h2> --}}
-                                    {{-- @foreach ($category as $test)
-                                        <h2>{{$test->name}}</h2>
-
-                                    @endforeach --}} -->
+                                    <table class="table table-hover table-condensed">
+                                        <thead>
+                                    
+                                            <tr>
+                                                <th>Naam</th>
+                                                <th>E-mail</th>
+                                                <th>Telefoon</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($registered as $value)
+                                            <tr>
+                                                <td>{{$value->user->name }}</td>
+                                                <td>{{$value->user->email}}</td>
+                                                <td>{{$value->user->telephone}}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    
                                     @endif
                                 @else
                                     <h2>Je hoort hier niet te zijn.</h2>

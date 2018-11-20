@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use JavaScript;
+use App\Schools;
 
 class HomeController extends Controller
 {
@@ -16,7 +18,19 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
+    public function testSearch() {
 
+        return view('test/dropdownSearchTest');
+    }
+    public function json() {
+        $schoolArray = [];
+        $schools = Schools::get();
+        foreach ($schools as $school) {
+            array_push($schoolArray,$school['name']);
+        }
+        // dd($schoolArray);
+        return response()->json($schoolArray);
+    }
     /**
      * Show the application dashboard.
      *
@@ -31,7 +45,7 @@ class HomeController extends Controller
     {
             $user = Auth::user();
             if ($user->active == 0) {
-            return redirect('/logout')->with('error', 'Uw profiel is niet actief. Neem contact op met de systeembeheerder.'); 
+            return redirect('/logout')->with('error', 'Uw profiel is niet actief. Neem contact op met de systeembeheerder.');
         }
         return view('welcome');
     }

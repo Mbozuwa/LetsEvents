@@ -166,5 +166,4 @@ return [
     'EventController.delete.error' => 'Dit evenement kan niet verwijderd worden.',
     'EventController.info.error' => 'Deze informatie gaat jou niks aan!',
     'EventController.saveCategory.success' => 'De categorie is aangepast.'
-
 ];
