@@ -42,7 +42,9 @@ return [
     'nav.admin' => 'Admin',
     'nav.schools' => 'Scholen',
 
-
+    'notification.iGo' => 'Je gaat naar het evenement:',
+    'notification.iMaybe' => 'Je gaat misschien naar het evenement:',
+    'notification.iDontGo' => 'Je gaat niet naar het evenement:',
     'notification.delete' => 'Verwijder notificatie',
 
     'event.iGo' => 'Ik ga',
@@ -78,7 +80,7 @@ return [
 
     /*403 Error page*/
     '403' => 'Jij hoort hier niet te zijn!',
-    
+
     /*404 Error page*/
     '404' => 'Kan de pagina niet vinden!',
 
@@ -137,7 +139,32 @@ return [
     'profile.edit' => 'Bewerken',
     'profile.header' => 'Mijn profiel',
     'profile.image' => '*De foto mag niet groter zijn dan 500 x 500*',
-    
+
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profiel succesvol bewerkt!',
+
+
+    /*Schools overview*/
+    'school.name' => 'Naam',
+    'school.place' => 'Plaats',
+    'school.address' => 'Het adres',
+    'school.edit' => 'Bewerken',
+    'school.delete' => 'Verwijder',
+    'school.school' => 'De school',
+    'school.schools' => 'De scholen',
+    'school.editSchool' => 'Pas de school aan.',
+    'school.editSchoolTitle' => 'Pas een school aan',
+    'school.new' => 'Een nieuwe school',
+
+    /*Controller messages*/
+    'EventController.updateStatus.success' => 'Status succesvol bewerkt!',
+    'EventController.updateStatus.error' => 'Niet gelukt!',
+    'EventController.store.error' => 'De tijd om je aan te melden is na de eind tijd van het evenement.',
+    'EventController.edit.error1' => 'Dit evenement bestaat niet.',
+    'EventController.edit.error2' => 'Dat is niet jouw evenement!',
+    'EventController.delete.success' => 'Evenement succesvol verwijderd.',
+    'EventController.delete.error' => 'Dit evenement kan niet verwijderd worden.',
+    'EventController.info.error' => 'Deze informatie gaat jou niks aan!',
+    'EventController.saveCategory.success' => 'De categorie is aangepast.'
+
 ];
