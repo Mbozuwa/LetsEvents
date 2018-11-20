@@ -76,7 +76,7 @@
                                             <div class="form-group row">
                                                 <label for="school" class="col-sm-2 col-form-label">{{__('msg.school.school')}}:</label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control" name="school">
+                                                    <select class="form-control d-inline col-8"  name="school">
                                                         @foreach ($schools as $school)
                                                             @php
                                                                 $selected='';
@@ -94,15 +94,11 @@
                                                             @endforeach
                                                     </select>
                                                 </div>
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="btn btn-primary btn-sm d-inline col-4">Kies</button>
                                             </div>
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-primary btn-lg">Edit je school</button>
                                     </form>
-
                                     {{-- @endif --}}
-
-
-
                                     </div>
                                     <div class="col-md-6" style="float-right;">
                                     <form action="{{action("ProfileController@upload")}}" method="POST" enctype="multipart/form-data">
