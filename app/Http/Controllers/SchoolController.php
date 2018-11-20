@@ -56,7 +56,7 @@ class SchoolController extends Controller
     }
         $request->validate([
             'name' => 'required|max:40',
-            'place' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
+            'place' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^'  ,
             'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^'
         ]);
         $school = Schools::find($id);
@@ -64,7 +64,7 @@ class SchoolController extends Controller
         $school->place =   $request->input('place');
         $school->address =   $request->input('address');
         $school->save();
-        return redirect('/school/index');
+        return redirect('/school/index')->with('message', __('msg.SchoolController.info.edit.succes'));
     }
     /*
     *This function deletes a school.
@@ -83,7 +83,7 @@ class SchoolController extends Controller
             return redirect()->back();
         }
         $school->delete();
-        return redirect('/school/index');
+        return redirect('/school/index')->with('message', __('msg.SchoolController.info.delete.succes'));
     }
     /*
     *This function returns the create form.
@@ -117,7 +117,7 @@ class SchoolController extends Controller
         $school->place =   $request->input('place');
         $school->address =   $request->input('address');
         $school->save();
-        return redirect('/school/index');
+        return redirect('/school/index')->with('message',  __('msg.SchoolController.info.create.succes'));
 
     }
 }
