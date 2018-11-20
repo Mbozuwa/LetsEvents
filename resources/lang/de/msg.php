@@ -103,4 +103,6 @@ return [
     'profile.header' => 'Mein Profil',
     'profile.image' => '*Das Foto darf nicht größer als 500 x 500 sein*',
 
+    /*ProfileController overview*/
+    'ProfileController.edit' => 'Profil erfolgreich bearbeitet!',
 ];

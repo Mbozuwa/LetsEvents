@@ -27,11 +27,11 @@ class UserController extends Controller
     */
     public function postSignup(Request $request) {
       $this->validate($request, [
-        'email' => 'email|required|unique:users',
+        'email' => 'email|required|regex:/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/|unique:users',
         'password' => 'required|min:8|max:255',
-        'name' => 'required|min:3',
-        'address' => 'required',
-        'telephone' => 'required|digits:10',
+        'name' => 'required|regex:/^[\pL\s\-]+$/u|max:25|min:3',
+        'address' => 'required|between:1,30',
+        'telephone' => 'required|regex:/^[0-9]{3}-[0-9]{4}-[0-9]{3}$/',
       ]);
       $user = new User([
         'email' => $request->input('email'),

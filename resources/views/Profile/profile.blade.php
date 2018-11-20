@@ -44,7 +44,7 @@
                                              <div class="form-group row">
                                                 <label for="inputEmail3" class="col-sm-2 col-form-label">{{__('msg.profile.phoneNumber')}}:</label>
                                                 <div class="col-sm-10">
-                                                    <input type="" name="telephone" class="form-control" id="inputEmail3" placeholder="06-12345678" value="{{$profile->telephone}}">
+                                                    <input type="" name="telephone" class="form-control" id="inputEmail3" placeholder="061-2345-678" value="{{$profile->telephone}}">
                                                 </div>
                                             </div>
                                             @if($user['role_id'] == 2)

@@ -81,6 +81,7 @@ return [
     '500' => 'Something went wrong with the server!',
 
     /*Event overview*/
+    'eventtable.name' => 'Name',
     'eventtable.place' => 'Country',
     'eventtable.address' => 'Address',
     'eventtable.maxparticipants' => 'Max participants',
@@ -103,5 +104,8 @@ return [
     'profile.edit' => 'Edit',
     'profile.header' => 'My profile',
     'profile.image' => '*The picture cannot be bigger then 500 x 500*',
+
+    /*ProfileController overview*/
+    'ProfileController.edit' => 'Profile succesfully edited',
 
 ];
