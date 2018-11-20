@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Schools;
+use App\Student;
 use Auth;
 use File;
 use \Input as Input;
@@ -18,15 +20,26 @@ class ProfileController extends Controller
         if (auth::user()->id == $id){
             $user = Auth::user();
             $profile = User::find($id);
-            return view('profile.profile', ['profile' => $profile, 'user' => $user]);
+            $schools = Schools::all();
+            $student = Student::where('user_id', $id)->first();
+            $selectedSchool = null;
+            if ( $student = Student::where('user_id', $id)->first()) {
+                    $selectedSchool = $student->school()->get();
+            }
+            return view('profile.profile', ['profile' => $profile, 'user' => $user, 'schools' => $schools, 'selectedSchool' => $selectedSchool]);
         }
         elseif (Auth::user()->role_id == 2){
             $user = Auth::user();
             $profile = User::find($id);
+            // $schools = Schools::all();
+            // $student = Student::where('user_id', $id)->first();
+            // $selectedSchool = null;
+            // if ( $student = Student::where('user_id', $id)->first()) {
+            //         $selectedSchool = $student->school()->get();
+            // }
             return view('profile.profile', ['profile' => $profile, 'user' => $user]);
         }
-
-        return redirect()->back()->with('error', 'Dat is niet jouw profiel!'); 
+        return redirect()->back()->with('error', 'Dat is niet jouw profiel!');
     }
 
     /**
@@ -54,7 +67,7 @@ class ProfileController extends Controller
             $user->address = $request->input('address');
             $user->telephone = $request->input('telephone');
             $user->role_id = $request->input('role_id');
-            
+
             $user->save();
             return redirect()->back()->with('message', __('msg.ProfileController.edit'));
     }

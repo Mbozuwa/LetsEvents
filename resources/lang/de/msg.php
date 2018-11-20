@@ -83,7 +83,7 @@ return [
 
     /*403 Error page*/
     '403' => 'du solltest nicht hier sein!',
-    
+
     /*404 Error page*/
     '404' => 'Kann die Seite nicht finden!',
 
@@ -105,4 +105,18 @@ return [
 
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profil erfolgreich bearbeitet!',
+
+    /*Schools overview*/
+    'school.name' => 'Name',
+    'school.place' => 'Platz',
+    'school.address' => 'Die adresse',
+    'school.edit' => 'Bearbeiten',
+    'school.delete' => 'Löschen',
+    'school.school' => 'Die schule',
+    'school.schools' => 'Die schulen',
+    'school.editSchool' => 'Bearbeiten sie die schule',
+    'school.editSchoolTitle' => 'Bearbeiten sie eine schule',
+    'school.new' => 'Eine neue schule'
+
+
 ];

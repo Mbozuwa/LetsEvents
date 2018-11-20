@@ -58,33 +58,23 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function Chooseschool(Request $request)
+    public function Chooseschool(Request $request, $id)
     /**
      * Create a new student with the selected school and user_id
      * redirect back
      */
-    {
+    {   
+        $delete = Student::where('user_id', $id)->delete();
         $student = new Student;
-        // dd($request->input('school'));
         $student->school_id = $request->input('school');
-
         $student->user_id = Auth::user()->id;
         $student->save();
         return redirect()->back();
     }
-    public function edit($id)
-     /**
-     * Get the student corresponding with the user
-     * Return view with student variable
-     */
-     {
-        $student = Student::where('user_id', $id)->get();
-        $user = Auth::user();
-        // $studentSchool = Student::find('user_id', $user->id);
-        //
-        // dd($student->school_id);
-        $schools = Schools::all();
-        return view('/student/edit', ['student' => $student]);
+    public function update(Request $request, $id)
+    {
+        // dd($request->input('school'));
+
     }
 
     /**
@@ -120,10 +110,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.

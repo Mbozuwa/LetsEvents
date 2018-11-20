@@ -44,22 +44,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <h1>Evenementen</h1>
-                                <table class="table table-hover">
-                                @if ($activities)
-                                    @foreach($activities as $activity)
-                                    <tr>
-                                        <td><a href="/event/{{$activity->id}}">{{$activity->name}}</a></td>
-                                    </tr>
-                                    @endforeach
-                                @endif
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

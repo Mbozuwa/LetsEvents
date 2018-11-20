@@ -150,7 +150,7 @@ class EventController extends Controller
             if(strtotime($request->input('signup_time')) >= strtotime($request->input('end_time')))
             {
                 //Some error bc signup_time is equal or higher then end_time.
-                return redirect()->back()->with('error', 'De tijd om je aan te melden is na de eind tijd van het evenement.');
+                return redirect()->back()->with('error', __('msg.EventController.store.error'));
             }
         }
 
@@ -181,7 +181,7 @@ class EventController extends Controller
         $eventUser = Event::find($id);
 
         if ($eventUser == null) {
-            return redirect()->back()->with('error', 'Dit evenement bestaat niet');
+            return redirect()->back()->with('error', __('msg.EventController.edit.error1'));
         }
         else {
             if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2)
@@ -194,7 +194,7 @@ class EventController extends Controller
                 return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
             }
         }
-        return redirect()->back()->with('error', 'Dat is niet jouw evenement!');
+        return redirect()->back()->with('error', __('msg.EventController.edit.error2'));
     }
 
     /**
@@ -286,18 +286,19 @@ class EventController extends Controller
         $user = Auth::user();
         $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
 
-            if($event == null) {
-                return redirect()->back();
-            } else {
-        try {
-            $event->delete();
-            return redirect('/events/made')->with('message', 'Evenement succesvol verwijderd.');
-
-        } catch (\Illuminate\Database\QueryException $exception) {
-            return back()->withError('Dit evenement kan niet verwijderd worden.');
+        if($event != null) {
+            if (Event::where(array('user_id' => $user['id'], 'id' => $id))->exists())
+            {
+                $event->delete();
+                return redirect('/events/made')->with('success', __('msg.EventController.delete.success'));
+            }
+            else
+            {
+                return back()->with('error', __('msg.EventController.delete.error'));
+            }
+        }else{
+            return redirect()->back();
         }
-    }
-        return redirect('/events/made');
     }
 
     /*
@@ -317,7 +318,7 @@ class EventController extends Controller
             // dd($registered);
             return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
         }
-        return redirect()->back()->with('error', 'Deze informatie gaat jou niks aan!');
+        return redirect()->back()->with('error', __('msg.EventController.info.error'));
     }
 
     /**
@@ -344,7 +345,7 @@ class EventController extends Controller
         CategoryEvent::where('event_id',$id)->delete();
         
             if($catIds === null){
-            return redirect()->back()->with('success', 'De categorie is aangepast.');
+                return redirect()->back()->with('success', __('msg.EventController.saveCategory.success'));
             }
             
             foreach ($catIds as $catId) {
@@ -355,7 +356,7 @@ class EventController extends Controller
 
             }
 
-        return redirect()->back()->with('success', 'De categorie is aangepast.');
+        return redirect()->back()->with('success', __('msg.EventController.saveCategory.success'));
 
     }
 }

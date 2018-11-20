@@ -70,10 +70,10 @@ return [
 
     /*403 Error page*/
     '403' => 'You do not belong here!',
-    
+
     /*404 Error page*/
     '404' => 'Could not find the webpage!',
-    
+
     /*413 Error page*/
     '413' => 'The sent data is too big!',
 
@@ -107,5 +107,19 @@ return [
 
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profile succesfully edited',
+
+    /*Schools overview*/
+    'school.name' => 'Name',
+    'school.place' => 'Place',
+    'school.address' => 'The address',
+    'school.edit' => 'Edit',
+    'school.delete' => 'Delete',
+    'school.school' => 'The school',
+    'school.schools' => 'The schools',
+    'school.editSchool' => 'Edit the school.',
+    'school.editSchoolTitle' => 'Edit a school',
+    'school.new' => 'Make a new school'
+
+
 
 ];
