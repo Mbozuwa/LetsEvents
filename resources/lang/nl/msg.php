@@ -143,7 +143,6 @@ return [
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profiel succesvol bewerkt!',
 
-
     /*Schools overview*/
     'school.name' => 'Naam',
     'school.place' => 'Plaats',
