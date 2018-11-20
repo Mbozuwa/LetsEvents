@@ -44,15 +44,15 @@
                                         @if(Auth::user()->role_id == 2 || $event['user_id'] == Auth::user()->id)
                                         <div class="col-md-3 text-right">
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">EVENT INFORMATIE <span class="caret"></span>
+                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ __('msg.event.eventinfo') }} <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                                     @if(strtotime("now") < strtotime($event['end_time']))
-                                                    <li><a href="/events/edit/{{ $event['id'] }}">Bewerken</a></li>
+                                                    <li><a href="/events/edit/{{ $event['id'] }}">{{ __('msg.edit') }}</a></li>
                                                     @else
-                                                    <li><a style="pointer-events: none;cursor: default;opacity: 0.5;">Bewerken</a></li>
+                                                    <li><a style="pointer-events: none;cursor: default;opacity: 0.5;">{{ __('msg.edit') }}</a></li>
                                                     @endif
-                                                    <li><a href="../events/info/{{ $event['id' ]}}">Deelnemers</a></li>
+                                                    <li><a href="../events/info/{{ $event['id' ]}}">{{ __('msg.participants') }}</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -64,25 +64,25 @@
                                     <div class="layout-table event-metrics">
                                         <div class="cell">
                                             <div class="main-info-item">
-                                                <span class="title">BEGINDATUM</span>
+                                                <span class="title">{{ __('msg.event.startdate') }}</span>
                                                 <span class="value">@dateFormat($event->begin_time)</span>
                                             </div>
                                         </div>
                                         <div class="cell">
                                             <div class="main-info-item">
-                                                <span class="title">EINDDATUM</span>
-                                                <span class="value">@dateFormat($event->begin_time)</span>
+                                                <span class="title">{{ __('msg.event.enddate') }}</span>
+                                                <span class="value">@dateFormat($event->end_time)</span>
                                             </div>
                                         </div>
                                         <div class="cell">
                                             <div class="main-info-item">
-                                                <span class="title">INSCHRIJFKOSTEN</span>
+                                                <span class="title">{{ __('msg.event.regFees') }}</span>
                                                 <span class="value">&euro; {{ $event['payment'] }}</span>
                                             </div>
                                         </div>
                                         <div class="cell">
                                             <div class="main-info-item">
-                                                <span class="title">DEELNEMERS</span>
+                                                <span class="title">{{ strtoupper(__('msg.participants')) }}</span>
                                                 <span class="value">{{ $count }}/{{ $event['max_participant'] }}</span>
                                             </div>
                                         </div>
@@ -91,23 +91,23 @@
                             </div>
                             <div class="panel-body">
                                 <div class="event-info">
-                                    <h3 class="info-header">OVER DIT EVENEMENT</h3>
+                                    <h3 class="info-header">{{ __('msg.event.about') }}</h3>
                                     <p class="event-description">{{ $event['description'] }}</p>
                                 </div>
                                 <div class="event-info">
-                                    <h3 class="info-header">ALGEMENE INFORMATIE</h3>
+                                    <h3 class="info-header">{{ __('msg.event.info') }}</h3>
                                     <ul class="list-unstyled list-justify">
-                                        <li>Adres <span>{{ $event['address'] }}</span></li>
-                                        <li>Plaats <span>{{ $event['place'] }}</span></li>
-                                        <li>Aantal deelnemers <span>{{ $count }}</span></li>
-                                        <li>Max. deelnemers <span>{{ $event['max_participant'] }}</span></li>
+                                        <li>{{ __('msg.address') }}             <span>{{ $event['address'] }}</span></li>
+                                        <li>{{ __('msg.place') }}               <span>{{ $event['place'] }}</span></li>
+                                        <li>{{ __('msg.participantsAmount') }}  <span>{{ $count }}</span></li>
+                                        <li>{{ __('msg.participantsMax') }}     <span>{{ $event['max_participant'] }}</span></li>
                                         @if($event['signup_time'] != $event['begin_time'])
-                                        <li>Aanmelden kan tot <span>{{ date("d-m-Y H:i", strtotime($event['signup_time'])) }}</span></li>
+                                        <li>{{ __('msg.event.signupTime') }}     <span>{{ date("d-m-Y H:i", strtotime($event['signup_time'])) }}</span></li>
                                         @else
-                                        <li>Aanmelden kan <span>altijd</span></li>
+                                        <li>{{ __('msg.event.signupNoTime') }}    <span>{{ __('msg.event.signupAlways') }}</span></li>
                                         @endif
 
-                                        <li><br/>Dit evenement is gemaakt door {{ $organiser->name }}</li>
+                                        <li><br/>{{ __('msg.event.createdBy') }} {{ $organiser->name }}</li>
 
                                     </ul>
                                 </div>
@@ -135,27 +135,25 @@
                                             <div class="col-md-6">
                                                 <div class="media">
                                                     <div class="media-body">
-                                                        <h2 class="event-title">Je huidige status</h2>
+                                                        <h2 class="event-title">{{ __('msg.event.userStatus') }}</h2>
                                                         @if ($attendence[0]['status'] == "Ik ga")
-                                                        <span class="label label-success status"><b>{{ $attendence[0]['status'] }}</b> naar dit evenement</span>
+                                                        <span class="label label-success status"><b>{{ __('msg.event.iGo') }}</b> {{ __('msg.event.tothisevent') }}</span>
                                                         @elseif ($attendence[0]['status'] == "Misschien")
-                                                        <span class="label label-warning status">Ik ga <b>{{ strtolower($attendence[0]['status']) }}</b> naar dit evenement</span>
+                                                        <span class="label label-warning status"><b>{{ __('msg.event.iMaybe') }}</b> {{ __('msg.event.tothisevent') }}</span>
                                                         @elseif ($attendence[0]['status'] == "Ik ga niet")
-                                                        <span class="label label-danger status"><b>{{ $attendence[0]['status'] }}</b> naar dit evenement</span>
+                                                        <span class="label label-danger status"><b>{{ __('msg.event.iDontGo') }}</b> {{ __('msg.event.tothisevent') }}</span>
                                                         @endif
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 text-right">
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">WIJZIGEN <span class="caret"></span>
+                                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ strtoupper(__('msg.modify')) }} <span class="caret"></span>
                                                     </button>
-                                                    {{-- {{dd($event->id)}} --}}
                                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                        {{-- Zou hetzelfde moeten werken als de aanmeldknoppen alleen een update ipv insert. --}}
-                                                        <li name="ga"><a href="/events/updateStatus/{{$event->id}}/Ik ga">Ik ga</a></li>
-                                                        <li name="mischien"><a href="/events/updateStatus/{{$event->id}}/Misschien">Ik ga misschien</a></li>
-                                                        <li name="niet"><a href="/events/updateStatus/{{$event->id}}/Ik ga niet">Ik ga niet</a></li>
+                                                        <li name="ga"><a href="/events/updateStatus/{{$event->id}}/Ik ga">{{ __('msg.event.iGo') }}</a></li>
+                                                        <li name="mischien"><a href="/events/updateStatus/{{$event->id}}/Misschien">{{ __('msg.event.iMaybe') }}</a></li>
+                                                        <li name="niet"><a href="/events/updateStatus/{{$event->id}}/Ik ga niet">{{ __('msg.event.iDontGo') }}</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -163,7 +161,7 @@
                                             <div class="col-md-12">
                                                 <div class="media">
                                                     <div class="media-body">
-                                                        <h2 class="event-title">Laat weten of je komt</h2>
+                                                        <h2 class="event-title">{{ __('msg.event.letusknow') }}</h2>
                                                         <a href="/registration/1/{{$event['id']}}" ><button type="button" title="Ik ga" class="btn btn-success">V</button></a>
                                                         <a href="/registration/2/{{$event['id']}}" ><button type="button" title="Ik ga misschien" class="btn btn-warning">?</button></a>
                                                         <a href="/registration/3/{{$event['id']}}" ><button type="button" title="Ik ga niet"class="btn btn-danger">X</button></a>
@@ -175,8 +173,8 @@
                                         <div class="col-md-12">
                                             <div class="media">
                                                 <div class="media-body">
-                                                    <h2 class="event-title">Aanmeldtijd verlopen!</h2>
-                                                    Helaas, de tijd om je aan te melden voor dit evenement is voorbij. Als je je al eerder hebt aangemeld voor dit evenement, dan is het niet meer mogelijk om je af te melden.
+                                                    <h2 class="event-title">{{ __('msg.error.event.title1') }}</h2>
+                                                    {{ __('msg.error.event.desc1') }}
                                                 </div>
                                             </div>
                                         </div>
@@ -185,8 +183,8 @@
                                     <div class="col-md-12">
                                         <div class="media">
                                             <div class="media-body">
-                                                <h2 class="event-title">Maximaal aantal deelnemers!</h2>
-                                                Helaas, dit evenement zit aan het maximaal aantal deelnemers, hierdoor kan je je niet meer aanmelden.
+                                                <h2 class="event-title">{{ __('msg.error.event.title2') }}</h2>
+                                                {{ __('msg.error.event.desc2') }}
                                             </div>
                                         </div>
                                     </div>
@@ -195,8 +193,8 @@
                                     <div class="col-md-12">
                                         <div class="media">
                                             <div class="media-body">
-                                                <h2 class="event-title">Je bent op dit moment niet ingelogd!</h2>
-                                                <a href="/user/signin"><h5>Klik hier om in te loggen en je aan te melden voor dit evenement.</h5></a>
+                                                <h2 class="event-title">{{ __('msg.error.event.title3') }}</h2>
+                                                <a href="/user/signin"><h5>{{ __('msg.error.event.desc3') }}</h5></a>
                                             </div>
                                         </div>
                                     </div>

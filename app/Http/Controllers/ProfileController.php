@@ -41,37 +41,22 @@ class ProfileController extends Controller
             'telephone' => 'required|regex:/^[0-9]{3}-[0-9]{4}-[0-9]{3}$/',
             'role_id' => 'nullable'
         ]);
+        /**
+         * This gets replaces the old data with the data that is requested.
+         */
         if (Auth::user()->role_id == 2){
-        $user = User::find($request->input('id'));
-
-    /**
-     * This gets replaces the old data with the data that is requested.
-     */
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->address = $request->input('address');
-        $user->telephone = $request->input('telephone');
-        $user->role_id = $request->input('role_id');
-        
-        $user->save();
-
-        return redirect()->back()->with('message', __('msg.ProfileController.edit'));
+            $user = User::find($request->input('id'));
+        }else{
+            $user = Auth::user();
         }
-        else{
-        $user = Auth::user();
-
-    /**
-     * This gets replaces the old data with the data that is requested. 
-     */
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->address = $request->input('address');
-        $user->telephone = $request->input('telephone');
-        
-        $user->save();
-
-        return redirect()->back()->with('message', __('msg.ProfileController.edit'));
-        }
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->address = $request->input('address');
+            $user->telephone = $request->input('telephone');
+            $user->role_id = $request->input('role_id');
+            
+            $user->save();
+            return redirect()->back()->with('message', __('msg.ProfileController.edit'));
     }
 
     /**
