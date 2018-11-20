@@ -42,6 +42,9 @@ return [
     'nav.admin' => 'Admin',
     'nav.schools' => 'Schools',
 
+    'notification.iGo' => 'You\'re participating in event:',
+    'notification.iMaybe' => 'You might go to the event:',
+    'notification.iDontGo' => 'You\'re not participating in event:',
     'notification.delete' => 'Delete notification',
 
     'event.iGo' => 'I\'m participating',
@@ -51,6 +54,13 @@ return [
 
     'email' => 'Email',
     'password' => 'Password',
+    'address' => 'Address',
+    'place' => 'Place',
+    'edit' => 'Edit',
+    'modify' => 'Modify',
+    'participants' => 'Participants',
+    'participantsAmount' => 'Number of participants',
+    'participantsMax' => 'Max. participants',
 
     /*Signin page*/
     'signin.logyouracc' => 'Login to your account',
@@ -93,6 +103,31 @@ return [
     'eventtable.noEvents.click' => 'Click here',
     'eventtable.noEvents.desc2' => 'to create an new event.',
 
+    /*Event show (event.blade)*/
+    'event.info.soon' => 'THIS EVENT IS COMING SOON',
+    'event.info.now' => 'THIS EVENT IS NOW BUSY',
+    'event.info.ended' => 'THIS EVENT HAS ENDED',
+    'event.startdate' => 'START DATE',
+    'event.enddate' => 'END DATE',
+    'event.regFees' => 'REGISTRATION FEES',
+    'event.about' => 'ABOUT THIS EVENT',
+    'event.info' => 'GENERAL INFORMATION',
+    'event.eventinfo' => 'EVENT INFORMATION',
+    'event.signupTime' => 'Sign up is possible until',
+    'event.signupNoTime' => 'Sign up until',
+    'event.signupAlways' => 'always',
+    'event.createdBy' => 'This event is created by',
+    'event.tothisevent' => 'to this event',
+    'event.userStatus' => 'Your current status',
+    'event.letusknow' => 'Let us know if you\'ll be participating',
+
+    'error.event.title1' => 'Sign up time expired!',
+    'error.event.desc1' => 'Unfortunately, the time to sign up for this event is over. If you have already registered for this event before, it is no longer possible to unsubscribe.',
+    'error.event.title2' => 'Maximum number of participants!',
+    'error.event.desc2' => 'Unfortunately, this event is at the maximum number of participants, so you can no longer sign up.',
+    'error.event.title3' => 'You are currently not logged in!',
+    'error.event.desc3' => 'Click here to log in and sign up for this event.',
+
     /*Profile overview*/
     'profile.name' => 'Name',
     'profile.email' => 'Email',
@@ -118,8 +153,16 @@ return [
     'school.schools' => 'The schools',
     'school.editSchool' => 'Edit the school.',
     'school.editSchoolTitle' => 'Edit a school',
-    'school.new' => 'Make a new school'
+    'school.new' => 'Make a new school',
 
-
-
+    /*Controller messages*/
+    'EventController.updateStatus.success' => 'Status successfully edited!',
+    'EventController.updateStatus.error' => 'Failed!',
+    'EventController.store.error' => 'The time to sign up is after the end time of the event.',
+    'EventController.edit.error1' => 'This event does not exist.',
+    'EventController.edit.error2' => 'That\'s not your event!',
+    'EventController.delete.success' => 'Event successfully deleted.',
+    'EventController.delete.error' => 'This event can not be deleted.',
+    'EventController.info.error' => 'This information is of no use to you!',
+    'EventController.saveCategory.success' => 'The category has been modified.'
 ];

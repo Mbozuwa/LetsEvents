@@ -6,22 +6,20 @@
                 <div class="alert alert-danger">
                     {{ session()->get('error') }}
                 </div>
-            @endif
-            @if(session()->has('message'))
-            <div class="alert alert-danger">
-                {{ session()->get('message') }}
-            </div>
-        @endif
-            @if (count($userEvents) >= 1)
-                    <div class="col-md-12" style="margin-top: -25px;">
-                        <!-- PAGINATE FUNCTION -->
-                        {{ $userEvents->links() }}
-                    </div>
-
-
+                @endif
+                @if(session()->has('message'))
+                <div class="alert alert-danger">
+                    {{ session()->get('message') }}
+                </div>
+                @endif
+                @if (count($userEvents) >= 1)
+                <div class="col-md-12" style="margin-top: -25px;">
+                    <!-- PAGINATE FUNCTION -->
+                    {{ $userEvents->links() }}
+                </div>
             </div>
             <div class="row justify-content-center">
-@foreach ($userEvents as $event)
+    @foreach ($userEvents as $event)
                     <div class="col-md-6">
                         <div class="panel">
                             <div class="event-header">
@@ -112,7 +110,7 @@
 
                                 <p>Mensen die mee doen: <a href="/events/info/{{$event->id}}">Klik hier</a></p>
 
-                                <p>Categories: <a href="/events/categories/{{$event->id}}">Klik hier</a></p>
+                                <p>Categorie&euml;n: <a href="/events/categories/{{$event->id}}">Klik hier</a></p>
                                 <a href="/events/edit/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-success btn-lg"><i class="far fa-edit" style="color:white;"></i></button></a>
                                 @if (Auth::check())
                                 <a href="/events/delete/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-danger btn-lg"><i class="fas fa-trash-alt" style="color:white;"></i></button></a>
