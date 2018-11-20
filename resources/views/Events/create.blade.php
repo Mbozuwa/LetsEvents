@@ -116,7 +116,7 @@
                 $('#endTime').datetimepicker(
                 {
                     format: "DD-MM-YYYY HH:mm",
-                    minDate: moment().add("h", 1).toDate(),
+                    minDate: moment().add(1, "h").toDate(),
                     locale: "nl"
                 });
                 $('#signupTime').datetimepicker(
