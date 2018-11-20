@@ -71,7 +71,7 @@
                                         <div class="cell">
                                             <div class="main-info-item">
                                                 <span class="title">{{ __('msg.event.enddate') }}</span>
-                                                <span class="value">@dateFormat($event->begin_time)</span>
+                                                <span class="value">@dateFormat($event->end_time)</span>
                                             </div>
                                         </div>
                                         <div class="cell">
