@@ -32,13 +32,20 @@ class ProfileController extends Controller
         elseif (Auth::user()->role_id == 2){
             $user = Auth::user();
             $profile = User::find($id);
+            $schools = Schools::all();
+
+            $student = Student::where('user_id', $id)->first();
+            $selectedSchool = null;
+            if ($student) {
+                $selectedSchool = $student->school()->get();
+            }
             // $schools = Schools::all();
             // $student = Student::where('user_id', $id)->first();
             // $selectedSchool = null;
             // if ( $student = Student::where('user_id', $id)->first()) {
             //         $selectedSchool = $student->school()->get();
             // }
-            return view('profile.profile', ['profile' => $profile, 'user' => $user]);
+            return view('profile.profile', ['profile' => $profile, 'user' => $user, 'schools' => $schools, 'selectedSchool' => $selectedSchool]);
         }
         return redirect()->back()->with('error', 'Dat is niet jouw profiel!');
     }
