@@ -151,9 +151,10 @@ return [
     'school.delete' => 'Delete',
     'school.school' => 'The school',
     'school.schools' => 'The schools',
+    'school.makeSchoolTitle' => 'Create a school.',
     'school.editSchool' => 'Edit the school.',
     'school.editSchoolTitle' => 'Edit a school',
-    'school.new' => 'Make a new school',
+    'school.new' => 'Add a new school',
 
     /*Controller messages*/
     'EventController.updateStatus.success' => 'Status successfully edited!',
