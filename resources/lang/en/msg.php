@@ -151,9 +151,10 @@ return [
     'school.delete' => 'Delete',
     'school.school' => 'The school',
     'school.schools' => 'The schools',
+    'school.makeSchoolTitle' => 'Create a school.',
     'school.editSchool' => 'Edit the school.',
     'school.editSchoolTitle' => 'Edit a school',
-    'school.new' => 'Make a new school',
+    'school.new' => 'Add a new school',
 
     /*Controller messages*/
     'EventController.updateStatus.success' => 'Status successfully edited!',
@@ -164,5 +165,12 @@ return [
     'EventController.delete.success' => 'Event successfully deleted.',
     'EventController.delete.error' => 'This event can not be deleted.',
     'EventController.info.error' => 'This information is of no use to you!',
-    'EventController.saveCategory.success' => 'The category has been modified.'
+    'EventController.saveCategory.success' => 'The category has been modified.',
+
+
+    'SchoolController.info.delete.succes' => 'School successfully deleted.',
+    'SchoolController.info.edit.succes' => 'School successfully edited.',
+    'SchoolController.info.create.succes' => 'The school has been created.',
+    'StudentController.chooseschool.success' => 'School is chosen.'
 ];
+

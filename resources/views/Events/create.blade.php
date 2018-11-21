@@ -94,9 +94,8 @@
                                 <h3 class="panel-title">Afbeeldingen uploaden voor evenement</h3>
                             </div>
                                 <div class="panel-body">
-                                    <input type="file" name="image" id="file" accept="image/*">
+                                    <input type="file" name="image" id="file" accept="image/*" required>
                                     <input type="hidden" value="{{ csrf_token() }}" name="_token">
-
                                 </div>
                             </form>
                         </div>
@@ -116,7 +115,7 @@
                 $('#endTime').datetimepicker(
                 {
                     format: "DD-MM-YYYY HH:mm",
-                    minDate: moment().add("h", 1).toDate(),
+                    minDate: moment().add(1, "h").toDate(),
                     locale: "nl"
                 });
                 $('#signupTime').datetimepicker(
@@ -132,7 +131,7 @@
                 jQuery("input").each(function(){
                     if(jQuery(this).attr("required")){
                         if(jQuery(this).val().length <= 0){
-                            jQuery(this).css("border", "1px solid red").css("background-color", "#ffcccc");
+                            // jQuery(this).css("border", "1px solid red").css("background-color", "#ffcccc");
                             returnValue = false;
                         }
                     }
@@ -140,11 +139,17 @@
                 jQuery("textarea").each(function() {
                     if(jQuery(this).attr("required")) {
                         if(jQuery(this).val().length <= 0) {
-                            jQuery(this).css("border", "1px solid red").css("background-color", "#ffcccc");
+                            // jQuery(this).css("border", "1px solid red").css("background-color", "#ffcccc");
                             returnValue = false;
                         }
                     }
                 })
+                // jQuery("#file").each(function() {
+                //         if (jQuery(this).val() == null) {
+                //             returnValue = false;
+                //             console.log('foto');
+                //         }
+                // })
                 if(!returnValue){
                     jQuery(".inputCheckBtn").attr("disabled", false);
                 }

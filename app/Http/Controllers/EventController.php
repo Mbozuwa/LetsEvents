@@ -106,7 +106,7 @@ class EventController extends Controller
 
     public function store(Request $request) {
         session(['rememberEvent' => $request->all()]);
-       
+
         $user = Auth::user();
         $validator = Validator::make($request->all(),[
             'name' => 'required|max:50',
@@ -118,12 +118,9 @@ class EventController extends Controller
             'end_time' => 'required',
             'image' => 'required',
         ]);
-        if ($validator->fails())
-        {
-            return redirect()->back()->with($validator)->withInput();
-        }
+
         //if else in of buiten de request
-        
+
 
         $post = new Event();
         $post->name = $request->input('name');
@@ -339,24 +336,23 @@ class EventController extends Controller
     /**
      * Saving the category in to database
      */
-
     public function saveCategory(Request $request,$id){
         $catIds = $request->input('category_id');
+
+        //delete all records from the category events table to .....
         CategoryEvent::where('event_id',$id)->delete();
-        
-            if($catIds === null){
-                return redirect()->back()->with('success', __('msg.EventController.saveCategory.success'));
-            }
-            
-            foreach ($catIds as $catId) {
+
+        if($catIds === null){
+            return redirect()->back()->with('success', __('msg.EventController.saveCategory.success'));
+        }
+
+        foreach ($catIds as $catId) {
             $saveCategory = new CategoryEvent;
             $saveCategory->category_id = $catId;
             $saveCategory->event_id = $id;
             $saveCategory->save();
-
-            }
+        }
 
         return redirect()->back()->with('success', __('msg.EventController.saveCategory.success'));
-
     }
 }

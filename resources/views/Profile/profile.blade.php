@@ -71,11 +71,12 @@
                                             @endif
                                             <button type="submit" style="margin-top: 40px;color:white;" class="btn bg-success btn-lg">{{__('msg.profile.edit')}}</button>
                                     </form>
+                                    @if($user['role_id'] != 2)
                                     <form class="" action="{{Route('editStudent', ['id' => Auth::user()->id])}}" method="post">
                                         @csrf
                                             <div class="form-group row">
                                                 <label for="school" class="col-sm-2 col-form-label">{{__('msg.school.school')}}:</label>
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-5">
                                                     <select class="form-control d-inline col-8"  name="school">
                                                         @foreach ($schools as $school)
                                                             @php
@@ -90,14 +91,16 @@
                                                                     @endphp
                                                                 @endforeach
                                                             @endif
-                                                                <option name="school"  value="{{$school->id}}" {{$selected}}>{{$school->name}} </option>
-                                                            @endforeach
+                                                            <option name="school"  value="{{$school->id}}" {{$selected}}>{{$school->name}} </option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-primary btn-sm d-inline col-4">Kies</button>
                                             </div>
                                     </form>
+                                @endif
+
                                     {{-- @endif --}}
                                     </div>
                                     <div class="col-md-6" style="float-right;">
