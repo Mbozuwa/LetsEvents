@@ -71,6 +71,7 @@
                                             @endif
                                             <button type="submit" style="margin-top: 40px;color:white;" class="btn bg-success btn-lg">{{__('msg.profile.edit')}}</button>
                                     </form>
+                                    @if($user['role_id'] != 2) 
                                     <form class="" action="{{Route('editStudent', ['id' => Auth::user()->id])}}" method="post">
                                         @csrf
                                             <div class="form-group row">
@@ -98,6 +99,8 @@
                                                 <button type="submit" class="btn btn-primary btn-sm d-inline col-4">Kies</button>
                                             </div>
                                     </form>
+                                @endif
+
                                     {{-- @endif --}}
                                     </div>
                                     <div class="col-md-6" style="float-right;">
