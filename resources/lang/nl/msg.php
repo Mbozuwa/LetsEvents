@@ -165,5 +165,6 @@ return [
     'EventController.delete.success' => 'Evenement succesvol verwijderd.',
     'EventController.delete.error' => 'Dit evenement kan niet verwijderd worden.',
     'EventController.info.error' => 'Deze informatie gaat jou niks aan!',
-    'EventController.saveCategory.success' => 'De categorie is aangepast.'
+    'EventController.saveCategory.success' => 'De categorie is aangepast.',
+    'StudentController.chooseschool.success' => 'School is gekozen.'
 ];

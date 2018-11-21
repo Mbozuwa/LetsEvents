@@ -164,5 +164,6 @@ return [
     'EventController.delete.success' => 'Event successfully deleted.',
     'EventController.delete.error' => 'This event can not be deleted.',
     'EventController.info.error' => 'This information is of no use to you!',
-    'EventController.saveCategory.success' => 'The category has been modified.'
+    'EventController.saveCategory.success' => 'The category has been modified.',
+    'StudentController.chooseschool.success' => 'School is chosen.'
 ];
