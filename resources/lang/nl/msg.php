@@ -165,15 +165,9 @@ return [
     'EventController.delete.success' => 'Evenement succesvol verwijderd.',
     'EventController.delete.error' => 'Dit evenement kan niet verwijderd worden.',
     'EventController.info.error' => 'Deze informatie gaat jou niks aan!',
-<<<<<<< HEAD
     'EventController.saveCategory.success' => 'De categorie is aangepast.',
 
     'SchoolController.info.delete.succes' => 'School succesvol verwijderd.',
     'SchoolController.info.edit.succes' => 'De school is aangepast.',
     'SchoolController.info.create.succes' => 'De school is aangemaakt.',
-
 ];
-=======
-    'EventController.saveCategory.success' => 'De categorie is aangepast.'
-];
->>>>>>> 681cb1f501c52c1eba96fce01d4e927af1e7bb05

@@ -58,11 +58,11 @@ class HomeController extends Controller
         session()->forget('notification');
         return redirect()->back();
     }
-    public function notificationAlarmDelete()
     /**
      * Deletes the notification "!" currently saved in the session
      * Redirect back
      */
+    public function notificationAlarmDelete()
     {
         session(['notificationAlarmDelete' => true]);
         return redirect()->back();

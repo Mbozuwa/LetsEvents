@@ -145,6 +145,12 @@
                         }
                     }
                 })
+                // jQuery("#file").each(function() {
+                //         if (jQuery(this).val() == null) {
+                //             returnValue = false;
+                //             console.log('foto');
+                //         }
+                // })
                 if(!returnValue){
                     jQuery(".inputCheckBtn").attr("disabled", false);
                 }
