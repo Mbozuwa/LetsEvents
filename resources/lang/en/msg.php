@@ -167,7 +167,10 @@ return [
     'EventController.info.error' => 'This information is of no use to you!',
     'EventController.saveCategory.success' => 'The category has been modified.',
 
+
     'SchoolController.info.delete.succes' => 'School successfully deleted.',
     'SchoolController.info.edit.succes' => 'School successfully edited.',
     'SchoolController.info.create.succes' => 'The school has been created.',
+    'StudentController.chooseschool.success' => 'School is chosen.'
 ];
+
