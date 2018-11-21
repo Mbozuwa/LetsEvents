@@ -84,7 +84,11 @@ class ProfileController extends Controller
                 'image' => 'dimensions:max_width=500,max_height=500'
             ]);
 
-            $user = Auth::user();
+            if (Auth::user()->role_id == 2){
+                $user = User::find($request->input('id'));
+            }else{
+                $user = Auth::user();
+            }
             $file     = Input::file('image');
             $fileExt   = $file->getClientOriginalExtension();
             $fileRename = time().'_'.uniqid().'.'.$fileExt;
