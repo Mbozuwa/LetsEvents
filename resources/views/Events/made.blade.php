@@ -71,7 +71,11 @@
                                         <div class="cell">
                                             <div class="main-info-item">
                                                 <span class="title">INSCHRIJFKOSTEN</span>
+                                                @if(empty($event['payment']))
+                                                <span class="value">{{ __('msg.event.regFree') }}</span>
+                                                @else 
                                                 <span class="value">&euro; {{ $event['payment'] }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="cell">
