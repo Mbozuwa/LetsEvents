@@ -71,7 +71,7 @@
                                             @endif
                                             <button type="submit" style="margin-top: 40px;color:white;" class="btn bg-success btn-lg">{{__('msg.profile.edit')}}</button>
                                     </form>
-                                    @if($user['role_id'] != 2)
+                                    @if($user['role_id'] != 2) 
                                     <form class="" action="{{Route('editStudent', ['id' => Auth::user()->id])}}" method="post">
                                         @csrf
                                             <div class="form-group row">
