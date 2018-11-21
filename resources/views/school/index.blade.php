@@ -4,7 +4,17 @@
             <div class="container-fluid">
                 <h3 class="page-title">{{__('msg.school.schools')}}</h3>
                 <div class="row">
+                    @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                    @elseif(session()->has('error'))
+                    <div class="alert alert-danger">
+                        {{ session()->get('error') }}
+                    </div>
+                    @endif
                 @foreach ($schools as $school)
+
                     <div class="col-md-6">
                         <div class="panel">
                             <div class="panel-body">

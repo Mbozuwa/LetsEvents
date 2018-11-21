@@ -75,7 +75,7 @@
                                         @csrf
                                             <div class="form-group row">
                                                 <label for="school" class="col-sm-2 col-form-label">{{__('msg.school.school')}}:</label>
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-5">
                                                     <select class="form-control d-inline col-8"  name="school">
                                                         @foreach ($schools as $school)
                                                             @php
@@ -90,8 +90,8 @@
                                                                     @endphp
                                                                 @endforeach
                                                             @endif
-                                                                <option name="school"  value="{{$school->id}}" {{$selected}}>{{$school->name}} </option>
-                                                            @endforeach
+                                                            <option name="school"  value="{{$school->id}}" {{$selected}}>{{$school->name}} </option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 {{ csrf_field() }}
