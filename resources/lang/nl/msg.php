@@ -152,6 +152,7 @@ return [
     'school.delete' => 'Verwijder',
     'school.school' => 'De school',
     'school.schools' => 'De scholen',
+    'school.makeSchoolTitle' => 'Maak een school aan.', 
     'school.editSchool' => 'Pas de school aan.',
     'school.editSchoolTitle' => 'Pas een school aan',
     'school.new' => 'Een nieuwe school',
@@ -170,4 +171,5 @@ return [
     'SchoolController.info.delete.succes' => 'School succesvol verwijderd.',
     'SchoolController.info.edit.succes' => 'De school is aangepast.',
     'SchoolController.info.create.succes' => 'De school is aangemaakt.',
+    ''
 ];
