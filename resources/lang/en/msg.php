@@ -120,6 +120,7 @@ return [
     'event.tothisevent' => 'to this event',
     'event.userStatus' => 'Your current status',
     'event.letusknow' => 'Let us know if you\'ll be participating',
+    'event.regFree' => 'Free',
 
     'error.event.title1' => 'Sign up time expired!',
     'error.event.desc1' => 'Unfortunately, the time to sign up for this event is over. If you have already registered for this event before, it is no longer possible to unsubscribe.',

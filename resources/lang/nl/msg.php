@@ -120,6 +120,7 @@ return [
     'event.tothisevent' => 'naar dit evenement',
     'event.userStatus' => 'Je huidige status',
     'event.letusknow' => 'Laat weten of je komt',
+    'event.regFree' => 'Gratis',
 
     'error.event.title1' => 'Aanmeldtijd verlopen!',
     'error.event.desc1' => 'Helaas, de tijd om je aan te melden voor dit evenement is voorbij. Als je je al eerder hebt aangemeld voor dit evenement, dan is het niet meer mogelijk om je af te melden.',
