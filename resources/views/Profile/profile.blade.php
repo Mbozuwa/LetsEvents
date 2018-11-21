@@ -118,6 +118,7 @@
                                             <img src="/uploads/{{ $profile->image }}" class="profile-image"/>
                                             @endif
                                             <input style="margin-top:30px;" type="file" name="image" id="file">
+                                            <input  type="hidden" name="id" id="id" value="{{$profile['id']}}">
                                             <input style="margin-top:10px" type="submit" value="Upload" name="submit">
                                             <input type="hidden" value="{{ csrf_token() }}" name="_token">
                                             <p style="margin-top:40px;float:right;">{{__('msg.profile.image')}}</p>
