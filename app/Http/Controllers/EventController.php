@@ -24,16 +24,24 @@ class EventController extends Controller
      */
 
     public function index($id) {
-       $event = \App\event::find($id);
-       $user = Auth::user();
-       $organiser = \App\User::find($event['user_id']);
-       $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
-       $count = \App\Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
-       $originalDate = $event['begin_time'];
-	   $newDate = date("d-m-Y H:i", strtotime($originalDate));
-	   $originalDateEnd = $event['end_time'];
-	   $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
-       return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
+        $event = \App\event::find($id);
+
+        if (Event::where(array('id' => $id))->exists())
+        {
+            $user = Auth::user();
+            $organiser = \App\User::find($event['user_id']);
+            $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
+            $count = \App\Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
+            $originalDate = $event['begin_time'];
+            $newDate = date("d-m-Y H:i", strtotime($originalDate));
+            $originalDateEnd = $event['end_time'];
+            $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
+            return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
+        }
+        else
+        {
+            return abort(404);
+        }
     }
 
     /**
