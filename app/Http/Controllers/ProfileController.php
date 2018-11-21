@@ -21,10 +21,11 @@ class ProfileController extends Controller
             $user = Auth::user();
             $profile = User::find($id);
             $schools = Schools::all();
+
             $student = Student::where('user_id', $id)->first();
             $selectedSchool = null;
-            if ( $student = Student::where('user_id', $id)->first()) {
-                    $selectedSchool = $student->school()->get();
+            if ($student) {
+                $selectedSchool = $student->school()->get();
             }
             return view('profile.profile', ['profile' => $profile, 'user' => $user, 'schools' => $schools, 'selectedSchool' => $selectedSchool]);
         }

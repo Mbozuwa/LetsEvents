@@ -11,18 +11,19 @@
                             <form action="{{ Route('updateSchool', ['id'=> $school->id]) }}" method="post" enctype="multipart/form-data">
                                   @csrf
                                   <div class="form-group">
-                                      <label class="h2">{{__('msg.school.school')}}:</label>
+                                      <label class="h2">{{__('msg.school.school')}}: *</label>
                                       <input type="text" class="form-control" name="name" placeholder="Naam" value="{{ $school->name }}" required/>
                                   </div>
                                   <div class="form-group">
-                                      <label class="h2">{{__('msg.school.place')}}:</label>
+                                      <label class="h2">{{__('msg.school.place')}}: *</label>
                                       <input type="text" class="form-control" name="place" placeholder="Naam" value="{{ $school->place }}" required/>
                                   </div>
                                   <div class="form-group">
-                                      <label class="h2">{{__('msg.school.address')}}:</label>
+                                      <label class="h2">{{__('msg.school.address')}}: *</label>
                                       <input type="text" class="form-control" name="address" placeholder="Naam" value="{{ $school->address }}" required/>
                                   </div>
                                   {{ csrf_field() }}
+                                  {{-- <small>Sterretje (*) is verplicht</small> --}}
                               <button type="submit" class="btn btn-primary btn-lg" action="">{{__('msg.school.editSchool')}}</button>
                           </div>
                       </div>
