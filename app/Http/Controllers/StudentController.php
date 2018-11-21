@@ -69,7 +69,7 @@ class StudentController extends Controller
         $student->school_id = $request->input('school');
         $student->user_id = Auth::user()->id;
         $student->save();
-        return redirect()->back();
+        return redirect()->back()->with('message', __('msg.StudentController.chooseschool.success'));
     }
     public function update(Request $request, $id)
     {

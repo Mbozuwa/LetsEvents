@@ -143,7 +143,6 @@ return [
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profiel succesvol bewerkt!',
 
-
     /*Schools overview*/
     'school.name' => 'Naam',
     'school.place' => 'Plaats',
@@ -168,8 +167,11 @@ return [
     'EventController.info.error' => 'Deze informatie gaat jou niks aan!',
     'EventController.saveCategory.success' => 'De categorie is aangepast.',
 
+
     'SchoolController.info.delete.succes' => 'School succesvol verwijderd.',
     'SchoolController.info.edit.succes' => 'De school is aangepast.',
     'SchoolController.info.create.succes' => 'De school is aangemaakt.',
-    ''
+    'StudentController.chooseschool.success' => 'School is gekozen.',
+
 ];
+
