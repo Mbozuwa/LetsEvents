@@ -31,11 +31,11 @@
                                             <div class="media-body">
                                                 <h2 class="event-title">{{ $event['name'] }}</h2>
                                                 @if(strtotime("now") >= strtotime($event['begin_time']) && strtotime("now") <= strtotime($event['end_time']))
-                                                <span class="label label-success status">DIT EVENEMENT IS NU BEZIG</span>
+                                                <span class="label label-success status">{{ __('msg.event.info.now') }}</span>
                                                 @elseif(strtotime("now") >= strtotime($event['end_time']))
-                                                <span class="label label-default status">DIT EVENEMENT IS AFGELOPEN</span>
+                                                <span class="label label-default status">{{ __('msg.event.info.ended') }}</span>
                                                 @else
-                                                <span class="label label-info status">DIT EVENEMENT BEGINT BINNENKORT</span>
+                                                <span class="label label-info status">{{ __('msg.event.info.soon') }}</span>
                                                 @endif
                                             </div>
                                         </div>
