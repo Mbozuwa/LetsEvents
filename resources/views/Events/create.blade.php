@@ -83,7 +83,7 @@
                                         <span style="float:right;" class="h6">Dit is verplicht *</span>
                                     </div>
                                     {{ csrf_field() }}
-                                    <button type="submit" class="inputCheckBtn btn btn-primary btn-lg" onclick="inputCheck()"action="">Maak een evenement aan.</button>
+                                    <button type="submit" class="inputCheckBtn btn btn-primary btn-lg" onclick="inputCheck()">Maak een evenement aan.</button>
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                                 <h3 class="panel-title">Afbeeldingen uploaden voor evenement</h3>
                             </div>
                                 <div class="panel-body">
-                                    <input type="file" name="image" id="file" accept="image/*" required>
+                                    <input type="file" name="image" id="file" accept="image/*" required/>
                                     <input type="hidden" value="{{ csrf_token() }}" name="_token">
                                 </div>
                             </form>
@@ -125,7 +125,9 @@
                 });
             });
             function inputCheck() {
-                jQuery(".inputCheckBtn").attr("disabled", "disabled");
+                $('form').submit(function() {
+                  $('button.btn-primary').prop("disabled", "disabled");
+                })
                 var returnValue = true;
 
                 jQuery("input").each(function(){
@@ -151,7 +153,7 @@
                 //         }
                 // })
                 if(!returnValue){
-                    jQuery(".inputCheckBtn").attr("disabled", false);
+                    $('button.btn-primary').prop("disabled", false);
                 }
 
                 return returnValue;
