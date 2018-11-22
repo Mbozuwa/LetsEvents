@@ -113,10 +113,8 @@ class EventController extends Controller
      */
 
     public function store(Request $request) {
-        session(['rememberEvent' => $request->all()]);
-
         $user = Auth::user();
-        $validator = Validator::make($request->all(),[
+        $request->validate([
             'name' => 'required|max:50',
             'description' => 'required|max:1400',
             'place' => 'required|regex:^[a-zA-Z.\s]+$^',
@@ -127,28 +125,19 @@ class EventController extends Controller
             'image' => 'required',
         ]);
 
-        //if else in of buiten de request
-
-
         $post = new Event();
         $post->name = $request->input('name');
         $post->description = $request->input('description');
         $post->place = $request->input('place');
         $post->address = $request->input('address');
         $post->max_participant = $request->input('max_participant');
-        $date_begin = $request->input('begin_time');
-        $correctDate= date("Y-m-d H:i", strtotime($date_begin));
-        $post->begin_time = $correctDate;
-
-        $date_end = $request->input('end_time');
-        $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
-        $post->end_time = $correctDateEnd;
+        $post->begin_time = date("Y-m-d H:i", strtotime($request->input('begin_time')));
+        $post->end_time = date("Y-m-d H:i", strtotime($request->input('end_time')));
         $post->payment = $request->input('payment');
-
         $post->signup_time = date("Y-m-d H:i", strtotime($request->input('signup_time')));
         if(empty($request->input('signup_time')))
         {
-            $post->signup_time = $correctDate;
+            $post->signup_time = $post->begin_time;
         }
         if(!empty($request->input('signup_time')))
         {
@@ -225,13 +214,8 @@ class EventController extends Controller
         $post->place = $request->input('place');
         $post->address = $request->input('address');
         $post->max_participant = $request->input('max_participant');
-        $date_begin = $request['begin_time'];
-        $correctDate= date("Y-m-d H:i", strtotime($date_begin));
-        $post->begin_time = $correctDate;
-
-        $date_end = $request['end_time'];
-        $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
-        $post->end_time = $correctDateEnd;
+        $post->begin_time = date("Y-m-d H:i", strtotime($request['begin_time']));
+        $post->end_time = date("Y-m-d H:i", strtotime($request['end_time']));
         $post->payment = $request->input('payment');
 
         if($request->hasFile('image'))
