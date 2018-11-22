@@ -125,6 +125,17 @@ return [
     'event.regFree' => 'Gratis',
     'event.showevent' => 'Bekijk pagina',
 
+    'event.myParticipatedEvents.title' => 'Mijn deelgenomen evenementen',
+    'event.myParticipatedEvents.subtitle1' => 'Je hebt je aangemeld voor',
+    'event.myParticipatedEvents.subtitle2' => 'van de',
+    'event.myParticipatedEvents.subtitle3' => 'beschikbare evenementen.',
+    'event.myParticipatedEvents.date' => 'Datum',
+    'event.myParticipatedEvents.addressplace' => 'Adres en plaats',
+    'event.myParticipatedEvents.soon' => 'BINNENKORT',
+    'event.myParticipatedEvents.now' => 'NU BEZIG',
+    'event.myParticipatedEvents.ended' => 'AFGELOPEN',
+    'event.myParticipatedEvents.showevent' => 'Bekijk evenement pagina',
+
     'error.event.title1' => 'Aanmeldtijd verlopen!',
     'error.event.desc1' => 'Helaas, de tijd om je aan te melden voor dit evenement is voorbij. Als je je al eerder hebt aangemeld voor dit evenement, dan is het niet meer mogelijk om je af te melden.',
     'error.event.title2' => 'Maximaal aantal deelnemers!',

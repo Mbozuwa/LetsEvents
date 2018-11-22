@@ -125,6 +125,17 @@ return [
     'event.regFree' => 'Free',
     'event.showevent' => 'Show page',
 
+    'event.myParticipatedEvents.title' => 'My participated events',
+    'event.myParticipatedEvents.subtitle1' => 'You have signed up for',
+    'event.myParticipatedEvents.subtitle2' => 'of the',
+    'event.myParticipatedEvents.subtitle3' => 'available events.',
+    'event.myParticipatedEvents.date' => 'Date',
+    'event.myParticipatedEvents.addressplace' => 'Address and place',
+    'event.myParticipatedEvents.soon' => 'SOON',
+    'event.myParticipatedEvents.now' => 'NOW BUSY',
+    'event.myParticipatedEvents.ended' => 'ENDED',
+    'event.myParticipatedEvents.showevent' => 'Show event page',
+
     'error.event.title1' => 'Sign up time expired!',
     'error.event.desc1' => 'Unfortunately, the time to sign up for this event is over. If you have already registered for this event before, it is no longer possible to unsubscribe.',
     'error.event.title2' => 'Maximum number of participants!',
