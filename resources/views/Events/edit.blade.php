@@ -19,7 +19,7 @@
         </div>
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">Wijzigen van het evenement</h3>
+                <h3 class="page-title">{{ __('msg.event.edit.title') }}</h3>
                 <div class="row">
                     <div class="col-md-7">
                         <div class="panel">
@@ -35,40 +35,40 @@
                                 <form action="{{ Route('updateEvent', ['id'=> $event->id]) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label class="h2">De naam:</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Naam" value="{{ $event->name }}" required/>
+                                        <label class="h2">{{ __('msg.event.name') }}: *</label>
+                                        <input type="text" class="form-control" name="name" placeholder="{{ __('msg.event.name') }}" value="{{ $event->name }}" required/>
                                     </div>
                                     <div class="form-group">
-                                        <label class="h2">De beschrijving:</label>
-                                        <textarea class="form-control" name="description" placeholder="Beschrijving" rows="4" maxlength="420" required>{{ $event->description }}</textarea>
+                                        <label class="h2">{{ __('msg.event.desc') }}: *</label>
+                                        <textarea class="form-control" name="description" placeholder="{{ __('msg.event.desc') }}" rows="4" maxlength="420" required>{{ $event->description }}</textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label class="h2">De plaats:</label>
-                                        <input type="text" class="form-control" name="place" placeholder="Plaats" value="{{ $event->place }}" required/>
+                                        <label class="h2">{{ __('msg.event.place') }}: *</label>
+                                        <input type="text" class="form-control" name="place" placeholder="{{ __('msg.event.place') }}" value="{{ $event->place }}" required/>
                                     </div>
                                     <div class="form-group">
-                                        <label class="h2">Het adres:</label>
-                                        <input type="text" name="address" class="form-control" placeholder="Adres" value="{{ $event->address }}" required/>
+                                        <label class="h2">{{ __('msg.event.address') }}: *</label>
+                                        <input type="text" name="address" class="form-control" placeholder="{{ __('msg.event.address') }}" value="{{ $event->address }}" required/>
                                     </div>
                                     <div class="form-group">
-                                        <label class="h2">Maximaal aantal deelnemers:</label>
+                                        <label class="h2">{{ __('msg.event.maxparticipants') }}: *</label>
                                         <input type="text" name="max_participant" class="form-control" placeholder="Max deelnemers" value="{{ $event->max_participant }}" required/>
                                     </div>
                                     <div class="form-group">
-                                        <label class="h2">Bedrag in euro's:</label>
+                                        <label class="h2">{{ __('msg.event.regfees') }}: *</label>
                                        <div class="input-group">
                                            <span class="input-group-addon">&euro;</span>
                                            <input name="payment" class="form-control" type="text" value="{{ $event->payment }}"/>
                                        </div>
                                    </div>
                                    <div class="form-group">
-                                       <label class="h2">Start tijd:</label>
+                                        <label class="h2">{{ __('msg.event.create.startdate') }}: *</label>
                                        <div class="input-group date" style="width:100%;">
                                            <input type="text" name="begin_time" class="form-control" id="startTime" value="{{ date('d-m-Y H:i', strtotime($event->begin_time)) }}" placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
                                        </div>
                                    </div>
                                    <div class="form-group">
-                                       <label class="h2">Eind tijd:</label>
+                                        <label class="h2">{{ __('msg.event.create.enddate') }}: *</label>
                                        <div class="input-group date" style="width:100%;">
                                            <input type="text" name="end_time" id="endTime" class="form-control" value="{{ date('d-m-Y H:i', strtotime($event->end_time)) }}"placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
                                        </div>
@@ -82,12 +82,13 @@
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                    </select> --}}
+                                        <span style="float:right;" class="h6">{{ __('msg.event.required') }}</span>
 
                                    <input id="invisible_id" name="user_id" type="hidden" value="{{ $event->user_id }}">
                                    {{ csrf_field() }}
-                                   <button type="submit" class="btn btn-primary btn-lg" action="">Wijzig het evenement</button>
+                                   <button type="submit" class="btn btn-primary btn-lg" action="">{{ __('msg.event.edit.submit') }}</button>
                                @else
-                                   <h2>Jij hoort hier niet!</h2>
+                                   {{ url()->previous() }}
                                @endif
                            </div>
                        </div>
@@ -96,7 +97,7 @@
                    <div class="col-md-4">
                        <div class="panel">
                            <div class="panel-heading">
-                               <h3 class="panel-title">Afbeeldingen uploaden voor evenement</h3>
+                               <h3 class="panel-title">{{ __('msg.event.image.title') }}</h3>
                            </div>
                                <div class="panel-body">
                                    <input type="file" name="image" id="file" accept="image/*">
@@ -110,11 +111,11 @@
                    <div class="col-md-4">
                        <div class="panel">
                            <div class="panel-heading">
-                               <h3 class="panel-title">Evenement afbeelding</h3>
+                               <h3 class="panel-title">{{ __('msg.event.edit.image.title') }}</h3>
                            </div>
                            <div class="panel-body">
                                <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo-edit" alt="{{ $event['name'] }}"/>
-                               <span class="event-logo-edit-caption">De bovenstaande afbeelding wordt voor je evenement gebruikt. Als je deze wilt wijzigen uploadt dan hierboven een nieuwe afbeelding.</span>
+                               <span class="event-logo-edit-caption">{{ __('msg.event.edit.image.desc') }}</span>
                            </div>
                        </div>
                    </div>

@@ -279,8 +279,8 @@ class EventController extends Controller
 
     public function madeEvents() {
         $user = Auth::user();
-        $userEvents = Event::where('user_id', $user['id'])->paginate(2);
-        return view('/events/made', ['userEvents' => $userEvents]);
+        $events = Event::where('user_id', $user['id'])->paginate(2);
+        return view('/events/made', ['events' => $events]);
     }
 
     /**
