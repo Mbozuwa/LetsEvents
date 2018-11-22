@@ -214,13 +214,8 @@ class EventController extends Controller
         $post->place = $request->input('place');
         $post->address = $request->input('address');
         $post->max_participant = $request->input('max_participant');
-        $date_begin = $request['begin_time'];
-        $correctDate= date("Y-m-d H:i", strtotime($date_begin));
-        $post->begin_time = $correctDate;
-
-        $date_end = $request['end_time'];
-        $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
-        $post->end_time = $correctDateEnd;
+        $post->begin_time = date("Y-m-d H:i", strtotime($request['begin_time']));
+        $post->end_time = date("Y-m-d H:i", strtotime($request['end_time']));
         $post->payment = $request->input('payment');
 
         if($request->hasFile('image'))

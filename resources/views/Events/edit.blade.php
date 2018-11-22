@@ -36,41 +36,41 @@
                                     @csrf
                                     <div class="form-group">
                                         <label class="h2">{{ __('msg.event.name') }}: *</label>
-                                        <input type="text" class="form-control" name="name" placeholder="{{ __('msg.event.name') }}" value="{{ $event->name }}" required/>
+                                        <input type="text" class="form-control" name="name" placeholder="{{ __('msg.event.name') }}" value="{{ old('name', $event->name) }}" required/>
                                     </div>
                                     <div class="form-group">
                                         <label class="h2">{{ __('msg.event.desc') }}: *</label>
-                                        <textarea class="form-control" name="description" placeholder="{{ __('msg.event.desc') }}" rows="4" maxlength="420" required>{{ $event->description }}</textarea>
+                                        <textarea class="form-control" name="description" placeholder="{{ __('msg.event.desc') }}" rows="4" maxlength="420" required>{{ old('description', $event->description) }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label class="h2">{{ __('msg.event.place') }}: *</label>
-                                        <input type="text" class="form-control" name="place" placeholder="{{ __('msg.event.place') }}" value="{{ $event->place }}" required/>
+                                        <input type="text" class="form-control" name="place" placeholder="{{ __('msg.event.place') }}" value="{{ old('place', $event->place) }}" required/>
                                     </div>
                                     <div class="form-group">
                                         <label class="h2">{{ __('msg.event.address') }}: *</label>
-                                        <input type="text" name="address" class="form-control" placeholder="{{ __('msg.event.address') }}" value="{{ $event->address }}" required/>
+                                        <input type="text" name="address" class="form-control" placeholder="{{ __('msg.event.address') }}" value="{{ old('address', $event->address) }}" required/>
                                     </div>
                                     <div class="form-group">
                                         <label class="h2">{{ __('msg.event.maxparticipants') }}: *</label>
-                                        <input type="text" name="max_participant" class="form-control" placeholder="Max deelnemers" value="{{ $event->max_participant }}" required/>
+                                        <input type="text" name="max_participant" class="form-control" placeholder="Max deelnemers" value="{{ old('max_participant', $event->max_participant) }}" required/>
                                     </div>
                                     <div class="form-group">
                                         <label class="h2">{{ __('msg.event.regfees') }}: *</label>
                                        <div class="input-group">
                                            <span class="input-group-addon">&euro;</span>
-                                           <input name="payment" class="form-control" type="text" value="{{ $event->payment }}"/>
+                                           <input name="payment" class="form-control" type="text" value="{{ old('payment', $event->payment) }}"/>
                                        </div>
                                    </div>
                                    <div class="form-group">
                                         <label class="h2">{{ __('msg.event.create.startdate') }}: *</label>
                                        <div class="input-group date" style="width:100%;">
-                                           <input type="text" name="begin_time" class="form-control" id="startTime" value="{{ date('d-m-Y H:i', strtotime($event->begin_time)) }}" placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
+                                           <input type="text" name="begin_time" class="form-control" id="startTime" value="{{ old('begin_time', date('d-m-Y H:i', strtotime($event->begin_time))) }}" placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
                                        </div>
                                    </div>
                                    <div class="form-group">
                                         <label class="h2">{{ __('msg.event.create.enddate') }}: *</label>
                                        <div class="input-group date" style="width:100%;">
-                                           <input type="text" name="end_time" id="endTime" class="form-control" value="{{ date('d-m-Y H:i', strtotime($event->end_time)) }}"placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
+                                           <input type="text" name="end_time" id="endTime" class="form-control" value="{{ old('end_time', date('d-m-Y H:i', strtotime($event->end_time))) }}"placeholder="dd-mm-jjjj --:--" autocomplete="off"/>
                                        </div>
                                    </div>
 
