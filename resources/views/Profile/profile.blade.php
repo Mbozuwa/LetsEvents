@@ -29,8 +29,8 @@
                                             <div class="form-group row">
                                                 <label for="inputEmail3" class="col-sm-2 col-form-label">{{ __('msg.profile.name')}}:</label>
                                                 <div class="col-sm-10">
-                                                <input type="text" name="name" class="form-control" id="inputEmail3" placeholder="Jan Kees" value="{{$profile->name}}">
-                                                <input type="hidden" name="id" class="form-control" value="{{$profile->id}}">
+                                                    <input type="text" name="name" class="form-control" id="inputEmail3" placeholder="Jan Kees" value="{{$profile->name}}">
+                                                    <input type="hidden" name="id" class="form-control" value="{{$profile->id}}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -56,13 +56,13 @@
                                                 <label for="inputEmail3" class="col-sm-2 col-form-label">{{__('msg.profile.type')}}:</label>
                                                 <div class="col-sm-10">
                                                     <select class="form-control" name="role_id" id="sel1">
-                                                    @if ($profile['role_id'] == 2)
-                                                    <option value="1">{{__('msg.profile.user')}}</option>
-                                                    <option value="2" selected="selected">{{__('msg.profile.admin')}}</option>
-                                                    @else
-                                                    <option value="1" selected="selected">{{__('msg.profile.user')}}</option>
-                                                    <option value="2">{{__('msg.profile.admin')}}</option>
-                                                    @endif
+                                                        @if ($profile['role_id'] == 2)
+                                                            <option value="1">{{__('msg.profile.user')}}</option>
+                                                            <option value="2" selected="selected">{{__('msg.profile.admin')}}</option>
+                                                        @else
+                                                            <option value="1" selected="selected">{{__('msg.profile.user')}}</option>
+                                                            <option value="2">{{__('msg.profile.admin')}}</option>
+                                                        @endif
                                                   </select>
                                                 </div>
                                             </div>
@@ -71,7 +71,7 @@
                                             @endif
                                             <button type="submit" style="margin-top: 40px;color:white;" class="btn bg-success btn-lg">{{__('msg.profile.edit')}}</button>
                                     </form>
-                                    @if($user['role_id'] != 2)
+                                    @if($user['role_id'] != 2) 
                                     <form class="" action="{{Route('editStudent', ['id' => Auth::user()->id])}}" method="post">
                                         @csrf
                                             <div class="form-group row">

@@ -11435,7 +11435,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "Geen evenementen gevonden in deze categorie",
 	
 	
 			/**
@@ -11488,7 +11488,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "Toont 0 tot 0 van totaal 0 evenementen",
 	
 	
 			/**
@@ -11510,7 +11510,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoFiltered": "(filtered from _MAX_ total entries)",
+			"sInfoFiltered": "(gefilterd op _MAX_ evenementen totaal)",
 	
 	
 			/**
@@ -11766,7 +11766,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "No matching records found"
+			"sZeroRecords": "Geen evenementen gevonden die aan de zoekopdracht voldoen"
 		},
 	
 	
