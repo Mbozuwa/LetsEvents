@@ -17,7 +17,11 @@
 
     <!-- DATATABLE -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="{{ asset('/js/jquery.dataTables.js') }}"></script>
+    @if(__('msg.calender.countrycode') == "nl-be")
+        <script type="text/javascript" src="{{ asset('/js/jquery.dataTables.nl-be.js') }}"></script>
+    @else
+        <script type="text/javascript" src="{{ asset('js/jquery.dataTables.en-gb.js') }}"></script>
+    @endif
 
     <!-- CALENDAR -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
@@ -95,7 +99,7 @@
                                     <li><a href="/profile/{{ Auth::user()->id }}"><i class="lnr lnr-user"></i> <span>{{ __('msg.menu.myProfile') }}</span></a></li>
                                     @if(Auth::user()->role_id == 2)
 
-                                    <li><a href="/school/create" ><i class="lnr lnr-plus-circle"></i> Een nieuwe school</a></li>
+                                    <li><a href="/school/create" ><i class="lnr lnr-plus-circle"></i>{{__('msg.school.new')}}</a></li>
                                     @endif
                                     <li><a href="/events/create"><i class="lnr lnr-plus-circle"></i>{{ __('msg.menu.createEvent') }}</a></li>
                                     <li><a href="/events/made"><i class="lnr lnr-menu"></i>{{ __('msg.menu.createdEvents') }}</a></li>

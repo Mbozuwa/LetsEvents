@@ -10,33 +10,42 @@ use App\CategoryEvent;
 use App\Category;
 use App\User;
 use Auth;
+use Validator;
 
 use \File;
 
 use \Input as Input;
 
 class EventController extends Controller
-{   
+{
 
     /**
      * showing an event and it details for the person who made it
      */
 
     public function index($id) {
-       $event = \App\event::find($id);
-       $user = Auth::user();
-       $organiser = \App\User::find($event['user_id']);
-       $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
-       $count = \App\Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
-       $originalDate = $event['begin_time'];
-	   $newDate = date("d-m-Y H:i", strtotime($originalDate));
-	   $originalDateEnd = $event['end_time'];
-	   $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
-       return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
+        $event = \App\event::find($id);
+
+        if (Event::where(array('id' => $id))->exists())
+        {
+            $user = Auth::user();
+            $organiser = \App\User::find($event['user_id']);
+            $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
+            $count = \App\Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
+            $originalDate = $event['begin_time'];
+            $newDate = date("d-m-Y H:i", strtotime($originalDate));
+            $originalDateEnd = $event['end_time'];
+            $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
+            return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
+        }
+        else
+        {
+            return abort(404);
+        }
     }
 
     /**
-     * In an event changing if you are still going to an event or not 
+     * In an event changing if you are still going to an event or not
      */
 
     public function updateStatus(Request $request, $id, $status) {
@@ -62,7 +71,7 @@ class EventController extends Controller
                 session(['notificationAlarmDelete' => false]);
                 session(['event_id' => $id]);
             }
-            
+
             return redirect()->back()->with('message', 'Status succesvol bewerkt!');
         }
         else
@@ -72,7 +81,7 @@ class EventController extends Controller
     }
 
     /**
-     * All events 
+     * All events
      */
 
     public function allEvents() {
@@ -82,7 +91,7 @@ class EventController extends Controller
     }
 
     /**
-     * All events with a secific name 
+     * All events with a secific name
      */
 
     public function allEventsSearch($name) {
@@ -108,39 +117,34 @@ class EventController extends Controller
         $request->validate([
             'name' => 'required|max:50',
             'description' => 'required|max:1400',
-            'place' => 'required|alpha',
-            'address' => 'required',
+            'place' => 'required|regex:^[a-zA-Z.\s]+$^',
+            'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
             'max_participant' => 'required|alpha_num',
             'begin_time' => 'required',
             'end_time' => 'required',
-            'image' => 'required'
+            'image' => 'required',
         ]);
+
         $post = new Event();
         $post->name = $request->input('name');
         $post->description = $request->input('description');
         $post->place = $request->input('place');
         $post->address = $request->input('address');
         $post->max_participant = $request->input('max_participant');
-        $date_begin = $request->input('begin_time');
-        $correctDate= date("Y-m-d H:i", strtotime($date_begin));
-        $post->begin_time = $correctDate;
-
-        $date_end = $request->input('end_time');
-        $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
-        $post->end_time = $correctDateEnd;
+        $post->begin_time = date("Y-m-d H:i", strtotime($request->input('begin_time')));
+        $post->end_time = date("Y-m-d H:i", strtotime($request->input('end_time')));
         $post->payment = $request->input('payment');
-
         $post->signup_time = date("Y-m-d H:i", strtotime($request->input('signup_time')));
         if(empty($request->input('signup_time')))
         {
-            $post->signup_time = $correctDate;
+            $post->signup_time = $post->begin_time;
         }
         if(!empty($request->input('signup_time')))
         {
             if(strtotime($request->input('signup_time')) >= strtotime($request->input('end_time')))
             {
                 //Some error bc signup_time is equal or higher then end_time.
-                return redirect()->back()->with('error', 'De tijd om je aan te melden is na de eind tijd van het evenement.');
+                return redirect()->back()->with('error', __('msg.EventController.store.error'));
             }
         }
 
@@ -166,13 +170,13 @@ class EventController extends Controller
     /**
      * editing events from ur user id
      */
-    
+
     public function edit($id) {
         $eventUser = Event::find($id);
 
         if ($eventUser == null) {
-            return redirect()->back()->with('error', 'Dit evenement bestaat niet');
-        } 
+            return redirect()->back()->with('error', __('msg.EventController.edit.error1'));
+        }
         else {
             if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2)
             {
@@ -184,20 +188,20 @@ class EventController extends Controller
                 return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
             }
         }
-        return redirect()->back()->with('error', 'Dat is niet jouw evenement!');
+        return redirect()->back()->with('error', __('msg.EventController.edit.error2'));
     }
 
     /**
      * updating/overriding an events information
      */
-    
+
     public function update(Request $request,$id) {
         $user = Auth::user();
         $request->validate([
             'name' => 'required|max:50',
             'description' => 'required|max:1400',
-            'place' => 'required|alpha',
-            'address' => 'required',
+            'place' => 'required|regex:^[a-zA-Z.\s]+$^',
+            'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
             'max_participant' => 'required|alpha_num',
             'begin_time' => 'required',
             'end_time' => 'required',
@@ -210,13 +214,8 @@ class EventController extends Controller
         $post->place = $request->input('place');
         $post->address = $request->input('address');
         $post->max_participant = $request->input('max_participant');
-        $date_begin = $request['begin_time'];
-        $correctDate= date("Y-m-d H:i", strtotime($date_begin));
-        $post->begin_time = $correctDate;
-
-        $date_end = $request['end_time'];
-        $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
-        $post->end_time = $correctDateEnd;
+        $post->begin_time = date("Y-m-d H:i", strtotime($request['begin_time']));
+        $post->end_time = date("Y-m-d H:i", strtotime($request['end_time']));
         $post->payment = $request->input('payment');
 
         if($request->hasFile('image'))
@@ -251,11 +250,10 @@ class EventController extends Controller
     public function myEvents() {
             $user = Auth::user();
             $registrations = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get();
-            $date = date('Y-m-d H:i:s');
-            $date = strtotime($date);
+
             $count = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get()->count();
             $countEvents = \App\event::all()->count();
-            return view('myEvents',['registrations' => $registrations, 'date' => $date, 'count' => $count, 'countEvents' => $countEvents]);
+            return view('myEvents',['registrations' => $registrations, 'count' => $count, 'countEvents' => $countEvents]);
     }
 
     /**
@@ -264,8 +262,8 @@ class EventController extends Controller
 
     public function madeEvents() {
         $user = Auth::user();
-        $userEvents = Event::where('user_id', $user['id'])->paginate(2);
-        return view('/events/made', ['userEvents' => $userEvents]);
+        $events = Event::where('user_id', $user['id'])->paginate(2);
+        return view('/events/made', ['events' => $events]);
     }
 
     /**
@@ -276,18 +274,19 @@ class EventController extends Controller
         $user = Auth::user();
         $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
 
-            if($event == null) {
-                return redirect()->back();
-            } else {
-        try {
-            $event->delete();
-            return redirect('/events/made')->with('message', 'Evenement succesvol verwijderd.');
-
-        } catch (\Illuminate\Database\QueryException $exception) {
-            return back()->withError('Dit evenement kan niet verwijderd worden.');
+        if($event != null) {
+            if (Event::where(array('user_id' => $user['id'], 'id' => $id))->exists())
+            {
+                $event->delete();
+                return redirect('/events/made')->with('success', __('msg.EventController.delete.success'));
+            }
+            else
+            {
+                return back()->with('error', __('msg.EventController.delete.error'));
+            }
+        }else{
+            return redirect()->back();
         }
-    }
-        return redirect('/events/made');
     }
 
     /*
@@ -306,43 +305,45 @@ class EventController extends Controller
 
             // dd($registered);
             return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
-        }      
-        return redirect()->back()->with('error', 'Deze informatie gaat jou niks aan!');
+        }
+        return redirect()->back()->with('error', __('msg.EventController.info.error'));
     }
 
     /**
-     * choosing a categorie for an event 
+     * choosing a categorie for an event
      */
-    
+
     public function chooseCategoryWithEvent($id) {
         $user = Auth::user();
         $userEvents = Event::where(['user_id'=> $user['id'], 'id' => $id ])->paginate(2);
         $categoryEvents = Event::find($id)->categories()->get();
         $categories = Category::all();
         $categoryEvents = categoryEvent::where('event_id', $id)->get();
-        
+
         return view('/events/categories', ['userEvents' => $userEvents, 'categoryEvents' => $categoryEvents, 'categories' => $categories]);
     }
-    
-    
+
+
     /**
      * Saving the category in to database
      */
-
     public function saveCategory(Request $request,$id){
         $catIds = $request->input('category_id');
+
+        //delete all records from the category events table to .....
         CategoryEvent::where('event_id',$id)->delete();
-            foreach ($catIds as $catId) {
-               
-            
+
+        if($catIds === null){
+            return redirect()->back()->with('success', __('msg.EventController.saveCategory.success'));
+        }
+
+        foreach ($catIds as $catId) {
             $saveCategory = new CategoryEvent;
             $saveCategory->category_id = $catId;
             $saveCategory->event_id = $id;
             $saveCategory->save();
-            
-            }
-       
-        return redirect()->back()->with('success', 'De categorie is aangemaakt.');
+        }
 
+        return redirect()->back()->with('success', __('msg.EventController.saveCategory.success'));
     }
 }

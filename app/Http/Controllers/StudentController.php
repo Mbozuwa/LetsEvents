@@ -28,63 +28,53 @@ class StudentController extends Controller
          /*
          *Gets all the students and returns the student index page
          */
-    public function index()
-    /**
-     * Retrieve all studens, users and schools.
-     * Return view with all variables
-     */
-    {
-        $students = Student::all();
-        $users = User::all();
-        $schools = Schools::all();
-         // $user = $student->id;
-        return view('student/index', ['students' => $students, 'users' => $users, 'schools' => $schools]);
-    }
-    public function show()
-    /**
-     * Find the student with the corresponding user_id.
-     * Find all schools.
-     * Return view with students and schools
-     */
-    {
-        $user = Auth::user();
-        $student = Student::find(['user_id' => $user->id]);
-        $schools = Schools::all();
-        return view('student/show', ['student' => $student, 'schools' => $schools]);
-    }
+    // public function index()
+    // /**
+    //  * Retrieve all studens, users and schools.
+    //  * Return view with all variables
+    //  */
+    // {
+    //     $students = Student::all();
+    //     $users = User::all();
+    //     $schools = Schools::all();
+    //      // $user = $student->id;
+    //     return view('student/index', ['students' => $students, 'users' => $users, 'schools' => $schools]);
+    // }
+    // public function show()
+    // /**
+    //  * Find the student with the corresponding user_id.
+    //  * Find all schools.
+    //  * Return view with students and schools
+    //  */
+    // {
+    //     $user = Auth::user();
+    //     $student = Student::find(['user_id' => $user->id]);
+    //     $schools = Schools::all();
+    //     return view('student/show', ['student' => $student, 'schools' => $schools]);
+    // }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function Chooseschool(Request $request)
+    public function chooseSchool(Request $request, $id)
     /**
      * Create a new student with the selected school and user_id
      * redirect back
      */
     {
+        $delete = Student::where('user_id', $id)->delete();
         $student = new Student;
-        // dd($request->input('school'));
         $student->school_id = $request->input('school');
-
         $student->user_id = Auth::user()->id;
         $student->save();
-        return redirect()->back();
+        return redirect()->back()->with('message', __('msg.StudentController.chooseschool.success'));
     }
-    public function edit($id)
-     /**
-     * Get the student corresponding with the user
-     * Return view with student variable
-     */
-     {
-        $student = Student::where('user_id', $id)->get();
-        $user = Auth::user();
-        // $studentSchool = Student::find('user_id', $user->id);
-        //
-        // dd($student->school_id);
-        $schools = Schools::all();
-        return view('/student/edit', ['student' => $student]);
+    public function update(Request $request, $id)
+    {
+        // dd($request->input('school'));
+
     }
 
     /**
@@ -120,10 +110,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.
