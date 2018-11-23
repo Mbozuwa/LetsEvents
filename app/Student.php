@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    public function User() {
-        return $this->belongsTo('App\User');
+    protected $table = "student";
+    public function UserStudent() {
+        return $this->belongsTo('App\User', 'user_id');
+    }
+    public function school() {
+        return $this->belongsTo('App\Schools', 'school_id');
     }
 }

@@ -23,15 +23,26 @@ class StartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function event() {
+     public function event()
+     /**
+     * Return view event.show
+     */
+      {
           return view('events.show');
       }
 
-    public function index() {
+    public function index()
+     /**
+     * Return view index
+     */ 
+     {
          return view('index');
      }
 
     public function home()
+    /**
+     * Save user info in session and return view welcome.
+     */
     {
         $user = Auth::user();
         session(['user' => $user]);
@@ -39,6 +50,11 @@ class StartController extends Controller
     }
 
     public function getEvents()
+    /**
+     * Retrieve all events
+     * Foreach all events and save necessary info in variable calendarEvents
+     * Return calendarEvents to json
+     */
     {
         $calendarEvents = [];
         $events = \App\event::all();
