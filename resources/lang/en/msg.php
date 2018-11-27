@@ -61,6 +61,8 @@ return [
     'participants' => 'Participants',
     'participantsAmount' => 'Number of participants',
     'participantsMax' => 'Max. participants',
+    'categories' => 'Categories',
+    'delete' => 'Delete',
 
     /*Signin page*/
     'signin.logyouracc' => 'Login to your account',
@@ -120,6 +122,19 @@ return [
     'event.tothisevent' => 'to this event',
     'event.userStatus' => 'Your current status',
     'event.letusknow' => 'Let us know if you\'ll be participating',
+    'event.regFree' => 'Free',
+    'event.showevent' => 'Show page',
+
+    'event.myParticipatedEvents.title' => 'My participated events',
+    'event.myParticipatedEvents.subtitle1' => 'You have signed up for',
+    'event.myParticipatedEvents.subtitle2' => 'of the',
+    'event.myParticipatedEvents.subtitle3' => 'available events.',
+    'event.myParticipatedEvents.date' => 'Date',
+    'event.myParticipatedEvents.addressplace' => 'Address and place',
+    'event.myParticipatedEvents.soon' => 'SOON',
+    'event.myParticipatedEvents.now' => 'NOW BUSY',
+    'event.myParticipatedEvents.ended' => 'ENDED',
+    'event.myParticipatedEvents.showevent' => 'Show event page',
 
     'error.event.title1' => 'Sign up time expired!',
     'error.event.desc1' => 'Unfortunately, the time to sign up for this event is over. If you have already registered for this event before, it is no longer possible to unsubscribe.',
@@ -127,6 +142,26 @@ return [
     'error.event.desc2' => 'Unfortunately, this event is at the maximum number of participants, so you can no longer sign up.',
     'error.event.title3' => 'You are currently not logged in!',
     'error.event.desc3' => 'Click here to log in and sign up for this event.',
+
+    /*Event create & edit*/
+    'event.create.title' => 'Create an event',
+    'event.name' => 'Name',
+    'event.desc' => 'Description',
+    'event.place' => 'Place',
+    'event.address' => 'Address',
+    'event.maxparticipants' => 'Maximum number of participants',
+    'event.regfees' => 'Amount in euros',
+    'event.create.startdate' => 'Start date',
+    'event.create.enddate' => 'End date',
+    'event.signupTime' => 'Sign up is possible until',
+    'event.create.signupNoTime' => 'Keep this field empty if participants are always allowed to sign up.',
+    'event.required' => 'This is required *',
+    'event.create.submit' => 'Create an event',
+    'event.image.title' => 'Upload image for event',
+    'event.edit.image.title' => 'Event image',
+    'event.edit.image.desc' => 'The image above will be used for your event. If you want to change it then upload a new image above.',
+    'event.edit.title' => 'Edit this event',
+    'event.edit.submit' => 'Edit event',
 
     /*Profile overview*/
     'profile.name' => 'Name',
@@ -156,6 +191,13 @@ return [
     'school.editSchoolTitle' => 'Edit a school',
     'school.new' => 'Add a new school',
 
+    /*Admin*/
+    'admin' => 'Admin',
+    'adm.user' => 'User',
+    'adm.email' => 'Email',
+    'adm.activity' => 'Activity',
+    'adm.confirm' => 'Are you sure you want to (temporary) ban this user?',
+
     /*Controller messages*/
     'EventController.updateStatus.success' => 'Status successfully edited!',
     'EventController.updateStatus.error' => 'Failed!',
@@ -173,4 +215,3 @@ return [
     'SchoolController.info.create.succes' => 'The school has been created.',
     'StudentController.chooseschool.success' => 'School is chosen.'
 ];
-

@@ -61,6 +61,8 @@ return [
     'participants' => 'Deelnemers',
     'participantsAmount' => 'Aantal deelnemers',
     'participantsMax' => 'Max. deelnemers',
+    'categories' => 'Categorieën',
+    'delete' => 'Verwijderen',
 
     /*Signin page*/
     'signin.logyouracc' => 'Login met je account',
@@ -120,6 +122,19 @@ return [
     'event.tothisevent' => 'naar dit evenement',
     'event.userStatus' => 'Je huidige status',
     'event.letusknow' => 'Laat weten of je komt',
+    'event.regFree' => 'Gratis',
+    'event.showevent' => 'Bekijk pagina',
+
+    'event.myParticipatedEvents.title' => 'Mijn deelgenomen evenementen',
+    'event.myParticipatedEvents.subtitle1' => 'Je hebt je aangemeld voor',
+    'event.myParticipatedEvents.subtitle2' => 'van de',
+    'event.myParticipatedEvents.subtitle3' => 'beschikbare evenementen.',
+    'event.myParticipatedEvents.date' => 'Datum',
+    'event.myParticipatedEvents.addressplace' => 'Adres en plaats',
+    'event.myParticipatedEvents.soon' => 'BINNENKORT',
+    'event.myParticipatedEvents.now' => 'NU BEZIG',
+    'event.myParticipatedEvents.ended' => 'AFGELOPEN',
+    'event.myParticipatedEvents.showevent' => 'Bekijk evenement pagina',
 
     'error.event.title1' => 'Aanmeldtijd verlopen!',
     'error.event.desc1' => 'Helaas, de tijd om je aan te melden voor dit evenement is voorbij. Als je je al eerder hebt aangemeld voor dit evenement, dan is het niet meer mogelijk om je af te melden.',
@@ -127,6 +142,26 @@ return [
     'error.event.desc2' => 'Helaas, dit evenement zit aan het maximaal aantal deelnemers, hierdoor kan je je niet meer aanmelden.',
     'error.event.title3' => 'Je bent op dit moment niet ingelogd!',
     'error.event.desc3' => 'Klik hier om in te loggen en je aan te melden voor dit evenement.',
+
+    /*Event create & edit*/
+    'event.create.title' => 'Maak een evenement aan',
+    'event.name' => 'Naam',
+    'event.desc' => 'Beschrijving',
+    'event.place' => 'Plaats',
+    'event.address' => 'Adres',
+    'event.maxparticipants' => 'Maximaal aantal deelnemers',
+    'event.regfees' => 'Bedrag in euro\'s',
+    'event.create.startdate' => 'Begindatum',
+    'event.create.enddate' => 'Einddatum',
+    'event.signupTime' => 'Aanmelden kan tot',
+    'event.create.signupNoTime' => 'Dit veld leeghouden als deelnemers zich altijd mogen aanmelden.',
+    'event.required' => 'Dit is verplicht *',
+    'event.create.submit' => 'Maak een evenement aan',
+    'event.image.title' => 'Afbeeldingen uploaden voor evenement',
+    'event.edit.image.title' => 'Evenement afbeelding',
+    'event.edit.image.desc' => 'De bovenstaande afbeelding wordt voor je evenement gebruikt. Als je deze wilt wijzigen uploadt dan hierboven een nieuwe afbeelding.',
+    'event.edit.title' => 'Wijzigen van het evenement',
+    'event.edit.submit' => 'Wijzig het evenement',
 
     /*Profile overview*/
     'profile.name' => 'Naam',
@@ -156,6 +191,13 @@ return [
     'school.editSchoolTitle' => 'Pas een school aan',
     'school.new' => 'Een nieuwe school',
 
+    /*Admin*/
+    'admin' => 'Admin',
+    'adm.user' => 'Gebruiker',
+    'adm.email' => 'E-mailadres',
+    'adm.activity' => 'Activiteit',
+    'adm.confirm' => 'Weet u zeker dat u deze gebruiker op non-actief wil zetten?',
+
     /*Controller messages*/
     'EventController.updateStatus.success' => 'Status succesvol bewerkt!',
     'EventController.updateStatus.error' => 'Niet gelukt!',
@@ -172,6 +214,4 @@ return [
     'SchoolController.info.edit.succes' => 'De school is aangepast.',
     'SchoolController.info.create.succes' => 'De school is aangemaakt.',
     'StudentController.chooseschool.success' => 'School is gekozen.',
-
 ];
-
