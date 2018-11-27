@@ -20,7 +20,7 @@ class SchoolController extends Controller
         $schools = Schools::all();
         // $students = Students::all();
         // $students->userStudent;
-        return view('/school/index', ['schools' => $schools]);
+        return view('/school/index')->with('schools', $schools);
     }
     /*
     *This function returns the edit view.
@@ -42,7 +42,9 @@ class SchoolController extends Controller
     }
     /*
     *This fucntion updates a school
-    *This function expects two things: a request and an id.
+    * @param
+    * @return
+    * This function expects two things: a request and an id.
     *Checks if the user is an admin with role id 2, if not you get redirected to te home page.
     *With the request validate it checks if 3 inputs are filled in, because the are required.
     *Then it finds teh school it wants to edit by searching for a specific id.
@@ -50,21 +52,22 @@ class SchoolController extends Controller
     *Then it saves the updated school at $school->save().
     *then you get returned to the schools index.
     */
+
     public function update(Request $request, $id) {
         if (Auth::user()->role_id != 2) {
         return redirect('/');
     }
         $request->validate([
             'name' => 'required|max:40',
-            'place' => 'required|alpha',
-            'address' => 'required'
+            'place' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^'  ,
+            'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^'
         ]);
         $school = Schools::find($id);
         $school->name =   $request->input('name');
         $school->place =   $request->input('place');
         $school->address =   $request->input('address');
         $school->save();
-        return redirect('/school/index');
+        return redirect('/school/index')->with('message', __('msg.SchoolController.info.edit.succes'));
     }
     /*
     *This function deletes a school.
@@ -76,14 +79,14 @@ class SchoolController extends Controller
     */
     public function delete($id) {
         if (Auth::user()->role_id != 2) {
-        return redirect('/');
-    }
+            return redirect('/');
+        }
         $school = Schools::find($id);
         if ($school == null) {
             return redirect()->back();
         }
         $school->delete();
-        return redirect('/school/index');
+        return redirect('/school/index')->with('message', __('msg.SchoolController.info.delete.succes'));
     }
     /*
     *This function returns the create form.
@@ -91,8 +94,8 @@ class SchoolController extends Controller
     */
     public function create() {
         if (Auth::user()->role_id != 2) {
-        return redirect('/');
-    }
+            return redirect('/');
+        }
         return view('/school/create');
     }
     /*
@@ -105,19 +108,19 @@ class SchoolController extends Controller
     */
     public function store(Request $request) {
         if (Auth::user()->role_id != 2) {
-        return redirect('/');
-    }
+            return redirect('/');
+        }
         $request->validate([
             'name' => 'required|max:40',
-            'place' => 'required|alpha',
-            'address' => 'required'
+            'place' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
+            'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^'
         ]);
         $school = new Schools;
         $school->name =   $request->input('name');
         $school->place =   $request->input('place');
         $school->address =   $request->input('address');
         $school->save();
-        return redirect('/school/index');
+        return redirect('/school/index')->with('message',  __('msg.SchoolController.info.create.succes'));
 
     }
 }

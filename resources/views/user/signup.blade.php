@@ -34,7 +34,7 @@
               @endforeach
             </div>
             @endif
-            <form class="form-auth-small" name="signUp" onsubmit="return validatePassword() || validatePhoneNumber()"  action="{{ route('user.signup') }}" method="post">
+            <form class="form-auth-small" name="signUp" onsubmit="return validatePassword()"  action="{{ route('user.signup') }}" method="post">
               <div class="form-group">
                 <label for="signup-email" class="control-label sr-only"></label>
                 <p>{{ __('msg.email') }} *</p><input type="email" class="form-control" name="email" id="signup-email" size="10" required>
@@ -57,7 +57,7 @@
               <div class="form-group">
                   <p>{{ __('msg.signup.phone') }} *</p>
                 <label for="signup-telephone" class="control-label sr-only">{{ __('msg.signup.phone') }}</label>
-                <input type="text" class="form-control" name="telephone" id="signup-telephone" required>
+                <input type="text" class="form-control" name="telephone" id="signup-telephone" placeholder="061-2345-678" required>
               </div>
               <button type="submit" class="btn btn-primary btn-lg btn-block">{{ __('msg.signup.btn') }}</button>
               {{ csrf_field() }}
@@ -88,21 +88,6 @@ function validatePassword()
     }
 }
 
-
-function validatePhoneNumber()
-{
-    var phoneId = document.signUp.telephone;
-    // phoneId.toString().length;
-    console.log(phoneId);
-    // console.log(phoneId);
-    if (phoneId.value.length < 10 || phoneId.value.length > 10) {
-        document.signUp.telephone.style.border = '1px solid #999999';
-        alert('het telephone is niet lang genoeg');
-        return false;
-   }
-}
-
-// alert(validatePhoneNumber());
     </script>
 </body>
 </html>

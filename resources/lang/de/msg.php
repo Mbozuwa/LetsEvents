@@ -42,12 +42,26 @@ return [
     'nav.myEvents' => 'Meine Ereignisse',
     'nav.admin' => 'Admin',
 
+
+    'notification.iGo' => 'Sie nehmen an der Veranstaltung teil:',
+    'notification.iMaybe' => 'Sie könnten zur Veranstaltung gehen:',
+    'notification.iDontGo' => 'Sie nehmen nicht an der Veranstaltung teil:',
     'notification.delete' => 'Benachrichtigung löschen',
 
     'event.iGo' => 'Ich gehe',
     'event.iMaybe' => 'Ich könnte gehen',
     'event.iDontGo' => 'Ich gehe nicht',
     'event.noStatus' => 'Kein Status',
+
+    'email' => 'Email',
+    'password' => 'Passwort',
+    'address' => 'Addresse',
+    'place' => 'Platx',
+    'edit' => 'Bearbeiten',
+    'modify' => 'Ändern',
+    'participants' => 'Teilnehmer',
+    'participantsAmount' => 'Zahl der Teilnehmer',
+    'participantsMax' => 'Max. Teilnehmer',
 
     'email' => 'E-Mail-Adresse',
     'password' => 'Passwort',
@@ -81,9 +95,33 @@ return [
     'eventtable.noEvents.click' => 'Hier Klincken',
     'eventtable.noEvents.desc2' => 'eine Veranstaltung erstellen.',
 
+    /*Event show (event.blade)*/
+    'event.info.soon' => 'Dieses Ereignis kommt bald',
+    'event.info.now' => 'Dieses Ereignis ist jetzt beschäftigt',
+    'event.info.ended' => 'Dieses Ereignis ist beendet',
+    'event.startdate' => 'ANFANGSDATUM',
+    'event.enddate' => 'ENDTERMIN',
+    'event.regFees' => 'ANMELDEGEBÜHREN',
+    'event.about' => 'ÜBER DIESES EVENT',
+    'event.info' => 'ALLGEMEINE INFORMATION',
+    'event.eventinfo' => 'INFORMATIONEN ZUR VERANSTALTUNG',
+    'event.signupTime' => 'Anmeldung ist bis möglich',
+    'event.signupNoTime' => 'Melden Sie sich an bis',
+    'event.signupAlways' => 'immer',
+    'event.createdBy' => 'Dieses Ereignis wird von erstellt',
+    'event.tothisevent' => 'zu dieser Veranstaltung',
+    'event.userStatus' => 'Ihr aktueller Status',
+    'event.letusknow' => 'Teilen Sie uns mit, ob Sie teilnehmen werden',
+
+    'error.event.title1' => 'Anmeldezeit abgelaufen!',
+    'error.event.desc1' => 'Die Anmeldefrist für diese Veranstaltung ist leider vorbei. Wenn Sie sich bereits für diese Veranstaltung angemeldet haben, ist ein Abbestellen nicht mehr möglich.',
+    'error.event.title2' => 'Maximale Teilnehmerzahl!',
+    'error.event.desc2' => 'Leider hat diese Veranstaltung die maximale Teilnehmerzahl, sodass Sie sich nicht mehr anmelden können.',
+    'error.event.title3' => 'Sie sind derzeit nicht angemeldet!',
+    'error.event.desc3' => 'Klicken Sie hier, um sich anzumelden und sich für diese Veranstaltung anzumelden.',
     /*403 Error page*/
     '403' => 'du solltest nicht hier sein!',
-    
+
     /*404 Error page*/
     '404' => 'Kann die Seite nicht finden!',
 
@@ -105,4 +143,33 @@ return [
 
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profil erfolgreich bearbeitet!',
+
+    /*Schools overview*/
+    'school.name' => 'Name',
+    'school.place' => 'Platz',
+    'school.address' => 'Die adresse',
+    'school.edit' => 'Bearbeiten',
+    'school.delete' => 'Löschen',
+    'school.school' => 'Die schule',
+    'school.schools' => 'Die schulen',
+    'school.makeSchoolTitle' => 'Erstelle eine Schule.', 
+    'school.editSchool' => 'Bearbeiten sie die schule',
+    'school.editSchoolTitle' => 'Bearbeiten sie eine schule',
+    'school.new' => 'Eine neue schule',
+
+    'EventController.updateStatus.success' => 'Status erfolgreich bearbeitet!',
+    'EventController.updateStatus.error' => 'gescheitert!',
+    'EventController.store.error' => 'Die Zeit für die Anmeldung ist nach dem Endzeitpunkt der Veranstaltung.',
+    'EventController.edit.error1' => 'Diese Veranstaltung existiert nicht.',
+    'EventController.edit.error2' => 'Das ist nicht deine Veranstaltung!',
+    'EventController.delete.success' => 'Ereignis erfolgreich gelöscht',
+    'EventController.delete.error' => 'Dieses Ereignis kann nicht gelöscht werden.',
+    'EventController.info.error' => 'Diese Informationen sind für Sie nicht von Nutzen!',
+    'EventController.saveCategory.success' => 'Die Kategorie wurde geändert.',
+
+    'SchoolController.info.delete.succes' => 'Schule erfolgreich gelöscht.',
+    'SchoolController.info.edit.succes' => 'Schule erfolgreich bearbeitet.',
+    'SchoolController.info.create.succes' => 'Die Schule wurde gegründet.',
+
+
 ];

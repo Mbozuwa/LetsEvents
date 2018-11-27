@@ -34,6 +34,10 @@ th {
     font-weight: 300;
 }
 
+.page-subtitle {
+    font-size: 14px;
+}
+
 footer {
     position: absolute;
     bottom: 0;
@@ -2007,6 +2011,40 @@ ul.activity-timeline > li:last-child:after {
 
 .layout-table .cell {
     display: table-cell;
+}
+
+.myParticipatedEvents .panel-title a {
+    color: #717d84;
+    font-weight: 500;
+}
+
+.myParticipatedEvents .info {
+    margin-bottom: 25px;
+}
+
+.myParticipatedEvents .info span.title, .myParticipatedEvents .info span.info {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.myParticipatedEvents .info span.title {
+    color: #a0aeba;
+}
+
+.myParticipatedEvents .urlToEvent a {
+    margin-right: 15px;
+    font-size: 13px;
+    color: #a0aeba;
+}
+
+.myParticipatedEvents .urlToEvent a i {
+    margin-right: 5px;
+    font-size: 14px;
+    color: #347BED;
+}
+
+.myParticipatedEvents .event-status {
+    float: right;
 }
 
 /********************

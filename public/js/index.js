@@ -2,19 +2,19 @@
 
   var today = moment();
   var mydata;
-  
 
 
-  
+
+
   $(document).ready(function() {
 
       $.ajax({
           url: '/start/getEvents',
           type: 'GET',
           success:function(data){
-            finishThis(docReady(data));      
+            finishThis(docReady(data));
           },
-          error: function (){console.log('error');}, 
+          error: function (){console.log('error');},
 
       });
 
@@ -51,13 +51,13 @@
         var color = 'blue';
         var calendar = 'geen status doorgegeven';
       }
-      bobblehead.push ( 
+      bobblehead.push (
       { eventName: name, calendar: calendar, color: color, date: date, id:id },
 
       );
 
       console.log(bobblehead);
-    
+
     }
     return bobblehead;
   }
@@ -78,7 +78,7 @@
         self.openDay(current);
       }, 500);
     }
-    
+
   }
 
   Calendar.prototype.draw = function() {
@@ -88,7 +88,7 @@
     //Draw Month
     this.drawMonth();
 
-    
+
   }
 
   Calendar.prototype.drawHeader = function() {
@@ -107,7 +107,7 @@
       left.addEventListener('click', function() { self.prevMonth(); });
 
       //Append the Elements
-      this.header.appendChild(this.title); 
+      this.header.appendChild(this.title);
       this.header.appendChild(right);
       this.header.appendChild(left);
       this.el.appendChild(this.header);
@@ -118,8 +118,8 @@
 
   Calendar.prototype.drawMonth = function() {
     var self = this;
-    
-    
+
+
     if(this.month) {
       this.oldMonth = this.month;
       this.oldMonth.className = 'month out ' + (self.next ? 'next' : 'prev');
