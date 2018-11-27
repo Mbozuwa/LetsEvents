@@ -24,16 +24,24 @@ class EventController extends Controller
      */
 
     public function index($id) {
-       $event = \App\event::find($id);
-       $user = Auth::user();
-       $organiser = \App\User::find($event['user_id']);
-       $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
-       $count = \App\Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
-       $originalDate = $event['begin_time'];
-	   $newDate = date("d-m-Y H:i", strtotime($originalDate));
-	   $originalDateEnd = $event['end_time'];
-	   $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
-       return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
+        $event = \App\event::find($id);
+
+        if (Event::where(array('id' => $id))->exists())
+        {
+            $user = Auth::user();
+            $organiser = \App\User::find($event['user_id']);
+            $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
+            $count = \App\Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
+            $originalDate = $event['begin_time'];
+            $newDate = date("d-m-Y H:i", strtotime($originalDate));
+            $originalDateEnd = $event['end_time'];
+            $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
+            return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
+        }
+        else
+        {
+            return abort(404);
+        }
     }
 
     /**
@@ -105,10 +113,8 @@ class EventController extends Controller
      */
 
     public function store(Request $request) {
-        session(['rememberEvent' => $request->all()]);
-
         $user = Auth::user();
-        $validator = Validator::make($request->all(),[
+        $request->validate([
             'name' => 'required|max:50',
             'description' => 'required|max:1400',
             'place' => 'required|regex:^[a-zA-Z.\s]+$^',
@@ -119,28 +125,19 @@ class EventController extends Controller
             'image' => 'required',
         ]);
 
-        //if else in of buiten de request
-
-
         $post = new Event();
         $post->name = $request->input('name');
         $post->description = $request->input('description');
         $post->place = $request->input('place');
         $post->address = $request->input('address');
         $post->max_participant = $request->input('max_participant');
-        $date_begin = $request->input('begin_time');
-        $correctDate= date("Y-m-d H:i", strtotime($date_begin));
-        $post->begin_time = $correctDate;
-
-        $date_end = $request->input('end_time');
-        $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
-        $post->end_time = $correctDateEnd;
+        $post->begin_time = date("Y-m-d H:i", strtotime($request->input('begin_time')));
+        $post->end_time = date("Y-m-d H:i", strtotime($request->input('end_time')));
         $post->payment = $request->input('payment');
-
         $post->signup_time = date("Y-m-d H:i", strtotime($request->input('signup_time')));
         if(empty($request->input('signup_time')))
         {
-            $post->signup_time = $correctDate;
+            $post->signup_time = $post->begin_time;
         }
         if(!empty($request->input('signup_time')))
         {
@@ -217,13 +214,8 @@ class EventController extends Controller
         $post->place = $request->input('place');
         $post->address = $request->input('address');
         $post->max_participant = $request->input('max_participant');
-        $date_begin = $request['begin_time'];
-        $correctDate= date("Y-m-d H:i", strtotime($date_begin));
-        $post->begin_time = $correctDate;
-
-        $date_end = $request['end_time'];
-        $correctDateEnd= date("Y-m-d H:i", strtotime($date_end));
-        $post->end_time = $correctDateEnd;
+        $post->begin_time = date("Y-m-d H:i", strtotime($request['begin_time']));
+        $post->end_time = date("Y-m-d H:i", strtotime($request['end_time']));
         $post->payment = $request->input('payment');
 
         if($request->hasFile('image'))
@@ -258,11 +250,10 @@ class EventController extends Controller
     public function myEvents() {
             $user = Auth::user();
             $registrations = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get();
-            $date = date('Y-m-d H:i:s');
-            $date = strtotime($date);
+
             $count = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get()->count();
             $countEvents = \App\event::all()->count();
-            return view('myEvents',['registrations' => $registrations, 'date' => $date, 'count' => $count, 'countEvents' => $countEvents]);
+            return view('myEvents',['registrations' => $registrations, 'count' => $count, 'countEvents' => $countEvents]);
     }
 
     /**
@@ -271,8 +262,8 @@ class EventController extends Controller
 
     public function madeEvents() {
         $user = Auth::user();
-        $userEvents = Event::where('user_id', $user['id'])->paginate(2);
-        return view('/events/made', ['userEvents' => $userEvents]);
+        $events = Event::where('user_id', $user['id'])->paginate(2);
+        return view('/events/made', ['events' => $events]);
     }
 
     /**
