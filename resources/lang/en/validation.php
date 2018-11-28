@@ -141,6 +141,7 @@ return [
     |
     */
 
-    'attributes' => [],
-
+    'attributes' => [
+        'schoolname'            => 'school name',
+    ],
 ];

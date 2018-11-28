@@ -180,8 +180,6 @@ return [
 
     /*Schools overview*/
     'school.name' => 'Name',
-    'school.place' => 'Place',
-    'school.address' => 'The address',
     'school.edit' => 'Edit',
     'school.delete' => 'Remove',
     'school.school' => 'The school',
@@ -189,7 +187,7 @@ return [
     'school.makeSchoolTitle' => 'Create a school.',
     'school.editSchool' => 'Edit the school.',
     'school.editSchoolTitle' => 'Edit a school',
-    'school.new' => 'Add a new school',
+    'school.new' => 'Add school',
 
     /*Admin*/
     'admin' => 'Admin',
@@ -209,7 +207,7 @@ return [
     'EventController.info.error' => 'This information is of no use to you!',
     'EventController.saveCategory.success' => 'The category has been modified.',
 
-
+    /*SchoolController*/
     'SchoolController.info.delete.succes' => 'School successfully removed.',
     'SchoolController.info.edit.succes' => 'School successfully edited.',
     'SchoolController.info.create.succes' => 'The school has been created.',
