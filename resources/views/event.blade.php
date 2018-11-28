@@ -207,6 +207,20 @@
                                 </div>
                             </div>
                         </div>
+                            <div class="panel">
+                                <div class="event-header">
+                                    <div class="media">
+                                        <div class="media-body" >
+                                            <h2 style="margin-top:0px;">Deel: </h2>
+                                                                    
+                                            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                                            <div class="addthis_inline_share_toolbox"></div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
