@@ -2,45 +2,36 @@
 @section('content')
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">{{__('msg.school.schools')}}</h3>
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @elseif(session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
+            </div>
+            <div class="container-fluid">
+                <h3 class="page-title">{{ __('msg.school.schools') }}</h3>
                 <div class="row">
-                    @if(session()->has('message'))
-                        <div class="alert alert-success">
-                            {{ session()->get('message') }}
-                        </div>
-                    @elseif(session()->has('error'))
-                    <div class="alert alert-danger">
-                        {{ session()->get('error') }}
-                    </div>
-                    @endif
                 @foreach ($schools as $school)
-
                     <div class="col-md-6">
                         <div class="panel">
+                            <div class="panel-heading">
+                                <h2 class="panel-title"><a href="">{{ $school->name }}</a></h2>
+                            </div>
                             <div class="panel-body">
-                                <div class="row justify-content-end">
-                                    <div class="col-md-6">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <div class="main-info-item">
-                                                    <span class="title">{{__('msg.school.name')}}:</span>
-                                                    <span class="value">{{$school->name}}</span>
-                                                </div>
-                                                <div class="main-info-item">
-                                                    <span class="title">{{__('msg.school.place')}}:</span>
-                                                    <span class="value">{{$school->place}}</span>
-                                                </div>
-                                                <div class="main-info-item">
-                                                    <span class="title">{{__('msg.school.address')}}:</span>
-                                                    <span class="value">{{$school->address}}</span>
-                                                </div>
-                                                <a href="/school/edit/{{$school->id}}">{{__('msg.school.edit')}}</a>
-                                                <a href="/school/delete/{{$school->id}}">{{__('msg.school.delete')}}</a>
-                                                <br>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="main-info-item">
+                                    <span class="title">{{ __('msg.place') }}:</span>
+                                    <span class="value">{{ $school->place }}</span>
                                 </div>
+                                <div class="main-info-item">
+                                    <span class="title">{{ __('msg.address') }}:</span>
+                                    <span class="value">{{ $school->address }}</span>
+                                </div>
+                                <a href="/school/edit/{{$school->id}}">{{ __('msg.school.edit') }}</a>
+                                <a href="/school/delete/{{$school->id}}">{{ __('msg.school.delete') }}</a>
                             </div>
                         </div>
                     </div>
