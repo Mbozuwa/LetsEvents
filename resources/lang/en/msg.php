@@ -180,16 +180,14 @@ return [
 
     /*Schools overview*/
     'school.name' => 'Name',
-    'school.place' => 'Place',
-    'school.address' => 'The address',
     'school.edit' => 'Edit',
     'school.delete' => 'Delete',
-    'school.school' => 'The school',
-    'school.schools' => 'The schools',
-    'school.makeSchoolTitle' => 'Create a school.',
-    'school.editSchool' => 'Edit the school.',
+    'school.school' => 'School',
+    'school.schools' => 'School overview',
+    'school.makeSchoolTitle' => 'Create a school',
+    'school.editSchool' => 'Edit school',
     'school.editSchoolTitle' => 'Edit a school',
-    'school.new' => 'Add a new school',
+    'school.new' => 'Add school',
 
     /*Admin*/
     'admin' => 'Admin',
@@ -210,8 +208,8 @@ return [
     'EventController.saveCategory.success' => 'The category has been modified.',
 
 
-    'SchoolController.info.delete.succes' => 'School successfully deleted.',
-    'SchoolController.info.edit.succes' => 'School successfully edited.',
-    'SchoolController.info.create.succes' => 'The school has been created.',
+    'SchoolController.info.delete.success' => 'School successfully deleted.',
+    'SchoolController.info.edit.success' => 'School successfully edited.',
+    'SchoolController.info.create.success' => 'The school has been created.',
     'StudentController.chooseschool.success' => 'School is chosen.'
 ];
