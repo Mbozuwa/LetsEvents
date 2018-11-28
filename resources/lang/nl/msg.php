@@ -205,7 +205,7 @@ return [
     'EventController.edit.error1' => 'Dit evenement bestaat niet.',
     'EventController.edit.error2' => 'Dat is niet jouw evenement!',
     'EventController.delete.success' => 'Evenement succesvol verwijderd.',
-    'EventController.delete.error' => 'Dit evenement kan niet verwijderd worden.',
+    'EventController.delete.error' => 'Dit evenement kan niet verwijdert worden, er zijn nog steeds deelnemers gekoppeld',
     'EventController.info.error' => 'Deze informatie gaat jou niks aan!',
     'EventController.saveCategory.success' => 'De categorie is aangepast.',
 
