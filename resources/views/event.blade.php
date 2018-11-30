@@ -143,6 +143,21 @@
                                                         <h2 class="event-title">{{ __('msg.event.userStatus') }}</h2>
                                                         @if ($attendence[0]['status'] == "Ik ga")
                                                         <span class="label label-success status"><b>{{ __('msg.event.iGo') }}</b> {{ __('msg.event.tothisevent') }}</span>
+                                                        @if(!empty($event['payment']) || $event['payment'] != 0)
+                                                             <div class="btn">
+                                                                 <form class="paypal" action="{{ route('payment')}}" method="post" id="paypal_form">
+                                                                    <input type="hidden" name="cmd" value="_xclick" />
+                                                                    <input type="hidden" name="no_note" value="1" />
+                                                                    <input type="hidden" name="lc" value="UK" />
+                                                                    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
+                                                                    <input type="hidden" name="first_name" value="Customer's First Name" />
+                                                                    <input type="hidden" name="last_name" value="Customer's Last Name" />
+                                                                    <input type="hidden" name="payer_email" value="customer@example.com" />
+                                                                    <input type="hidden" name="item_number" value="123456" / >
+                                                                    <input type="submit" name="submit" value="Submit Payment"/>
+                                                                </form>
+                                                             </div>
+                                                        @endif                  
                                                         @elseif ($attendence[0]['status'] == "Misschien")
                                                         <span class="label label-warning status"><b>{{ __('msg.event.iMaybe') }}</b> {{ __('msg.event.tothisevent') }}</span>
                                                         @elseif ($attendence[0]['status'] == "Ik ga niet")

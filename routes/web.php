@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth.custom'] ,function() {
   Route::get('events/categories/{id}', 'EventController@chooseCategoryWithEvent');
 
 
+
   Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
   Route::post('/events/create', 'EventController@store');
 });
@@ -74,6 +75,7 @@ Route::get('start/getEvents', 'StartController@getEvents');
 Route::get('/registration/1/{id}', 'registrationController@userGoing');
 Route::get('/registration/2/{id}', 'registrationController@userMaybe');
 Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
+Route::get('/payment', 'registrationController@payment')->name('payment');
 
 //homeController
 Route::get('/notificationDelete', 'HomeController@notificationDelete');
@@ -108,6 +110,7 @@ Route::post('/school/delete/{id}', 'schoolController@delete');
 //studentController
 Route::get('/student/index','StudentController@index');
 Route::get('/student/show', 'StudentController@show');
+
 // Route::post('/student/show', 'StudentController@chooseSchool')->name('chooseSchool');
 Route::post('/student/edit/{id}', 'StudentController@chooseSchool')->name('editStudent');
 Route::get('/student/edit/{id}', 'StudentController@edit');

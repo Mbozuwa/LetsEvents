@@ -10,6 +10,9 @@ use Auth;
 
 class RegistrationController extends Controller
 {
+    public function payment(Request $request) {
+        dd(Auth::user());
+    }
     /**
      * Function to set the status to "ik ga"
      */
