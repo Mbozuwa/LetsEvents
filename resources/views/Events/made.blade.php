@@ -7,6 +7,11 @@
                     {{ session()->get('error') }}
                 </div>
                 @endif
+                @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+                @endif
                 @if(session()->has('message'))
                 <div class="alert alert-danger">
                     {{ session()->get('message') }}
@@ -135,13 +140,6 @@
                         </div>
                     </div>
                     @endforeach
-
-                   
-                <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis_inline_share_toolbox"></div>
-            
-
-
                 </div>
             </div>
             @else
