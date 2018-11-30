@@ -11,6 +11,7 @@ use App\Category;
 use App\User;
 use Auth;
 use Validator;
+use Carbon\Carbon;
 
 use \File;
 
@@ -96,6 +97,7 @@ class EventController extends Controller
 
     public function allEventsSearch($name) {
         $events = Event::get();
+        
 
     return view('events/index', ['events' => $events, 'name' => $name]);
     }
@@ -261,8 +263,21 @@ class EventController extends Controller
      */
 
     public function madeEvents() {
+        
         $user = Auth::user();
-        $events = Event::where('user_id', $user['id'])->paginate(2);
+        
+        // $events = Event::where(['user_id' => $user['id'],'end_time', '>=', Carbon::now()->toDateString()])->paginate(2);
+        $events = Event::where('user_id', $user['id'])->whereDate('end_time', '>=', Carbon::now()->toDateString())->paginate(2);
+        return view('/events/made', ['events' => $events]);
+    }
+
+    /**
+     * show old events that you made
+     */
+
+    public function madeEventsAll(){
+        $user = Auth::user();
+        $events = Event::where(['user_id' => $user['id']])->paginate(2);
         return view('/events/made', ['events' => $events]);
     }
 

@@ -19,7 +19,8 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-    @foreach ($events as $event)
+                    <a href="/events/madeAll"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Show old events</button></a><a href="/events/made"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Hide old events</button></a><br><br><br>
+                @foreach ($events as $event)
                     <div class="col-md-6">
                         <div class="panel">
                             <div class="event-header">
@@ -28,24 +29,24 @@
                                         <div class="media">
                                             <div class="media-left">
                                                 @if(empty($event['image']))
-                                                <img src="{{ asset('uploads/events/unknown.png') }}" class="event-logo"/>
+                                                    <img src="{{ asset('uploads/events/unknown.png') }}" class="event-logo"/>
                                                 @else
-                                                <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo" alt="{{ $event['name'] }}"/>
+                                                    <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo" alt="{{ $event['name'] }}"/>
                                                 @endif
                                             </div>
                                             <div class="media-body">
                                                 <h2 class="event-title">{{ $event['name'] }}</h2>
 
                                                 @if(Auth::user()->role_id == 2)
-                                                <span class="label label-warning status">ID: {{ $event->id }}</span>
+                                                    <span class="label label-warning status">ID: {{ $event->id }}</span>
                                                 @endif
 
                                                 @if(strtotime("now") >= strtotime($event['begin_time']) && strtotime("now") <= strtotime($event['end_time']))
-                                                <span class="label label-success status">{{ __('msg.event.info.now') }}</span>
-                                                @elseif(strtotime("now") >= strtotime($event['end_time']))
-                                                <span class="label label-default status">{{ __('msg.event.info.ended') }}</span>
+                                                    <span class="label label-success status">{{ __('msg.event.info.now') }}</span>
+                                                @elseif(strtotime("now") >= strtotime($event['end_time']))                                          
+                                                    <span class="label label-default status">{{ __('msg.event.info.ended') }}</span>
                                                 @else
-                                                <span class="label label-info status">{{ __('msg.event.info.soon') }}</span>
+                                                    <span class="label label-info status">{{ __('msg.event.info.soon') }}</span>
                                                 @endif
                                             </div>
                                         </div>
