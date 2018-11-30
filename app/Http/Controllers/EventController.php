@@ -11,7 +11,7 @@ use App\Category;
 use App\User;
 use Auth;
 use Validator;
-
+use App\Email;
 use \File;
 
 use \Input as Input;
@@ -60,6 +60,8 @@ class EventController extends Controller
                 session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
                 session(['notificationAlarmDelete' => false]);
                 session(['event_id' => $id]);
+                $email = new Email();
+                $email->sendEmailReminder($event->id);
             }
             elseif ($status == "Misschien") {
                 session(['notification' => 'Je gaat misschien naar het evenement: '.$event['name']]);
