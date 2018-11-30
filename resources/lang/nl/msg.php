@@ -180,16 +180,14 @@ return [
 
     /*Schools overview*/
     'school.name' => 'Naam',
-    'school.place' => 'Plaats',
-    'school.address' => 'Het adres',
     'school.edit' => 'Bewerken',
     'school.delete' => 'Verwijder',
-    'school.school' => 'De school',
-    'school.schools' => 'De scholen',
+    'school.school' => 'School',
+    'school.schools' => 'Scholen overzicht',
     'school.makeSchoolTitle' => 'Maak een school aan.', 
-    'school.editSchool' => 'Pas de school aan.',
-    'school.editSchoolTitle' => 'Pas een school aan',
-    'school.new' => 'Een nieuwe school',
+    'school.editSchool' => 'Wijzigen',
+    'school.editSchoolTitle' => 'Wijzig een school',
+    'school.new' => 'School toevoegen',
 
     /*Admin*/
     'admin' => 'Admin',
@@ -205,13 +203,13 @@ return [
     'EventController.edit.error1' => 'Dit evenement bestaat niet.',
     'EventController.edit.error2' => 'Dat is niet jouw evenement!',
     'EventController.delete.success' => 'Evenement succesvol verwijderd.',
-    'EventController.delete.error' => 'Dit evenement kan niet verwijderd worden.',
+    'EventController.delete.error' => 'Dit evenement kan niet verwijdert worden, er zijn nog steeds deelnemers gekoppeld',
     'EventController.info.error' => 'Deze informatie gaat jou niks aan!',
     'EventController.saveCategory.success' => 'De categorie is aangepast.',
 
 
-    'SchoolController.info.delete.succes' => 'School succesvol verwijderd.',
-    'SchoolController.info.edit.succes' => 'De school is aangepast.',
-    'SchoolController.info.create.succes' => 'De school is aangemaakt.',
+    'SchoolController.info.delete.success' => 'School succesvol verwijderd.',
+    'SchoolController.info.edit.success' => 'De school is aangepast.',
+    'SchoolController.info.create.success' => 'De school is aangemaakt.',
     'StudentController.chooseschool.success' => 'School is gekozen.',
 ];

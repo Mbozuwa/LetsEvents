@@ -143,5 +143,7 @@ return [
     'attributes' => [
         'telephone'             => 'telefoonnummer',
         'address'               => 'adres',
+        'schoolname'            => 'schoolnaam',
+        'place'                 => 'plaats',
     ],
 ];
