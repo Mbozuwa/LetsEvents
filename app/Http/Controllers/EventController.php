@@ -277,18 +277,18 @@ class EventController extends Controller
         $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
 
         if($event != null) {
-            if (Event::where(array('user_id' => $user['id'], 'id' => $id))->exists())
-            {
-                $event->delete();
-                return redirect('/events/made')->with('success', __('msg.EventController.delete.success'));
+            if (Event::where(array('user_id' => $user['id'], 'id' => $id))->exists()) 
+            try{
+                    $event->delete();
+                    return redirect('/events/made')->with('success', __('msg.EventController.delete.success'));
+                }
+                catch (\Exception $e) {
+                    return redirect()->back()->with('error', __('msg.EventController.delete.error'));
+                }
             }
-            else
-            {
-                return back()->with('error', __('msg.EventController.delete.error'));
+            else{
+                return redirect()->back();
             }
-        }else{
-            return redirect()->back();
-        }
     }
 
     /*
