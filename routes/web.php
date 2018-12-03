@@ -121,9 +121,13 @@ Route::get('/logout', [
   'uses' => 'UserController@getLogout',
   'as' => 'user.logout'
 ]);
+//mailcontrolller
+Route::get('/mail', 'MailController@sendmail');
+Route::post('/mail', 'MailController@sendmail');
+Route::get('/sendReminder', 'MailController@sendEmailReminder');
+Route::post('/sendReminder', 'MailController@sendEmailReminder');
 
-
-
+// Route::post('/send', 'MailController@send');
 
 
 
