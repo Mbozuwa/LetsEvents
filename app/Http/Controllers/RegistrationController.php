@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use App\Registration;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Email;
 use Auth;
+use App\Event;
 
 class RegistrationController extends Controller
 {
     /**
      * Function to set the status to "ik ga"
      */
+
     public function userGoing($id) {
     	  $user = Auth::user();
     	  $registration = new Registration([
@@ -20,9 +22,11 @@ class RegistrationController extends Controller
           'event_id' => $id,
           'status' => "Ik ga",
         ]);
-        
+
         $registration->save();
         $event = \App\event::find($id);
+        $email = new Email();
+        $email->sendEmailReminder($event->id);
         session(['notificationAlarmDelete' => false]);
         session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
         session(['event_id' => $id]);
@@ -64,4 +68,5 @@ class RegistrationController extends Controller
         session(['event_id' => $id]);
         return redirect('/event/'.$id);
     }
+
 }
