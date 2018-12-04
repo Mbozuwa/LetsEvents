@@ -126,10 +126,11 @@ class EventController extends Controller
             'description' => 'required|max:1400',
             'place' => 'required|regex:^[a-zA-Z.\s]+$^',
             'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
-            'max_participant' => 'required|alpha_num',
+            'max_participant' => 'required|numeric|min:2',
             'begin_time' => 'required',
             'end_time' => 'required',
             'image' => 'required',
+            'payreminder' => 'numeric|min:1'
         ]);
 
         $post = new Event();
@@ -153,6 +154,13 @@ class EventController extends Controller
                 //Some error bc signup_time is equal or higher then end_time.
                 return redirect()->back()->with('error', __('msg.EventController.store.error'));
             }
+        }
+
+        if($post->payment > 0)
+        {
+            $post->payment_reminder = $request->input('payreminder');
+        } else {
+            $post->payment_reminder = 0;
         }
 
         if(Input::hasFile('image'))
@@ -209,7 +217,7 @@ class EventController extends Controller
             'description' => 'required|max:1400',
             'place' => 'required|regex:^[a-zA-Z.\s]+$^',
             'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
-            'max_participant' => 'required|alpha_num',
+            'max_participant' => 'required|numeric|min:2',
             'begin_time' => 'required',
             'end_time' => 'required',
             'user_id' => 'required'
