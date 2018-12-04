@@ -182,6 +182,7 @@ return [
     'school.name' => 'Naam',
     'school.edit' => 'Bewerken',
     'school.delete' => 'Verwijder',
+
     'school.school' => 'School',
     'school.schools' => 'Scholen overzicht',
     'school.makeSchoolTitle' => 'Maak een school aan.', 
@@ -212,4 +213,10 @@ return [
     'SchoolController.info.edit.success' => 'De school is aangepast.',
     'SchoolController.info.create.success' => 'De school is aangemaakt.',
     'StudentController.chooseschool.success' => 'School is gekozen.',
+
+    'reminder' => 'Herinnering',
+    'reminder.firstLine' => 'Dit is een e-mail zodat je weet dat je bent geregistreerd.',
+    'reminder.secondLine' => 'Je hebt je aangemeld voor dit evenement',
+    'reminder.description' => 'De beschrijving',
+    'reminder.payment' => 'Je moet nog betalen.'
 ];

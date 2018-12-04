@@ -11,7 +11,8 @@ use App\Category;
 use App\User;
 use Auth;
 use Validator;
-
+use App\Mail\Registered;
+use Mail;
 use \File;
 
 use \Input as Input;
@@ -60,6 +61,8 @@ class EventController extends Controller
                 session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
                 session(['notificationAlarmDelete' => false]);
                 session(['event_id' => $id]);
+                Mail::to($user->email)->send(new Registered($event));
+
             }
             elseif ($status == "Misschien") {
                 session(['notification' => 'Je gaat misschien naar het evenement: '.$event['name']]);
@@ -275,7 +278,7 @@ class EventController extends Controller
         $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
 
         if($event != null) {
-            if (Event::where(array('user_id' => $user['id'], 'id' => $id))->exists()) 
+            if (Event::where(array('user_id' => $user['id'], 'id' => $id))->exists())
             try{
                     $event->delete();
                     return redirect('/events/made')->with('success', __('msg.EventController.delete.success'));
