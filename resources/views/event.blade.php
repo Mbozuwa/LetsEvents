@@ -171,6 +171,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
+                                            
                                         @else
                                             <div class="col-md-12">
                                                 <div class="media">
