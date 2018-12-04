@@ -177,6 +177,7 @@ return [
 
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profile succesfully edited',
+    'ProfileController.find' => 'This is not your profile!',
 
     /*Schools overview*/
     'school.name' => 'Name',

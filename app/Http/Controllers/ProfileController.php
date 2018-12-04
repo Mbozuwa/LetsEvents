@@ -41,7 +41,7 @@ class ProfileController extends Controller
             // }
             return view('profile.profile', ['profile' => $profile, 'user' => $user]);
         }
-        return redirect()->back()->with('error', 'Dat is niet jouw profiel!');
+        return redirect()->back()->with('error', __('msg.ProfileController.find'));
     }
 
     /**
