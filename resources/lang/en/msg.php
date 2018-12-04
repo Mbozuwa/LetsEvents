@@ -217,5 +217,6 @@ return [
     'reminder.firstLine' => 'This is a mail so that you know that you are registered.',
     'reminder.secondLine' => 'You have signed up for this event',
     'reminder.description' => 'The description',
-    'reminder.payment' => 'You still have to pay.'
+    'reminder.payment' => 'You still have to pay.',
+    'reminder.send.error' => 'The network you are on doesn\'t support the sending of an email',
 ];

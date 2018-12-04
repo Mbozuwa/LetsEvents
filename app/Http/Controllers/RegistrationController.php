@@ -6,6 +6,8 @@ use App\Registration;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Email;
+use Mail;
+use App\Mail\Registered;
 use Auth;
 use App\Event;
 
@@ -13,6 +15,7 @@ class RegistrationController extends Controller
 {
     /**
      * Function to set the status to "ik ga"
+     *and it sends a registration email
      */
 
     public function userGoing($id) {
@@ -25,8 +28,12 @@ class RegistrationController extends Controller
 
         $registration->save();
         $event = \App\event::find($id);
-        $email = new Email();
-        $email->sendEmailReminder($event->id);
+        try {
+            Mail::to($user->email)->send(new Registered($event, $user));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'nope');
+        }
+
         session(['notificationAlarmDelete' => false]);
         session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
         session(['event_id' => $id]);

@@ -185,7 +185,7 @@ return [
 
     'school.school' => 'School',
     'school.schools' => 'Scholen overzicht',
-    'school.makeSchoolTitle' => 'Maak een school aan.', 
+    'school.makeSchoolTitle' => 'Maak een school aan.',
     'school.editSchool' => 'Wijzigen',
     'school.editSchoolTitle' => 'Wijzig een school',
     'school.new' => 'School toevoegen',
@@ -215,8 +215,10 @@ return [
     'StudentController.chooseschool.success' => 'School is gekozen.',
 
     'reminder' => 'Herinnering',
-    'reminder.firstLine' => 'Dit is een e-mail zodat je weet dat je bent geregistreerd.',
-    'reminder.secondLine' => 'Je hebt je aangemeld voor dit evenement',
+    'reminder.secondLine' => 'Dit is een e-mail zodat je weet dat je bent geregistreerd.',
+    'reminder.firstLine' => 'je hebt je zojuist aangemeld voor het evenement',
     'reminder.description' => 'De beschrijving',
-    'reminder.payment' => 'Je moet nog betalen.'
+    'reminder.payment' => 'Kosten van het evenement',
+    'reminder.send.error' => 'Het netwerk dat u gebruikt, ondersteunt het verzenden van een e-mail niet',
+
 ];

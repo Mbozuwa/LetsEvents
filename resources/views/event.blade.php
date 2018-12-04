@@ -80,7 +80,7 @@
                                                 <span class="title">{{ __('msg.event.regFees') }}</span>
                                                 @if(empty($event['payment']))
                                                 <span class="value">{{ __('msg.event.regFree') }}</span>
-                                                @else 
+                                                @else
                                                 <span class="value">&euro; {{ $event['payment'] }}</span>
                                                 @endif
                                             </div>
@@ -212,10 +212,10 @@
                                     <div class="media">
                                         <div class="media-body" >
                                             <h2 style="margin-top:0px;">Deel: </h2>
-                                                                    
+
                                             <!-- Go to www.addthis.com/dashboard to customize your tools -->
                                             <div class="addthis_inline_share_toolbox"></div>
-                                        
+
                                         </div>
                                     </div>
                                 </div>
