@@ -144,6 +144,7 @@ return [
 
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profil erfolgreich bearbeitet!',
+    'ProfileController.find' => 'Dies ist nicht dein Profil',
 
     /*Schools overview*/
     'school.name' => 'Name',
