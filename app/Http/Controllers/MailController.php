@@ -24,17 +24,7 @@ class MailController extends Controller
         });
         return view('/welcome');
     }
-
-    public function sendEmailPaymentReminder() {
-        $user = Auth::user();
-        $events = Event::all();
-        Mail::send('emailTemplates.payment', ['user' => $user, 'events' => $events], function ($m) use ($user) {
-            $m->from('no-reply@letsevent.nl', 'Lets Event');
-
-            $m->to($user->email, $user->name)->subject('Betalingsherinnering');
-        });
-        return view('welcome');
-    }
+    
     // public function send(Request $reqeust) {
     //    //  $title = $request->input('title');
     //    // $content = $request->input('content');

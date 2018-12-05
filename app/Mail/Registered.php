@@ -30,6 +30,6 @@ class Registered extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.registered');
+        return $this->markdown('emails.registered')->subject('Deelname aan evenement');
     }
 }
