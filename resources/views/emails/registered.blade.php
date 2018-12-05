@@ -16,6 +16,9 @@
     <p>Datum: @dateFormat($event->begin_time) t/m @dateFormat($event->end_time)</p>
     @if ($event->payment > 0)
         <small>{{__('msg.reminder.payment')}}: €{{$event->payment}}.</small>
+        @component('mail::button', ['url' => config('app.url').'/event/'.$event->id])
+    	<i class="fab fa-paypal"></i> Inschrijfkosten betalen
+    	@endcomponent
     @endif
 </div>
 @slot('footer')
