@@ -189,6 +189,7 @@ return [
     'school.editSchool' => 'Edit the school.',
     'school.editSchoolTitle' => 'Edit a school',
     'school.new' => 'Add school',
+    'school.confirm' => 'Are you sure you want to remove this school?',
 
     /*Admin*/
     'admin' => 'Admin',
