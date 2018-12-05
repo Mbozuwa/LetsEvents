@@ -29,14 +29,19 @@ class EventController extends Controller
 
     public function index($id) {
         $event = \App\event::find($id);
-        $paymentStatus = \App\PaymentStatus::where('user_id', Auth::user()->id)->where('event_id', $event['id'])->get();
-        if (isset($paymentStatus[0])) {
-            $paymentStatus = $paymentStatus[0]['payment_status'];
-        }
         
-
         if (Event::where(array('id' => $id))->exists())
         {
+            if(Auth::user())
+            {
+                $paymentStatus = \App\PaymentStatus::where('user_id', Auth::user()->id)->where('event_id', $event['id'])->get();
+                if (isset($paymentStatus[0])) {
+                    $paymentStatus = $paymentStatus[0]['payment_status'];
+                }
+            }else{
+                $paymentStatus = 0;
+            }
+
             $user = Auth::user();
             $organiser = \App\User::find($event['user_id']);
             $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
