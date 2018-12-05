@@ -177,6 +177,7 @@ return [
 
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profile succesfully edited',
+    'ProfileController.find' => 'This is not your profile!',
 
     /*Schools overview*/
     'school.name' => 'Name',
@@ -211,5 +212,12 @@ return [
     'SchoolController.info.delete.succes' => 'School successfully removed.',
     'SchoolController.info.edit.succes' => 'School successfully edited.',
     'SchoolController.info.create.succes' => 'The school has been created.',
-    'StudentController.chooseschool.success' => 'School is chosen.'
+    'StudentController.chooseschool.success' => 'School is chosen.',
+
+    'reminder' => 'reminder',
+    'reminder.firstLine' => 'This is a mail so that you know that you are registered.',
+    'reminder.secondLine' => 'You have signed up for this event',
+    'reminder.description' => 'The description',
+    'reminder.payment' => 'You still have to pay.',
+    'reminder.send.error' => 'The network you are on doesn\'t support the sending of an email',
 ];

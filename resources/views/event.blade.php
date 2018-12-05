@@ -80,7 +80,7 @@
                                                 <span class="title">{{ __('msg.event.regFees') }}</span>
                                                 @if(empty($event['payment']))
                                                 <span class="value">{{ __('msg.event.regFree') }}</span>
-                                                @else 
+                                                @else
                                                 <span class="value">&euro; {{ $event['payment'] }}</span>
                                                 @endif
                                             </div>
@@ -182,9 +182,18 @@
                                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ strtoupper(__('msg.modify')) }} <span class="caret"></span>
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                        <li name="ga"><a href="/events/updateStatus/{{$event->id}}/Ik ga">{{ __('msg.event.iGo') }}</a></li>
-                                                        <li name="mischien"><a href="/events/updateStatus/{{$event->id}}/Misschien">{{ __('msg.event.iMaybe') }}</a></li>
-                                                        <li name="niet"><a href="/events/updateStatus/{{$event->id}}/Ik ga niet">{{ __('msg.event.iDontGo') }}</a></li>
+                                                        @if ($attendence[0]['status'] !== "Ik ga")  
+                                                            <li name="ga"><a href="/events/updateStatus/{{$event->id}}/Ik ga">{{ __('msg.event.iGo') }}</a></li>
+                                                        @else
+                                                        @endif
+                                                        @if ($attendence[0]['status'] !== "Misschien")
+                                                            <li name="mischien"><a href="/events/updateStatus/{{$event->id}}/Misschien">{{ __('msg.event.iMaybe') }}</a></li>
+                                                        @else
+                                                        @endif
+                                                        @if ($attendence[0]['status'] !== "Ik ga niet")
+                                                            <li name="niet"><a href="/events/updateStatus/{{$event->id}}/Ik ga niet">{{ __('msg.event.iDontGo') }}</a></li>
+                                                        @else
+                                                        @endif
                                                     </ul>
                                                 </div>
                                             </div>
@@ -238,10 +247,10 @@
                                     <div class="media">
                                         <div class="media-body" >
                                             <h2 style="margin-top:0px;">Deel: </h2>
-                                                                    
+
                                             <!-- Go to www.addthis.com/dashboard to customize your tools -->
                                             <div class="addthis_inline_share_toolbox"></div>
-                                        
+
                                         </div>
                                     </div>
                                 </div>

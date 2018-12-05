@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSchoolsTable extends Migration
+class AddPaymentReminderToEventTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateSchoolsTable extends Migration
      */
     public function up()
     {
-        Schema::create('schools', function(Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('place');
-            $table->string('address');
-            $table->timestamps();
-            });
+        Schema::table('event', function (Blueprint $table) {
+            $table->integer('payment_reminder')->default('0')->after('payment');
+        });
     }
 
     /**
@@ -29,6 +25,8 @@ class CreateSchoolsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('schools');
+        Schema::table('event', function (Blueprint $table) {
+            $table->dropColumn('payment_reminder');
+        });
     }
 }
