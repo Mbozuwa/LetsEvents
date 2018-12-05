@@ -4,7 +4,7 @@
            Lets-event
        @endcomponent
    @endslot
-    ![Event]({{ asset('/assets/img/event-distribution.png')}})
+    ![Event](https://i.imgur.com/c696yBU.png)
 
 <div class="centered">
     {{-- <img alt="My Image" class="img" src="{{ asset('/assets/img/event-distribution.png')}}" max-width="100%" /> --}}
