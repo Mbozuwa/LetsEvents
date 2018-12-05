@@ -171,14 +171,13 @@ class RegistrationController extends Controller
             $store->event_id = session('event_id');
             $store->user_id = Auth::user()->id;
             $store->save();
-            return Redirect::to('/event/'. session('event_id'));
+            return Redirect::to('/event/'. session('event_id'))->with('message', 'Betaling is succesvol');;
         }
         $store = new PaymentStatus();
             $store->payment_status = $result->getState();
             $store->event_id = session('event_id');
             $store->user_id = Auth::user()->id;
             $store->save();
-        // \Session::put('error', 'Payment failed');
         return Redirect::to('/event/'. session('event_id'));
     }
 }
