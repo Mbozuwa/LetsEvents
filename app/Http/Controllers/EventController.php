@@ -15,6 +15,9 @@ use App\Mail\Registered;
 use Mail;
 use \File;
 
+use App\Email;
+use App\Mail\MailReminder;
+
 use \Input as Input;
 
 class EventController extends Controller
@@ -360,5 +363,18 @@ class EventController extends Controller
         }
 
         return redirect()->back()->with('success', __('msg.EventController.saveCategory.success'));
+    }
+
+    public function sendPaymentReminder($id) {
+        $user = Auth::user();
+        $event = \App\event::find($id);
+        try {
+            Mail::to($user->email)
+                ->send(new MailReminder($event, $user));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Fail.');
+        }
+
+        return redirect()->back()->with('success', 'Mail verzonden');
     }
 }

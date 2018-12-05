@@ -127,8 +127,7 @@ Route::post('/mail', 'MailController@sendmail');
 Route::get('/sendReminder', 'MailController@sendEmailReminder');
 Route::post('/sendReminder', 'MailController@sendEmailReminder');
 
-
-Route::get('/sendPaymentReminder', 'MailController@sendEmailPaymentReminder');
+Route::get('/sendPaymentReminder/{id}', 'EventController@sendPaymentReminder');
 
 
 // Route::post('/send', 'MailController@send');
