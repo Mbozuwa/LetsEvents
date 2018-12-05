@@ -6,6 +6,7 @@ use App\Registration;
 use App\PaymentStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
@@ -24,12 +25,21 @@ use Session;
 use Auth;
 use URL;
 
+=======
+use App\Email;
+use Mail;
+use App\Mail\Registered;
+use Auth;
+use App\Event;
+>>>>>>> e5d88d4601aea729eafee9e3379bc5dbfdbb893f
 
 class RegistrationController extends Controller
 {
     /**
      * Function to set the status to "ik ga"
+     *and it sends a registration email
      */
+
     public function userGoing($id) {
     	  $user = Auth::user();
     	  $registration = new Registration([
@@ -37,9 +47,15 @@ class RegistrationController extends Controller
           'event_id' => $id,
           'status' => "Ik ga",
         ]);
-        
+
         $registration->save();
         $event = \App\event::find($id);
+        try {
+            Mail::to($user->email)->send(new Registered($event, $user));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'nope');
+        }
+
         session(['notificationAlarmDelete' => false]);
         session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
         session(['event_id' => $id]);
@@ -82,6 +98,7 @@ class RegistrationController extends Controller
         return redirect('/event/'.$id);
     }
 
+<<<<<<< HEAD
     public function __construct()
     {
  
@@ -181,4 +198,6 @@ class RegistrationController extends Controller
         // \Session::put('error', 'Payment failed');
         return Redirect::to('/event/'. session('event_id'));
     }
+=======
+>>>>>>> e5d88d4601aea729eafee9e3379bc5dbfdbb893f
 }
