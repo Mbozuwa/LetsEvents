@@ -146,7 +146,8 @@
                                                         @if(!empty($event['payment']) || $event['payment'] != 0)
                                                             @if($paymentStatus == 'approved')
                                                              <div>
-                                                                <p>Betaling is voltooid</p>
+                                                                <hr>
+                                                                <span class="label label-success status"><b>Betaling is voltooid</span>
                                                              </div>
                                                              @elseif($paymentStatus == 'rejected')
                                                              <div>
@@ -155,16 +156,17 @@
                                                                   {{ csrf_field() }}     
                                                                   <input class="w3-input w3-border" name="amount" type="hidden" value="{{$event['payment']}}">  
                                                                   <input class="w3-input w3-border" name="event_id" type="hidden" value="{{$event['id']}}">      
-                                                                  <button class="w3-btn w3-blue">Pay with PayPal</button>
+                                                                  <input type="submit" class="btn btn-info" value="Pay with PayPal">
                                                                 </form>
                                                              </div>
                                                             @else
-                                                             <div class="btn">
+                                                             <div>
+                                                                <hr>
                                                                 <form class="w3-container w3-display-middle w3-card-4 " method="POST" id="payment-form"  action="/payment/add-funds/paypal">
                                                                   {{ csrf_field() }}     
                                                                   <input class="w3-input w3-border" name="amount" type="hidden" value="{{$event['payment']}}">  
                                                                   <input class="w3-input w3-border" name="event_id" type="hidden" value="{{$event['id']}}">      
-                                                                  <button class="w3-btn w3-blue">Pay with PayPal</button>
+                                                                  <input type="submit" class="btn btn-info" value="Pay with PayPal">
                                                                 </form>
                                                              </div>
                                                              @endif
