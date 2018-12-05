@@ -75,7 +75,10 @@ Route::get('start/getEvents', 'StartController@getEvents');
 Route::get('/registration/1/{id}', 'registrationController@userGoing');
 Route::get('/registration/2/{id}', 'registrationController@userMaybe');
 Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
-Route::get('/payment', 'registrationController@payment')->name('payment');
+Route::get('status', 'registrationController@getPaymentStatus');
+Route::get('/payment/add-funds/paypal', 'registrationController@payWithpaypal');
+Route::post('/payment/add-funds/paypal', 'registrationController@payWithpaypal');
+
 
 //homeController
 Route::get('/notificationDelete', 'HomeController@notificationDelete');

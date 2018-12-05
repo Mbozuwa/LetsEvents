@@ -25,6 +25,11 @@ class EventController extends Controller
 
     public function index($id) {
         $event = \App\event::find($id);
+        $paymentStatus = \App\PaymentStatus::where('user_id', Auth::user()->id)->where('event_id', $event['id'])->get();
+        if (isset($paymentStatus[0])) {
+            $paymentStatus = $paymentStatus[0]['payment_status'];
+        }
+        
 
         if (Event::where(array('id' => $id))->exists())
         {
@@ -36,7 +41,7 @@ class EventController extends Controller
             $newDate = date("d-m-Y H:i", strtotime($originalDate));
             $originalDateEnd = $event['end_time'];
             $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
-            return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
+            return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser, 'paymentStatus' => $paymentStatus]);
         }
         else
         {
