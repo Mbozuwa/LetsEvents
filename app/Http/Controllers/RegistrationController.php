@@ -24,6 +24,12 @@ use Session;
 use Auth;
 use URL;
 
+// use App\Registration;
+use App\Email;
+use Mail;
+use App\Mail\Registered;
+use App\Event;
+
 
 class RegistrationController extends Controller
 {
@@ -37,9 +43,16 @@ class RegistrationController extends Controller
           'event_id' => $id,
           'status' => "Ik ga",
         ]);
-        
+
         $registration->save();
         $event = \App\event::find($id);
+        $event = \App\event::find($id);
+         try {
+             Mail::to($user->email)->send(new Registered($event, $user));
+         } catch (\Exception $e) {
+             return redirect()->back()->with('error', 'nope');
+         }
+
         session(['notificationAlarmDelete' => false]);
         session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
         session(['event_id' => $id]);
@@ -84,7 +97,7 @@ class RegistrationController extends Controller
 
     public function __construct()
     {
- 
+
         /** PayPal api context **/
         $paypal_conf = \Config::get('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential(
@@ -92,7 +105,7 @@ class RegistrationController extends Controller
             $paypal_conf['secret'])
         );
         $this->_api_context->setConfig($paypal_conf['settings']);
- 
+
     }
 
     public function payWithpaypal(Request $request)
