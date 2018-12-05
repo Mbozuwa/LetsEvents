@@ -61,7 +61,11 @@ class EventController extends Controller
                 session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
                 session(['notificationAlarmDelete' => false]);
                 session(['event_id' => $id]);
-                Mail::to($user->email)->send(new Registered($event));
+                try {
+                    Mail::to($user->email)->send(new Registered($event, $user));
+                } catch(\Exception $e) {
+                    return redirect()->back()->with('error', __('msg.reminder.send.error'));
+                }
 
             }
             elseif ($status == "Misschien") {
