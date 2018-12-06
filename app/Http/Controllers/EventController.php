@@ -375,16 +375,26 @@ class EventController extends Controller
         return redirect()->back()->with('success', __('msg.EventController.saveCategory.success'));
     }
 
-    public function sendPaymentReminder($id) {
-        $user = Auth::user();
-        $event = \App\event::find($id);
-        try {
-            Mail::to($user->email)
-                ->send(new MailReminder($event, $user));
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Fail.');
+    public function sendPaymentReminder(Request $request) {
+        $eventId = $request->input('eventid');
+        $userId = $request->input('userid');
+
+        if (Auth::user()->role_id == 2){
+            if (User::find($userId))
+            {
+                $user = User::find($userId);
+                $event = Event::find($eventId);
+                try {
+                    Mail::to($user->email)
+                        ->send(new MailReminder($event, $user));
+                } catch (Exception $e) {
+                    return redirect()->back()->with('error', __('msg.event.info.sendError'));
+                }
+            }else{
+                return redirect()->back()->with('error', __('msg.event.info.userNotfound'));
+            }
         }
 
-        return redirect()->back()->with('success', 'Mail verzonden');
+        return redirect()->back()->with('message', __('msg.event.info.sendSuccess'));
     }
 }
