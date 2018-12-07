@@ -52,7 +52,9 @@ return [
     'event.iDontGo' => 'I\'m not participating',
     'event.noStatus' => 'No status',
 
+    'name' => 'Name',
     'email' => 'Email',
+    'telephone' => 'Telephone',
     'password' => 'Password',
     'address' => 'Address',
     'place' => 'Place',
@@ -142,6 +144,11 @@ return [
     'error.event.desc2' => 'Unfortunately, this event is at the maximum number of participants, so you can no longer sign up.',
     'error.event.title3' => 'You are currently not logged in!',
     'error.event.desc3' => 'Click here to log in and sign up for this event.',
+    
+    'event.info.sendPayReminder' => 'Send payment reminder',
+    'event.info.userNotfound' => 'The participant could not be found.',
+    'event.info.sendError' => 'The network you are on doesn\'t support the sending of an email.',
+    'event.info.sendSuccess' => 'The payment reminder email has succesfully been send!',
 
     /*Event create & edit*/
     'event.create.title' => 'Create an event',

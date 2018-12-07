@@ -67,6 +67,8 @@ Route::group(['middleware' => 'auth'] ,function() {
   Route::post('/profile/update', 'ProfileController@update');
   Route::post('/profile/{id}', 'ProfileController@upload');
   Route::post('/profile', 'ProfileController@upload');
+
+  Route::post('/sendPaymentReminder', 'EventController@sendPaymentReminder');
 });
 
 // StartController
@@ -136,8 +138,6 @@ Route::get('/mail', 'MailController@sendmail');
 Route::post('/mail', 'MailController@sendmail');
 Route::get('/sendReminder', 'MailController@sendEmailReminder');
 Route::post('/sendReminder', 'MailController@sendEmailReminder');
-
-Route::get('/sendPaymentReminder/{id}', 'EventController@sendPaymentReminder');
 
 
 // Route::post('/send', 'MailController@send');
