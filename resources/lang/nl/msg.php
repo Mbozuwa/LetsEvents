@@ -169,6 +169,9 @@ return [
     'event.edit.image.desc' => 'De bovenstaande afbeelding wordt voor je evenement gebruikt. Als je deze wilt wijzigen uploadt dan hierboven een nieuwe afbeelding.',
     'event.edit.title' => 'Wijzigen van het evenement',
     'event.edit.submit' => 'Wijzig het evenement',
+    'event.paymentreminder' => 'Betalingsherinnering',
+    'event.paymentreminder.days' => 'aantal dagen',
+    'event.paymentreminder.info' => 'Hoeveel dagen voor dat het evenement begint moet de deelnemer een e-mail ontvangen als deze nog niet heeft betaald?',
 
     /*Profile overview*/
     'profile.name' => 'Naam',

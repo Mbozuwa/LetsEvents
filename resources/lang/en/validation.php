@@ -143,5 +143,6 @@ return [
 
     'attributes' => [
         'schoolname'            => 'school name',
+        'payreminder'           => 'Payment reminder',
     ],
 ];
