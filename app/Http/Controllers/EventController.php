@@ -28,7 +28,7 @@ class EventController extends Controller
 
     public function index($id) {
         $event = \App\event::find($id);
-        
+
         if (Event::where(array('id' => $id))->exists())
         {
             if(Auth::user())
@@ -116,7 +116,7 @@ class EventController extends Controller
 
     public function allEventsSearch($name) {
         $events = Event::get();
-        
+
 
     return view('events/index', ['events' => $events, 'name' => $name]);
     }
@@ -291,12 +291,12 @@ class EventController extends Controller
      * getting all the events form a user that he made
      */
 
-    public function madeEvents() 
+    public function madeEvents()
     {
         $user = Auth::user();
-        
+
         // $events = Event::where(['user_id' => $user['id'],'end_time', '>=', Carbon::now()->toDateString()])->paginate(2);
-        $events = Event::where('user_id', $user['id'])->whereDate('end_time', '>=', Carbon::now()->toDateString())->paginate(2);
+        $events = Event::where('user_id', $user['id'])->whereDate('end_time', '>=', Carbon::now()->toDateString())->paginate(4);
         $date = date('Y-m-d');
         $date2 = date('Y-m-d', strtotime("+1 month"));
         return view('events.made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
@@ -311,7 +311,7 @@ class EventController extends Controller
         $user = Auth::user();
         $date = date('Y-m-d');
         $date2 = date('Y-m-d', strtotime("+1 month"));
-        $events = Event::where(['user_id' => $user['id']])->paginate(2);
+        $events = Event::where(['user_id' => $user['id']])->paginate(4);
         return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
     }
 
@@ -336,12 +336,12 @@ class EventController extends Controller
             //     ->where('user_id', $user['id'])
             //     ->get();
 
-            
+
             if($begin_date != "" && $end_date != "") {
                 $events = Event::where('user_id', $user['id'])
                     ->whereDate('begin_time', '>=', $begin_date)
                     ->whereDate('end_time', '<=', $end_date)
-                    ->get();
+                    ->paginate(4);
 
             return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
         }
