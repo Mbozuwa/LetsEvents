@@ -339,6 +339,7 @@ class EventController extends Controller
 
             if($begin_date != "" && $end_date != "") {
                 $events = Event::where('user_id', $user['id'])
+                
                     ->whereDate('begin_time', '>=', $begin_date)
                     ->whereDate('end_time', '<=', $end_date)
                     ->paginate(4);
