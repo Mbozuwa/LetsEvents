@@ -190,6 +190,7 @@ return [
     'school.editSchool' => 'Wijzigen',
     'school.editSchoolTitle' => 'Wijzig een school',
     'school.new' => 'School toevoegen',
+    'school.confirm' => 'Weet u zeker dat u deze school wilt verwijderen?',
 
     /*Admin*/
     'admin' => 'Admin',

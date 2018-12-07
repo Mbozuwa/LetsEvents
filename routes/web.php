@@ -22,7 +22,11 @@ Route::group(['middleware' => 'auth.custom'] ,function() {
   Route::get('/events/user','EventController@myEvents');
   Route::get('/events/info/{id}', 'EventController@info');
   Route::get('/events/create', 'EventController@create');
-  Route::get('/events/made', 'EventController@MadeEvents');
+  Route::get('/events/made', 'EventController@madeEvents');
+  Route::get('/events/madeAll', 'EventController@madeEventsAll');
+  Route::get('/events/datesBetween', 'EventController@datesBetween');
+
+  Route::post('/events/datesBetween', 'EventController@datesBetween');
   Route::get('/events/delete/{id}', 'EventController@delete');
   Route::get('/events/edit/{id}', 'EventController@edit');
   Route::get('/events/category/{id}', 'EventController@chooseCategory');

@@ -50,7 +50,7 @@ class RegistrationController extends Controller
          try {
              Mail::to($user->email)->send(new Registered($event, $user));
          } catch (\Exception $e) {
-             return redirect()->back()->with('error', 'nope');
+             return redirect()->back()->with('error', __('msg.reminder.send.error'));
          }
 
         session(['notificationAlarmDelete' => false]);
