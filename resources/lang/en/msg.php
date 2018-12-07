@@ -52,7 +52,9 @@ return [
     'event.iDontGo' => 'I\'m not participating',
     'event.noStatus' => 'No status',
 
+    'name' => 'Name',
     'email' => 'Email',
+    'telephone' => 'Telephone',
     'password' => 'Password',
     'address' => 'Address',
     'place' => 'Place',
@@ -142,6 +144,11 @@ return [
     'error.event.desc2' => 'Unfortunately, this event is at the maximum number of participants, so you can no longer sign up.',
     'error.event.title3' => 'You are currently not logged in!',
     'error.event.desc3' => 'Click here to log in and sign up for this event.',
+    
+    'event.info.sendPayReminder' => 'Send payment reminder',
+    'event.info.userNotfound' => 'The participant could not be found.',
+    'event.info.sendError' => 'The network you are on doesn\'t support the sending of an email.',
+    'event.info.sendSuccess' => 'The payment reminder email has succesfully been send!',
 
     /*Event create & edit*/
     'event.create.title' => 'Create an event',
@@ -177,6 +184,7 @@ return [
 
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profile succesfully edited',
+    'ProfileController.find' => 'This is not your profile!',
 
     /*Schools overview*/
     'school.name' => 'Name',
@@ -188,6 +196,7 @@ return [
     'school.editSchool' => 'Edit the school.',
     'school.editSchoolTitle' => 'Edit a school',
     'school.new' => 'Add school',
+    'school.confirm' => 'Are you sure you want to remove this school?',
 
     /*Admin*/
     'admin' => 'Admin',
@@ -211,5 +220,12 @@ return [
     'SchoolController.info.delete.succes' => 'School successfully removed.',
     'SchoolController.info.edit.succes' => 'School successfully edited.',
     'SchoolController.info.create.succes' => 'The school has been created.',
-    'StudentController.chooseschool.success' => 'School is chosen.'
+    'StudentController.chooseschool.success' => 'School is chosen.',
+
+    'reminder' => 'reminder',
+    'reminder.firstLine' => 'This is a mail so that you know that you are registered.',
+    'reminder.secondLine' => 'You have signed up for this event',
+    'reminder.description' => 'The description',
+    'reminder.payment' => 'You still have to pay.',
+    'reminder.send.error' => 'The network you are on doesn\'t support the sending of an email',
 ];

@@ -12,6 +12,8 @@ use App\User;
 use Auth;
 use Validator;
 use Carbon\Carbon;
+use App\Mail\Registered;
+use Mail;
 
 use \File;
 
@@ -26,9 +28,19 @@ class EventController extends Controller
 
     public function index($id) {
         $event = \App\event::find($id);
-
+        
         if (Event::where(array('id' => $id))->exists())
         {
+            if(Auth::user())
+            {
+                $paymentStatus = \App\PaymentStatus::where('user_id', Auth::user()->id)->where('event_id', $event['id'])->get();
+                if (isset($paymentStatus[0])) {
+                    $paymentStatus = $paymentStatus[0]['payment_status'];
+                }
+            }else{
+                $paymentStatus = 0;
+            }
+
             $user = Auth::user();
             $organiser = \App\User::find($event['user_id']);
             $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
@@ -38,6 +50,7 @@ class EventController extends Controller
             $originalDateEnd = $event['end_time'];
             $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
             return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
+            return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser, 'paymentStatus' => $paymentStatus]);
         }
         else
         {
@@ -61,6 +74,12 @@ class EventController extends Controller
                 session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
                 session(['notificationAlarmDelete' => false]);
                 session(['event_id' => $id]);
+                try {
+                    Mail::to($user->email)->send(new Registered($event, $user));
+                } catch(\Exception $e) {
+                    return redirect()->back()->with('error', __('msg.reminder.send.error'));
+                }
+
             }
             elseif ($status == "Misschien") {
                 session(['notification' => 'Je gaat misschien naar het evenement: '.$event['name']]);
@@ -122,9 +141,11 @@ class EventController extends Controller
             'place' => 'required|regex:^[a-zA-Z.\s]+$^',
             'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
             'max_participant' => 'required|alpha_num',
+            'max_participant' => 'required|numeric|min:2',
             'begin_time' => 'required',
             'end_time' => 'required',
             'image' => 'required',
+            'payreminder' => 'numeric|min:1'
         ]);
 
         $post = new Event();
@@ -148,6 +169,13 @@ class EventController extends Controller
                 //Some error bc signup_time is equal or higher then end_time.
                 return redirect()->back()->with('error', __('msg.EventController.store.error'));
             }
+        }
+
+        if($post->payment > 0)
+        {
+            $post->payment_reminder = $request->input('payreminder');
+        } else {
+            $post->payment_reminder = 0;
         }
 
         if(Input::hasFile('image'))
@@ -205,6 +233,7 @@ class EventController extends Controller
             'place' => 'required|regex:^[a-zA-Z.\s]+$^',
             'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
             'max_participant' => 'required|alpha_num',
+            'max_participant' => 'required|numeric|min:2',
             'begin_time' => 'required',
             'end_time' => 'required',
             'user_id' => 'required'
@@ -291,6 +320,7 @@ class EventController extends Controller
      */
 
     public function datesBetween(Request $request){
+
         $user = Auth::user();
         $begin_date = $request->input('date');
         $end_date = $request->input('date2');
@@ -305,19 +335,21 @@ class EventController extends Controller
             //     ->where('end_time', '<=', $end_date)
             //     ->where('user_id', $user['id'])
             //     ->get();
+
             
-           
+            if($begin_date != "" && $end_date != "") {
+                $events = Event::where('user_id', $user['id'])
+                    ->whereDate('begin_time', '>=', $begin_date)
+                    ->whereDate('end_time', '<=', $end_date)
+                    ->get();
 
-            $events = Event::where('user_id', $user['id'])
-                ->whereDate('begin_time', '>=', $begin_date)
-                ->whereDate('end_time', '<=', $end_date)
-                ->get();
-
-       
-        
-        return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
-        
+            return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
+        }
+        else {
+            return redirect()->back();
+        }
     }
+
 
     /**
      * Deletes the event from the user it belongs to
@@ -328,7 +360,7 @@ class EventController extends Controller
         $event = Event::where(array('user_id' => $user['id'], 'id' => $id));
 
         if($event != null) {
-            if (Event::where(array('user_id' => $user['id'], 'id' => $id))->exists()) 
+            if (Event::where(array('user_id' => $user['id'], 'id' => $id))->exists())
             try{
                     $event->delete();
                     return redirect('/events/made')->with('success', __('msg.EventController.delete.success'));
@@ -398,5 +430,28 @@ class EventController extends Controller
         }
 
         return redirect()->back()->with('success', __('msg.EventController.saveCategory.success'));
+    }
+
+    public function sendPaymentReminder(Request $request) {
+        $eventId = $request->input('eventid');
+        $userId = $request->input('userid');
+
+        if (Auth::user()->role_id == 2){
+            if (User::find($userId))
+            {
+                $user = User::find($userId);
+                $event = Event::find($eventId);
+                try {
+                    Mail::to($user->email)
+                        ->send(new MailReminder($event, $user));
+                } catch (Exception $e) {
+                    return redirect()->back()->with('error', __('msg.event.info.sendError'));
+                }
+            }else{
+                return redirect()->back()->with('error', __('msg.event.info.userNotfound'));
+            }
+        }
+
+        return redirect()->back()->with('message', __('msg.event.info.sendSuccess'));
     }
 }
