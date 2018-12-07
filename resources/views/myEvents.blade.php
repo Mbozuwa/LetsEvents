@@ -1,18 +1,17 @@
 @extends('layouts.app')
 @section('content')
-    <div class="col-9 justify-content-center bg-dark" style="padding-top:10px; padding-right:10px;">
+        <div class="main-content">
+            <div class="container-fluid">
             @if(session()->has('message'))
                 <div class="alert alert-success">
                     {{ session()->get('message') }}
                 </div>
             @elseif(session()->has('error'))
-            <div class="alert alert-danger">
-                {{ session()->get('error') }}
-            </div>
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
             @endif
-        </div>
-            <body>
-        <div class="main-content">
+            </div>
             <div class="container-fluid">
                 <h3 class="page-title">{{ __('msg.event.myParticipatedEvents.title') }}
                     <p class="page-subtitle">{{ __('msg.event.myParticipatedEvents.subtitle1') }} {{ $count }} {{ __('msg.event.myParticipatedEvents.subtitle2') }} {{ $countEvents }} {{ __('msg.event.myParticipatedEvents.subtitle3') }}</p>

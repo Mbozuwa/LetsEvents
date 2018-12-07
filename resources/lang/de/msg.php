@@ -119,6 +119,7 @@ return [
     'error.event.desc2' => 'Leider hat diese Veranstaltung die maximale Teilnehmerzahl, sodass Sie sich nicht mehr anmelden können.',
     'error.event.title3' => 'Sie sind derzeit nicht angemeldet!',
     'error.event.desc3' => 'Klicken Sie hier, um sich anzumelden und sich für diese Veranstaltung anzumelden.',
+
     /*403 Error page*/
     '403' => 'du solltest nicht hier sein!',
 
@@ -143,6 +144,7 @@ return [
 
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profil erfolgreich bearbeitet!',
+    'ProfileController.find' => 'Dies ist nicht dein Profil',
 
     /*Schools overview*/
     'school.name' => 'Name',
@@ -152,7 +154,7 @@ return [
     'school.delete' => 'Löschen',
     'school.school' => 'Die schule',
     'school.schools' => 'Die schulen',
-    'school.makeSchoolTitle' => 'Erstelle eine Schule.', 
+    'school.makeSchoolTitle' => 'Erstelle eine Schule.',
     'school.editSchool' => 'Bearbeiten sie die schule',
     'school.editSchoolTitle' => 'Bearbeiten sie eine schule',
     'school.new' => 'Eine neue schule',
@@ -163,7 +165,7 @@ return [
     'EventController.edit.error1' => 'Diese Veranstaltung existiert nicht.',
     'EventController.edit.error2' => 'Das ist nicht deine Veranstaltung!',
     'EventController.delete.success' => 'Ereignis erfolgreich gelöscht',
-    'EventController.delete.error' => 'Dieses Ereignis kann nicht gelöscht werden.',
+    'EventController.delete.error' => 'Diese Veranstaltung kann nicht entfernt werden, da noch Teilnehmer verbunden sind',
     'EventController.info.error' => 'Diese Informationen sind für Sie nicht von Nutzen!',
     'EventController.saveCategory.success' => 'Die Kategorie wurde geändert.',
 

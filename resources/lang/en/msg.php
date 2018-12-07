@@ -45,14 +45,16 @@ return [
     'notification.iGo' => 'You\'re participating in event:',
     'notification.iMaybe' => 'You might go to the event:',
     'notification.iDontGo' => 'You\'re not participating in event:',
-    'notification.delete' => 'Delete notification',
+    'notification.delete' => 'remove notification',
 
     'event.iGo' => 'I\'m participating',
     'event.iMaybe' => 'I might go',
     'event.iDontGo' => 'I\'m not participating',
     'event.noStatus' => 'No status',
 
+    'name' => 'Name',
     'email' => 'Email',
+    'telephone' => 'Telephone',
     'password' => 'Password',
     'address' => 'Address',
     'place' => 'Place',
@@ -62,7 +64,7 @@ return [
     'participantsAmount' => 'Number of participants',
     'participantsMax' => 'Max. participants',
     'categories' => 'Categories',
-    'delete' => 'Delete',
+    'delete' => 'Remove',
 
     /*Signin page*/
     'signin.logyouracc' => 'Login to your account',
@@ -142,6 +144,11 @@ return [
     'error.event.desc2' => 'Unfortunately, this event is at the maximum number of participants, so you can no longer sign up.',
     'error.event.title3' => 'You are currently not logged in!',
     'error.event.desc3' => 'Click here to log in and sign up for this event.',
+    
+    'event.info.sendPayReminder' => 'Send payment reminder',
+    'event.info.userNotfound' => 'The participant could not be found.',
+    'event.info.sendError' => 'The network you are on doesn\'t support the sending of an email.',
+    'event.info.sendSuccess' => 'The payment reminder email has succesfully been send!',
 
     /*Event create & edit*/
     'event.create.title' => 'Create an event',
@@ -162,6 +169,9 @@ return [
     'event.edit.image.desc' => 'The image above will be used for your event. If you want to change it then upload a new image above.',
     'event.edit.title' => 'Edit this event',
     'event.edit.submit' => 'Edit event',
+    'event.paymentreminder' => 'Payment reminder',
+    'event.paymentreminder.days' => 'amount in days',
+    'event.paymentreminder.info' => 'How many days before the event starts should the participant receive an e-mail if it has not paid yet?',
 
     /*Profile overview*/
     'profile.name' => 'Name',
@@ -177,19 +187,19 @@ return [
 
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profile succesfully edited',
+    'ProfileController.find' => 'This is not your profile!',
 
     /*Schools overview*/
     'school.name' => 'Name',
-    'school.place' => 'Place',
-    'school.address' => 'The address',
     'school.edit' => 'Edit',
-    'school.delete' => 'Delete',
+    'school.delete' => 'Remove',
     'school.school' => 'The school',
     'school.schools' => 'The schools',
     'school.makeSchoolTitle' => 'Create a school.',
     'school.editSchool' => 'Edit the school.',
     'school.editSchoolTitle' => 'Edit a school',
-    'school.new' => 'Add a new school',
+    'school.new' => 'Add school',
+    'school.confirm' => 'Are you sure you want to remove this school?',
 
     /*Admin*/
     'admin' => 'Admin',
@@ -204,14 +214,21 @@ return [
     'EventController.store.error' => 'The time to sign up is after the end time of the event.',
     'EventController.edit.error1' => 'This event does not exist.',
     'EventController.edit.error2' => 'That\'s not your event!',
-    'EventController.delete.success' => 'Event successfully deleted.',
-    'EventController.delete.error' => 'This event can not be deleted.',
+    'EventController.delete.success' => 'Event successfully removed.',
+    'EventController.delete.error' => 'This event can not be removed, there are still participants linked',
     'EventController.info.error' => 'This information is of no use to you!',
     'EventController.saveCategory.success' => 'The category has been modified.',
 
-
-    'SchoolController.info.delete.succes' => 'School successfully deleted.',
+    /*SchoolController*/
+    'SchoolController.info.delete.succes' => 'School successfully removed.',
     'SchoolController.info.edit.succes' => 'School successfully edited.',
     'SchoolController.info.create.succes' => 'The school has been created.',
-    'StudentController.chooseschool.success' => 'School is chosen.'
+    'StudentController.chooseschool.success' => 'School is chosen.',
+
+    'reminder' => 'reminder',
+    'reminder.firstLine' => 'This is a mail so that you know that you are registered.',
+    'reminder.secondLine' => 'You have signed up for this event',
+    'reminder.description' => 'The description',
+    'reminder.payment' => 'You still have to pay.',
+    'reminder.send.error' => 'The network you are on doesn\'t support the sending of an email',
 ];

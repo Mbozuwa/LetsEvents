@@ -22,7 +22,11 @@ Route::group(['middleware' => 'auth.custom'] ,function() {
   Route::get('/events/user','EventController@myEvents');
   Route::get('/events/info/{id}', 'EventController@info');
   Route::get('/events/create', 'EventController@create');
-  Route::get('/events/made', 'EventController@MadeEvents');
+  Route::get('/events/made', 'EventController@madeEvents');
+  Route::get('/events/madeAll', 'EventController@madeEventsAll');
+  Route::get('/events/datesBetween', 'EventController@datesBetween');
+
+  Route::post('/events/datesBetween', 'EventController@datesBetween');
   Route::get('/events/delete/{id}', 'EventController@delete');
   Route::get('/events/edit/{id}', 'EventController@edit');
   Route::get('/events/category/{id}', 'EventController@chooseCategory');
@@ -31,6 +35,7 @@ Route::group(['middleware' => 'auth.custom'] ,function() {
   Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
   Route::post('events/categories/{id}', 'EventController@saveCategory');
   Route::get('events/categories/{id}', 'EventController@chooseCategoryWithEvent');
+
 
 
   Route::post('/events/update/{id}', 'EventController@update')->name('updateEvent');
@@ -62,6 +67,8 @@ Route::group(['middleware' => 'auth'] ,function() {
   Route::post('/profile/update', 'ProfileController@update');
   Route::post('/profile/{id}', 'ProfileController@upload');
   Route::post('/profile', 'ProfileController@upload');
+
+  Route::post('/sendPaymentReminder', 'EventController@sendPaymentReminder');
 });
 
 // StartController
@@ -74,6 +81,10 @@ Route::get('start/getEvents', 'StartController@getEvents');
 Route::get('/registration/1/{id}', 'registrationController@userGoing');
 Route::get('/registration/2/{id}', 'registrationController@userMaybe');
 Route::get('/registration/3/{id}', 'registrationController@userNotGoing');
+Route::get('status', 'registrationController@getPaymentStatus');
+Route::get('/payment/add-funds/paypal', 'registrationController@payWithpaypal');
+Route::post('/payment/add-funds/paypal', 'registrationController@payWithpaypal');
+
 
 //homeController
 Route::get('/notificationDelete', 'HomeController@notificationDelete');
@@ -108,6 +119,7 @@ Route::post('/school/delete/{id}', 'schoolController@delete');
 //studentController
 Route::get('/student/index','StudentController@index');
 Route::get('/student/show', 'StudentController@show');
+
 // Route::post('/student/show', 'StudentController@chooseSchool')->name('chooseSchool');
 Route::post('/student/edit/{id}', 'StudentController@chooseSchool')->name('editStudent');
 Route::get('/student/edit/{id}', 'StudentController@edit');
@@ -121,9 +133,14 @@ Route::get('/logout', [
   'uses' => 'UserController@getLogout',
   'as' => 'user.logout'
 ]);
+//mailcontrolller
+Route::get('/mail', 'MailController@sendmail');
+Route::post('/mail', 'MailController@sendmail');
+Route::get('/sendReminder', 'MailController@sendEmailReminder');
+Route::post('/sendReminder', 'MailController@sendEmailReminder');
 
 
-
+// Route::post('/send', 'MailController@send');
 
 
 

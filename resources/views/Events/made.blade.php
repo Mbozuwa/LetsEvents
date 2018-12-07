@@ -7,6 +7,11 @@
                     {{ session()->get('error') }}
                 </div>
                 @endif
+                @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+                @endif
                 @if(session()->has('message'))
                 <div class="alert alert-danger">
                     {{ session()->get('message') }}
@@ -19,7 +24,20 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-    @foreach ($events as $event)
+                <a href="/events/madeAll"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Show old events</button></a>
+                <a href="/events/made"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Hide old events</button></a>
+            <form action="{{ action('EventController@datesBetween')}}" method="POST">
+                @csrf
+
+                    <input name="date" type="date" style="margin:10px;" value="{{$date}}">
+                    <input name="date2" type="date" style="margin:10px;" value="{{$date2}}">
+                
+
+                    <button  type="submit">Zoek</button>
+                </form>
+            </div>
+            <br><br><br>
+                @foreach ($events as $event)
                     <div class="col-md-6">
                         <div class="panel">
                             <div class="event-header">
@@ -28,24 +46,24 @@
                                         <div class="media">
                                             <div class="media-left">
                                                 @if(empty($event['image']))
-                                                <img src="{{ asset('uploads/events/unknown.png') }}" class="event-logo"/>
+                                                    <img src="{{ asset('uploads/events/unknown.png') }}" class="event-logo"/>
                                                 @else
-                                                <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo" alt="{{ $event['name'] }}"/>
+                                                    <img src="{{ asset('uploads/events/'.$event['image'].'') }}" class="event-logo" alt="{{ $event['name'] }}"/>
                                                 @endif
                                             </div>
                                             <div class="media-body">
                                                 <h2 class="event-title">{{ $event['name'] }}</h2>
 
                                                 @if(Auth::user()->role_id == 2)
-                                                <span class="label label-warning status">ID: {{ $event->id }}</span>
+                                                    <span class="label label-warning status">ID: {{ $event->id }}</span>
                                                 @endif
 
                                                 @if(strtotime("now") >= strtotime($event['begin_time']) && strtotime("now") <= strtotime($event['end_time']))
-                                                <span class="label label-success status">{{ __('msg.event.info.now') }}</span>
+                                                    <span class="label label-success status">{{ __('msg.event.info.now') }}</span>
                                                 @elseif(strtotime("now") >= strtotime($event['end_time']))
-                                                <span class="label label-default status">{{ __('msg.event.info.ended') }}</span>
+                                                    <span class="label label-default status">{{ __('msg.event.info.ended') }}</span>
                                                 @else
-                                                <span class="label label-info status">{{ __('msg.event.info.soon') }}</span>
+                                                    <span class="label label-info status">{{ __('msg.event.info.soon') }}</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -89,7 +107,7 @@
                                                 <span class="title">{{ __('msg.event.regFees') }}</span>
                                                 @if(empty($event['payment']))
                                                 <span class="value">{{ __('msg.event.regFree') }}</span>
-                                                @else 
+                                                @else
                                                 <span class="value">&euro; {{ $event['payment'] }}</span>
                                                 @endif
                                             </div>
@@ -124,7 +142,6 @@
 
                                     </ul>
                                 </div>
-                                
                                 <a href="/events/info/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-warning btn-lg"><i class="fas fa-users" style="color:white;"></i></button></a>
                                 <a href="/events/categories/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-primary btn-lg"><i class="fas fa-grip-horizontal" style="color:white;"></i></button></a>
                                 <a href="/events/edit/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-success btn-lg"><i class="far fa-edit" style="color:white;"></i></button></a>

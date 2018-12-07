@@ -52,7 +52,9 @@ return [
     'event.iDontGo' => 'Ik ga niet',
     'event.noStatus' => 'Geen status',
 
+    'name' => 'Naam',
     'email' => 'E-mailadres',
+    'telephone' => 'Telefoonnummer',
     'password' => 'Wachtwoord',
     'address' => 'Adres',
     'place' => 'Plaats',
@@ -143,6 +145,11 @@ return [
     'error.event.title3' => 'Je bent op dit moment niet ingelogd!',
     'error.event.desc3' => 'Klik hier om in te loggen en je aan te melden voor dit evenement.',
 
+    'event.info.sendPayReminder' => 'Verstuur herinneringsmail',
+    'event.info.userNotfound' => 'De deelnemer kon niet worden gevonden.',
+    'event.info.sendError' => 'Het netwerk dat u gebruikt, ondersteunt het verzenden van een e-mail niet.',
+    'event.info.sendSuccess' => 'De herinneringsmail is succesvol verzonden!',
+
     /*Event create & edit*/
     'event.create.title' => 'Maak een evenement aan',
     'event.name' => 'Naam',
@@ -162,6 +169,9 @@ return [
     'event.edit.image.desc' => 'De bovenstaande afbeelding wordt voor je evenement gebruikt. Als je deze wilt wijzigen uploadt dan hierboven een nieuwe afbeelding.',
     'event.edit.title' => 'Wijzigen van het evenement',
     'event.edit.submit' => 'Wijzig het evenement',
+    'event.paymentreminder' => 'Betalingsherinnering',
+    'event.paymentreminder.days' => 'aantal dagen',
+    'event.paymentreminder.info' => 'Hoeveel dagen voor dat het evenement begint moet de deelnemer een e-mail ontvangen als deze nog niet heeft betaald?',
 
     /*Profile overview*/
     'profile.name' => 'Naam',
@@ -177,19 +187,20 @@ return [
 
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profiel succesvol bewerkt!',
+    'ProfileController.find' => 'Dit is niet jouw profiel!',
 
     /*Schools overview*/
     'school.name' => 'Naam',
-    'school.place' => 'Plaats',
-    'school.address' => 'Het adres',
     'school.edit' => 'Bewerken',
     'school.delete' => 'Verwijder',
-    'school.school' => 'De school',
-    'school.schools' => 'De scholen',
-    'school.makeSchoolTitle' => 'Maak een school aan.', 
-    'school.editSchool' => 'Pas de school aan.',
-    'school.editSchoolTitle' => 'Pas een school aan',
-    'school.new' => 'Een nieuwe school',
+
+    'school.school' => 'School',
+    'school.schools' => 'Scholen overzicht',
+    'school.makeSchoolTitle' => 'Maak een school aan.',
+    'school.editSchool' => 'Wijzigen',
+    'school.editSchoolTitle' => 'Wijzig een school',
+    'school.new' => 'School toevoegen',
+    'school.confirm' => 'Weet u zeker dat u deze school wilt verwijderen?',
 
     /*Admin*/
     'admin' => 'Admin',
@@ -205,13 +216,21 @@ return [
     'EventController.edit.error1' => 'Dit evenement bestaat niet.',
     'EventController.edit.error2' => 'Dat is niet jouw evenement!',
     'EventController.delete.success' => 'Evenement succesvol verwijderd.',
-    'EventController.delete.error' => 'Dit evenement kan niet verwijderd worden.',
+    'EventController.delete.error' => 'Dit evenement kan niet verwijdert worden, er zijn nog steeds deelnemers gekoppeld',
     'EventController.info.error' => 'Deze informatie gaat jou niks aan!',
     'EventController.saveCategory.success' => 'De categorie is aangepast.',
 
 
-    'SchoolController.info.delete.succes' => 'School succesvol verwijderd.',
-    'SchoolController.info.edit.succes' => 'De school is aangepast.',
-    'SchoolController.info.create.succes' => 'De school is aangemaakt.',
+    'SchoolController.info.delete.success' => 'School succesvol verwijderd.',
+    'SchoolController.info.edit.success' => 'De school is aangepast.',
+    'SchoolController.info.create.success' => 'De school is aangemaakt.',
     'StudentController.chooseschool.success' => 'School is gekozen.',
+
+    'reminder' => 'Herinnering',
+    'reminder.secondLine' => 'Dit is een e-mail zodat je weet dat je bent geregistreerd.',
+    'reminder.firstLine' => 'je hebt je zojuist aangemeld voor het evenement',
+    'reminder.description' => 'De beschrijving',
+    'reminder.payment' => 'Kosten van het evenement',
+    'reminder.send.error' => 'Het netwerk dat u gebruikt, ondersteunt het verzenden van een e-mail niet',
+
 ];
