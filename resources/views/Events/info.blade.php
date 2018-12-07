@@ -40,7 +40,7 @@
                                                 <td>{{ $value->user->email }}</td>
                                                 <td>{{ $value->user->telephone }}</td>
                                                 <td>
-                                                    @if($event->payment >= 0)
+                                                    @if($event->payment >= 0 && !empty($event->payment))
                                                     <form method="POST" action="{{ action('EventController@sendPaymentReminder') }}">
                                                       @csrf   
                                                       <input name="userid" type="hidden" value="{{ $value->user->id }}">  
