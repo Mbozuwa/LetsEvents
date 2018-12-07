@@ -20,11 +20,21 @@
                 @if (count($events) >= 1)
                 <div class="col-md-12" style="margin-top: -25px;">
                     <!-- PAGINATE FUNCTION -->
-                    {{ $events->links() }}
+                    
                 </div>
             </div>
             <div class="row justify-content-center">
-                    <a href="/events/madeAll"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Show old events</button></a><a href="/events/made"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Hide old events</button></a><br><br><br>
+                <a href="/events/madeAll"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Show old events</button></a>
+                <a href="/events/made"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Hide old events</button></a>
+            <form action="{{ action('EventController@datesBetween')}}" method="POST">
+                @csrf
+                    <input name="date" type="date" style="margin:10px;" placeholder="{{$date}}">
+                    <input name="date2" type="date" style="margin:10px;" placeholder="{{$date2}}">
+                
+                    <button  type="submit">Zoek</button>
+                </form>
+            </div>
+            <br><br><br>
                 @foreach ($events as $event)
                     <div class="col-md-6">
                         <div class="panel">
