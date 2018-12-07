@@ -154,7 +154,7 @@ return [
     'school.delete' => 'Löschen',
     'school.school' => 'Die schule',
     'school.schools' => 'Die schulen',
-    'school.makeSchoolTitle' => 'Erstelle eine Schule.', 
+    'school.makeSchoolTitle' => 'Erstelle eine Schule.',
     'school.editSchool' => 'Bearbeiten sie die schule',
     'school.editSchoolTitle' => 'Bearbeiten sie eine schule',
     'school.new' => 'Eine neue schule',

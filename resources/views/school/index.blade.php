@@ -31,11 +31,18 @@
                                     <span class="value">{{ $school->address }}</span>
                                 </div>
                                 <a href="/school/edit/{{$school->id}}">{{ __('msg.school.edit') }}</a>
-                                <a href="/school/delete/{{$school->id}}">{{ __('msg.school.delete') }}</a>
+                                <a onclick="popup('{{ $school->id }}')" href="#">{{ __('msg.school.delete') }}</a>
                             </div>
                         </div>
                     </div>
                 @endforeach
+                    <script>
+                        function popup(id) {
+                            if (confirm("{{ __('msg.school.confirm') }}")) {
+                                window.location.href = "/school/delete/" + id;
+                            }
+                        }
+                    </script>
                 </div>
             </div>
         </div>
