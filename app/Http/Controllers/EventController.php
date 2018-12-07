@@ -314,33 +314,25 @@ class EventController extends Controller
      */
 
     public function datesBetween(Request $request){
-        $user = Auth::user();
-        $begin_date = $request->input('date');
-        $end_date = $request->input('date2');
-        $date = date('d-m-Y');
-        $date2 = date('d-m-Y', strtotime("+1 month"));
-        // $events = Event::find($user);
-        // dd($events);
-
-        // $events = Event::where(['user_id' => $user['id']])->where(['begin_time' => $begin_date, 'end_time' => $end_date])->get();
-
-            // $events = Event::where('begin_time', '>=', $begin_date)
-            //     ->where('end_time', '<=', $end_date)
-            //     ->where('user_id', $user['id'])
-            //     ->get();
+            $user = Auth::user();
+            $begin_date = $request->input('date');
+            $end_date = $request->input('date2');
+            $date = date('d-m-Y');
+            $date2 = date('d-m-Y', strtotime("+1 month"));
             
-           
+            if($begin_date != "" && $end_date != "") {
+                $events = Event::where('user_id', $user['id'])
+                    ->whereDate('begin_time', '>=', $begin_date)
+                    ->whereDate('end_time', '<=', $end_date)
+                    ->get();
 
-            $events = Event::where('user_id', $user['id'])
-                ->whereDate('begin_time', '>=', $begin_date)
-                ->whereDate('end_time', '<=', $end_date)
-                ->get();
-
-       
-        
-        return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
-        
+            return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
+        }
+        else {
+            return redirect()->back();
+        }
     }
+
 
     /**
      * Deletes the event from the user it belongs to
