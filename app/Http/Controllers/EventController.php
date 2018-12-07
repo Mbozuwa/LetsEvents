@@ -15,6 +15,9 @@ use App\Mail\Registered;
 use Mail;
 use \File;
 
+use App\Email;
+use App\Mail\MailReminder;
+
 use \Input as Input;
 
 class EventController extends Controller
@@ -26,6 +29,11 @@ class EventController extends Controller
 
     public function index($id) {
         $event = \App\event::find($id);
+        $paymentStatus = \App\PaymentStatus::where('user_id', Auth::user()->id)->where('event_id', $event['id'])->get();
+        if (isset($paymentStatus[0])) {
+            $paymentStatus = $paymentStatus[0]['payment_status'];
+        }
+        
 
         if (Event::where(array('id' => $id))->exists())
         {
@@ -37,7 +45,7 @@ class EventController extends Controller
             $newDate = date("d-m-Y H:i", strtotime($originalDate));
             $originalDateEnd = $event['end_time'];
             $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
-            return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
+            return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser, 'paymentStatus' => $paymentStatus]);
         }
         else
         {
@@ -61,7 +69,11 @@ class EventController extends Controller
                 session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
                 session(['notificationAlarmDelete' => false]);
                 session(['event_id' => $id]);
-                Mail::to($user->email)->send(new Registered($event));
+                try {
+                    Mail::to($user->email)->send(new Registered($event, $user));
+                } catch(\Exception $e) {
+                    return redirect()->back()->with('error', __('msg.reminder.send.error'));
+                }
 
             }
             elseif ($status == "Misschien") {
@@ -122,10 +134,11 @@ class EventController extends Controller
             'description' => 'required|max:1400',
             'place' => 'required|regex:^[a-zA-Z.\s]+$^',
             'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
-            'max_participant' => 'required|alpha_num',
+            'max_participant' => 'required|numeric|min:2',
             'begin_time' => 'required',
             'end_time' => 'required',
             'image' => 'required',
+            'payreminder' => 'numeric|min:1'
         ]);
 
         $post = new Event();
@@ -149,6 +162,13 @@ class EventController extends Controller
                 //Some error bc signup_time is equal or higher then end_time.
                 return redirect()->back()->with('error', __('msg.EventController.store.error'));
             }
+        }
+
+        if($post->payment > 0)
+        {
+            $post->payment_reminder = $request->input('payreminder');
+        } else {
+            $post->payment_reminder = 0;
         }
 
         if(Input::hasFile('image'))
@@ -205,7 +225,7 @@ class EventController extends Controller
             'description' => 'required|max:1400',
             'place' => 'required|regex:^[a-zA-Z.\s]+$^',
             'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
-            'max_participant' => 'required|alpha_num',
+            'max_participant' => 'required|numeric|min:2',
             'begin_time' => 'required',
             'end_time' => 'required',
             'user_id' => 'required'
@@ -348,5 +368,18 @@ class EventController extends Controller
         }
 
         return redirect()->back()->with('success', __('msg.EventController.saveCategory.success'));
+    }
+
+    public function sendPaymentReminder($id) {
+        $user = Auth::user();
+        $event = \App\event::find($id);
+        try {
+            Mail::to($user->email)
+                ->send(new MailReminder($event, $user));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Fail.');
+        }
+
+        return redirect()->back()->with('success', 'Mail verzonden');
     }
 }

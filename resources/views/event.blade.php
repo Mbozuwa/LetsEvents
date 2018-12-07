@@ -80,7 +80,7 @@
                                                 <span class="title">{{ __('msg.event.regFees') }}</span>
                                                 @if(empty($event['payment']))
                                                 <span class="value">{{ __('msg.event.regFree') }}</span>
-                                                @else 
+                                                @else
                                                 <span class="value">&euro; {{ $event['payment'] }}</span>
                                                 @endif
                                             </div>
@@ -143,6 +143,34 @@
                                                         <h2 class="event-title">{{ __('msg.event.userStatus') }}</h2>
                                                         @if ($attendence[0]['status'] == "Ik ga")
                                                         <span class="label label-success status"><b>{{ __('msg.event.iGo') }}</b> {{ __('msg.event.tothisevent') }}</span>
+                                                        @if(!empty($event['payment']) || $event['payment'] != 0)
+                                                            @if($paymentStatus == 'approved')
+                                                             <div>
+                                                                <hr>
+                                                                <span class="label label-success status"><b>Betaling is voltooid</span>
+                                                             </div>
+                                                             @elseif($paymentStatus == 'rejected')
+                                                             <div>
+                                                                <p>Betaling is afgebroken, probeer opnieuw</p>
+                                                                <form class="w3-container w3-display-middle w3-card-4 " method="POST" id="payment-form"  action="/payment/add-funds/paypal">
+                                                                  {{ csrf_field() }}     
+                                                                  <input class="w3-input w3-border" name="amount" type="hidden" value="{{$event['payment']}}">  
+                                                                  <input class="w3-input w3-border" name="event_id" type="hidden" value="{{$event['id']}}">      
+                                                                  <input type="submit" class="btn btn-info" value="Pay with PayPal">
+                                                                </form>
+                                                             </div>
+                                                            @else
+                                                             <div>
+                                                                <hr>
+                                                                <form class="w3-container w3-display-middle w3-card-4 " method="POST" id="payment-form"  action="/payment/add-funds/paypal">
+                                                                  {{ csrf_field() }}     
+                                                                  <input class="w3-input w3-border" name="amount" type="hidden" value="{{$event['payment']}}">  
+                                                                  <input class="w3-input w3-border" name="event_id" type="hidden" value="{{$event['id']}}">      
+                                                                  <input type="submit" class="btn btn-info" value="Pay with PayPal">
+                                                                </form>
+                                                             </div>
+                                                             @endif
+                                                        @endif                  
                                                         @elseif ($attendence[0]['status'] == "Misschien")
                                                         <span class="label label-warning status"><b>{{ __('msg.event.iMaybe') }}</b> {{ __('msg.event.tothisevent') }}</span>
                                                         @elseif ($attendence[0]['status'] == "Ik ga niet")
@@ -222,10 +250,10 @@
                                     <div class="media">
                                         <div class="media-body" >
                                             <h2 style="margin-top:0px;">Deel: </h2>
-                                                                    
+
                                             <!-- Go to www.addthis.com/dashboard to customize your tools -->
                                             <div class="addthis_inline_share_toolbox"></div>
-                                        
+
                                         </div>
                                     </div>
                                 </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Schools;
+use App\Student;
+
 use Auth;
 class SchoolController extends Controller
 {
@@ -87,6 +89,8 @@ class SchoolController extends Controller
         if ($school == null) {
             return redirect()->back();
         }
+
+        Student::where('school_id', $id)->delete();
         $school->delete();
         return redirect('/school/index')->with('message', __('msg.SchoolController.info.delete.success'));
     }

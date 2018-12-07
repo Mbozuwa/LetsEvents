@@ -24,6 +24,7 @@ class MailController extends Controller
         });
         return view('/welcome');
     }
+    
     // public function send(Request $reqeust) {
     //    //  $title = $request->input('title');
     //    // $content = $request->input('content');

@@ -94,7 +94,7 @@
                                                 <span class="title">{{ __('msg.event.regFees') }}</span>
                                                 @if(empty($event['payment']))
                                                 <span class="value">{{ __('msg.event.regFree') }}</span>
-                                                @else 
+                                                @else
                                                 <span class="value">&euro; {{ $event['payment'] }}</span>
                                                 @endif
                                             </div>
@@ -129,7 +129,7 @@
 
                                     </ul>
                                 </div>
-                                
+
                                 <a href="/events/info/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-warning btn-lg"><i class="fas fa-users" style="color:white;"></i></button></a>
                                 <a href="/events/categories/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-primary btn-lg"><i class="fas fa-grip-horizontal" style="color:white;"></i></button></a>
                                 <a href="/events/edit/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-success btn-lg"><i class="far fa-edit" style="color:white;"></i></button></a>

@@ -7,11 +7,12 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Registered extends Mailable
+class MailReminder extends Mailable
 {
     use Queueable, SerializesModels;
     public $event;
     public $user;
+
     /**
      * Create a new message instance.
      *
@@ -21,15 +22,15 @@ class Registered extends Mailable
     {
         $this->event = $event;
         $this->user = $user;
-
     }
+
     /**
      * Build the message.
-     *and uses the markdown template emails.registered
+     *
      * @return $this
      */
     public function build()
     {
-        return $this->markdown('emails.registered')->subject('Deelname aan evenement');
+        return $this->markdown('emails.mailreminder')->subject('Betalingsherinnering');
     }
 }
