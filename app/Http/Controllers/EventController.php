@@ -262,25 +262,26 @@ class EventController extends Controller
      * getting all the events form a user that he made
      */
 
-    public function madeEvents() {
-        
+    public function madeEvents() 
+    {
         $user = Auth::user();
         
         // $events = Event::where(['user_id' => $user['id'],'end_time', '>=', Carbon::now()->toDateString()])->paginate(2);
         $events = Event::where('user_id', $user['id'])->whereDate('end_time', '>=', Carbon::now()->toDateString())->paginate(2);
-        $date = date('d-m-Y');
-        $date2 = date('d-m-Y', strtotime("+1 month"));
-        return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
+        $date = date('Y-m-d');
+        $date2 = date('Y-m-d', strtotime("+1 month"));
+        return view('events.made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
     }
 
     /**
      * show old events that you made
      */
 
-    public function madeEventsAll(){
+    public function madeEventsAll()
+    {
         $user = Auth::user();
-        $date = date('d-m-Y');
-        $date2 = date('d-m-Y', strtotime("+1 month"));
+        $date = date('Y-m-d');
+        $date2 = date('Y-m-d', strtotime("+1 month"));
         $events = Event::where(['user_id' => $user['id']])->paginate(2);
         return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
     }
@@ -293,8 +294,8 @@ class EventController extends Controller
         $user = Auth::user();
         $begin_date = $request->input('date');
         $end_date = $request->input('date2');
-        $date = date('d-m-Y');
-        $date2 = date('d-m-Y', strtotime("+1 month"));
+        $date = date('Y-m-d');
+        $date2 = date('Y-m-d', strtotime("+1 month"));
         // $events = Event::find($user);
         // dd($events);
 
