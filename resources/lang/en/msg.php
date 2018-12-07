@@ -147,8 +147,10 @@ return [
     
     'event.info.sendPayReminder' => 'Send payment reminder',
     'event.info.userNotfound' => 'The participant could not be found.',
+    'event.info.eventNotfound' => 'The event could not be found.',
     'event.info.sendError' => 'The network you are on doesn\'t support the sending of an email.',
     'event.info.sendSuccess' => 'The payment reminder email has succesfully been send!',
+    'event.info.sendPermission' => 'You do not have the correct rights to send this mail.',
 
     /*Event create & edit*/
     'event.create.title' => 'Create an event',
