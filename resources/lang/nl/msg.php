@@ -147,8 +147,10 @@ return [
 
     'event.info.sendPayReminder' => 'Verstuur herinneringsmail',
     'event.info.userNotfound' => 'De deelnemer kon niet worden gevonden.',
+    'event.info.eventNotfound' => 'Het evenement kon niet worden gevonden.',
     'event.info.sendError' => 'Het netwerk dat u gebruikt, ondersteunt het verzenden van een e-mail niet.',
     'event.info.sendSuccess' => 'De herinneringsmail is succesvol verzonden!',
+    'event.info.sendPermission' => 'Je hebt niet de juiste rechten om deze e-mail te verzenden.',
 
     /*Event create & edit*/
     'event.create.title' => 'Maak een evenement aan',

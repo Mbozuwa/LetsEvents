@@ -13,9 +13,11 @@ use Auth;
 use Validator;
 use Carbon\Carbon;
 use App\Mail\Registered;
-use Mail;
 
 use \File;
+
+use Mail;
+use App\Mail\MailReminder;
 
 use \Input as Input;
 
@@ -435,20 +437,26 @@ class EventController extends Controller
         $eventId = $request->input('eventid');
         $userId = $request->input('userid');
 
-        if (Auth::user()->role_id == 2){
+        if (Event::find($eventId)){
+            $event = Event::find($eventId);
             if (User::find($userId))
             {
-                $user = User::find($userId);
-                $event = Event::find($eventId);
-                try {
-                    Mail::to($user->email)
-                        ->send(new MailReminder($event, $user));
-                } catch (Exception $e) {
-                    return redirect()->back()->with('error', __('msg.event.info.sendError'));
+                if($event->user_id == Auth::user()->id)
+                {
+                    $user = User::find($userId);
+                    try {
+                        Mail::to($user->email)->send(new MailReminder($event, $user));
+                    } catch (Exception $e) {
+                        return redirect()->back()->with('error', __('msg.event.info.sendError'));
+                    }
+                }else{
+                    return redirect()->back()->with('error', __('msg.event.info.sendPermission'));
                 }
             }else{
                 return redirect()->back()->with('error', __('msg.event.info.userNotfound'));
             }
+        }else{
+            return redirect()->back()->with('error', __('msg.event.info.eventNotfound'));
         }
 
         return redirect()->back()->with('message', __('msg.event.info.sendSuccess'));
