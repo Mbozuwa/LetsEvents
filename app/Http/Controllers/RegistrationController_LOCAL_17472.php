@@ -24,12 +24,6 @@ use Session;
 use Auth;
 use URL;
 
-// use App\Registration;
-use App\Email;
-use Mail;
-use App\Mail\Registered;
-use App\Event;
-
 
 class RegistrationController extends Controller
 {
@@ -43,16 +37,9 @@ class RegistrationController extends Controller
           'event_id' => $id,
           'status' => "Ik ga",
         ]);
-
+        
         $registration->save();
         $event = \App\event::find($id);
-        $event = \App\event::find($id);
-         try {
-             Mail::to($user->email)->send(new Registered($event, $user));
-         } catch (\Exception $e) {
-             return redirect()->back()->with('error', __('msg.reminder.send.error'));
-         }
-
         session(['notificationAlarmDelete' => false]);
         session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
         session(['event_id' => $id]);
@@ -97,7 +84,7 @@ class RegistrationController extends Controller
 
     public function __construct()
     {
-
+ 
         /** PayPal api context **/
         $paypal_conf = \Config::get('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential(
@@ -105,7 +92,7 @@ class RegistrationController extends Controller
             $paypal_conf['secret'])
         );
         $this->_api_context->setConfig($paypal_conf['settings']);
-
+ 
     }
 
     public function payWithpaypal(Request $request)
@@ -184,13 +171,14 @@ class RegistrationController extends Controller
             $store->event_id = session('event_id');
             $store->user_id = Auth::user()->id;
             $store->save();
-            return Redirect::to('/event/'. session('event_id'))->with('message', 'Betaling is succesvol');;
+            return Redirect::to('/event/'. session('event_id'));
         }
         $store = new PaymentStatus();
             $store->payment_status = $result->getState();
             $store->event_id = session('event_id');
             $store->user_id = Auth::user()->id;
             $store->save();
+        // \Session::put('error', 'Payment failed');
         return Redirect::to('/event/'. session('event_id'));
     }
 }

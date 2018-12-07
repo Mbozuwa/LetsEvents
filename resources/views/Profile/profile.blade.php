@@ -51,6 +51,34 @@
                                                     <input type="" name="telephone" class="form-control" id="inputEmail3" placeholder="061-2345-678" value="{{$profile->telephone}}">
                                                 </div>
                                             </div>
+                                            @if ($user['role_id'] != 2)
+                                                <div class="form-group row">
+                                                    <label for="school" class="col-sm-2 col-form-label">{{__('msg.school.school')}}:</label>
+                                                    <div class="col-sm-10">
+
+                                                        <select class="form-control d-inline col-8"  name="school">
+                                                        @if (!$selectedSchool)
+                                                            <option value=""></option>
+                                                        @endif
+                                                            @foreach ($schools as $school)
+                                                                @php
+                                                                    $selected='';
+                                                                @endphp
+                                                                @if ($selectedSchool)
+                                                                    @foreach ($selectedSchool as $key)
+                                                                        @php
+                                                                            if ($key['id'] == $school->id) {
+                                                                                $selected = 'selected = "selected"';
+                                                                            }
+                                                                        @endphp
+                                                                    @endforeach
+                                                                @endif
+                                                                <option name="school"  value="{{$school->id}}" {{$selected}}>{{$school->name}} </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                        @endif
                                             @if($user['role_id'] == 2)
                                             <div class="form-group row">
                                                 <label for="inputEmail3" class="col-sm-2 col-form-label">{{__('msg.profile.type')}}:</label>
@@ -71,35 +99,6 @@
                                             @endif
                                             <button type="submit" style="margin-top: 40px;color:white;" class="btn bg-success btn-lg">{{__('msg.profile.edit')}}</button>
                                     </form>
-                                    @if($user['role_id'] != 2) 
-                                    <form class="" action="{{Route('editStudent', ['id' => Auth::user()->id])}}" method="post">
-                                        @csrf
-                                            <div class="form-group row">
-                                                <label for="school" class="col-sm-2 col-form-label">{{__('msg.school.school')}}:</label>
-                                                <div class="col-sm-5">
-                                                    <select class="form-control d-inline col-8"  name="school">
-                                                        @foreach ($schools as $school)
-                                                            @php
-                                                                $selected='';
-                                                            @endphp
-                                                            @if ($selectedSchool)
-                                                                @foreach ($selectedSchool as $key)
-                                                                    @php
-                                                                        if ($key['id'] == $school->id) {
-                                                                            $selected = 'selected = "selected"';
-                                                                        }
-                                                                    @endphp
-                                                                @endforeach
-                                                            @endif
-                                                            <option name="school"  value="{{$school->id}}" {{$selected}}>{{$school->name}} </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-primary btn-sm d-inline col-4">Kies</button>
-                                            </div>
-                                    </form>
-                                @endif
 
                                     {{-- @endif --}}
                                     </div>

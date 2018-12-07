@@ -177,17 +177,20 @@ return [
 
     /*ProfileController overview*/
     'ProfileController.edit' => 'Profiel succesvol bewerkt!',
+    'ProfileController.find' => 'Dit is niet jouw profiel!',
 
     /*Schools overview*/
     'school.name' => 'Naam',
     'school.edit' => 'Bewerken',
     'school.delete' => 'Verwijder',
+
     'school.school' => 'School',
     'school.schools' => 'Scholen overzicht',
-    'school.makeSchoolTitle' => 'Maak een school aan.', 
+    'school.makeSchoolTitle' => 'Maak een school aan.',
     'school.editSchool' => 'Wijzigen',
     'school.editSchoolTitle' => 'Wijzig een school',
     'school.new' => 'School toevoegen',
+    'school.confirm' => 'Weet u zeker dat u deze school wilt verwijderen?',
 
     /*Admin*/
     'admin' => 'Admin',
@@ -212,4 +215,12 @@ return [
     'SchoolController.info.edit.success' => 'De school is aangepast.',
     'SchoolController.info.create.success' => 'De school is aangemaakt.',
     'StudentController.chooseschool.success' => 'School is gekozen.',
+
+    'reminder' => 'Herinnering',
+    'reminder.secondLine' => 'Dit is een e-mail zodat je weet dat je bent geregistreerd.',
+    'reminder.firstLine' => 'je hebt je zojuist aangemeld voor het evenement',
+    'reminder.description' => 'De beschrijving',
+    'reminder.payment' => 'Kosten van het evenement',
+    'reminder.send.error' => 'Het netwerk dat u gebruikt, ondersteunt het verzenden van een e-mail niet',
+
 ];
