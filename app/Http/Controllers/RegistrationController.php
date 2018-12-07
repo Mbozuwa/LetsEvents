@@ -143,7 +143,7 @@ class RegistrationController extends Controller
                 \Session::put('error', 'Connection timeout');
                 return Redirect::to('/');
             } else {
-                \Session::put('error', 'Some error occur, sorry for inconvenient');
+                \Session::put('error', __('msg.RegistrationController.payment.error'));
                 return Redirect::to('/');
             }
         }
@@ -184,7 +184,7 @@ class RegistrationController extends Controller
             $store->event_id = session('event_id');
             $store->user_id = Auth::user()->id;
             $store->save();
-            return Redirect::to('/event/'. session('event_id'))->with('message', 'Betaling is succesvol');;
+            return Redirect::to('/event/'. session('event_id'))->with('message', __('msg.RegistrationController.payment.success'));
         }
         $store = new PaymentStatus();
             $store->payment_status = $result->getState();

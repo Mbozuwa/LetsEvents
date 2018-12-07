@@ -173,5 +173,8 @@ return [
     'SchoolController.info.edit.succes' => 'Schule erfolgreich bearbeitet.',
     'SchoolController.info.create.succes' => 'Die Schule wurde gegründet.',
 
+    /*registration Controller, */
+    'RegistrationController.payment.success' => 'Die Zahlung ist abgeschlossen.',
+    'RegistrationController.payment.error' => 'Ein Fehler ist aufgetreten, entschuldigen Sie die Unannehmlichkeiten',
 
 ];
