@@ -52,7 +52,9 @@ return [
     'event.iDontGo' => 'Ik ga niet',
     'event.noStatus' => 'Geen status',
 
+    'name' => 'Naam',
     'email' => 'E-mailadres',
+    'telephone' => 'Telefoonnummer',
     'password' => 'Wachtwoord',
     'address' => 'Adres',
     'place' => 'Plaats',
@@ -142,6 +144,11 @@ return [
     'error.event.desc2' => 'Helaas, dit evenement zit aan het maximaal aantal deelnemers, hierdoor kan je je niet meer aanmelden.',
     'error.event.title3' => 'Je bent op dit moment niet ingelogd!',
     'error.event.desc3' => 'Klik hier om in te loggen en je aan te melden voor dit evenement.',
+
+    'event.info.sendPayReminder' => 'Verstuur herinneringsmail',
+    'event.info.userNotfound' => 'De deelnemer kon niet worden gevonden.',
+    'event.info.sendError' => 'Het netwerk dat u gebruikt, ondersteunt het verzenden van een e-mail niet.',
+    'event.info.sendSuccess' => 'De herinneringsmail is succesvol verzonden!',
 
     /*Event create & edit*/
     'event.create.title' => 'Maak een evenement aan',

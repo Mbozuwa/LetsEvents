@@ -2064,3 +2064,7 @@ input[type=file] {
     max-width: 630px;
     margin: 0 auto;
 }
+
+.table>thead>tr {
+    background-color: #f2f4f7;
+}
