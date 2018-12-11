@@ -144,6 +144,8 @@ Route::post('/sendReminder', 'MailController@sendEmailReminder');
 
 
 
+Route::get('/downloadParticipants/{id}', 'ExportController@export');
+
 Route::group(['prefix' =>'user'], function() {
 Route::group(['middleware' => 'guest'] ,function() {
     Route::get('/signup', [
