@@ -147,8 +147,10 @@ return [
 
     'event.info.sendPayReminder' => 'Verstuur herinneringsmail',
     'event.info.userNotfound' => 'De deelnemer kon niet worden gevonden.',
+    'event.info.eventNotfound' => 'Het evenement kon niet worden gevonden.',
     'event.info.sendError' => 'Het netwerk dat u gebruikt, ondersteunt het verzenden van een e-mail niet.',
     'event.info.sendSuccess' => 'De herinneringsmail is succesvol verzonden!',
+    'event.info.sendPermission' => 'Je hebt niet de juiste rechten om deze e-mail te verzenden.',
 
     /*Event create & edit*/
     'event.create.title' => 'Maak een evenement aan',
@@ -169,6 +171,9 @@ return [
     'event.edit.image.desc' => 'De bovenstaande afbeelding wordt voor je evenement gebruikt. Als je deze wilt wijzigen uploadt dan hierboven een nieuwe afbeelding.',
     'event.edit.title' => 'Wijzigen van het evenement',
     'event.edit.submit' => 'Wijzig het evenement',
+    'event.paymentreminder' => 'Betalingsherinnering',
+    'event.paymentreminder.days' => 'aantal dagen',
+    'event.paymentreminder.info' => 'Hoeveel dagen voor dat het evenement begint moet de deelnemer een e-mail ontvangen als deze nog niet heeft betaald?',
 
     /*Profile overview*/
     'profile.name' => 'Naam',
