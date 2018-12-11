@@ -366,6 +366,7 @@ class EventController extends Controller
     /*
     *The info function gets all the users that are registered with an event that is in the $id.
     *The auth user gets the current logged in user.
+    * Graph: get the user count for paid, going, maybe and notgoing. Return this also in the view.
     */
 
     public function info($id) {
