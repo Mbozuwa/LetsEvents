@@ -300,8 +300,9 @@ class EventController extends Controller
         // $events = Event::where(['user_id' => $user['id'],'end_time', '>=', Carbon::now()->toDateString()])->paginate(2);
         $events = Event::where('user_id', $user['id'])->whereDate('end_time', '>=', Carbon::now()->toDateString())->paginate(4);
         $date = date('Y-m-d');
+        $e = false;
         $date2 = date('Y-m-d', strtotime("+1 month"));
-        return view('events.made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
+        return view('events.made', ['events' => $events, 'date' => $date, 'date2' => $date2,'e' => $e]);
     }
 
     /**
@@ -313,8 +314,10 @@ class EventController extends Controller
         $user = Auth::user();
         $date = date('Y-m-d');
         $date2 = date('Y-m-d', strtotime("+1 month"));
-        $events = Event::where(['user_id' => $user['id']])->paginate(4);
-        return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
+        $e = true;
+        $events = Event::where(['user_id' => $user['id']])->paginate(2);
+        return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2, 'e' => $e]);
+
     }
 
     /**
