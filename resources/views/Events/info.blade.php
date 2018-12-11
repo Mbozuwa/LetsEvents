@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('content')
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
         <div class="main-content">
             <div class="container-fluid">
             @if(session()->has('message'))
@@ -15,9 +19,15 @@
             <div class="container-fluid">
                 <h3 class="page-title">Deelnemers aan dit evenement</h3>
                 <div class="row">
-                    <div class="col-md-11">
+                    <div class="col-md-12">
                         <div class="panel">
                             <div class="panel-body">
+                                <div class="col-lg-6">
+                                    <div id="graph" style="height: 250px; width: 70%;"></div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div id="bar" style="height: 250px; width: 70%;"></div>
+                                </div>
                                 @if (Auth::id() == $event->user_id || Auth::user()->role_id)
                                     @if (count($registered) == 0)
                                     <h2>Niemand doet mee aan het evenement<a href="/event/{{$event->id}}"> {{$event->name}}</a></h2>
@@ -65,4 +75,40 @@
                 </div>
             </div>
         </div>
+        <script>
+            var paid = JSON.parse("{{ json_encode($usersPaid) }}");
+            var going = JSON.parse("{{ json_encode($usersGoing) }}");
+            var maybe = JSON.parse("{{ json_encode($usersMaybe) }}");
+            var notGoing = JSON.parse("{{ json_encode($usersNotGoing) }}");
+        </script>
+        <script>
+            Morris.Donut({
+              element: 'graph',
+              data: [
+                {value: paid, label: 'Betaald'},
+                {value: going, label: 'Gaat'},
+                {value: maybe, label: 'Gaat Misschien'},
+                {value: notGoing, label: 'Gaat Niet'}
+              ],
+              colors: [
+                '#4286f4',
+                '#52fc3f',
+                '#f4f13d',
+                '#e82c29'
+              ],
+              formatter: function (x) { return x + " gebruiker(s)"}
+            });
+        </script>
+        <script>
+            Morris.Bar({
+              element: 'bar',
+              data: [
+                { y: 'Gaat', a: going },
+                { y: 'Betaald', a: paid },
+              ],
+              xkey: 'y',
+              ykeys: ['a'],
+              labels: ['aantal gebruikers']
+            });
+        </script>
 @endsection

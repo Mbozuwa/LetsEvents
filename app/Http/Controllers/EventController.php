@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Event;
 use App\Registration;
+use App\PaymentStatus;
 use App\CategoryEvent;
 use App\Category;
 use App\User;
@@ -382,6 +383,11 @@ class EventController extends Controller
 
     public function info($id) {
         $eventUser = Event::find($id);
+        $usersPaid = PaymentStatus::where('event_id' , $id)->get()->count();
+        $usersMaybe = Registration::where('event_id' , $id)->where('status' , 'Misschien')->get()->count();
+        $usersNotGoing = Registration::where('event_id' , $id)->where('status' , 'Ik ga niet')->get()->count();
+        $usersGoing = Registration::where('event_id' , $id)->where('status' , 'Ik ga')->get()->count();
+        $usersGoing = $usersGoing - $usersPaid;
         if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2){
 
             $user = Auth::user();
@@ -390,7 +396,7 @@ class EventController extends Controller
             $registered = Registration::where(['event_id' => $id])->where('status' , "Ik ga")->get();
 
             // dd($registered);
-            return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
+            return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user, 'usersPaid' => $usersPaid, 'usersGoing' => $usersGoing, 'usersMaybe' => $usersMaybe, 'usersNotGoing' => $usersNotGoing]);
         }
         return redirect()->back()->with('error', __('msg.EventController.info.error'));
     }
