@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <h3 class="page-title">{{ __('msg.admin') }}</h3>
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-12">
                         <div class="panel">
                             <div class="panel-body">
                               <table class="table table-hover">
