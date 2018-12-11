@@ -20,7 +20,7 @@
                 @if (count($events) >= 1)
                 <div class="col-md-12" style="margin-top: -25px;">
                     <!-- PAGINATE FUNCTION -->
-                    
+                    {{ $events->links() }}
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -28,9 +28,11 @@
                 <a href="/events/made"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Hide old events</button></a>
             <form action="{{ action('EventController@datesBetween')}}" method="POST">
                 @csrf
-                    <input name="date" type="date" style="margin:10px;" placeholder="{{$date}}">
-                    <input name="date2" type="date" style="margin:10px;" placeholder="{{$date2}}">
+
+                    <input name="date" type="date" style="margin:10px;" value="{{$date}}">
+                    <input name="date2" type="date" style="margin:10px;" value="{{$date2}}">
                 
+
                     <button  type="submit">Zoek</button>
                 </form>
             </div>
@@ -58,7 +60,7 @@
 
                                                 @if(strtotime("now") >= strtotime($event['begin_time']) && strtotime("now") <= strtotime($event['end_time']))
                                                     <span class="label label-success status">{{ __('msg.event.info.now') }}</span>
-                                                @elseif(strtotime("now") >= strtotime($event['end_time']))                                          
+                                                @elseif(strtotime("now") >= strtotime($event['end_time']))
                                                     <span class="label label-default status">{{ __('msg.event.info.ended') }}</span>
                                                 @else
                                                     <span class="label label-info status">{{ __('msg.event.info.soon') }}</span>
@@ -140,7 +142,6 @@
 
                                     </ul>
                                 </div>
-
                                 <a href="/events/info/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-warning btn-lg"><i class="fas fa-users" style="color:white;"></i></button></a>
                                 <a href="/events/categories/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-primary btn-lg"><i class="fas fa-grip-horizontal" style="color:white;"></i></button></a>
                                 <a href="/events/edit/{{$event->id}}"><button style="margin-top: 40px;" class="btn bg-success btn-lg"><i class="far fa-edit" style="color:white;"></i></button></a>
