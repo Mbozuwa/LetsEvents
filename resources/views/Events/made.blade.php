@@ -24,9 +24,37 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <a href="/events/madeAll"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Show old events</button></a>
-                <a href="/events/made"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Hide old events</button></a>
-            <form action="{{ action('EventController@datesBetween')}}" method="POST">
+                    <h2>Show old events on or off: </h2>
+                <label class="switch" style="margin-right: 25px;">
+                        
+                    <!-- shortcut for the if else function beneath a example of how it looks for php-->
+                    <input name="showOldEvents" id="showOldEvents" type="checkbox" <?php echo $e ? " checked='checked' " : "" ?>  onchange="madeEventsAll(this);" />
+ {{--                  <?php
+                        if(1==2){
+
+                            if($e === true){
+                                echo " checked='checked' ";
+                            } else {
+                                echo "";
+                            }
+
+                        }
+                    ?> --}}
+                    
+                    <span class="slider round"></span>
+                    <script>
+                        function madeEventsAll(e){
+                            if(e.checked){
+                                window.location='/events/madeAll';
+                            }
+                            else{
+                                window.location='/events/made';
+                            }
+                        }
+                    </script>
+                </label>
+                <br>
+            <form style="float:right;" action="{{ action('EventController@datesBetween')}}" method="POST">
                 @csrf
 
                     <input name="date" type="date" style="margin:10px;" value="{{$date}}">
