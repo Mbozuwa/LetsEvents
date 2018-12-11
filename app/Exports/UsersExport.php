@@ -11,16 +11,16 @@ use Maatwebsite\Excel\Events\AfterSheet;
 
 class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
-    public function __construct($id)
+    /*public function __construct($id)
     {
         $this->id = $id; 
-    }
+    }*/
 
     public function collection()
     {
         //return User::all();
-        $test  = $this->id;
-        dd('yeah', $test);
+        //$test  = $this->id;
+        //dd('yeah', $test);
         return User::get(array('id', 'name', 'email', 'address', 'telephone'));
     }
 
