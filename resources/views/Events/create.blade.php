@@ -66,7 +66,7 @@
                                         <script type="text/javascript">
                                             $('#regFees').on('change', function() {
                                                 if(parseInt(this.value.replace(/,/g, '.') * 100) > 0){
-                                                    $('#reminderDays').html('<label class="h2">Betalingsherinnering: *</label><div class="input-group"><span class="input-group-addon"><i class="fab fa-paypal"></i></span><input type="number" min="1" name="payreminder" class="form-control" placeholder="aantal dagen" id="input" value=""/></div><span class="h6">Hoeveel dagen voor dat het evenement begint moet de deelnemer een e-mail ontvangen als deze nog niet heeft betaald?</span>');
+                                                    $('#reminderDays').html('<label class="h2">{{ __('msg.event.paymentreminder') }}: *</label><div class="input-group"><span class="input-group-addon"><i class="fab fa-paypal"></i></span><input type="number" min="1" name="payreminder" class="form-control" placeholder="{{ __('msg.event.paymentreminder.days') }}" id="input" value=""/></div><span class="h6">{{ __('msg.event.paymentreminder.info') }}</span>');
                                                 }else{
                                                     $('#reminderDays').html('');
                                                 }

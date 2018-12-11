@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Event;
 use App\Registration;
+use App\PaymentStatus;
 use App\CategoryEvent;
 use App\Category;
 use App\User;
@@ -13,9 +14,11 @@ use Auth;
 use Validator;
 use Carbon\Carbon;
 use App\Mail\Registered;
-use Mail;
 
 use \File;
+
+use Mail;
+use App\Mail\MailReminder;
 
 use \Input as Input;
 
@@ -381,6 +384,11 @@ class EventController extends Controller
 
     public function info($id) {
         $eventUser = Event::find($id);
+        $usersPaid = PaymentStatus::where('event_id' , $id)->get()->count();
+        $usersMaybe = Registration::where('event_id' , $id)->where('status' , 'Misschien')->get()->count();
+        $usersNotGoing = Registration::where('event_id' , $id)->where('status' , 'Ik ga niet')->get()->count();
+        $usersGoing = Registration::where('event_id' , $id)->where('status' , 'Ik ga')->get()->count();
+        $usersGoing = $usersGoing - $usersPaid;
         if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2){
 
             $user = Auth::user();
@@ -389,7 +397,7 @@ class EventController extends Controller
             $registered = Registration::where(['event_id' => $id])->where('status' , "Ik ga")->get();
 
             // dd($registered);
-            return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
+            return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user, 'usersPaid' => $usersPaid, 'usersGoing' => $usersGoing, 'usersMaybe' => $usersMaybe, 'usersNotGoing' => $usersNotGoing]);
         }
         return redirect()->back()->with('error', __('msg.EventController.info.error'));
     }
@@ -436,20 +444,26 @@ class EventController extends Controller
         $eventId = $request->input('eventid');
         $userId = $request->input('userid');
 
-        if (Auth::user()->role_id == 2){
+        if (Event::find($eventId)){
+            $event = Event::find($eventId);
             if (User::find($userId))
             {
-                $user = User::find($userId);
-                $event = Event::find($eventId);
-                try {
-                    Mail::to($user->email)
-                        ->send(new MailReminder($event, $user));
-                } catch (Exception $e) {
-                    return redirect()->back()->with('error', __('msg.event.info.sendError'));
+                if($event->user_id == Auth::user()->id)
+                {
+                    $user = User::find($userId);
+                    try {
+                        Mail::to($user->email)->send(new MailReminder($event, $user));
+                    } catch (Exception $e) {
+                        return redirect()->back()->with('error', __('msg.event.info.sendError'));
+                    }
+                }else{
+                    return redirect()->back()->with('error', __('msg.event.info.sendPermission'));
                 }
             }else{
                 return redirect()->back()->with('error', __('msg.event.info.userNotfound'));
             }
+        }else{
+            return redirect()->back()->with('error', __('msg.event.info.eventNotfound'));
         }
 
         return redirect()->back()->with('message', __('msg.event.info.sendSuccess'));
