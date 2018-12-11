@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Event;
 use App\Registration;
+use App\PaymentStatus;
 use App\CategoryEvent;
 use App\Category;
 use App\User;
@@ -13,9 +14,11 @@ use Auth;
 use Validator;
 use Carbon\Carbon;
 use App\Mail\Registered;
-use Mail;
 
 use \File;
+
+use Mail;
+use App\Mail\MailReminder;
 
 use \Input as Input;
 
@@ -28,7 +31,7 @@ class EventController extends Controller
 
     public function index($id) {
         $event = \App\event::find($id);
-        
+
         if (Event::where(array('id' => $id))->exists())
         {
             if(Auth::user())
@@ -49,7 +52,6 @@ class EventController extends Controller
             $newDate = date("d-m-Y H:i", strtotime($originalDate));
             $originalDateEnd = $event['end_time'];
             $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
-            return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
             return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser, 'paymentStatus' => $paymentStatus]);
         }
         else
@@ -116,7 +118,7 @@ class EventController extends Controller
 
     public function allEventsSearch($name) {
         $events = Event::get();
-        
+
 
     return view('events/index', ['events' => $events, 'name' => $name]);
     }
@@ -291,12 +293,12 @@ class EventController extends Controller
      * getting all the events form a user that he made
      */
 
-    public function madeEvents() 
+    public function madeEvents()
     {
         $user = Auth::user();
-        
+
         // $events = Event::where(['user_id' => $user['id'],'end_time', '>=', Carbon::now()->toDateString()])->paginate(2);
-        $events = Event::where('user_id', $user['id'])->whereDate('end_time', '>=', Carbon::now()->toDateString())->paginate(2);
+        $events = Event::where('user_id', $user['id'])->whereDate('end_time', '>=', Carbon::now()->toDateString())->paginate(4);
         $date = date('Y-m-d');
         $e = false;
         $date2 = date('Y-m-d', strtotime("+1 month"));
@@ -315,6 +317,7 @@ class EventController extends Controller
         $e = true;
         $events = Event::where(['user_id' => $user['id']])->paginate(2);
         return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2, 'e' => $e]);
+
     }
 
     /**
@@ -338,12 +341,13 @@ class EventController extends Controller
             //     ->where('user_id', $user['id'])
             //     ->get();
 
-            
+
             if($begin_date != "" && $end_date != "") {
                 $events = Event::where('user_id', $user['id'])
+                
                     ->whereDate('begin_time', '>=', $begin_date)
                     ->whereDate('end_time', '<=', $end_date)
-                    ->get();
+                    ->paginate(4);
 
             return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
         }
@@ -379,10 +383,16 @@ class EventController extends Controller
     /*
     *The info function gets all the users that are registered with an event that is in the $id.
     *The auth user gets the current logged in user.
+    * Graph: get the user count for paid, going, maybe and notgoing. Return this also in the view.
     */
 
     public function info($id) {
         $eventUser = Event::find($id);
+        $usersPaid = PaymentStatus::where('event_id' , $id)->get()->count();
+        $usersMaybe = Registration::where('event_id' , $id)->where('status' , 'Misschien')->get()->count();
+        $usersNotGoing = Registration::where('event_id' , $id)->where('status' , 'Ik ga niet')->get()->count();
+        $usersGoing = Registration::where('event_id' , $id)->where('status' , 'Ik ga')->get()->count();
+        $usersGoing = $usersGoing - $usersPaid;
         if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2){
 
             $user = Auth::user();
@@ -391,7 +401,7 @@ class EventController extends Controller
             $registered = Registration::where(['event_id' => $id])->where('status' , "Ik ga")->get();
 
             // dd($registered);
-            return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user]);
+            return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user, 'usersPaid' => $usersPaid, 'usersGoing' => $usersGoing, 'usersMaybe' => $usersMaybe, 'usersNotGoing' => $usersNotGoing]);
         }
         return redirect()->back()->with('error', __('msg.EventController.info.error'));
     }
@@ -438,20 +448,26 @@ class EventController extends Controller
         $eventId = $request->input('eventid');
         $userId = $request->input('userid');
 
-        if (Auth::user()->role_id == 2){
+        if (Event::find($eventId)){
+            $event = Event::find($eventId);
             if (User::find($userId))
             {
-                $user = User::find($userId);
-                $event = Event::find($eventId);
-                try {
-                    Mail::to($user->email)
-                        ->send(new MailReminder($event, $user));
-                } catch (Exception $e) {
-                    return redirect()->back()->with('error', __('msg.event.info.sendError'));
+                if($event->user_id == Auth::user()->id)
+                {
+                    $user = User::find($userId);
+                    try {
+                        Mail::to($user->email)->send(new MailReminder($event, $user));
+                    } catch (Exception $e) {
+                        return redirect()->back()->with('error', __('msg.event.info.sendError'));
+                    }
+                }else{
+                    return redirect()->back()->with('error', __('msg.event.info.sendPermission'));
                 }
             }else{
                 return redirect()->back()->with('error', __('msg.event.info.userNotfound'));
             }
+        }else{
+            return redirect()->back()->with('error', __('msg.event.info.eventNotfound'));
         }
 
         return redirect()->back()->with('message', __('msg.event.info.sendSuccess'));

@@ -147,8 +147,10 @@ return [
     
     'event.info.sendPayReminder' => 'Send payment reminder',
     'event.info.userNotfound' => 'The participant could not be found.',
+    'event.info.eventNotfound' => 'The event could not be found.',
     'event.info.sendError' => 'The network you are on doesn\'t support the sending of an email.',
     'event.info.sendSuccess' => 'The payment reminder email has succesfully been send!',
+    'event.info.sendPermission' => 'You do not have the correct rights to send this mail.',
 
     /*Event create & edit*/
     'event.create.title' => 'Create an event',
@@ -169,6 +171,9 @@ return [
     'event.edit.image.desc' => 'The image above will be used for your event. If you want to change it then upload a new image above.',
     'event.edit.title' => 'Edit this event',
     'event.edit.submit' => 'Edit event',
+    'event.paymentreminder' => 'Payment reminder',
+    'event.paymentreminder.days' => 'amount in days',
+    'event.paymentreminder.info' => 'How many days before the event starts should the participant receive an e-mail if it has not paid yet?',
 
     /*Profile overview*/
     'profile.name' => 'Name',

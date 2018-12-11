@@ -27,26 +27,26 @@
                                         <form action="{{action("ProfileController@update")}}" method="POST">
                                         @csrf
                                             <div class="form-group row">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">{{ __('msg.profile.name')}}:</label>
+                                                <label for="inputEmail3" class="col-sm-2 col-form-label">{{ __('msg.profile.name')}}: *</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="name" class="form-control" id="inputEmail3" placeholder="Jan Kees" value="{{$profile->name}}">
                                                     <input type="hidden" name="id" class="form-control" value="{{$profile->id}}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">{{__('msg.profile.email')}}:</label>
+                                                <label for="inputEmail3" class="col-sm-2 col-form-label">{{__('msg.profile.email')}}: *</label>
                                                 <div class="col-sm-10">
                                                     <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="voorbeeld@gmail.com" value="{{$profile->email}}">
                                                 </div>
                                             </div>
                                              <div class="form-group row">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">{{__('msg.profile.address')}}:</label>
+                                                <label for="inputEmail3" class="col-sm-2 col-form-label">{{__('msg.profile.address')}}: *</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="address" class="form-control" id="inputEmail3" placeholder="Dordrecht" value="{{$profile->address}}">
                                                 </div>
                                             </div>
                                              <div class="form-group row">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">{{__('msg.profile.phoneNumber')}}:</label>
+                                                <label for="inputEmail3" class="col-sm-2 col-form-label">{{__('msg.profile.phoneNumber')}}:*</label>
                                                 <div class="col-sm-10">
                                                     <input type="" name="telephone" class="form-control" id="inputEmail3" placeholder="061-2345-678" value="{{$profile->telephone}}">
                                                 </div>
@@ -76,6 +76,8 @@
                                                                 <option name="school"  value="{{$school->id}}" {{$selected}}>{{$school->name}} </option>
                                                             @endforeach
                                                         </select>
+                                                        <span style="float:right;" class="h6">{{ __('msg.event.required') }}</span>
+                                                        
                                                     </div>
                                                 </div>
                                         @endif
