@@ -49,7 +49,6 @@ class EventController extends Controller
             $newDate = date("d-m-Y H:i", strtotime($originalDate));
             $originalDateEnd = $event['end_time'];
             $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
-            return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser]);
             return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser, 'paymentStatus' => $paymentStatus]);
         }
         else
@@ -339,7 +338,7 @@ class EventController extends Controller
 
             if($begin_date != "" && $end_date != "") {
                 $events = Event::where('user_id', $user['id'])
-                
+
                     ->whereDate('begin_time', '>=', $begin_date)
                     ->whereDate('end_time', '<=', $end_date)
                     ->paginate(4);
