@@ -30,11 +30,10 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 
     <!-- ADD THIS (facebook and twitter) -->
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bfcf66ada6352a8"></script>
 
-
     @stack('dateTimePicker')
+    @stack('graphBar')
 
 </head>
 <body>
