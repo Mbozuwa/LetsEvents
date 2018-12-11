@@ -23,6 +23,8 @@
                     <p class="page-subtitle"><a href="/event/{{$event->id}}">{{ $event->name }}</a></p>
                 </h3>
                 <div class="row">
+                @if (Auth::id() == $event->user_id || Auth::user()->role_id)
+                    @if (count($registered) >= 1)
                     <div class="col-md-12">
                         <div class="panel">
                             <div class="panel-body">
@@ -72,9 +74,28 @@
                             </div>
                         </div>
                     </div>
+                    @else 
+                    <div class="col-md-4">
+                        <div class="panel">
+                            <div class="panel-body">
+                                Het evenement: <a href="/event/{{ $event->id }}">{{ $event->name }}</a> heeft nog geen deelnemers.
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    @else
+                    <div class="col-md-4">
+                        <div class="panel">
+                            <div class="panel-body">
+                                Je hebt geen toegang tot deze pagina.
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 </div>
             </div>
         </div>
+        @if (count($registered) >= 1)
         <script>
             var paid = JSON.parse("{{ json_encode($usersPaid) }}");
             var going = JSON.parse("{{ json_encode($usersGoing) }}");
@@ -111,4 +132,5 @@
               labels: ['aantal gebruikers']
             });
         </script>
+        @endif
 @endsection
