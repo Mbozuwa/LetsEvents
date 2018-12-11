@@ -330,6 +330,7 @@ class EventController extends Controller
         $begin_date = $request->input('date');
         $end_date = $request->input('date2');
         $date = date('Y-m-d');
+        $e = true;
         $date2 = date('Y-m-d', strtotime("+1 month"));
         // $events = Event::find($user);
         // dd($events);
@@ -349,7 +350,7 @@ class EventController extends Controller
                     ->whereDate('end_time', '<=', $end_date)
                     ->paginate(4);
 
-            return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2]);
+            return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2, 'e' => $e]);
         }
         else {
             return redirect()->back();
