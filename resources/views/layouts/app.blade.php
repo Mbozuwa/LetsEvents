@@ -49,6 +49,7 @@
                 </div>
                 <div id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right">
+                        @if(Session::has('notification'))
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                                 <i class="lnr lnr-alarm"></i>
@@ -62,9 +63,10 @@
                                 </script>
                             </a>
                             <ul class="dropdown-menu notifications">
-                                @if(Session::has('notification'))<li><a href="/event/{{Session::get('event_id')}}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification')}}</a><a href="/notificationDelete">verwijder notificatie</a></li>@endif
+                                @if(Session::has('notification'))<li><a href="/event/{{ Session::get('event_id') }}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification') }}</a><a href="/notificationDelete">Verwijder notificatie</a></li>@endif
                             </ul>
                         </li>
+                        @endif
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-earth"></i></a>

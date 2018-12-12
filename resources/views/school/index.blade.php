@@ -19,7 +19,7 @@
                     <div class="col-md-6">
                         <div class="panel">
                             <div class="panel-heading">
-                                <h2 class="panel-title"><a href="">{{ $school->name }}</a></h2>
+                                <h2 class="panel-title"><a href="/school/edit/{{ $school->id }}">{{ $school->name }}</a></h2>
                             </div>
                             <div class="panel-body">
                                 <div class="main-info-item">
@@ -30,7 +30,7 @@
                                     <span class="title">{{ __('msg.address') }}:</span>
                                     <span class="value">{{ $school->address }}</span>
                                 </div>
-                                <a href="/school/edit/{{$school->id}}">{{ __('msg.school.edit') }}</a>
+                                <a href="/school/edit/{{ $school->id }}">{{ __('msg.school.edit') }}</a>
                                 <a onclick="popup('{{ $school->id }}')" href="#">{{ __('msg.school.delete') }}</a>
                             </div>
                         </div>

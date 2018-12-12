@@ -173,12 +173,13 @@ class EventController extends Controller
             }
         }
 
-        if($post->payment > 0)
+        /*if($post->payment > 0)
         {
             $post->payment_reminder = $request->input('payreminder');
         } else {
             $post->payment_reminder = 0;
-        }
+        }*/
+        $post->payment_reminder = 0;
 
         if(Input::hasFile('image'))
         {

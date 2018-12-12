@@ -76,11 +76,11 @@
                                                                 <option name="school"  value="{{$school->id}}" {{$selected}}>{{$school->name}} </option>
                                                             @endforeach
                                                         </select>
-                                                        <span style="float:right;" class="h6">{{ __('msg.event.required') }}</span>
-                                                        
+
                                                     </div>
                                                 </div>
                                         @endif
+
                                             @if($user['role_id'] == 2)
                                             <div class="form-group row">
                                                 <label for="inputEmail3" class="col-sm-2 col-form-label">{{__('msg.profile.type')}}:</label>
@@ -100,6 +100,7 @@
                                                 <input type="hidden" value="1" name="role_id">
                                             @endif
                                             <button type="submit" style="margin-top: 40px;color:white;" class="btn bg-success btn-lg">{{__('msg.profile.edit')}}</button>
+                                            <span style="float:right; margin-top:-10px;" class="h6">{{ __('msg.event.required') }}</span>
                                     </form>
 
                                     {{-- @endif --}}
