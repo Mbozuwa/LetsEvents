@@ -2,8 +2,7 @@
 
 namespace App\Exports;
 
-use App\User;
-use App\Event;
+use Illuminate\Support\Facades\DB;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -19,25 +18,38 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithE
         $this->id = $id;
     }
 
+    /**
+     * Get all registrations which are a part of the provided event $id,
+     * collects specific columns from users which are found at this registration.
+     */
     public function collection()
     {
-        //return User::all();
-        //$test  = $this->id;
-        //dd('yeah', $test);
-        return Event::where('id', $this->id)->get();
-        // return User::get(array('id', 'name', 'email', 'address', 'telephone'));
+        $users = DB::table('registration')
+            ->leftJoin('users', 'registration.user_id', '=', 'users.id')
+            ->where(['status' => "Ik ga", 'event_id' => $this->id])
+            ->select('users.id','users.name','users.email','users.address','users.telephone')
+            ->get();
+
+            return $users;
     }
 
+    /**
+     * Changes the look of the excel file.
+     * Gets cell in $cellRange and changes the fontsize.
+     */
     public function registerEvents(): array
     {
         return [
             AfterSheet::class => function(AfterSheet $event) {
-                $cellRange = 'A1:W1'; // All headers
-                $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(16);
+                $cellRange = 'A1:E1';
+                $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(14);
             },
         ];
     }
 
+    /**
+     * Header names of the $cellRange.
+     */
     public function headings(): array
     {
         return [
@@ -48,5 +60,4 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithE
             'Telefoonnummer'
         ];
     }
-
 }
