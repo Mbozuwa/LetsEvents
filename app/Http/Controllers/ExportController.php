@@ -8,15 +8,12 @@ use Maatwebsite\Excel\Exporter;
 
 class ExportController extends Controller
 {
-	/*public function export($id)
-	{
-	    $exporter = app()->makeWith(UsersExport::class, compact('id'));
-	    return $exporter->download('participants_event.xlsx');
-	}*/
-
+    /**
+     * Export the provided $id into an excel sheet.
+     * event_$eventId_participants.xlsx
+     */
     function export($id)
     {
-    	//$registered = Registration::where(['event_id' => $id])->where('status' , "Ik ga")->get();
-        return Excel::download(new UsersExport($id), 'participants_event.xlsx');
+        return Excel::download(new UsersExport($id), 'event_'.$id.'_participants.xlsx');
     }
 }
