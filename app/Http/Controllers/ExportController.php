@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -8,15 +8,15 @@ use Maatwebsite\Excel\Exporter;
 
 class ExportController extends Controller
 {
-	public function export($id)
+	/*public function export($id)
 	{
-	    $exporter = app()->makeWith(UsersExport::class, compact('id'));   
+	    $exporter = app()->makeWith(UsersExport::class, compact('id'));
 	    return $exporter->download('participants_event.xlsx');
-	}
-    
-    /*function export($id)
+	}*/
+
+    function export($id)
     {
     	//$registered = Registration::where(['event_id' => $id])->where('status' , "Ik ga")->get();
-        return Excel::download(new UsersExport(), 'participants_event.xlsx');
-    }*/
+        return Excel::download(new UsersExport($id), 'participants_event.xlsx');
+    }
 }

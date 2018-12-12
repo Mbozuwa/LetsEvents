@@ -32,16 +32,13 @@ class ProfileController extends Controller
         elseif (Auth::user()->role_id == 2){
             $user = Auth::user();
             $profile = User::find($id);
-
-            // $schools = Schools::all();
-            // $student = Student::where('user_id', $id)->first();
-            // $selectedSchool = null;
-            // if ( $student = Student::where('user_id', $id)->first()) {
-            //         $selectedSchool = $student->school()->get();
-            // }
+            // dd($profile);
+            if ($profile == null) {
+                return redirect()->back()->with(abort(403));
+            }
             return view('profile.profile', ['profile' => $profile, 'user' => $user]);
         }
-        return redirect()->back()->with('error', __('msg.ProfileController.find'));
+        return redirect()->back()->with(abort(403));
     }
 
     /**
@@ -70,10 +67,12 @@ class ProfileController extends Controller
             $user->email = $request->input('email');
             $user->address = $request->input('address');
             $user->telephone = $request->input('telephone');
-            $user->role_id = $request->input('role_id');
+            if (Auth::user()->role_id == 2) {
+                $user->role_id = $request->input('role_id');
+            }
 
             $user->save();
-            
+
             if ($request->input('school') != null) {
                 $student = Student::where('user_id', $user['id'])->first();
                 if ($student) {

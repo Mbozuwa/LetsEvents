@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Exports;
- 
+
 use App\User;
+use App\Event;
+
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -11,17 +13,19 @@ use Maatwebsite\Excel\Events\AfterSheet;
 
 class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
+    public $id;
     public function __construct($id)
     {
-        $this->id = $id; 
+        $this->id = $id;
     }
 
     public function collection()
     {
         //return User::all();
-        $test  = $this->id;
-        dd('yeah', $test);
-        return User::get(array('id', 'name', 'email', 'address', 'telephone'));
+        //$test  = $this->id;
+        //dd('yeah', $test);
+        return Event::where('id', $this->id)->get();
+        // return User::get(array('id', 'name', 'email', 'address', 'telephone'));
     }
 
     public function registerEvents(): array
@@ -44,5 +48,5 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithE
             'Telefoonnummer'
         ];
     }
- 
+
 }
