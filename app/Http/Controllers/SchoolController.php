@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Auth;
 use App\School;
 use App\Student;
+use Illuminate\Http\Request;
 
-use Auth;
 class SchoolController extends Controller
 {
     /*
@@ -16,9 +16,10 @@ class SchoolController extends Controller
     *then $schools gets returned to the index view of school.
     */
     public function index() {
-            if (Auth::user()->role_id != 2) {
+        if (Auth::user()->role_id != 2) {
             return redirect('/');
         }
+
         $schools = School::all();
         // $students = Students::all();
         // $students->userStudent;
@@ -85,6 +86,7 @@ class SchoolController extends Controller
         if (Auth::user()->role_id != 2) {
             return redirect('/');
         }
+
         $school = School::find($id);
         if ($school == null) {
             return redirect()->back();
