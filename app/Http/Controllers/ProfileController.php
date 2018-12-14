@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Schools;
+use App\School;
 use App\Student;
 use Auth;
 use File;
@@ -20,7 +20,7 @@ class ProfileController extends Controller
         if (auth::user()->id == $id){
             $user = Auth::user();
             $profile = User::find($id);
-            $schools = Schools::all();
+            $schools = School::all();
 
             $student = Student::where('user_id', $id)->first();
             $selectedSchool = null;

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Schools;
+use App\School;
 use App\Student;
 
 use Auth;
@@ -19,7 +19,7 @@ class SchoolController extends Controller
             if (Auth::user()->role_id != 2) {
             return redirect('/');
         }
-        $schools = Schools::all();
+        $schools = School::all();
         // $students = Students::all();
         // $students->userStudent;
         return view('/school/index')->with('schools', $schools);
@@ -37,7 +37,7 @@ class SchoolController extends Controller
             return redirect('/');
         }
 
-        $school = Schools::find($id);
+        $school = School::find($id);
         if ($school == null) {
             return redirect()->back();
         }
@@ -66,7 +66,7 @@ class SchoolController extends Controller
             'place' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^'  ,
             'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^'
         ]);
-        $school = Schools::find($id);
+        $school = School::find($id);
         $school->name =   $request->input('schoolname');
         $school->place =   $request->input('place');
         $school->address =   $request->input('address');
@@ -85,7 +85,7 @@ class SchoolController extends Controller
         if (Auth::user()->role_id != 2) {
             return redirect('/');
         }
-        $school = Schools::find($id);
+        $school = School::find($id);
         if ($school == null) {
             return redirect()->back();
         }
@@ -121,7 +121,7 @@ class SchoolController extends Controller
             'place' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^',
             'address' => 'required|between:1,30|regex:^[a-zA-Z\d.\s]+$^'
         ]);
-        $school = new Schools;
+        $school = new School;
         $school->name =   $request->input('schoolname');
         $school->place =   $request->input('place');
         $school->address =   $request->input('address');
