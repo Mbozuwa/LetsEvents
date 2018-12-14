@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -15,15 +15,14 @@ class AdminController extends Controller
     {
         if (Auth::check()) {
             if (Auth::user()->role_id != 2) {
-            return redirect('/');
-        }
-        $users = \App\user::all();
-        $activities = "";
-        return view('admin' ,['users' => $users, 'activities' => $activities]);
-        }
-        else {
+                return redirect('/');
+            }
+            $users = \App\user::all();
+            $activities = "";
+
+            return view('admin' ,['users' => $users, 'activities' => $activities]);
+        } else {
             return redirect('/logout');
         }
-        
     }
 }
