@@ -26,7 +26,7 @@
                                 <div id="subPagesAdmin" class="collapse">
                                     <ul class="nav">
                                         <li><a href="/admin"><i class="fas fa-toolbox"></i> <span>{{ __('msg.nav.admin') }}</span></a></li>
-                                        <li><a href="/school/index"><i class="fas fa-school"></i> <span>{{ __('msg.nav.schools') }}</span></a></li>
+                                        <li><a href="{{ URL::to('schools') }}"><i class="fas fa-school"></i> <span>{{ __('msg.nav.schools') }}</span></a></li>
                                     </ul>
                                 </div>
                             </li>
