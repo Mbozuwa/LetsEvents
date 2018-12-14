@@ -104,7 +104,7 @@
                                     <li><a href="/profile/{{ Auth::user()->id }}"><i class="lnr lnr-user"></i> <span>{{ __('msg.menu.myProfile') }}</span></a></li>
                                     @if(Auth::user()->role_id == 2)
 
-                                    <li><a href="/school/create" ><i class="lnr lnr-plus-circle"></i>{{__('msg.school.new')}}</a></li>
+                                    <li><a href="{{ URL::to('schools/create') }}" ><i class="lnr lnr-plus-circle"></i>{{__('msg.school.new')}}</a></li>
                                     @endif
                                     <li><a href="/events/create"><i class="lnr lnr-plus-circle"></i>{{ __('msg.menu.createEvent') }}</a></li>
                                     <li><a href="/events/made"><i class="lnr lnr-menu"></i>{{ __('msg.menu.createdEvents') }}</a></li>
