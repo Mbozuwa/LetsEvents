@@ -49,6 +49,7 @@
                 </div>
                 <div id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right">
+                        @if(Session::has('notification'))
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                                 <i class="lnr lnr-alarm"></i>
@@ -62,9 +63,10 @@
                                 </script>
                             </a>
                             <ul class="dropdown-menu notifications">
-                                @if(Session::has('notification'))<li><a href="/event/{{Session::get('event_id')}}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification')}}</a><a href="/notificationDelete">verwijder notificatie</a></li>@endif
+                                @if(Session::has('notification'))<li><a href="/event/{{ Session::get('event_id') }}" class="notification-item"><span class="dot bg-primary"></span>{{ Session::get('notification') }}</a><a href="/notificationDelete">Verwijder notificatie</a></li>@endif
                             </ul>
                         </li>
+                        @endif
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-earth"></i></a>
@@ -102,7 +104,7 @@
                                     <li><a href="/profile/{{ Auth::user()->id }}"><i class="lnr lnr-user"></i> <span>{{ __('msg.menu.myProfile') }}</span></a></li>
                                     @if(Auth::user()->role_id == 2)
 
-                                    <li><a href="/school/create" ><i class="lnr lnr-plus-circle"></i>{{__('msg.school.new')}}</a></li>
+                                    <li><a href="{{ URL::to('schools/create') }}" ><i class="lnr lnr-plus-circle"></i>{{__('msg.school.new')}}</a></li>
                                     @endif
                                     <li><a href="/events/create"><i class="lnr lnr-plus-circle"></i>{{ __('msg.menu.createEvent') }}</a></li>
                                     <li><a href="/events/made"><i class="lnr lnr-menu"></i>{{ __('msg.menu.createdEvents') }}</a></li>
