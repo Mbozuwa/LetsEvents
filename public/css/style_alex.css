@@ -2076,6 +2076,10 @@ input[type=file] {
     border-radius: 4px;
 }
 
+.dataTable {
+    padding: 10px;
+}
+
 /* The switch - the box around the slider */
 .switch {
     position: relative;

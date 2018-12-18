@@ -14,7 +14,7 @@
     </div>
         @if (count($events) >= 1)
             <div class="col-md-12">
-                <div class="panel" style="padding: 10px;">
+                <div class="panel dataTable">
                 <script>
                     $(document).ready( function () {
                         $('#table_id').DataTable({
@@ -53,18 +53,17 @@
             </div>
         </div>
     </div>
-</div>
-        @else
-            <h3 class="page-title">{{ __('msg.eventtable.noEvents.title') }}</h3>
-            <div class="row">
-                <div class="col-md-11">
-                    <div class="panel">
-                        <div class="panel-body">
-                            {{ __('msg.eventtable.noEvents.desc1') }}<br/>
-                            <a href="/events/create">{{ __('msg.eventtable.noEvents.click') }}</a> {{ __('msg.eventtable.noEvents.desc2') }}
-                        </div>
+    @else
+        <h3 class="page-title">{{ __('msg.eventtable.noEvents.title') }}</h3>
+        <div class="row">
+            <div class="col-md-11">
+                <div class="panel">
+                    <div class="panel-body">
+                        {{ __('msg.eventtable.noEvents.desc1') }}<br/>
+                        <a href="/events/create">{{ __('msg.eventtable.noEvents.click') }}</a> {{ __('msg.eventtable.noEvents.desc2') }}
                     </div>
                 </div>
             </div>
-        @endif
+        </div>
+    @endif
 @endsection
