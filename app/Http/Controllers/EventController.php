@@ -36,7 +36,7 @@ class EventController extends Controller
     }
 
     /**
-     * All events with a secific name
+     * All events with a specific name
      */
 
     public function indexSearch($name) {
@@ -62,16 +62,11 @@ class EventController extends Controller
             }else{
                 $paymentStatus = 0;
             }
-
             $user = Auth::user();
             $organiser = \App\User::find($event['user_id']);
             $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->get();
             $count = \App\Registration::where('event_id', $id)->where('status' , "Ik ga")->get()->count();
-            $originalDate = $event['begin_time'];
-            $newDate = date("d-m-Y H:i", strtotime($originalDate));
-            $originalDateEnd = $event['end_time'];
-            $newDateEnd = date("d-m-Y H:i", strtotime($originalDateEnd));
-            return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user, 'newDate'=> $newDate, 'newDateEnd' => $newDateEnd, 'organiser' => $organiser, 'paymentStatus' => $paymentStatus]);
+            return view('event' ,['event' => $event, 'attendence' => $attendence, 'count' => $count, 'user' =>$user,'organiser' => $organiser, 'paymentStatus' => $paymentStatus]);
         }
         else
         {
@@ -166,11 +161,7 @@ class EventController extends Controller
             if (Auth::id() == $eventUser->user_id || Auth::user()->role_id == 2)
             {
                 $event = Event::find($id);
-                $date_begin = $event['begin_time'];
-                $correctDate= date("d-m-Y H:i", strtotime($date_begin));
-                $date_end = $event['end_time'];
-                $correctDate2= date("d-m-Y H:i", strtotime($date_end));
-                return view('/events/edit', ['event' => $event, 'correctDate' => $correctDate, 'correctDate2' => $correctDate2]);
+                return view('/events/edit', ['event' => $event]);
             }
         }
         return redirect()->back()->with('error', __('msg.EventController.edit.error2'));
