@@ -18,7 +18,6 @@ class CategoriesController extends Controller
 	*/
 	public function show($id)
     {
-
 	  $category = Category::find($id);
       $events = Category::find($id)->events()->get();
 

@@ -33,6 +33,18 @@ use App\Event;
 
 class RegistrationController extends Controller
 {
+        public function __construct()
+        {
+
+            /** PayPal api context **/
+            $paypal_conf = \Config::get('paypal');
+            $this->_api_context = new ApiContext(new OAuthTokenCredential(
+                $paypal_conf['client_id'],
+                $paypal_conf['secret'])
+            );
+            $this->_api_context->setConfig($paypal_conf['settings']);
+
+        }
     /**
      * Function to set the status to "ik ga"
      */
@@ -95,18 +107,6 @@ class RegistrationController extends Controller
         return redirect('/event/'.$id);
     }
 
-    public function __construct()
-    {
-
-        /** PayPal api context **/
-        $paypal_conf = \Config::get('paypal');
-        $this->_api_context = new ApiContext(new OAuthTokenCredential(
-            $paypal_conf['client_id'],
-            $paypal_conf['secret'])
-        );
-        $this->_api_context->setConfig($paypal_conf['settings']);
-
-    }
     /**
      * Paypal function
      * Remember event_id in the session. Set item_1 as the event and the price $request->amount. $amount and $transaction are required by  * paypal. Set redirect urls to status and set payment type to sale. After this check if the api connection is still valid. If not      * redirect to homescreen with message. After this redirect to the secure paypal url.
@@ -117,10 +117,10 @@ class RegistrationController extends Controller
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
         $item_1 = new Item();
-        $item_1->setName($request->event_id) 
+        $item_1->setName($request->event_id)
             ->setCurrency('EUR')
             ->setQuantity(1)
-            ->setPrice($request->get('amount')); 
+            ->setPrice($request->get('amount'));
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
         $amount = new Amount();
@@ -131,7 +131,7 @@ class RegistrationController extends Controller
             ->setItemList($item_list)
             ->setDescription($request->event_id);
         $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::to('status')) 
+        $redirect_urls->setReturnUrl(URL::to('status'))
             ->setCancelUrl(URL::to('status'));
         $payment = new Payment();
         $payment->setIntent('Sale')
