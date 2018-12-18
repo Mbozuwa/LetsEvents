@@ -102,19 +102,13 @@ Route::group(['middleware' => 'auth'] ,function() {
 //adminController
 Route::get('/admin', 'AdminController@index');
 
-//schoolController
-Route::group(['middleware' => 'auth.custom'], function () {
-Route::get('/school/index', 'SchoolController@index');
 
-Route::get('/school/create', 'schoolController@create');
-Route::post('/school/create', 'schoolController@store')->name('createSchool');
 
-Route::get('/school/edit/{id}', 'schoolController@edit');
-Route::post('/school/update/{id}', 'schoolController@update')->name('updateSchool');
 
-Route::get('/school/delete/{id}', 'schoolController@delete');
-Route::post('/school/delete/{id}', 'schoolController@delete');
+Route::group(['middleware' => 'auth.custom', 'isAdmin'], function () {
+    Route::resource('schools', 'SchoolController');
 });
+
 
 //studentController
 Route::get('/student/index','StudentController@index');
@@ -143,6 +137,8 @@ Route::post('/sendReminder', 'MailController@sendEmailReminder');
 // Route::post('/send', 'MailController@send');
 
 
+
+Route::get('/downloadParticipants/{id}', 'ExportController@export');
 
 Route::group(['prefix' =>'user'], function() {
 Route::group(['middleware' => 'guest'] ,function() {

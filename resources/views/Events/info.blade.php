@@ -25,7 +25,7 @@
                 <div class="row">
                 @if (Auth::id() == $event->user_id || Auth::user()->role_id)
                     @if (count($registered) >= 1)
-                    <div class="col-md-12">
+                    <div class="col-md-10">
                         <div class="panel">
                             <div class="panel-body">
                                 <div class="col-lg-6">
@@ -37,6 +37,17 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-2">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <center>
+                                    <a href="/downloadParticipants/{{ $event->id }}" class="btn btn-lg btn-success"><i class="fas fa-file-download"></i> CSV</a>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-md-12">
                         <div class="panel">
                             <div class="panel-body">
@@ -113,7 +124,7 @@
               ],
               colors: [
                 '#4286f4',
-                '#52fc3f',
+                '#44bd32',
                 '#f4f13d',
                 '#e82c29'
               ],

@@ -173,12 +173,13 @@ class EventController extends Controller
             }
         }
 
-        if($post->payment > 0)
+        /*if($post->payment > 0)
         {
             $post->payment_reminder = $request->input('payreminder');
         } else {
             $post->payment_reminder = 0;
-        }
+        }*/
+        $post->payment_reminder = 0;
 
         if(Input::hasFile('image'))
         {
@@ -345,7 +346,7 @@ class EventController extends Controller
 
             if($begin_date != "" && $end_date != "") {
                 $events = Event::where('user_id', $user['id'])
-                
+
                     ->whereDate('begin_time', '>=', $begin_date)
                     ->whereDate('end_time', '<=', $end_date)
                     ->paginate(4);
