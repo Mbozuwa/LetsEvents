@@ -30,18 +30,8 @@
                             
                     <!-- shortcut for the if else function beneath a example of how it looks for php-->
                     <input name="showOldEvents" id="showOldEvents" type="checkbox" <?php echo $e ? " checked='checked' " : "" ?>  onchange="madeEventsAll(this);" />
-                    {{--<?php
-                            if(1==2){
-
-                                if($e === true){
-                                    echo " checked='checked' ";
-                                } else {
-                                    echo "";
-                                }
-
-                            }
-                        ?> --}}
-                        
+                    
+               
                         <span class="slider round"></span>
                         <script>
                             function madeEventsAll(e){
