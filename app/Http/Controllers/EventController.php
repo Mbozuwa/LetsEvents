@@ -10,15 +10,15 @@ use App\PaymentStatus;
 use App\CategoryEvent;
 use App\Category;
 use App\User;
-use Auth;
-use Validator;
-use Carbon\Carbon;
 use App\Mail\Registered;
+use App\Mail\MailReminder;
+
+use Carbon\Carbon;
 
 use \File;
-
 use Mail;
-use App\Mail\MailReminder;
+use Auth;
+use Validator;
 
 use \Input as Input;
 
@@ -26,10 +26,29 @@ class EventController extends Controller
 {
 
     /**
+     * All events
+     */
+
+    public function index() {
+        $events = Event::get();
+        $name = "";
+    return view('events/index', ['events' => $events , 'name' => $name]);
+    }
+
+    /**
+     * All events with a secific name
+     */
+
+    public function indexSearch($name) {
+        $events = Event::get();
+    return view('events/index', ['events' => $events, 'name' => $name]);
+    }
+
+    /**
      * showing an event and it details for the person who made it
      */
 
-    public function index($id) {
+    public function show($id) {
         $event = \App\event::find($id);
 
         if (Event::where(array('id' => $id))->exists())
@@ -60,71 +79,10 @@ class EventController extends Controller
         }
     }
 
-    /**
-     * In an event changing if you are still going to an event or not
-     */
 
-    public function updateStatus(Request $request, $id, $status) {
-        if($status == "Ik ga" || $status == "Misschien" || $status == "Ik ga niet")
-        {
-            $event = \App\event::find($id);
-            $user = Auth::user();
-            $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->first();
-            $attendence->status = $status;
-            $attendence->save();
-            if ($status == "Ik ga") {
-                session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
-                session(['notificationAlarmDelete' => false]);
-                session(['event_id' => $id]);
-                try {
-                    Mail::to($user->email)->send(new Registered($event, $user));
-                } catch(\Exception $e) {
-                    return redirect()->back()->with('error', __('msg.reminder.send.error'));
-                }
-
-            }
-            elseif ($status == "Misschien") {
-                session(['notification' => 'Je gaat misschien naar het evenement: '.$event['name']]);
-                session(['notificationAlarmDelete' => false]);
-                session(['event_id' => $id]);
-            }
-            elseif ($status == "Ik ga niet") {
-                session(['notification' => 'Je gaat niet naar het evenement: '.$event['name']]);
-                session(['notificationAlarmDelete' => false]);
-                session(['event_id' => $id]);
-            }
-
-            return redirect()->back()->with('message', 'Status succesvol bewerkt!');
-        }
-        else
-        {
-            return redirect()->back()->with('error', 'Niet gelukt!');
-        }
-    }
 
     /**
-     * All events
-     */
-
-    public function allEvents() {
-        $events = Event::get();
-        $name = "";
-    return view('events/index', ['events' => $events , 'name' => $name]);
-    }
-
-    /**
-     * All events with a secific name
-     */
-
-    public function allEventsSearch($name) {
-        $events = Event::get();
-
-
-    return view('events/index', ['events' => $events, 'name' => $name]);
-    }
-
-    /**
-     * ? @alex????
+     * ? showing the view to create an event.
      */
 
     public function create() {
@@ -173,12 +131,6 @@ class EventController extends Controller
             }
         }
 
-        /*if($post->payment > 0)
-        {
-            $post->payment_reminder = $request->input('payreminder');
-        } else {
-            $post->payment_reminder = 0;
-        }*/
         $post->payment_reminder = 0;
 
         if(Input::hasFile('image'))
@@ -263,7 +215,6 @@ class EventController extends Controller
             $fileRename = time().'_'.uniqid().'.'.$fileExt;
             $uploadDir    = public_path('uploads/events');
 
-            //$event = Event::find($id);
             $currentImage = $uploadDir.'/'.$post->image;
             if (File::exists($currentImage)) {
                 File::delete($currentImage);
@@ -276,88 +227,6 @@ class EventController extends Controller
         $post->save();
         return redirect('/events/made');
     }
-
-    /**
-     * getting the events form a user with time and date using the user id
-     */
-
-    public function myEvents() {
-            $user = Auth::user();
-            $registrations = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get();
-
-            $count = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get()->count();
-            $countEvents = \App\event::all()->count();
-            return view('myEvents',['registrations' => $registrations, 'count' => $count, 'countEvents' => $countEvents]);
-    }
-
-    /**
-     * getting all the events form a user that he made
-     */
-
-    public function madeEvents()
-    {
-        $user = Auth::user();
-
-        // $events = Event::where(['user_id' => $user['id'],'end_time', '>=', Carbon::now()->toDateString()])->paginate(2);
-        $events = Event::where('user_id', $user['id'])->whereDate('end_time', '>=', Carbon::now()->toDateString())->paginate(4);
-        $date = date('Y-m-d');
-        $e = false;
-        $date2 = date('Y-m-d', strtotime("+1 month"));
-        return view('events.made', ['events' => $events, 'date' => $date, 'date2' => $date2,'e' => $e]);
-    }
-
-    /**
-     * show old events that you made
-     */
-
-    public function madeEventsAll()
-    {
-        $user = Auth::user();
-        $date = date('Y-m-d');
-        $date2 = date('Y-m-d', strtotime("+1 month"));
-        $e = true;
-        $events = Event::where(['user_id' => $user['id']])->paginate(2);
-        return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2, 'e' => $e]);
-
-    }
-
-    /**
-     * filters all events between 2 dates
-     */
-
-    public function datesBetween(Request $request){
-
-        $user = Auth::user();
-        $begin_date = $request->input('date');
-        $end_date = $request->input('date2');
-        $date = date('Y-m-d');
-        $e = true;
-        $date2 = date('Y-m-d', strtotime("+1 month"));
-        // $events = Event::find($user);
-        // dd($events);
-
-        // $events = Event::where(['user_id' => $user['id']])->where(['begin_time' => $begin_date, 'end_time' => $end_date])->get();
-
-            // $events = Event::where('begin_time', '>=', $begin_date)
-            //     ->where('end_time', '<=', $end_date)
-            //     ->where('user_id', $user['id'])
-            //     ->get();
-
-
-            if($begin_date != "" && $end_date != "") {
-                $events = Event::where('user_id', $user['id'])
-
-                    ->whereDate('begin_time', '>=', $begin_date)
-                    ->whereDate('end_time', '<=', $end_date)
-                    ->paginate(4);
-
-            return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2, 'e' => $e]);
-        }
-        else {
-            return redirect()->back();
-        }
-    }
-
 
     /**
      * Deletes the event from the user it belongs to
@@ -382,10 +251,117 @@ class EventController extends Controller
             }
     }
 
+    /**
+     * In an event changing if you are still going to an event or not
+     */
+
+    public function updateStatus(Request $request, $id, $status) {
+        if($status == "Ik ga" || $status == "Misschien" || $status == "Ik ga niet")
+        {
+            $event = \App\event::find($id);
+            $user = Auth::user();
+            $attendence = \App\Registration::where('user_id', $user['id'])->where('event_id', $id)->first();
+            $attendence->status = $status;
+            $attendence->save();
+            if ($status == "Ik ga") {
+                session(['notification' => 'Je gaat naar het evenement: '.$event['name']]);
+                session(['notificationAlarmDelete' => false]);
+                session(['event_id' => $id]);
+                try {
+                    Mail::to($user->email)->send(new Registered($event, $user));
+                } catch(\Exception $e) {
+                    return redirect()->back()->with('error', __('msg.reminder.send.error'));
+                }
+
+            }
+            elseif ($status == "Misschien") {
+                session(['notification' => 'Je gaat misschien naar het evenement: '.$event['name']]);
+                session(['notificationAlarmDelete' => false]);
+                session(['event_id' => $id]);
+            }
+            elseif ($status == "Ik ga niet") {
+                session(['notification' => 'Je gaat niet naar het evenement: '.$event['name']]);
+                session(['notificationAlarmDelete' => false]);
+                session(['event_id' => $id]);
+            }
+
+            return redirect()->back()->with('message', 'Status succesvol bewerkt!');
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Niet gelukt!');
+        }
+    }
+
+
+    /**
+     * getting the events form a user with time and date using the user id
+     */
+    public function myEvents() {
+            $user = Auth::user();
+            $registrations = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get();
+
+            $count = Registration::where('user_id' , $user['id'])->where('status' , "Ik ga")->get()->count();
+            $countEvents = \App\event::all()->count();
+            return view('myEvents',['registrations' => $registrations, 'count' => $count, 'countEvents' => $countEvents]);
+    }
+
+    /**
+     * getting all the events form a user that he made
+     */
+
+    public function madeEvents()
+    {
+        $user = Auth::user();
+        $events = Event::where('user_id', $user['id'])->whereDate('end_time', '>=', Carbon::now()->toDateString())->paginate(4);
+        $date = date('Y-m-d');
+        $e = false;
+        $date2 = date('Y-m-d', strtotime("+1 month"));
+        return view('events.made', ['events' => $events, 'date' => $date, 'date2' => $date2,'e' => $e]);
+    }
+
+    /**
+     * show old events that you made
+     */
+
+    public function allMadeEvents()
+    {
+        $user = Auth::user();
+        $date = date('Y-m-d');
+        $date2 = date('Y-m-d', strtotime("+1 month"));
+        $e = true;
+        $events = Event::where(['user_id' => $user['id']])->paginate(2);
+        return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2, 'e' => $e]);
+
+    }
+
+    /**
+     * filters all events between 2 dates
+     */
+
+    public function datesBetween(Request $request){
+        $user = Auth::user();
+        $begin_date = $request->input('date');
+        $end_date = $request->input('date2');
+        $date = date('Y-m-d');
+        $e = true;
+        $date2 = date('Y-m-d', strtotime("+1 month"));
+            if($begin_date != "" && $end_date != "") {
+                $events = Event::where('user_id', $user['id'])
+
+                    ->whereDate('begin_time', '>=', $begin_date)
+                    ->whereDate('end_time', '<=', $end_date)
+                    ->paginate(4);
+
+            return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2, 'e' => $e]);
+        }
+        else {
+            return redirect()->back();
+        }
+    }
+
     /*
-    *The info function gets all the users that are registered with an event that is in the $id.
-    *The auth user gets the current logged in user.
-    * Graph: get the user count for paid, going, maybe and notgoing. Return this also in the view.
+    *the function gets all the registerd users for a specific event.
     */
 
     public function info($id) {
