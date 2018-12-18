@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use JavaScript;
-use App\Schools;
+use App\School;
 
 class HomeController extends Controller
 {
@@ -24,7 +24,7 @@ class HomeController extends Controller
     }
     public function json() {
         $schoolArray = [];
-        $schools = Schools::get();
+        $schools = School::get();
         foreach ($schools as $school) {
             array_push($schoolArray,$school['name']);
         }
