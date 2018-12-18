@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth.custom'] ,function() {
   Route::get('/events/info/{id}', 'EventController@info');
   Route::get('/events/create', 'EventController@create');
   Route::get('/events/made', 'EventController@madeEvents');
-  Route::get('/events/madeAll', 'EventController@madeEventsAll');
+  Route::get('/events/madeAll', 'EventController@allMadeEvents');
   Route::get('/events/datesBetween', 'EventController@datesBetween');
 
   Route::post('/events/datesBetween', 'EventController@datesBetween');
@@ -42,9 +42,9 @@ Route::group(['middleware' => 'auth.custom'] ,function() {
   Route::post('/events/create', 'EventController@store');
 });
 
-    Route::get('/event/{id}', 'EventController@index');
-    Route::get('/events/index/','EventController@allEvents');
-    Route::get('/events/index/{name}','EventController@allEventsSearch');
+    Route::get('/event/{id}', 'EventController@show');
+    Route::get('/events/index/','EventController@index');
+    Route::get('/events/index/{name}','EventController@indexSearch');
 
 
 // ProfileController
