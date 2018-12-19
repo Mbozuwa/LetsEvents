@@ -40,22 +40,22 @@
                                                 <td>{{ $value[2][0]['name'] }}</td>
                                                 <td>{{ $value[2][0]['email'] }}</td>
                                                 <td>{{ $value[2][0]['telephone'] }}</td>
-                                                @if($value[1][0]['payment_status'] === 'approved')
-                                                    <td>{{ __('msg.paid') }}</td>
-                                                @else
+                                                @if(empty($value[1][0]['payment_status']))
                                                     <td>{{ __('msg.notpaid') }}</td>
+                                                @elseif($value[1][0]['payment_status'] == 'approved')
+                                                    <td>{{ __('msg.paid') }}</td>
                                                 @endif
                                                 
-                                                {{-- <td>
+                                                <td>
                                                     @if($event->payment >= 0 && !empty($event->payment))
                                                     <form method="POST" action="{{ action('EventController@sendPaymentReminder') }}">
                                                       @csrf   
-                                                      <input name="userid" type="hidden" value="{{ $value->user->id }}">  
+                                                      <input name="userid" type="hidden" value="{{ $value[2][0]['id'] }}">  
                                                       <input name="eventid" type="hidden" value="{{ $event->id }}">      
                                                       <input type="submit" class="btn btn-sm btn-primary" value="{{ __('msg.event.info.sendPayReminder') }}">
                                                     </form>
-                                                    @endif --}}
-                                                {{-- </td> --}}
+                                                    @endif 
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>

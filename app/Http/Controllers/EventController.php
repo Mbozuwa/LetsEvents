@@ -464,7 +464,7 @@ class EventController extends Controller
                     $user = User::find($userId);
                     try {
                         Mail::to($user->email)->send(new MailReminder($event, $user));
-                    } catch (Exception $e) {
+                    } catch (\Exception $e) {
                         return redirect()->back()->with('error', __('msg.event.info.sendError'));
                     }
                 }else{
