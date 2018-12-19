@@ -205,12 +205,20 @@
                                                 <div class="media">
                                                     <div class="media-body">
                                                         <h2 class="event-title">{{ __('msg.event.letusknow') }}</h2>
-                                                        <a href="/registration/1/{{$event['id']}}" ><button type="button" title="{{ __('msg.event.iGo') }}" class="btn btn-success">V</button></a>
-                                                        <a href="/registration/2/{{$event['id']}}" ><button type="button" title="{{ __('msg.event.iMaybe') }}" class="btn btn-warning">?</button></a>
-                                                        <a href="/registration/3/{{$event['id']}}" ><button type="button" title="{{ __('msg.event.iDontGo') }}"class="btn btn-danger">X</button></a>
+                                                        <a href="/registration/1/{{$event['id']}}" class="button"><button type="button" title="{{ __('msg.event.iGo') }}" class="btn btn-success">V</button></a>
+                                                        <a href="/registration/2/{{$event['id']}}" class="button"><button type="button" title="{{ __('msg.event.iMaybe') }}" class="btn btn-warning">?</button></a>
+                                                        <a href="/registration/3/{{$event['id']}}" class="button"><button type="button" title="{{ __('msg.event.iDontGo') }}"class="btn btn-danger">X</button></a>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <script> 
+                                                $("a").click(function (event) {
+                                                    if ($(this).hasClass("disabled")) {
+                                                        event.preventDefault();
+                                                    }
+                                                    $(this).addClass("disabled");
+                                                }); 
+                                            </script>
                                         @endif
                                     @else
                                         <div class="col-md-12">
