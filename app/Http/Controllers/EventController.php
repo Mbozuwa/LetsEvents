@@ -303,10 +303,12 @@ class EventController extends Controller
 
     public function madeEvents()
     {
+      
         $user = Auth::user();
         $events = Event::where('user_id', $user['id'])->whereDate('end_time', '>=', Carbon::now()->toDateString())->paginate(4);
         $date = date('Y-m-d');
         $e = false;
+        // dd($events);
         $date2 = date('Y-m-d', strtotime("+1 month"));
         return view('events.made', ['events' => $events, 'date' => $date, 'date2' => $date2,'e' => $e]);
     }
@@ -413,6 +415,9 @@ class EventController extends Controller
         return redirect()->back()->with('success', __('msg.EventController.saveCategory.success'));
     }
 
+    /**
+     * Name is clearly, it sends a payment reminder
+     */
     public function sendPaymentReminder(Request $request) {
         $eventId = $request->input('eventid');
         $userId = $request->input('userid');
