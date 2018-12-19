@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth.custom'] ,function() {
   Route::get('/events/info/{id}', 'EventController@info');
   Route::get('/events/create', 'EventController@create');
   Route::get('/events/made', 'EventController@madeEvents');
-  Route::get('/events/madeAll', 'EventController@madeEventsAll');
+  Route::get('/events/madeAll', 'EventController@allMadeEvents');
   Route::get('/events/datesBetween', 'EventController@datesBetween');
 
   Route::post('/events/datesBetween', 'EventController@datesBetween');
@@ -42,9 +42,9 @@ Route::group(['middleware' => 'auth.custom'] ,function() {
   Route::post('/events/create', 'EventController@store');
 });
 
-    Route::get('/event/{id}', 'EventController@index');
-    Route::get('/events/index/','EventController@allEvents');
-    Route::get('/events/index/{name}','EventController@allEventsSearch');
+    Route::get('/event/{id}', 'EventController@show');
+    Route::get('/events/index/','EventController@index');
+    Route::get('/events/index/{name}','EventController@indexSearch');
 
 
 // ProfileController
@@ -102,19 +102,13 @@ Route::group(['middleware' => 'auth'] ,function() {
 //adminController
 Route::get('/admin', 'AdminController@index');
 
-//schoolController
-Route::group(['middleware' => 'auth.custom'], function () {
-Route::get('/school/index', 'SchoolController@index');
 
-Route::get('/school/create', 'schoolController@create');
-Route::post('/school/create', 'schoolController@store')->name('createSchool');
 
-Route::get('/school/edit/{id}', 'schoolController@edit');
-Route::post('/school/update/{id}', 'schoolController@update')->name('updateSchool');
 
-Route::get('/school/delete/{id}', 'schoolController@delete');
-Route::post('/school/delete/{id}', 'schoolController@delete');
+Route::group(['middleware' => 'auth.custom', 'isAdmin'], function () {
+    Route::resource('schools', 'SchoolController');
 });
+
 
 //studentController
 Route::get('/student/index','StudentController@index');
@@ -143,6 +137,8 @@ Route::post('/sendReminder', 'MailController@sendEmailReminder');
 // Route::post('/send', 'MailController@send');
 
 
+
+Route::get('/downloadParticipants/{id}', 'ExportController@export');
 
 Route::group(['prefix' =>'user'], function() {
 Route::group(['middleware' => 'guest'] ,function() {

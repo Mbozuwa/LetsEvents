@@ -62,7 +62,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group" id="reminderDays"></div>
+                                    {{-- <div class="form-group" id="reminderDays"></div>
                                         <script type="text/javascript">
                                             $('#regFees').on('change', function() {
                                                 if(parseInt(this.value.replace(/,/g, '.') * 100) > 0){
@@ -71,7 +71,7 @@
                                                     $('#reminderDays').html('');
                                                 }
                                                 });
-                                        </script>
+                                        </script> --}}
 
                                     <div class="form-group">
                                         <label class="h2">{{ __('msg.event.create.startdate') }}: *</label>
