@@ -25,4 +25,12 @@ class PaymentStatus extends Model
      */
     protected $hidden = [
     ];
+
+    public function registration() {
+        return $this->belongsTo('App\Registration');
+    }
+
+    public function paymentStatus() {
+        return $this->hasOne('App\PaymentStatus', 'event_id', 'user_id');
+    }
 }

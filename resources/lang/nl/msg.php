@@ -55,6 +55,9 @@ return [
     'name' => 'Naam',
     'email' => 'E-mailadres',
     'telephone' => 'Telefoonnummer',
+    'status' => 'Status',
+    'paid' => 'Betaald',
+    'notpaid' => 'Niet betaald',
     'password' => 'Wachtwoord',
     'address' => 'Adres',
     'place' => 'Plaats',
@@ -234,5 +237,10 @@ return [
     'reminder.description' => 'De beschrijving',
     'reminder.payment' => 'Kosten van het evenement',
     'reminder.send.error' => 'Het netwerk dat u gebruikt, ondersteunt het verzenden van een e-mail niet',
+
+    /*registration Controller, */
+    'RegistrationController.payment.success' => 'De betaling is voltooid.',
+    'RegistrationController.payment.error' => 'Er is een fout opgetreden, excuses voor het ongemak',
+
 
 ];

@@ -12,13 +12,16 @@ use App\Category;
 use App\User;
 use App\Mail\Registered;
 use App\Mail\MailReminder;
-
 use Carbon\Carbon;
+
 
 use \File;
 use Mail;
 use Auth;
 use Validator;
+
+use Mail;
+use App\Mail\MailReminder;
 
 use \Input as Input;
 
@@ -328,9 +331,7 @@ class EventController extends Controller
 
     }
 
-    /**
-     * filters all events between 2 dates
-     */
+    }
 
     public function datesBetween(Request $request){
         $user = Auth::user();
@@ -368,8 +369,13 @@ class EventController extends Controller
 
             $user = Auth::user();
             $event = Event::find($id);
-            // $category = Event::find($id)->category()->get();
-            $registered = Registration::where(['event_id' => $id])->where('status' , "Ik ga")->get();
+            $registeredUsers = Registration::where(['event_id' => $id])->where('status' , "Ik ga")->get();
+            $registered = [];
+            foreach ($registeredUsers as $registeredUser) {
+                $userInfo = User::where('id', $registeredUser['user_id'])->get();
+                $transaction = PaymentStatus::where('event_id' , $registeredUser['event_id'])->where('user_id' , $registeredUser['user_id'])->get();
+                array_push($registered , [$registeredUser , $transaction, $userInfo]);
+            }
 
             // dd($registered);
             return view('events/info', ['registered' => $registered, 'event' => $event, 'user' => $user, 'usersPaid' => $usersPaid, 'usersGoing' => $usersGoing, 'usersMaybe' => $usersMaybe, 'usersNotGoing' => $usersNotGoing]);
@@ -431,7 +437,7 @@ class EventController extends Controller
                     $user = User::find($userId);
                     try {
                         Mail::to($user->email)->send(new MailReminder($event, $user));
-                    } catch (Exception $e) {
+                    } catch (\Exception $e) {
                         return redirect()->back()->with('error', __('msg.event.info.sendError'));
                     }
                 }else{

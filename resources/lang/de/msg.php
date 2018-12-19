@@ -56,6 +56,9 @@ return [
     'email' => 'Email',
     'password' => 'Passwort',
     'address' => 'Addresse',
+    'status' => 'Status',
+    'paid' => 'Bezalth',
+    'notpaid' => 'Nicht Bezalth',
     'place' => 'Platx',
     'edit' => 'Bearbeiten',
     'modify' => 'Ändern',
@@ -173,5 +176,8 @@ return [
     'SchoolController.info.edit.succes' => 'Schule erfolgreich bearbeitet.',
     'SchoolController.info.create.succes' => 'Die Schule wurde gegründet.',
 
+    /*registration Controller, */
+    'RegistrationController.payment.success' => 'Die Zahlung ist abgeschlossen.',
+    'RegistrationController.payment.error' => 'Ein Fehler ist aufgetreten, entschuldigen Sie die Unannehmlichkeiten',
 
 ];
