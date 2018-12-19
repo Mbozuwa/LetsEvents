@@ -23,18 +23,49 @@
                     {{ $events->links() }}
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <a href="/events/madeAll"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Show old events</button></a>
-                <a href="/events/made"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Hide old events</button></a>
-            <form action="{{ action('EventController@datesBetween')}}" method="POST">
-                @csrf
+            <div class="col-md-12 row justify-content-center">
+                <div class="col-md-6 row justify-content-center">
+                    <h2 style="max-width: 400px; min-width: 50px;">Show old events on or off: </h2>
+                    <label class="switch" style="margin:0px 25px 25px 25px;">
+                            
+                    <!-- shortcut for the if else function beneath a example of how it looks for php-->
+                    <input name="showOldEvents" id="showOldEvents" type="checkbox" <?php echo $e ? " checked='checked' " : "" ?>  onchange="madeEventsAll(this);" />
+                    {{--<?php
+                            if(1==2){
 
-                    <input name="date" type="date" style="margin:10px;" value="{{$date}}">
-                    <input name="date2" type="date" style="margin:10px;" value="{{$date2}}">
-                
+                                if($e === true){
+                                    echo " checked='checked' ";
+                                } else {
+                                    echo "";
+                                }
 
-                    <button  type="submit">Zoek</button>
-                </form>
+                            }
+                        ?> --}}
+                        
+                        <span class="slider round"></span>
+                        <script>
+                            function madeEventsAll(e){
+                                if(e.checked){
+                                    window.location='/events/madeAll';
+                                }
+                                else{
+                                    window.location='/events/made';
+                                }
+                            }
+                        </script>
+                    </label>
+                </div>
+            <div class="col-md-6 row justify-content-center">
+                <form style="float:right;" action="{{ action('EventController@datesBetween')}}" method="POST">
+                    @csrf
+
+                        <input name="date" type="date" style="margin:10px;" value="{{$date}}">
+                        <input name="date2" type="date" style="margin:10px;" value="{{$date2}}">
+                    
+
+                        <button class="btn btn-primary" type="submit">Zoek</button>
+                    </form>
+                </div>
             </div>
             <br><br><br>
                 @foreach ($events as $event)

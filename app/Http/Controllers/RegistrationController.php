@@ -33,6 +33,18 @@ use App\Event;
 
 class RegistrationController extends Controller
 {
+        public function __construct()
+        {
+
+            /** PayPal api context **/
+            $paypal_conf = \Config::get('paypal');
+            $this->_api_context = new ApiContext(new OAuthTokenCredential(
+                $paypal_conf['client_id'],
+                $paypal_conf['secret'])
+            );
+            $this->_api_context->setConfig($paypal_conf['settings']);
+
+        }
     /**
      * Function to set the status to "ik ga"
      */
@@ -95,29 +107,20 @@ class RegistrationController extends Controller
         return redirect('/event/'.$id);
     }
 
-    public function __construct()
-    {
-
-        /** PayPal api context **/
-        $paypal_conf = \Config::get('paypal');
-        $this->_api_context = new ApiContext(new OAuthTokenCredential(
-            $paypal_conf['client_id'],
-            $paypal_conf['secret'])
-        );
-        $this->_api_context->setConfig($paypal_conf['settings']);
-
-    }
-
+    /**
+     * Paypal function
+     * Remember event_id in the session. Set item_1 as the event and the price $request->amount. $amount and $transaction are required by  * paypal. Set redirect urls to status and set payment type to sale. After this check if the api connection is still valid. If not      * redirect to homescreen with message. After this redirect to the secure paypal url.
+     */
     public function payWithpaypal(Request $request)
         {
         session(['event_id' => $request->event_id]);
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
         $item_1 = new Item();
-        $item_1->setName($request->event_id) /** item name **/
+        $item_1->setName($request->event_id)
             ->setCurrency('EUR')
             ->setQuantity(1)
-            ->setPrice($request->get('amount')); /** unit price **/
+            ->setPrice($request->get('amount'));
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
         $amount = new Amount();
@@ -128,14 +131,13 @@ class RegistrationController extends Controller
             ->setItemList($item_list)
             ->setDescription($request->event_id);
         $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::to('status')) /** Specify return URL **/
+        $redirect_urls->setReturnUrl(URL::to('status'))
             ->setCancelUrl(URL::to('status'));
         $payment = new Payment();
         $payment->setIntent('Sale')
             ->setPayer($payer)
             ->setRedirectUrls($redirect_urls)
             ->setTransactions(array($transaction));
-        /** dd($payment->create($this->_api_context));exit; **/
         try {
             $payment->create($this->_api_context);
         } catch (\PayPal\Exception\PPConnectionException $ex) {
@@ -153,7 +155,6 @@ class RegistrationController extends Controller
                 break;
             }
         }
-        /** add payment ID to session **/
         Session::put('paypal_payment_id', $payment->getId());
         if (isset($redirect_url)) {
             /** redirect to paypal **/
@@ -162,15 +163,16 @@ class RegistrationController extends Controller
         \Session::put('error', 'Unknown error occurred');
         return Redirect::to('/');
     }
+    /**
+     * Feature for getting the status that paypal sends back. Clear the session. If any hackers get back without a payer ID it'll get      * reqocnised. if not safe payment status into database and redirect back to the event page
+     */
     public function getPaymentStatus()
     {
         /** Get the payment ID before session clear **/
         $payment_id = Session::get('paypal_payment_id');
-        /** clear the session payment ID **/
         Session::forget('paypal_payment_id');
         Session::forget('error');
         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
-            // \Session::put('error', 'Payment failed');
             return Redirect::to('/');
         }
         $payment = Payment::get($payment_id, $this->_api_context);
