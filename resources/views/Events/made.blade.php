@@ -28,8 +28,10 @@
                 <a href="/events/made"><button style="background-color:#00A0F0; float:left; margin-left:15px" class="btn bg-primary btn-lg">Hide old events</button></a>
             <form action="{{ action('EventController@datesBetween')}}" method="POST">
                 @csrf
-                    <input name="date" type="date" style="margin:10px;" placeholder="{{$date}}">
-                    <input name="date2" type="date" style="margin:10px;" placeholder="{{$date2}}">
+
+                    <input name="date" type="date" style="margin:10px;" value="{{$date}}">
+                    <input name="date2" type="date" style="margin:10px;" value="{{$date2}}">
+                
 
                     <button  type="submit">Zoek</button>
                 </form>

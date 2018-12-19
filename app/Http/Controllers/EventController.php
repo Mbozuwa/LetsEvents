@@ -315,15 +315,10 @@ class EventController extends Controller
         $user = Auth::user();
         $date = date('Y-m-d');
         $date2 = date('Y-m-d', strtotime("+1 month"));
-        $e = true;
         $events = Event::where(['user_id' => $user['id']])->paginate(2);
         return view('/events/made', ['events' => $events, 'date' => $date, 'date2' => $date2, 'e' => $e]);
 
     }
-
-    /**
-     * filters all events between 2 dates
-     */
 
     public function datesBetween(Request $request){
 

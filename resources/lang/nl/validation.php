@@ -145,5 +145,6 @@ return [
         'address'               => 'adres',
         'schoolname'            => 'schoolnaam',
         'place'                 => 'plaats',
+        'payreminder'           => 'Betalingsherinnering',
     ],
 ];
