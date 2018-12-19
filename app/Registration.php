@@ -32,4 +32,7 @@ class Registration extends Model
     public function user() {
         return $this->belongsTo('App\User');
     }
+    public function paymentStatus() {
+        return $this->belongsTo('App\PaymentStatus');
+    }
 }

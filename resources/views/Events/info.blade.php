@@ -30,16 +30,23 @@
                                                 <th>{{ __('msg.name') }}</th>
                                                 <th>{{ __('msg.email') }}</th>
                                                 <th>{{ __('msg.telephone') }}</th>
+                                                <th>{{ __('msg.status') }}</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($registered as $value)
                                             <tr>
-                                                <td>{{ $value->user->name }}</td>
-                                                <td>{{ $value->user->email }}</td>
-                                                <td>{{ $value->user->telephone }}</td>
-                                                <td>
+                                                <td>{{ $value[2][0]['name'] }}</td>
+                                                <td>{{ $value[2][0]['email'] }}</td>
+                                                <td>{{ $value[2][0]['telephone'] }}</td>
+                                                @if($value[1][0]['payment_status'] === 'approved')
+                                                    <td>{{ __('msg.paid') }}</td>
+                                                @else
+                                                    <td>{{ __('msg.notpaid') }}</td>
+                                                @endif
+                                                
+                                                {{-- <td>
                                                     @if($event->payment >= 0 && !empty($event->payment))
                                                     <form method="POST" action="{{ action('EventController@sendPaymentReminder') }}">
                                                       @csrf   
@@ -47,8 +54,8 @@
                                                       <input name="eventid" type="hidden" value="{{ $event->id }}">      
                                                       <input type="submit" class="btn btn-sm btn-primary" value="{{ __('msg.event.info.sendPayReminder') }}">
                                                     </form>
-                                                    @endif
-                                                </td>
+                                                    @endif --}}
+                                                {{-- </td> --}}
                                             </tr>
                                             @endforeach
                                         </tbody>
