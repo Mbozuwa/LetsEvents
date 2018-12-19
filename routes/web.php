@@ -99,13 +99,9 @@ Route::group(['middleware' => 'auth'] ,function() {
   Route::get('/internal', 'ErrorController@internal')->name('internal');
 });
 
-//adminController
-Route::get('/admin', 'AdminController@index');
-
-
-
 
 Route::group(['middleware' => 'auth.custom', 'isAdmin'], function () {
+    Route::get('/admin', 'AdminController@index');
     Route::resource('schools', 'SchoolController');
 });
 
